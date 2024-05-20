@@ -53,8 +53,40 @@ The result is a secure standalone LoRaWAN network which only requires a **local
 network** (LAN) connection for API data access. Sensor data is immediately written
 to the **local database** and can be accessed via various protocols: OPC-UA, GraphQL,
 MQTT, CSV or the internal web interface.
+<br>
 
 ![iQunet LoRaWAN setup](/assets/images/iqunet-lora.svg)
+<figcaption>figure 2: iQunet single-server LoRaWAN setup for
+medium size networks (e.g. 250 devices)</figcaption>
+<br>
+For this tutorial, the **<span style="background-color:#ff9494">red route</span>**
+as indicated in figure 2 will be used. The iQunet Server will receive the
+LoRaWAN packets via the attached **LoRa concentrator** radio module, **decode
+and unpack** the payload and store the data in the **build-in database**.
+<br>
+
+### The OPC-UA server interface
+
+After being written to the database, the data is made accessible via the embedded
+**OPC-UA server**. (TCP port 4840 on the LAN network or via Wireguard VPN)
+
+<div style="background-color: #e5e5e5">
+Note: OPC-UA (Open Platform Communications Unified Architecture)
+is a machine-to-machine communication protocol for industrial automation
+developed for data exchange. For more information, see
+[opcfoundation.org](https://opcfoundation.org/about/opc-technologies/opc-ua/).
+</div>
+<br>
+
+All measurements related to a single LoRaWAN sensor are organized under the
+corresponding DevEUI node of that sensor in the OPC-UA tree (figure 3). 
+
+![iQunet OPC-UA](/assets/images/iqunet-opcua.svg)
+<figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
+<br>
+Binary data is automatically unpacked and **converted to SI-units**.
+For example, a temperature sensor will have values in degrees Celcius (&deg;C)
+and a pressure value is converted to Pascal (Pa).
 
 
 <br>
