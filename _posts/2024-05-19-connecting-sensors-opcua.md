@@ -5,7 +5,12 @@ date: 2024-05-19 22:10:15 +0200
 categories: tutorial
 ---
 
-# Tutorial: from LoRaWAN to Python via OPC-UA
+# Tutorial: LoRaWAN sensor to Python graph
+
+LoRaWAN (Long Range Wide Area Network) is a wireless communication protocol
+designed for low-power, long-range, and low-data-rate applications, making it
+ideal for IoT devices. For more detailed information,
+visit [lora-alliance.org](https://lora-alliance.org/about-lorawan/).
 
 <span style="background-color: yellow">
 **Note:** This tutorial makes use of the iQunet Industrial Edge Server.
@@ -16,19 +21,25 @@ You will learn how to:
 - Connect a **LoRaWAN sensor** to the iQunet Industrial Edge Server.
 - Understand how sensor data is stored into the **local OPC-UA database**.
 - Test the OPC-UA server connection using **UaExpert**.
-- Use **Python** to connect to the OPC UA server for data visualization and post-processing.
-
+- Use **Python** to connect to the OPC-UA server for visualization and post-processing.
+<br>
+<br>
 ![LoRaWAN to OPC UA](/assets/images/lora-opc-python.svg)
 
+## Typical LoRaWAN Setup
 
-## Prerequisites
 
-Before we begin, ensure you have the following:
-- [Your Product Name] gateway
-- LoRaWAN or Modbus sensors
-- A computer with internet access
-- Basic knowledge of OPC UA (recommended)
-- FreeOpcUa installed (if not, follow this [installation guide](#))
+In a standard LoRaWAN setup, a **sensor** sends data to a **gateway**, which
+then forwards the encrypted data to a **network server** over the internet.
+The network server buffers the data and forwards it to an **application server**
+via MQTT. The application server decrypts and unpacks the binary sensor data
+and stores the measurement in a database, where it can be retrieved by,
+for example, **dashboarding software** for visualization.
+
+![Typical LoRaWAN](/assets/images/typical-lora.svg)
+
+For a small on-time setup, this multi-step process can be quite complex,
+especially when integrating software from different vendors.
 
 ## Step-by-Step Guide
 
