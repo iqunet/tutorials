@@ -5,6 +5,9 @@ date: 2024-05-19 22:10:15 +0200
 categories: tutorial
 ---
 
+* TOC
+{:toc}
+
 # Tutorial: LoRaWAN sensor to Python graph
 
 LoRaWAN (Long Range Wide Area Network) is a wireless communication protocol
@@ -37,7 +40,8 @@ and stores the measurement in a database, where it can be retrieved by,
 for example, **dashboarding software** for visualization.
 
 ![Typical LoRaWAN setup](/assets/images/typical-lora.svg)
-
+<figcaption>figure 1: Typical LoRaWAN setup for large networks</figcaption>
+<br>
 For a simple one-time setup, this multi-step process can be quite challenging,
 especially when integrating software from different vendors.
 
@@ -45,11 +49,12 @@ especially when integrating software from different vendors.
 
 The LoRaWAN gateway, network/application server and database can all be
 integrated in a single device, such as is the case for the iQunet Edge Server.
-The result is a secure standalone LoRaWAN network which only requires a local
-network (LAN) connection for API data access. Sensor data is immediately written
-to the local database and can be accessed via various protocols: OPC-UA, GraphQL,
-MQTT, CSV and even the internal web interface.
+The result is a secure standalone LoRaWAN network which only requires a **local
+network** (LAN) connection for API data access. Sensor data is immediately written
+to the **local database** and can be accessed via various protocols: OPC-UA, GraphQL,
+MQTT, CSV or the internal web interface.
 
+![iQunet LoRaWAN setup](/assets/images/iqunet-lora.svg)
 
 
 <br>
