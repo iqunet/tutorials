@@ -29,17 +29,48 @@ You will learn how to:
 ## Typical LoRaWAN Setup
 
 
-In a standard LoRaWAN setup, a **sensor** sends data to a **gateway**, which
+In a standard LoRaWAN setup, a sensor sends data to a **gateway**, which
 then forwards the encrypted data to a **network server** over the internet.
 The network server buffers the data and forwards it to an **application server**
 via MQTT. The application server decrypts and unpacks the binary sensor data
 and stores the measurement in a database, where it can be retrieved by,
 for example, **dashboarding software** for visualization.
 
-![Typical LoRaWAN](/assets/images/typical-lora.svg)
+![Typical LoRaWAN setup](/assets/images/typical-lora.svg)
 
-For a small on-time setup, this multi-step process can be quite complex,
+For a simple one-time setup, this multi-step process can be quite challenging,
 especially when integrating software from different vendors.
+
+## An Integrated Approach
+
+The LoRaWAN gateway, network/application server and database can all be
+integrated in a single device, such as is the case for the iQunet Edge Server.
+The result is a secure standalone LoRaWAN network which only requires a local
+network (LAN) connection for API data access. Sensor data is immediately written
+to the local database and can be accessed via various protocols: OPC-UA, GraphQL,
+MQTT, CSV and even the internal web interface.
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+===================
+
+ were combined into a single unit? This integration could operate as a standalone LoRaWAN network within a local area network (LAN), eliminating the need for an internet connection.
+
+[Figure here: Diagram of integrated server setup]
+
+In this scenario, the server would decode LoRaWAN packets, extract the payload from binary to SI units, and organize the data in an OPC UA tree structure under the sensor's MAC address. This structured approach allows for easy data access and management.
+
+[Figure here: Example of OPC UA tree structure]
 
 ## Step-by-Step Guide
 
