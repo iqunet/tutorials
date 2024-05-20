@@ -67,26 +67,19 @@ and unpack** the payload and store the data in the **build-in database**.
 
 ### The OPC-UA server interface
 
-After being written to the database, the data is made accessible via the embedded
-**OPC-UA server**. (TCP port 4840 on the LAN network or via Wireguard VPN)
-
-<div style="background-color: #e5e5e5">
-Note: OPC-UA (Open Platform Communications Unified Architecture)
+After being written to the database, the data is made accessible via the 
+**embedded OPC-UA server**.
+OPC-UA (Open Platform Communications Unified Architecture)
 is a machine-to-machine communication protocol for industrial automation
-developed for data exchange. For more information, see
+developed for secure, realtime data exchange. Visit
 [opcfoundation.org](https://opcfoundation.org/about/opc-technologies/opc-ua/).
-</div>
 <br>
-
-All measurements related to a single LoRaWAN sensor are organized under the
-corresponding DevEUI node of that sensor in the OPC-UA tree (figure 3). 
 
 ![iQunet OPC-UA](/assets/images/iqunet-opcua.svg)
 <figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
 <br>
-Binary data is automatically unpacked and **converted to SI-units**.
-For example, a temperature sensor will have values in degrees Celcius (&deg;C)
-and a pressure value is converted to Pascal (Pa).
+Measurements related to a single LoRaWAN sensor are organized under the
+corresponding DevEUI node of that sensor in the OPC-UA tree (figure 3). 
 
 
 <br>
