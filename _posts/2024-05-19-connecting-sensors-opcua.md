@@ -95,7 +95,7 @@ OPC-UA server and mobile network</figcaption>
 
 For the purpose of this tutorial, the Dragino LSN50v2-S31 temperature and
 humidity LoRaWAN sensor will be used. Both the LSN50 and the iQunet server
-understand the OTAA (over-the-air activation) protocol. OTAA allows to
+understand the OTAA (over-the-air activation) protocol V1.0.4. OTAA allows to
 automatically generate and exchange the network and application security keys
 between sensor and the target application.
 <br>
@@ -108,7 +108,6 @@ When the battery of the Dragino LSN50 sensor is connected, the configuration
 dashboard in iQunet server shall display a new LoRaWAN device under the LoRa
 Radio Module. The DevEUI found on the LSN50 sensor should match the devEUI as
 displayed in the dashboard.
-
 
 ![iQunet Dashboard new LoRaWAN]({{ site.baseurl }}/assets/images/iqunet-new-lorawan.svg)
 <figcaption>figure 6: The LoRaWAN sensor is detected and a new device LoRaWAN
