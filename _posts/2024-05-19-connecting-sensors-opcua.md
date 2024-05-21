@@ -81,7 +81,30 @@ corresponding DevEUI node of that sensor in the OPC-UA tree (figure 3).
 <br>
 
 
-## Hands-on: Connecting a new LoRaWAN device
+## LoRaWAN Hardware Setup
+
+Figure 4 shows a modular setup for a **private LoRaWAN network**. It consists
+of an **SX1302 LoRa Radio** receiver, an iQunet Edge SBC (database and OPC-UA
+server) and an (optional) 4G mobile router. The router is the temporary
+placeholder for -for example- a company VLAN.
+
+![iQunet Base Setup]({{ site.baseurl }}/assets/images/iqunet-setup.svg)
+<figcaption>figure 4: The setup with SX1302 concentrator module,
+OPC-UA server and mobile network</figcaption>
+<br>
+
+For the purpose of this tutorial, the Dragino LSN50v2-S31 temperature and
+humidity LoRaWAN sensor will be used. Both the LSN50 and the iQunet server
+understand the OTAA (over-the-air activation) protocol. OTAA allows to
+automatically generate and exchange the network and application security keys
+between sensor and the target application.
+<br>
+
+<img src="{{ site.baseurl }}/assets/images/lsn50v2-s31.svg" alt="Dragino LSN50v2-S31" width="400"/>
+<figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
+<br>
+
+
 
 <br>
 <br>
