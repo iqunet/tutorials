@@ -31,7 +31,6 @@ You will learn how to:
 
 ## Typical LoRaWAN Setup
 
-
 In a standard LoRaWAN setup, a sensor sends data to a **gateway**, which
 then forwards the encrypted data to a **network server** over the internet.
 The network server buffers the data and forwards it to an **application server**
@@ -73,14 +72,16 @@ OPC-UA (Open Platform Communications Unified Architecture)
 is a machine-to-machine communication protocol for industrial automation
 developed for secure, realtime data exchange. Visit
 [opcfoundation.org](https://opcfoundation.org/about/opc-technologies/opc-ua/).
-<br>
+
+Measurements related to a single LoRaWAN sensor are organized under the
+corresponding DevEUI node of that sensor in the OPC-UA tree (figure 3). 
 
 ![iQunet OPC-UA](/assets/images/iqunet-opcua.svg)
 <figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
 <br>
-Measurements related to a single LoRaWAN sensor are organized under the
-corresponding DevEUI node of that sensor in the OPC-UA tree (figure 3). 
 
+
+## Hands-on: Connecting a new LoRaWAN device
 
 <br>
 <br>
