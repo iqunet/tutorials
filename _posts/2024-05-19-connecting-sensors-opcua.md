@@ -104,7 +104,16 @@ between sensor and the target application.
 <figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
 <br>
 
+When the battery of the Dragino LSN50 sensor is connected, the configuration
+dashboard in iQunet server shall display a new LoRaWAN device under the LoRa
+Radio Module. The DevEUI found on the LSN50 sensor should match the devEUI as
+displayed in the dashboard.
 
+
+![iQunet Dashboard new LoRaWAN]({{ site.baseurl }}/assets/images/iqunet-new-lorawan.svg)
+<figcaption>figure 6: The LoRaWAN sensor is detected and a new device LoRaWAN
+device is created in the sensor tree.</figcaption>
+<br>
 
 <br>
 <br>
