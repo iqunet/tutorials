@@ -134,6 +134,18 @@ generate 2 new session keys:
 <figcaption>figure 8: Secure Session keys are calculated from the Application Key.</figcaption>
 <br>
 
+After all OTAA keys have been successfully set up, the actual uplink of sensor
+data will start. The iQunet Server automatically detects the sensor model and
+selects the corresponding payload decoder module. Binary sensor data is now
+unpacked into the appropriate fields in the OPC-UA tree. The dashboard will
+adjust and display all relevant information, as shown in figure 9:
+
+
+
+
+which
+the type of
+sensor based on the 
 
 
 
