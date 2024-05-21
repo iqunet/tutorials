@@ -104,7 +104,7 @@ between sensor and the target application.
 <figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
 <br>
 
-When the battery of the Dragino LSN50 sensor is connected, the configuration
+When the battery of the Dragino LSN50 sensor is inserted, the configuration
 dashboard in iQunet server shall display a new LoRaWAN device under the LoRa
 Radio Module. The DevEUI found on the LSN50 sensor should match the devEUI as
 displayed in the dashboard.
@@ -114,6 +114,30 @@ displayed in the dashboard.
 device is created in the sensor tree.</figcaption>
 <br>
 
+Communication with the sensor will not start before the encryption key is
+set up. For this, click on the "Edit" button next to the **Application Key**
+and fill in the 32-character key that comes with the Dragino Device.
+The AppKey (aka JOIN key) is only used once during the setup of the device.
+
+![iQunet LoRaWAN AppKey]({{ site.baseurl }}/assets/images/iqunet-key-lorawan.svg)
+<figcaption>figure 7: Setup of the LoRaWAN Application Key in the dashboard.</figcaption>
+<br>
+
+If the **Application Key** is correct, the sensor and the iQunet server will
+generate 2 new session keys:
+- The **Network Session Key** (NwkSKey) is used for all communications related to
+  the LoRaWAN protocol (e.g. regional parameters and frequencies).
+- The **Application Session Key** (AppSKey) is used for the exchange of sensor
+  data, in this particular case temperature and humidity.
+
+![iQunet LoRaWAN Session Keys]({{ site.baseurl }}/assets/images/iqunet-sessionkeys-lorawan.svg)
+<figcaption>figure 8: Secure Session keys are calculated from the Application Key.</figcaption>
+<br>
+
+
+
+
+<br>
 <br>
 <br>
 <br>
