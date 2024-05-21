@@ -27,7 +27,7 @@ You will learn how to:
 - Use **Python** to connect to the OPC-UA server for visualization and post-processing.
 <br>
 <br>
-![LoRaWAN to OPC UA](/assets/images/lora-opc-python.svg)
+![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/lora-opc-python.svg)
 
 ## Typical LoRaWAN Setup
 
@@ -38,7 +38,7 @@ via MQTT. The application server decrypts and unpacks the binary sensor data
 and stores the measurement in a database, where it can be retrieved by,
 for example, **dashboarding software** for visualization.
 
-![Typical LoRaWAN setup](/assets/images/typical-lora.svg)
+![Typical LoRaWAN setup]({{ site.baseurl }}/assets/images/typical-lora.svg)
 <figcaption>figure 1: Typical LoRaWAN setup for large networks</figcaption>
 <br>
 For a simple one-time setup, this multi-step process can be quite challenging,
@@ -54,7 +54,7 @@ to the **local database** and can be accessed via various protocols: OPC-UA, Gra
 MQTT, CSV or the internal web interface.
 <br>
 
-![iQunet LoRaWAN setup](/assets/images/iqunet-lora.svg)
+![iQunet LoRaWAN setup]({{ site.baseurl }}/assets/images/iqunet-lora.svg)
 <figcaption>figure 2: iQunet single-server LoRaWAN setup for
 medium size networks (e.g. 250 devices)</figcaption>
 <br>
@@ -76,7 +76,7 @@ developed for secure, realtime data exchange. Visit
 Measurements related to a single LoRaWAN sensor are organized under the
 corresponding DevEUI node of that sensor in the OPC-UA tree (figure 3). 
 
-![iQunet OPC-UA](/assets/images/iqunet-opcua.svg)
+![iQunet OPC-UA]({{ site.baseurl }}/assets/images/iqunet-opcua.svg)
 <figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
 <br>
 
