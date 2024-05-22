@@ -157,17 +157,17 @@ programmatically via the OPC-UA, MQTT or GraphQL interface. This allows for
 
 At this point, the sensor has successfully joined the private LoRaWAN network
 and incoming measurements are stored into the **local database**. Historical
-data can be accessed via the OPC-UA "**historical access**" extension. Click on
-the OPC-UA tab in the dashboard to open the embedded OPC-UA browser (figure 10).
-The browser allows to manually export data to Google Sheets, or as a CSV file.
+data can be retrieved via the OPC-UA "**historical access**" extension.
+
+Click on the OPC-UA tab in the dashboard to open the embedded OPC-UA browser (figure 10).
 
 ![iQunet OPC-UA browser]({{ site.baseurl }}/assets/images/iqunet-dashboard-opcua.svg)
-<figcaption>figure 9: Embedded OPC-UA client and browser.</figcaption>
+<figcaption>figure 10: Embedded OPC-UA client and browser.</figcaption>
 <br>
 
 The OPC-UA server is also accessible by all 3rd party client softwares such as
-the UaExpert Client. The server is listening on all network interfaces
-(LAN, WLAN, wireguard VPN) at **port 4840**.
+the Unified Automation UaExpert Client. The server is listening on all network
+interfaces (LAN, WLAN, wireguard VPN) at **port 4840**.
 
 For example, for the demo iQunet server connected to LAN network 192.168.10.0/24:
 
@@ -175,8 +175,19 @@ For example, for the demo iQunet server connected to LAN network 192.168.10.0/24
 |---------------------|------------------------------------------|
 | WebServer           | http://192.168.10.101:8000/dashboard     |
 | GraphQL server      | http://192.168.10.101:8000/graphql       |
-| OPC-UA server       | opc.tcp://192.168.10.101:4840            |
+| **OPC-UA server**   | **opc.tcp://192.168.10.101:4840**        |
 
+![UaExpert Setup]({{ site.baseurl }}/assets/images/uaexpert-setup.svg)
+<figcaption>figure 11: Unified Automation UaExpert OPC-UA client connection setup.</figcaption>
+<br>
+
+When the UaExpert client is successfully connected to the iQunet OPC-UA server,
+direct access is provided to all realtime sensor measurements, metadata and
+historical values as stored in the local database.
+
+![UaExpert History view]({{ site.baseurl }}/assets/images/uaexpert-history.svg)
+<figcaption>figure 12: Unified Automation UaExpert OPC-UA client: history view.</figcaption>
+<br>
 
 
 <br>
