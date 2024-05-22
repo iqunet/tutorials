@@ -21,6 +21,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   custom engineering requests to meet your specific needs.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+author: "iQunet.com Asset Monitoring"
 #twitter_username: jekyllrb
 #github_username:  jekyll
 
