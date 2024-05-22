@@ -255,4 +255,18 @@ if __name__ == '__main__':
 <figcaption>figure 13: Smoothed temperature plot using opcua-asyncio and matplotlib.</figcaption>
 <br>
 
-For more advanced features and support, visit our [documentation](#) or contact our [support team](#). Happy data monitoring!
+## Conclusion
+Throughout this tutorial, we've demonstrated how to integrate a LoRaWAN sensor
+with the iQunet Industrial Edge Server, store sensor data in a local OPC-UA
+database, and visualize the data using Python. By following these steps, you
+have successfully set up a private LoRaWAN network and accessed real-time and
+historical data through the embedded OPC-UA server.
+
+Beyond the basics covered in this guide, iQunet offers extensive capabilities
+for more advanced data processing tasks. These include handling complex datasets
+like vibration data, implementing machine learning techniques for predictive
+maintenance, and enabling custom software adaptations to meet specific industrial
+needs.
+
+For further exploration and support, check out our [documentation](#) or reach
+out to our [support team](#). Happy data monitoring!
