@@ -176,7 +176,7 @@ Click the OPC-UA tab in the dashboard to open the embedded OPC-UA browser (figur
 ### UaExpert OPC-UA Client
 The server listens on all network interfaces (LAN, WLAN, wireguard VPN) at **port 4840**.
 
-For example, for the demo iQunet server connected to LAN ethernet network 192.168.10.0/24:
+For example, when the ethernet cable is connected to LAN network 192.168.10.0/24:
 
 | Service             | URL                                      |
 |---------------------|------------------------------------------|
