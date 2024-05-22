@@ -111,7 +111,7 @@ between sensor and the target application.
 ### Connecting a new LoRaWAN sensor
 After the battery of the Dragino LSN50 sensor is inserted, the configuration
 dashboard in iQunet server shall display a new LoRaWAN device under the LoRa
-Radio Module. The DevEUI found on the LSN50 sensor should match the devEUI as
+Radio Module. The devEUI found on the LSN50 sensor should match the devEUI as
 displayed in the dashboard.
 
 ![iQunet Dashboard new LoRaWAN]({{ site.baseurl }}/assets/images/iqunet-new-lorawan.svg)
