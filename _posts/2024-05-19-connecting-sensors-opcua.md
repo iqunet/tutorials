@@ -8,7 +8,7 @@ categories: tutorial
 * TOC
 {:toc}
 
-## Mission: LoRaWAN temperature data to Python graph
+## Mission: LoRa Temperature Data to Python Graph
 
 LoRaWAN (Long Range Wide Area Network) is a wireless communication protocol
 designed for low-power, long-range, and low-data-rate applications, making it
@@ -29,7 +29,7 @@ You will learn how to:
 <br>
 ![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/lora-opc-python.svg)
 
-## Typical Public LoRaWAN Setup
+### Typical LoRaWAN Network Infrastructure
 
 In a standard LoRaWAN setup, a sensor sends data to a **gateway**, which
 then forwards the encrypted data to a **network server** over the internet.
@@ -44,7 +44,7 @@ for example, **dashboarding software** for visualization.
 For a simple one-time setup, this multi-step process can be quite challenging,
 especially when integrating software from different vendors.
 
-## A Single-Device Private LoRaWAN network
+### A Single-Device Private LoRaWAN Setup
 
 The LoRaWAN gateway, network/application server and database can all be
 integrated in a single device, such as is the case for the iQunet Edge Server.
@@ -81,7 +81,7 @@ corresponding DevEUI node of that sensor in the OPC-UA tree (figure 3).
 <br>
 
 
-## LoRaWAN Hardware Setup
+### LoRaWAN Hardware Setup
 
 Figure 4 shows a modular setup for a **private LoRaWAN network**. It consists
 of an **SX1302 LoRa Radio** receiver, an iQunet Edge SBC (database and OPC-UA
@@ -104,7 +104,7 @@ between sensor and the target application.
 <figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
 <br>
 
-## Connecting a new LoRaWAN sensor
+### Connecting a new LoRaWAN sensor
 After the battery of the Dragino LSN50 sensor is inserted, the configuration
 dashboard in iQunet server shall display a new LoRaWAN device under the LoRa
 Radio Module. The DevEUI found on the LSN50 sensor should match the devEUI as
@@ -156,7 +156,7 @@ programmatically via the OPC-UA, MQTT or GraphQL interface. This allows for
 **automated provisioning** of multiple sensors.
 <br>
 
-## Embedded OPC-UA Client
+### Embedded OPC-UA Client
 At this point, the sensor has successfully joined the private LoRaWAN network
 and incoming measurements are stored into the **local database**. Historical
 data can be retrieved via the OPC-UA "**historical access**" extension.
@@ -167,9 +167,9 @@ Click on the OPC-UA tab in the dashboard to open the embedded OPC-UA browser (fi
 <figcaption>figure 10: Embedded OPC-UA client and browser.</figcaption>
 <br>
 
-## UaExpert OPC-UA Client
+### UaExpert OPC-UA Client
 The OPC-UA server is also accessible by all 3rd party client softwares such as
-the Unified Automation UaExpert Client. The server is listening on all network
+the Unified Automation UaExpert Client. The server listens on all network
 interfaces (LAN, WLAN, wireguard VPN) at **port 4840**.
 
 For example, for the demo iQunet server connected to LAN network 192.168.10.0/24:
@@ -192,7 +192,7 @@ values as stored in the local database.
 <figcaption>figure 12: Unified Automation UaExpert OPC-UA client: history view.</figcaption>
 <br>
 
-## Post-processing OPC-UA data with Python
+### Post-processing OPC-UA data with Python
 The next step in this tutorial is to connect to the OPC-UA server with the Python
 programming language. This allows for flexible **postprocessing**, such as
 smoothing data, sending automated alarm messages or creating your own custom
@@ -255,7 +255,7 @@ if __name__ == '__main__':
 <figcaption>figure 13: Smoothed temperature plot using opcua-asyncio and matplotlib.</figcaption>
 <br>
 
-## Conclusion
+### Conclusion
 Throughout this tutorial, we've demonstrated how to integrate a LoRaWAN sensor
 with the iQunet Industrial Edge Server, store sensor data in a local OPC-UA
 database, and visualize the data using Python. By following these steps, you
