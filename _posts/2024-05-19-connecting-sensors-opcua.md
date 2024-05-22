@@ -104,7 +104,7 @@ between sensor and the target application.
 <figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
 <br>
 
-When the battery of the Dragino LSN50 sensor is inserted, the configuration
+After the battery of the Dragino LSN50 sensor is inserted, the configuration
 dashboard in iQunet server shall display a new LoRaWAN device under the LoRa
 Radio Module. The DevEUI found on the LSN50 sensor should match the devEUI as
 displayed in the dashboard.
@@ -118,6 +118,7 @@ Communication with the sensor will not start before the encryption key is
 set up. For this, click on the "Edit" button next to the **Application Key**
 and fill in the 32-character key that comes with the Dragino Device.
 The AppKey (aka JOIN key) is only used once during the setup of the device.
+<br>
 
 ![iQunet LoRaWAN AppKey]({{ site.baseurl }}/assets/images/iqunet-key-lorawan.svg)
 <figcaption>figure 7: Setup of the LoRaWAN Application Key in the dashboard.</figcaption>
@@ -129,6 +130,7 @@ generate 2 new session keys:
   the LoRaWAN protocol (e.g. regional parameters and frequencies).
 - The **Application Session Key** (AppSKey) is used for the exchange of sensor
   data, in this particular case temperature and humidity.
+<br>
 
 ![iQunet LoRaWAN Session Keys]({{ site.baseurl }}/assets/images/iqunet-sessionkeys-lorawan.svg)
 <figcaption>figure 8: Secure Session keys are calculated from the Application Key.</figcaption>
@@ -138,9 +140,42 @@ After all OTAA keys have been successfully set up, the actual **uplink of sensor
 data** will start. The iQunet Server automatically detects the sensor model and
 selects the corresponding **payload decoder** module. Binary sensor data is now
 unpacked into the appropriate fields in the OPC-UA tree. The dashboard will
-adjust and display all relevant information, as shown in figure 9:
+adjust and display all relevant information. For example, the LSN50v2-S31 will
+transmit temperature, humitidy and battery power, as shown in figure 9:
+<br>
 
+![iQunet custom dashboard]({{ site.baseurl }}/assets/images/iqunet-lsn50.svg)
+<figcaption>figure 9: Dashboard will adjust to the sensor type.</figcaption>
+<br>
 
+When available, sensor settings can be adjusted via the **LoRaWAN downlink**
+channel. For example, the LSN50 allows the on-the-fly setup of the measurement
+interval. The configuration can not only be adjusted in the dashboard, but also
+programmatically via the OPC-UA, MQTT or GraphQL interface. This allows for
+**automated provisioning** of multiple sensors.
+<br>
+
+At this point, the sensor has successfully joined the private LoRaWAN network
+and incoming measurements are stored into the **local database**. Historical
+data can be accessed via the OPC-UA "**historical access**" extension. Click on
+the OPC-UA tab in the dashboard to open the embedded OPC-UA browser (figure 10).
+The browser allows to manually export data to Google Sheets, or as a CSV file.
+
+![iQunet OPC-UA browser]({{ site.baseurl }}/assets/images/iqunet-dashboard-opcua.svg)
+<figcaption>figure 9: Embedded OPC-UA client and browser.</figcaption>
+<br>
+
+The OPC-UA server is also accessible by all 3rd party client softwares such as
+the UaExpert Client. The server is listening on all network interfaces
+(LAN, WLAN, wireguard VPN) at **port 4840**.
+
+For example, for the demo iQunet server connected to LAN network 192.168.10.0/24:
+
+| Service             | URL                                      |
+|---------------------|------------------------------------------|
+| WebServer           | http://192.168.10.101:8000/dashboard     |
+| GraphQL server      | http://192.168.10.101:8000/graphql       |
+| OPC-UA server       | opc.tcp://192.168.10.101:4840            |
 
 
 
