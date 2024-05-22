@@ -8,23 +8,23 @@ categories: tutorial
 * TOC
 {:toc}
 
-## Mission: LoRa Temperature Data to Python Graph
+## Mission: LoRaWAN Temperature Data to Python Graph
+
+<span style="background-color: #ffff006b">
+**Note:** This tutorial makes use of the iQunet Industrial Edge Server.
+<br>A demo gateway endpoint is provided for the purpose of this guide.
+</span>
 
 LoRaWAN (Long Range Wide Area Network) is a wireless communication protocol
 designed for low-power, long-range, and low-data-rate applications, making it
 ideal for IoT devices. For more detailed information,
 visit [lora-alliance.org](https://lora-alliance.org/about-lorawan/).
 
-<span style="background-color: yellow">
-**Note:** This tutorial makes use of the iQunet Industrial Edge Server.
-<br>A demo gateway is provided for the purpose of this guide.
-</span>
-
 You will learn how to:
 - Connect a **LoRaWAN sensor** to the iQunet Industrial Edge Server.
 - Understand how sensor data is stored into the **local OPC-UA database**.
 - Test the OPC-UA server connection using **UaExpert**.
-- Use **Python** to connect to the OPC-UA server for visualization and post-processing.
+- Use **Python** to connect to the OPC-UA server for post-processing and visualization.
 <br>
 <br>
 ![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/lora-opc-python.svg)
