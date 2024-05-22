@@ -200,7 +200,7 @@ aggregate dashboards with realtime data.
 
 Below is the boilerplate code to connect to the OPC-UA server, extract
 the temperatures of the last day and generate a basic plot.
-For this, two external libraries are used: *opcua-asyncio* and *matplotlib*.
+For this, three external libraries are used: *opcua-asyncio*, *numpy* and *matplotlib*.
 
 ```python
 import asyncio
@@ -237,7 +237,7 @@ async def main():
 
         # Plot
         plt.figure(figsize=(10, 5))
-        plt.plot(times, values, marker='o', label='Original')
+        plt.plot(times, values, linestyle= '', marker='o', label='Original')
         plt.plot(times, smooth, linestyle='-', color='red', label='Smoothed')
         plt.xlabel('Timestamp')
         plt.ylabel('Value')
@@ -254,91 +254,5 @@ if __name__ == '__main__':
 ![Temperature Plot]({{ site.baseurl }}/assets/images/temperature_plot.png)
 <figcaption>figure 13: Smoothed temperature plot using opcua-asyncio and matplotlib.</figcaption>
 <br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-===================
-
- were combined into a single unit? This integration could operate as a standalone LoRaWAN network within a local area network (LAN), eliminating the need for an internet connection.
-
-[Figure here: Diagram of integrated server setup]
-
-In this scenario, the server would decode LoRaWAN packets, extract the payload from binary to SI units, and organize the data in an OPC UA tree structure under the sensor's MAC address. This structured approach allows for easy data access and management.
-
-[Figure here: Example of OPC UA tree structure]
-
-## Step-by-Step Guide
-
-### Step 1: Power Up the Gateway
-Connect your [Your Product Name] gateway to a power source. You should see the power indicator light up.
-
-### Step 2: Connect Sensors
-Attach your LoRaWAN or Modbus sensors to the gateway. Refer to the diagrams below for correct connections.
-
-### Step 3: Configure the Gateway
-Access the gateway's web interface by entering its IP address in your browser. Login with your credentials.
-
-### Step 4: Setup OPC UA
-Navigate to the OPC UA settings in the menu. Enter the necessary details to configure the connection.
-
-### Step 5: Install FreeOpcUa
-If you haven't installed FreeOpcUa, follow this guide: [FreeOpcUa Installation](#).
-
-### Step 6: Connect FreeOpcUa to Gateway
-Open your Python environment and use the following code to connect to the gateway:
-```python
-from opcua import Client
-
-client = Client("opc.tcp://<gateway-ip>:4840")
-client.connect()
-print("Connected to OPC UA Server")
-```
-
-### Step 7: Retrieve Sensor Data
-Use this code snippet to read data from your sensors:
-```python
-sensor_node = client.get_node("ns=2;i=2")
-sensor_value = sensor_node.get_value()
-print(f"Sensor Value: {sensor_value}")
-```
-
-### Step 8: Visualize Historical Data
-Install Matplotlib if you haven't:
-```bash
-pip install matplotlib
-```
-```python
-import matplotlib.pyplot as plt
-import datetime
-
-# Retrieve historical data
-history = sensor_node.read_raw_history(datetime.datetime.now() - datetime.timedelta(days=1), datetime.datetime.now())
-
-# Extract timestamps and values
-timestamps = [entry.SourceTimestamp for entry in history]
-values = [entry.Value.Value for entry in history]
-
-# Plot data
-plt.plot(timestamps, values)
-plt.xlabel('Time')
-plt.ylabel('Sensor Value')
-plt.title('Sensor Data Over Time')
-plt.show()
-```
-
-### Step 9: Try It Out Online
-To make it even easier, we've created an interactive Jupyter Notebook that you can run directly in your browser. Click [here](link-to-notebook) to try it out.
-
-## Conclusion
-Congratulations! You've successfully set up your [Your Product Name] gateway, connected it to sensors, and visualized the data using FreeOpcUa. We hope this tutorial was helpful and gave you a clear understanding of how to leverage our product for your data management needs.
 
 For more advanced features and support, visit our [documentation](#) or contact our [support team](#). Happy data monitoring!
