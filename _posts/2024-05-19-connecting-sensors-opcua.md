@@ -104,6 +104,7 @@ between sensor and the target application.
 <figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
 <br>
 
+## Connecting a new LoRaWAN sensor
 After the battery of the Dragino LSN50 sensor is inserted, the configuration
 dashboard in iQunet server shall display a new LoRaWAN device under the LoRa
 Radio Module. The DevEUI found on the LSN50 sensor should match the devEUI as
@@ -155,6 +156,7 @@ programmatically via the OPC-UA, MQTT or GraphQL interface. This allows for
 **automated provisioning** of multiple sensors.
 <br>
 
+## Embedded OPC-UA Client
 At this point, the sensor has successfully joined the private LoRaWAN network
 and incoming measurements are stored into the **local database**. Historical
 data can be retrieved via the OPC-UA "**historical access**" extension.
@@ -165,6 +167,7 @@ Click on the OPC-UA tab in the dashboard to open the embedded OPC-UA browser (fi
 <figcaption>figure 10: Embedded OPC-UA client and browser.</figcaption>
 <br>
 
+## UaExpert OPC-UA Client
 The OPC-UA server is also accessible by all 3rd party client softwares such as
 the Unified Automation UaExpert Client. The server is listening on all network
 interfaces (LAN, WLAN, wireguard VPN) at **port 4840**.
@@ -182,13 +185,75 @@ For example, for the demo iQunet server connected to LAN network 192.168.10.0/24
 <br>
 
 When the UaExpert client is successfully connected to the iQunet OPC-UA server,
-direct access is provided to all realtime sensor measurements, metadata and
-historical values as stored in the local database.
+direct access is provided to all realtime measurements, metadata and historical
+values as stored in the local database.
 
 ![UaExpert History view]({{ site.baseurl }}/assets/images/uaexpert-history.svg)
 <figcaption>figure 12: Unified Automation UaExpert OPC-UA client: history view.</figcaption>
 <br>
 
+## Python OPC-UA Client
+The next step in this tutorial is to connect to the OPC-UA server with the Python
+programming language. This allows for flexible **postprocessing**, such as
+smoothing data, sending automated alarm messages or creating your own custom
+aggregate dashboards with realtime data.
+
+Below is the boilerplate code to connect to the OPC-UA server, extract
+the temperatures of the last day and generate a basic plot.
+For this, two external libraries are used: *opcua-asyncio* and *matplotlib*.
+
+```python
+import asyncio
+import datetime
+import matplotlib.pyplot as plt
+import numpy as np
+from asyncua import Client
+
+def moving_avg(values, window):
+    padded = np.pad(values, (window//2, window-1-window//2), mode='edge')
+    window = np.ones(window) / window
+    smooth = np.convolve(padded, window, mode='valid')
+    return smooth
+
+async def main():
+    url = 'opc.tcp://192.168.10.101:4840'
+    path = ['0:Objects', '2:31:86:84:11', '2:boardTemperature']
+
+    async with Client(url=url) as client:
+        root = client.nodes.root
+        node = await root.get_child(path)
+
+        # read history
+        start_time = datetime.datetime.now() - datetime.timedelta(days=1)
+        end_time = datetime.datetime.now()
+        history = await node.read_raw_history(start_time, end_time)
+
+        # Extracting values
+        times = [x.SourceTimestamp for x in history]
+        values = [x.Value.Value for x in history]
+
+        # Smooth
+        smooth = moving_avg(values, window=5)
+
+        # Plot
+        plt.figure(figsize=(10, 5))
+        plt.plot(times, values, marker='o', label='Original')
+        plt.plot(times, smooth, linestyle='-', color='red', label='Smoothed')
+        plt.xlabel('Timestamp')
+        plt.ylabel('Value')
+        plt.title('Temperature')
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
+if __name__ == '__main__':
+    asyncio.run(main())
+
+```
+
+![Temperature Plot]({{ site.baseurl }}/assets/images/temperature_plot.png)
+<figcaption>figure 13: Smoothed temperature plot using opcua-asyncio and matplotlib.</figcaption>
+<br>
 
 <br>
 <br>
