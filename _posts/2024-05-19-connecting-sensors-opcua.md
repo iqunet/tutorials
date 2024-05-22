@@ -211,9 +211,12 @@ Python programming language. This allows for flexible **postprocessing**, such
 as smoothing data, sending automated alarm messages or creating your own custom
 aggregate dashboards with realtime data.
 
-Below is the boilerplate code to connect to the OPC-UA server, extract the
-temperatures from the last day, and generate a basic plot.
-Three external libraries are used for this: *opcua-asyncio*, *numpy* and *matplotlib*.
+Below is the boilerplate Python code to connect to the OPC-UA server, extract
+the temperatures from the last day, and generate a basic plot.
+Three external libraries are used for this:
+*[opcua-asyncio](https://pypi.org/project/asyncua/)*,
+*[numpy](https://pypi.org/project/numpy/)* and
+*[matplotlib](https://pypi.org/project/matplotlib/)*.
 
 ```python
 import asyncio
