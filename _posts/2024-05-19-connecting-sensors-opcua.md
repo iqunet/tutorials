@@ -7,6 +7,7 @@ categories: tutorial
 
 * TOC
 {:toc}
+<hr>
 
 ### Mission: LoRaWAN Temperature Data to Python Graph
 
@@ -28,6 +29,7 @@ You will learn how to:
 <br>
 <br>
 ![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/lora-opc-python.svg)
+<hr>
 
 ### Typical LoRaWAN Network Infrastructure
 
@@ -43,11 +45,13 @@ be retrieved by, for example, **dashboarding software** for visualization.
 <br>
 This multi-step process can be quite challenging for a simple one-time setup,
 particularly when integrating software from different vendors.
+<hr>
 
 ### A Single-Device Private LoRaWAN Setup
 
 The LoRaWAN gateway, network/application server and database can all be
-integrated in a single device, such as is the case for the iQunet Edge Server.
+integrated in a single device, such as is the case for the iQunet Edge Server
+[[link](https://iqunet.com/products/servers/)].
 The result is a secure standalone LoRaWAN network which requires only a **local
 network** (LAN) connection for API data access. Sensor data is immediately written
 to the **local database** and can be accessed via various protocols: OPC-UA, GraphQL,
@@ -62,7 +66,6 @@ In this tutorial, the **<span style="background-color:#ff9494">red route</span>*
 indicated in figure 2 will be used. The iQunet Server will receive the
 LoRaWAN packets via the attached **LoRa concentrator** radio module, **decode
 and unpack** the payload and store the data in the **built-in database**.
-<br>
 
 ### The OPC-UA server interface
 
@@ -79,7 +82,7 @@ corresponding DevEUI node of that sensor in the OPC-UA tree (see figure 3).
 ![iQunet OPC-UA]({{ site.baseurl }}/assets/images/iqunet-opcua.svg)
 <figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
 <br>
-
+<hr>
 
 ### LoRaWAN Hardware Setup
 
@@ -95,7 +98,7 @@ OPC-UA server and mobile network</figcaption>
 
 For the purpose of this tutorial, the Dragino LSN50v2-S31 temperature and
 humidity LoRaWAN sensor will be used. Both the LSN50 and the iQunet server
-understand the OTAA (over-the-air activation) protocol V1.0.4. OTAA allows to
+understand the OTAA (over-the-air activation) protocol v1.0.4. OTAA allows to
 automatically generate and exchange the network and application security keys
 between sensor and the target application.
 <br>
@@ -103,6 +106,7 @@ between sensor and the target application.
 <img src="{{ site.baseurl }}/assets/images/lsn50v2-s31.svg" alt="Dragino LSN50v2-S31" width="400"/>
 <figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
 <br>
+<hr>
 
 ### Connecting a new LoRaWAN sensor
 After the battery of the Dragino LSN50 sensor is inserted, the configuration
@@ -155,7 +159,7 @@ channel. For example, the LSN50 allows the on-the-fly setup of the measurement
 interval. The configuration can be adjusted not only in the dashboard but also
 programmatically via the OPC-UA, MQTT, or GraphQL interface. This allows for
 **automated provisioning** of multiple sensors.
-<br>
+<hr>
 
 ### Embedded OPC-UA Client
 At this point, the sensor has successfully joined the private LoRaWAN network
@@ -167,6 +171,7 @@ Click the OPC-UA tab in the dashboard to open the embedded OPC-UA browser (figur
 ![iQunet OPC-UA browser]({{ site.baseurl }}/assets/images/iqunet-dashboard-opcua.svg)
 <figcaption>figure 10: Embedded OPC-UA client and browser.</figcaption>
 <br>
+<hr>
 
 ### UaExpert OPC-UA Client
 The server listens on all network interfaces (LAN, WLAN, wireguard VPN) at **port 4840**.
@@ -198,6 +203,7 @@ values as stored in the local database.
 ![UaExpert History view]({{ site.baseurl }}/assets/images/uaexpert-history.svg)
 <figcaption>figure 12: Unified Automation UaExpert OPC-UA client: history view.</figcaption>
 <br>
+<hr>
 
 ### Post-processing OPC-UA data with Python
 The next step in this tutorial is connecting to the OPC-UA server using the
@@ -261,6 +267,7 @@ if __name__ == '__main__':
 ![Temperature Plot]({{ site.baseurl }}/assets/images/temperature_plot.png)
 <figcaption>figure 13: Smoothed temperature plot using opcua-asyncio and matplotlib.</figcaption>
 <br>
+<hr>
 
 ### Conclusion
 Throughout this tutorial, we've demonstrated how to integrate a LoRaWAN sensor
