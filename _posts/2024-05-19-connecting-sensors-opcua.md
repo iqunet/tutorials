@@ -47,7 +47,7 @@ This multi-step process can be quite challenging for a simple one-time setup,
 particularly when integrating software from different vendors.
 <hr>
 
-### A Single-Device Private LoRaWAN Setup
+### A Single-Board Private LoRaWAN Setup
 
 The LoRaWAN gateway, network/application server and database can all be
 integrated in a single device, such as is the case for the iQunet Edge Server
