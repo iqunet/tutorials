@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "LoRaWAN to OPC-UA Gateway"
+title: "Private LoRaWAN to OPC-UA"
 date: 2024-05-19 22:10:15 +0200
 categories: tutorial
 ---
@@ -8,7 +8,7 @@ categories: tutorial
 * TOC
 {:toc}
 
-# Tutorial: LoRaWAN sensor to Python graph
+## Mission: LoRaWAN temperature data to Python graph
 
 LoRaWAN (Long Range Wide Area Network) is a wireless communication protocol
 designed for low-power, long-range, and low-data-rate applications, making it
@@ -29,7 +29,7 @@ You will learn how to:
 <br>
 ![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/lora-opc-python.svg)
 
-## Typical LoRaWAN Setup
+## Typical Public LoRaWAN Setup
 
 In a standard LoRaWAN setup, a sensor sends data to a **gateway**, which
 then forwards the encrypted data to a **network server** over the internet.
@@ -44,7 +44,7 @@ for example, **dashboarding software** for visualization.
 For a simple one-time setup, this multi-step process can be quite challenging,
 especially when integrating software from different vendors.
 
-## An Integrated Approach
+## A Single-Device Private LoRaWAN network
 
 The LoRaWAN gateway, network/application server and database can all be
 integrated in a single device, such as is the case for the iQunet Edge Server.
@@ -192,7 +192,7 @@ values as stored in the local database.
 <figcaption>figure 12: Unified Automation UaExpert OPC-UA client: history view.</figcaption>
 <br>
 
-## Python OPC-UA Client
+## Post-processing OPC-UA data with Python
 The next step in this tutorial is to connect to the OPC-UA server with the Python
 programming language. This allows for flexible **postprocessing**, such as
 smoothing data, sending automated alarm messages or creating your own custom
