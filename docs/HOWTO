@@ -1,0 +1,6 @@
+docker run --rm -p 4000:4000 -v /home/wvereeck/jekyll-root:/usr/local/bundle --volume="$PWD:/srv/jekyll" -it jekyll/jekyll bash
+
+bundler update
+bundle install
+bundle exec jekyll build --baseurl "/tutorials"
+bundle exec jekyll serve --host=0.0.0.0
