@@ -11,15 +11,23 @@ categories: tutorial
 
 ### Mission: LoRaWAN Temperature Data to Python Graph
 
+![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/lora-opc-python.svg)
+
 <span style="background-color: #ffff0054">
 **Note:** This tutorial uses the iQunet Industrial Edge Server.
 <br>A demo gateway endpoint is provided for the purpose of this guide.
 </span>
 
-LoRaWAN (Long Range Wide Area Network) is a wireless communication protocol
-designed for low-power, long-range, and low-data-rate applications. This makes
-it ideal for IoT devices. For more detailed information, visit
-[lora-alliance.org](https://lora-alliance.org/about-lorawan/).
+> LoRaWAN (Long Range Wide Area Network) is a wireless communication protocol
+> designed for low-power, long-range, and low-data-rate applications. This makes
+> it ideal for IoT devices. For more detailed information, visit
+> [lora-alliance.org](https://lora-alliance.org/about-lorawan/).
+<br>
+
+> OPC-UA (Open Platform Communications Unified Architecture)
+> is a machine-to-machine communication protocol for industrial automation
+> developed for secure, realtime data exchange. Visit
+> [opcfoundation.org](https://opcfoundation.org/about/opc-technologies/opc-ua/).
 
 You will learn how to:
 - Connect a **LoRaWAN sensor** to the iQunet Industrial Edge Server.
@@ -27,8 +35,6 @@ You will learn how to:
 - Test the OPC-UA server connection using **UaExpert**.
 - Use **Python** to connect to the OPC-UA server for post-processing and visualization.
 <br>
-<br>
-![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/lora-opc-python.svg)
 <hr>
 
 ### Typical LoRaWAN Network Infrastructure
@@ -71,13 +77,8 @@ and unpack** the payload and store the data in the **built-in database**.
 
 After being written to the database, the data is made accessible via the 
 **embedded OPC-UA server**.
-OPC-UA (Open Platform Communications Unified Architecture)
-is a machine-to-machine communication protocol for industrial automation
-developed for secure, realtime data exchange. Visit
-[opcfoundation.org](https://opcfoundation.org/about/opc-technologies/opc-ua/).
-
 Measurements related to a single LoRaWAN sensor are organized under the
-corresponding DevEUI node of that sensor in the OPC-UA tree (see figure 3). 
+corresponding DevEUI node of that sensor in the OPC-UA node tree (see figure 3). 
 
 ![iQunet OPC-UA]({{ site.baseurl }}/assets/images/iqunet-opcua.svg)
 <figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
