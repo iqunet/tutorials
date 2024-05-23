@@ -19,22 +19,28 @@ description: >- # this means to ignore newlines until "baseurl:"
   iQunet offers ready-to-use products for your digitalization projects,
   ensuring a quick rollout of your monitoring solutions.  We also support
   custom engineering requests to meet your specific needs.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-author: "iQunet.com Asset Monitoring"
-#twitter_username: jekyllrb
-#github_username:  jekyll
+# twitter_username: username
+# github_username: username
+minimal_mistakes_skin: default
+search: false
 
 # Build settings
 markdown: kramdown
-theme: minima
-#plugins:
-#  - jekyll-feed
+remote_theme: mmistakes/minimal-mistakes
+# Outputting
+permalink: /:categories/:title/
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
+timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+include:
+  - _pages
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
+exclude:
+    - docs/
 #   - Gemfile
 #   - Gemfile.lock
 #   - node_modules
@@ -42,3 +48,74 @@ theme: minima
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  # - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+author:
+  # name   : "iQunet.com"
+  avatar : "/assets/images/iqunet_logo_bgwhite.svg"
+  # bio    : "My awesome biography constrained to a sentence or two goes here."
+  links:
+    - label: "iQunet.com"
+      icon: "fas fa-fw fa-house"
+      url: "https://iqunet.com"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/company/iqunet/"
+    - label: "YouTube"
+      icon: "fab fa-fw fa-youtube"
+      url: "https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/iqunet"
+
+facebook: false
+
+# footer:
+#   links:
+#     - label: "Twitter"
+#       icon: "fab fa-fw fa-twitter-square"
+#       url: "https://twitter.com/"
+#     - label: "GitHub"
+#       icon: "fab fa-fw fa-github"
+#       url: "https://github.com/"
+#     - label: "Instagram"
+#       icon: "fab fa-fw fa-instagram"
+#       url: "https://instagram.com/"
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false
+      share: false
+      related: false
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+atom_feed:
+  hide: true
+
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/

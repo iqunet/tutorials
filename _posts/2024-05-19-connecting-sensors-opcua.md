@@ -1,14 +1,10 @@
 ---
-layout: post
 title: "Private LoRaWAN to OPC-UA"
 date: 2024-05-19 22:10:15 +0200
-categories: tutorial
+categories: blog
+toc: true
+toc_sticky: true
 ---
-
-* TOC
-{:toc}
-<hr>
-
 ### Mission: LoRaWAN Temperature Data to Python Graph
 
 ![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/lora-opc-python.svg)
@@ -48,7 +44,6 @@ be retrieved by, for example, **dashboarding software** for visualization.
 
 ![Typical LoRaWAN setup]({{ site.baseurl }}/assets/images/typical-lora.svg)
 <figcaption>figure 1: Typical LoRaWAN setup for large networks</figcaption>
-<br>
 This multi-step process can be quite challenging for a simple one-time setup,
 particularly when integrating software from different vendors.
 <hr>
@@ -67,7 +62,6 @@ MQTT, CSV or the internal web interface.
 ![iQunet LoRaWAN setup]({{ site.baseurl }}/assets/images/iqunet-lora.svg)
 <figcaption>figure 2: iQunet single-server LoRaWAN setup for
 medium size networks (e.g. 250 devices)</figcaption>
-<br>
 In this tutorial, the **<span style="background-color:#ff9494">red route</span>**
 indicated in figure 2 will be used. The iQunet Server will receive the
 LoRaWAN packets via the attached **LoRa concentrator** radio module, **decode
@@ -82,7 +76,6 @@ corresponding DevEUI node of that sensor in the OPC-UA node tree (see figure 3).
 
 ![iQunet OPC-UA]({{ site.baseurl }}/assets/images/iqunet-opcua.svg)
 <figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
-<br>
 <hr>
 
 ### LoRaWAN Hardware Setup
@@ -95,7 +88,6 @@ placeholder for -for example- a company VLAN.
 ![iQunet Base Setup]({{ site.baseurl }}/assets/images/iqunet-setup.svg)
 <figcaption>figure 4: The setup with SX1302 concentrator module,
 OPC-UA server and mobile network</figcaption>
-<br>
 
 For the purpose of this tutorial, the Dragino LSN50v2-S31 temperature and
 humidity LoRaWAN sensor will be used. Both the LSN50 and the iQunet server
@@ -106,7 +98,6 @@ between sensor and the target application.
 
 <img src="{{ site.baseurl }}/assets/images/lsn50v2-s31.svg" alt="Dragino LSN50v2-S31" width="400"/>
 <figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
-<br>
 <hr>
 
 ### Connecting a new LoRaWAN sensor
@@ -118,7 +109,6 @@ displayed in the dashboard.
 ![iQunet Dashboard new LoRaWAN]({{ site.baseurl }}/assets/images/iqunet-new-lorawan.svg)
 <figcaption>figure 6: The LoRaWAN sensor is detected and a new device LoRaWAN
 device is created in the sensor tree.</figcaption>
-<br>
 
 Communication with the sensor will not start until the encryption key is
 set up. For this, click on the "Edit" button next to the **Application Key**
@@ -129,7 +119,6 @@ the device.
 
 ![iQunet LoRaWAN AppKey]({{ site.baseurl }}/assets/images/iqunet-key-lorawan.svg)
 <figcaption>figure 7: Setup of the LoRaWAN Application Key in the dashboard.</figcaption>
-<br>
 
 If the **Application Key** is correct, the sensor and the iQunet server will
 generate 2 new session keys:
@@ -141,7 +130,6 @@ generate 2 new session keys:
 
 ![iQunet LoRaWAN Session Keys]({{ site.baseurl }}/assets/images/iqunet-sessionkeys-lorawan.svg)
 <figcaption>figure 8: Secure Session keys are calculated from the Application Key.</figcaption>
-<br>
 
 After all OTAA keys have been successfully set up, the actual **uplink of
 sensor data** starts. The iQunet Server automatically detects the sensor model
@@ -153,7 +141,6 @@ transmit temperature, humidity and battery power, as shown in figure 9:
 
 ![iQunet custom dashboard]({{ site.baseurl }}/assets/images/iqunet-lsn50.svg)
 <figcaption>figure 9: Dashboard will adjust to the sensor type.</figcaption>
-<br>
 
 When available, sensor settings can be adjusted via the **LoRaWAN downlink**
 channel. For example, the LSN50 allows the on-the-fly setup of the measurement
@@ -167,17 +154,18 @@ At this point, the sensor has successfully joined the private LoRaWAN network
 and incoming measurements are stored into the **local database**. Historical
 data can be retrieved via the OPC-UA "**historical access**" extension.
 
-Click the OPC-UA tab in the dashboard to open the embedded OPC-UA browser (figure 10).
+Click the OPC-UA tab in the dashboard to open the embedded OPC-UA browser,
+as shown in figure 10:
 
 ![iQunet OPC-UA browser]({{ site.baseurl }}/assets/images/iqunet-dashboard-opcua.svg)
 <figcaption>figure 10: Embedded OPC-UA client and browser.</figcaption>
-<br>
 <hr>
 
 ### UaExpert OPC-UA Client
 The server listens on all network interfaces (LAN, WLAN, wireguard VPN) at **port 4840**.
 
 For example, when the ethernet cable is connected to LAN network 192.168.10.0/24:
+<br>
 
 | Service             | URL                                      |
 |---------------------|------------------------------------------|
@@ -195,7 +183,6 @@ connections are supported.
 
 ![UaExpert Setup]({{ site.baseurl }}/assets/images/uaexpert-setup.svg)
 <figcaption>figure 11: Unified Automation UaExpert OPC-UA client connection setup.</figcaption>
-<br>
 
 When the UaExpert client is successfully connected to the iQunet OPC-UA server,
 direct access is provided to all realtime measurements, metadata and historical
@@ -203,7 +190,6 @@ values as stored in the local database.
 
 ![UaExpert History view]({{ site.baseurl }}/assets/images/uaexpert-history.svg)
 <figcaption>figure 12: Unified Automation UaExpert OPC-UA client: history view.</figcaption>
-<br>
 <hr>
 
 ### Post-processing OPC-UA data with Python
@@ -270,7 +256,6 @@ if __name__ == '__main__':
 
 ![Temperature Plot]({{ site.baseurl }}/assets/images/temperature_plot.png)
 <figcaption>figure 13: Smoothed temperature plot using opcua-asyncio and matplotlib.</figcaption>
-<br>
 <hr>
 
 ### Conclusion
