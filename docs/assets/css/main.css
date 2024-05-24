@@ -1305,9 +1305,9 @@ hr { border-top: 3px solid #80808063; }
 
 .author__avatar img { border-radius: 0; border: 0; }
 
-.sidebar__right { margin-left: 2em; }
-
 .sidebar { width: calc(12em - 1em); opacity: 1; }
+
+@media (max-width: 1024px) { .sidebar-company { display: none; } }
 
 .page { width: calc(100% - 12em); display: flex; flex-direction: row; }
 
