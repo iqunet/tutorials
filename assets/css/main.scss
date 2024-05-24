@@ -41,13 +41,15 @@ hr {
   }
 }
 
-.sidebar__right {
-  margin-left: 2em
-}
-
 .sidebar {
   width: calc(12em - 1em);
   opacity: 1;
+}
+
+.sidebar-company {
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 
 .page {
