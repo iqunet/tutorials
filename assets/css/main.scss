@@ -44,6 +44,10 @@ hr {
 .sidebar {
   width: calc(12em - 1em);
   opacity: 1;
+  @media (max-width: 1024px) {
+    width: calc(100%);
+    max-width: 20em;
+  }
 }
 
 .sidebar-company {
