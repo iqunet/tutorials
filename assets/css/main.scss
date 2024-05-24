@@ -56,6 +56,11 @@ hr {
   width: calc(100% - 12em);
   display: flex;
   flex-direction: row;
+  @media (max-width: 1024px) {
+    width: calc(100%);
+    max-width: 35em;
+    margin: auto;
+  }
 }
 
 .description_2 {

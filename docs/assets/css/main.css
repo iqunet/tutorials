@@ -1310,5 +1310,6 @@ hr { border-top: 3px solid #80808063; }
 @media (max-width: 1024px) { .sidebar-company { display: none; } }
 
 .page { width: calc(100% - 12em); display: flex; flex-direction: row; }
+@media (max-width: 1024px) { .page { width: calc(100%); max-width: 35em; margin: auto; } }
 
 .description_2 { width: 95%; padding: 1em; font-size: 0.6em; font-style: italic; background: #929cd31f; border-radius: 16px; }
