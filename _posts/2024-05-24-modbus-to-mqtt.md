@@ -38,16 +38,20 @@ In this tutorial, you will learn how to:
 <br>
 <hr>
 
-### Typical LoRaWAN Network Infrastructure
+### Typical Modbus to MQTT Infrastructure
 
-In a standard LoRaWAN setup, a sensor sends data to a **gateway**, which
-then forwards the encrypted data to a **network server** via the internet.
-The network server buffers the data and forwards it to an **application server**
-via MQTT [[mqtt.org](https://mqtt.org/)]. The application server decrypts and unpacks
-the binary sensor data and stores the measurement in a database, where it can
-be retrieved by, for example, **dashboarding software** for visualization.
+In a typical Modbus/MQTT setup, a motor drive sends data to a RTU/TCP **gateway**
+which then wraps the modbus-RTU payload in a modbus-TCP ADU (application data unit)
+the modbus tcp master is programmed to pull certain registers from the motor drive
+and forwards this data to the mqtt publisher, which sends it via the internet to
+an MQTT broker. The MQTT subscriber database then subscribes to the broker and collects
+the data in the database. Then the dashboard can pull data from database and represent
+it in a graphical way to to user.
+Modbus data is binary encoded and mapped into registers and must be decoded before it
+is sensible data. decodeing can be done before publishing to mqtt, or otherwise, encoded
+data is sent to the database and it is unpacked in a sensible when loaded by the UI.
 
-![Typical LoRaWAN setup]({{ site.baseurl }}/assets/images/typical-lora.svg)
+![Typical LoRaWAN setup]({{ site.baseurl }}/assets/images/typical-modbus.svg)
 <figcaption>figure 1: Typical LoRaWAN setup for large networks</figcaption>
 This multi-step process can be quite challenging for a simple one-time setup,
 particularly when integrating software from different vendors.
