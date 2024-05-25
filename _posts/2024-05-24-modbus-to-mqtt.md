@@ -40,16 +40,23 @@ In this tutorial, you will learn how to:
 
 ### Typical Modbus to MQTT Infrastructure
 
-In a typical Modbus/MQTT setup, a motor drive sends data to a RTU/TCP **gateway**
-which then wraps the modbus-RTU payload in a modbus-TCP ADU (application data unit)
-the modbus tcp master is programmed to pull certain registers from the motor drive
-and forwards this data to the mqtt publisher, which sends it via the internet to
-an MQTT broker. The MQTT subscriber database then subscribes to the broker and collects
-the data in the database. Then the dashboard can pull data from database and represent
-it in a graphical way to to user.
-Modbus data is binary encoded and mapped into registers and must be decoded before it
-is sensible data. decodeing can be done before publishing to mqtt, or otherwise, encoded
-data is sent to the database and it is unpacked in a sensible when loaded by the UI.
+In a typical Modbus/MQTT monitoring setup, an industrial device, such as a motor
+drive, is connected to a Modbus-TCP gateway via an RS485 serial interface. The
+gateway, linked to an Ethernet network, converts between the synchronous Modbus-RTU
+protocol and the asynchronous Modbus-TCP protocol. This allows the use of standard
+networking equipment. Some devices natively support Modbus-TCP, eliminating the
+need for a gateway.
+
+A Modbus-TCP master actively polls connected devices to extract data, which is
+then decoded from binary format into a user-friendly payload, typically JSON.
+This JSON data is then published to an on-premise or cloud-based MQTT platform,
+such as the HiveMQ MQTT broker.
+
+An MQTT subscriber retrieves the data from the broker and stores it in a database.
+This database then serves as a data source for real-time or historical operational
+dashboards, providing the user with insight into emerging faults, predictive
+maintenance or energy efficiency.
+
 
 ![Typical LoRaWAN setup]({{ site.baseurl }}/assets/images/typical-modbus.svg)
 <figcaption>figure 1: Typical LoRaWAN setup for large networks</figcaption>
