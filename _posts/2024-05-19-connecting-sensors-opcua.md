@@ -10,7 +10,8 @@ toc_sticky: true
 ![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/lora-opc-python.svg)
 
 <span style="background-color: #ffff0054">
-**Note:** This tutorial uses the iQunet Industrial Edge Server.
+**Note:** This tutorial uses the iQunet Industrial Edge Server
+[[link <i style="margin: 0.2em; font-size: 0.7em" class="fa-solid fa-arrow-up-right-from-square"></i>](https://iqunet.com/products/servers/)].
 <br>A demo gateway endpoint is provided for the purpose of this guide.
 </span>
 
