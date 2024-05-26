@@ -100,7 +100,7 @@ configurable interval. The payload is then decoded, unpacked and written to the
 
 ### Publishing to MQTT
 When a new measurement is written into the database, the OPC-UA server triggers
-a callback that activates the MQTT publisher. The new measurement is then
+a callback that activates the MQTT publisher. The new measurement is first
 converted into **JSON format** and published to the MQTT broker.<br>
 The **topic of the MQTT message** is derived from the path of the corresponding
 data point in the OPC-UA tree (figure 3).
