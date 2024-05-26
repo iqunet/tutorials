@@ -108,8 +108,8 @@ data point in the OPC-UA tree (figure 3).
 ![iQunet OPC-UA]({{ site.baseurl }}/assets/images/iqunet-opcua-mqtt.svg)
 <figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
 
-For this tutorial, a Python program will subscribe to the specified topic on
-the MQTT broker and display the incoming data on a real-time updated graph.
+For this tutorial, a Python program will then subscribe to the specified topic
+on the MQTT broker and display the incoming data on a real-time updated graph.
 <hr>
 
 ### LoRaWAN Hardware Setup
