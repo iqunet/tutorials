@@ -40,26 +40,27 @@ In this tutorial, you will learn how to:
 
 ### Typical Modbus to MQTT Infrastructure
 
-In a typical Modbus/MQTT monitoring setup, an industrial device, such as a motor
-drive, is connected to a Modbus-TCP gateway via an RS485 serial interface. The
-gateway, linked to an Ethernet network, converts between the synchronous Modbus-RTU
-protocol and the asynchronous Modbus-TCP protocol. This allows the use of standard
-networking equipment. Some devices natively support Modbus-TCP, eliminating the
-need for a gateway.
+In a typical Modbus/MQTT monitoring setup, an industrial device,
+<span>&mdash;&nbsp;</span>such as a **motor drive**<span>&nbsp;&mdash;</span>
+is connected to a **Modbus-TCP gateway** via an RS-485 serial interface.
+The gateway converts between the synchronous Modbus-RTU protocol and the
+asynchronous Modbus-TCP ethernet network protocol. This allows the use of
+standard networking equipment. Some devices natively support Modbus-TCP,
+which eliminates the need for a gateway.
 
-A Modbus-TCP master actively polls connected devices to extract data, which is
-then decoded from binary format into a user-friendly payload, typically JSON.
-This JSON data is then published to an on-premise or cloud-based MQTT platform,
-such as the HiveMQ MQTT broker.
+![Typical LoRaWAN setup]({{ site.baseurl }}/assets/images/typical-modbus.svg)
+<figcaption>figure 1: Typical Modbus to MQTT information flow</figcaption>
 
-An MQTT subscriber retrieves the data from the broker and stores it in a database.
+A **Modbus-TCP master** actively polls connected devices to extract data, which
+is subsequently decoded from binary to a user-friendly format, typically
+JSON. This JSON data is then published to an MQTT platform, either on-premise
+or cloud-based, such as the HiveMQ **MQTT broker**.
+
+An **MQTT subscriber** retrieves the data from the broker and stores it in a database.
 This database then serves as a data source for real-time or historical operational
 dashboards, providing the user with insight into emerging faults, predictive
 maintenance or energy efficiency.
 
-
-![Typical LoRaWAN setup]({{ site.baseurl }}/assets/images/typical-modbus.svg)
-<figcaption>figure 1: Typical LoRaWAN setup for large networks</figcaption>
 This multi-step process can be quite challenging for a simple one-time setup,
 particularly when integrating software from different vendors.
 <hr>
