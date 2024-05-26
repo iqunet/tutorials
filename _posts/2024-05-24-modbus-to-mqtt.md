@@ -38,7 +38,7 @@ In this tutorial, you will learn how to:
 <br>
 <hr>
 
-### Typical Modbus to MQTT Infrastructure
+### Typical Modbus-to-MQTT Information Flow
 
 In a typical Modbus/MQTT monitoring setup, an industrial device,
 <span>&mdash;&nbsp;</span>such as a **motor drive**<span>&nbsp;&mdash;</span>
@@ -75,20 +75,22 @@ alternative.*
 
 <hr>
 
-### A Single-Board Private LoRaWAN Setup
+### A Single-Board Modbus-to-MQTT Setup
 
-The LoRaWAN gateway, network/application server and database can all be
-integrated in a single device, such as is the case for the iQunet Edge Server
+The Modbus-TCP gateway, Modbus master and MQTT publisher can all be integrated in
+a single board computer (SBC), such as is the case for the iQunet Edge Server
 [[link](https://iqunet.com/products/servers/)].
-The result is a secure standalone LoRaWAN network which requires only a **local
-network** (LAN) connection for API data access. Sensor data is immediately written
-to the **local database** and can be accessed via various protocols: OPC-UA, GraphQL,
-MQTT, CSV or the internal web interface.
+Data collected via Modbus is first decoded and stored in the on-board **OPC-UA historian
+database**. This data can be routed (LAN/VPN) and accessed through various protocols,
+including OPC-UA, GraphQL or CSV. In a second step, realtime updates in the OPC-UA
+server can be linked to the embedded MQTT publisher for integration with third-party
+IoT platforms.
 <br>
 
-![iQunet LoRaWAN setup]({{ site.baseurl }}/assets/images/iqunet-lora.svg)
-<figcaption>figure 2: iQunet single-server LoRaWAN setup for
-medium size networks (e.g. 250 devices)</figcaption>
+![iQunet LoRaWAN setup]({{ site.baseurl }}/assets/images/iqunet-modbus.svg)
+<figcaption>figure 2: iQunet single-server Modbus/MQTT gateway setup.</figcaption>
+
+
 In this tutorial, the **<span style="background-color:#ff9494">red route</span>**
 indicated in figure 2 will be used. The iQunet Server will receive the
 LoRaWAN packets via the attached **LoRa concentrator** radio module, **decode
