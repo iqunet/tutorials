@@ -109,7 +109,7 @@ converted into **JSON format** and published to the MQTT broker.
 The **topic of the MQTT message** is derived from the path of the corresponding
 data point in the OPC-UA tree. For this tutorial, a Python program will subscribe
 to the specified topic on the MQTT broker and display the incoming data on a
-real-time updated graph (see figure 3).
+real-time updated graph (figure 3).
 <hr>
 
 ### LoRaWAN Hardware Setup
