@@ -75,3 +75,15 @@ hr {
   background: #929cd31f;
   border-radius: 16px;
 }
+
+.notice {
+  background-color: #e3e7ff;
+  a {
+    color: #6e7173;
+  }
+}
+
+.notice br {
+  display: block;
+  margin: 0.5em;
+}

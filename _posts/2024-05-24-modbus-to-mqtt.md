@@ -61,8 +61,18 @@ This database then serves as a data source for real-time or historical operation
 dashboards, providing the user with insight into emerging faults, predictive
 maintenance or energy efficiency.
 
-This multi-step process can be quite challenging for a simple one-time setup,
-particularly when integrating software from different vendors.
+{: .notice}
+*Configuring the Modbus-TCP master and decoding data demand deep understanding of
+each device's register map, requiring significant expertise and effort with every
+new device integration.<br>
+An example of such a manual setup procedure can be found here 
+[hivemq.com <i style="margin: 0.2em; font-size: 0.7em" class="fa-solid fa-arrow-up-right-from-square"></i>](https://www.hivemq.com/blog/modbus-mqtt-integration-c-sharp-gateway-hivemq-mqtt-client/).
+<br>
+<br>
+The required expertise and effort may lead to a higher TCO and project delays
+than initially projected, making a ready-to-use solution an attractive and efficient
+alternative.*
+
 <hr>
 
 ### A Single-Board Private LoRaWAN Setup
