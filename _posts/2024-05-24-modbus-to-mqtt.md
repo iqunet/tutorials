@@ -81,30 +81,35 @@ The Modbus-TCP gateway, Modbus master and MQTT publisher can all be integrated i
 a single board computer (SBC), such as is the case for the iQunet Edge Server
 [[link](https://iqunet.com/products/servers/)].
 Data collected via Modbus is first decoded and stored in the on-board **OPC-UA historian
-database**. This data can be routed (LAN/VPN) and accessed through various protocols,
-including OPC-UA, GraphQL or CSV. In a second step, realtime updates in the OPC-UA
-server can be linked to the embedded MQTT publisher for integration with third-party
-IoT platforms.
+database**.
+<br>
+This data can be routed (LAN/VPN) and accessed with the embedded dashboard
+webserver or via various protocols, including OPC-UA, GraphQL or CSV. In a
+second step, realtime updates in the OPC-UA server can be linked to the
+onboard MQTT publisher for integration with third-party IoT platforms.
 <br>
 
 ![iQunet LoRaWAN setup]({{ site.baseurl }}/assets/images/iqunet-modbus.svg)
 <figcaption>figure 2: iQunet single-server Modbus/MQTT gateway setup.</figcaption>
 
-
 In this tutorial, the **<span style="background-color:#ff9494">red route</span>**
-indicated in figure 2 will be used. The iQunet Server will receive the
-LoRaWAN packets via the attached **LoRa concentrator** radio module, **decode
-and unpack** the payload and store the data in the **built-in database**.
+indicated in figure 2 will be used. The motor drive is connected via an FTDI-232R
+galvanically isolated interface to the iQunet Server, which polls the drive at a
+configurable interval. The payload is then decoded, unpacked and written to the
+**built-in database**.
 
-### The OPC-UA server interface
+### Publishing to MQTT
+When a new measurement is written into the database, the OPC-UA server triggers
+a callback that activates the MQTT publisher. The new measurement is then
+converted into **JSON format** and published to the MQTT broker.
 
-After being written to the database, the data is made accessible via the 
-**embedded OPC-UA server**.
-Measurements related to a single LoRaWAN sensor are organized under the
-corresponding DevEUI node of that sensor in the OPC-UA node tree (see figure 3). 
-
-![iQunet OPC-UA]({{ site.baseurl }}/assets/images/iqunet-opcua.svg)
+![iQunet OPC-UA]({{ site.baseurl }}/assets/images/iqunet-opcua-mqtt.svg)
 <figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
+
+The **topic of the MQTT message** is derived from the path of the corresponding
+data point in the OPC-UA tree. For this tutorial, a Python program will subscribe
+to the specified topic on the MQTT broker and display the incoming data on a
+real-time updated graph (see figure 3).
 <hr>
 
 ### LoRaWAN Hardware Setup
