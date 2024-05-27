@@ -118,11 +118,11 @@ Figure 4 shows the minimal setup required to publish real-time motor drive data
 via MQTT. This configuration includes the **inverter drive** itself, an Ethernet
 **network switch**, the **iQunet server**, and an (optional) 4G mobile
 **access point** (AP), which serves as a temporary placeholder for, for example,
-a company VLAN.
+a company VLAN. The Modbus-RTU to TCP gateway is omitted because the drive
+depicted in Figure 4 is equipped with a Modbus-TCP communication module.
 
-The Modbus-RTU to TCP gateway is omitted because the drive depicted in Figure 4
-is equipped with a Modbus-TCP communication module. With this setup, MQTT data
-can be transmitted to either a private or a public internet-based MQTT broker.
+With this setup, MQTT data can be transmitted to either a private or a public
+internet-based MQTT broker.
 
 ![Modbus Example Hardware Setup]({{ site.baseurl }}/assets/images/iqunet-setup.svg)
 <figcaption>figure 4: The setup with motor drive, iQunet server and access point.
