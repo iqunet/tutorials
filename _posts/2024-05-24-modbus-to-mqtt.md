@@ -245,9 +245,9 @@ direct access is provided to all real-time motor drive parameters, metadata and
 historical values as stored in the local database.
 
 <img src="{{ site.baseurl }}/assets/images/iqunet-optidrive-eco-opcua-uaexpert.svg" alt="UaExpert OPC-UA browser">
-<figcaption>figure 10: Accessing historical data with the UaExpert OPC-UA client.</figcaption>
+<figcaption>figure 12: Accessing historical data with the UaExpert OPC-UA client.</figcaption>
 
-### Publishing Inverter Drive Data via MQTT
+### OPC-UA versus MQTT: Payload Format and Data Types
 **MQTT** is a widely used protocol for large-scale, **multi-site IoT deployments**.
 However, it does not define a specific data format. **JSON** is commonly used
 as the payload format, but it lacks data type definitions for the binary payload,
@@ -261,7 +261,7 @@ user intervention. However, the protocol is currently not widely used in
 internet-oriented big data platforms.
 
 For maximum flexibility, the iQunet server supports both protocols and employs
-the following strategy to link the OPC-UA core system to the MQTT system:
+the following strategy to link the OPC-UA core system to the MQTT subsystem:
 
 - The OPC-UA node **tree path is used as the topic** for publishing data via MQTT.
   A user-definable "Root/" can be prepended to the path (default: server name).
@@ -269,6 +269,25 @@ the following strategy to link the OPC-UA core system to the MQTT system:
   **numerical, string, or array data**, and the **source-** and **serverTimestamp**
   in ISO-8601 format.
 
+### Enabling the MQTT Subsystem for the iQunet Server
+Enabling the MQTT subsystem for the iQunet server is straightforward.
+
+- Click on the **MQTT icon** in the left-hand menu.
+- Fill in the **MQTT broker host details** and credentials.<br>
+  Optionally, set a custom **Client ID** (also serves as the root of the topics).
+- If supported by the broker, select the **TLS** encryption option.<br>
+  Finally, toggle the button "MQTT OFF" to **"MQTT ON"**.
+- If the **ONLINE** icon is highlighted, the setup is complete and operational.
+
+![iQunet Server MQTT Configuration Menu]({{ site.baseurl }}/assets/images/iqunet-mqtt-configuration.svg)
+<figcaption>figure 13: MQTT Configuration Menu in the iQunet Dashboard.</figcaption>
+
+The MQTT setup menu also displays a list of all published nodes and their
+respective topics. To add a node to this list, browse to the desired node in
+the OPC-UA tree and click the **MQTT "publish"** button.
+
+![iQunet Server MQTT Add Published Node]({{ site.baseurl }}/assets/images/iqunet-mqtt-addnode.svg)
+<figcaption>figure 14: Publish a new node via MQTT in the iQunet Dashboard.</figcaption>
 
 
 <br>
