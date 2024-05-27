@@ -130,13 +130,14 @@ can be transmitted to either a private or a public internet-based MQTT broker.
 
 For the remainder of this tutorial, the Invertek Optidrive E3 will be used.
 The Optidrive inverter supports both Modbus-RTU and Modbus-TCP via an additional
-module. However, because the Profibus interface occupies the sole available slot
+module. However, because the Profinet IO module occupies the sole available slot
 for PLC drive control, the on-board Modbus-RTU is used. A separate RS-485 to USB
-converter is used for monitoring the drive parameters in read-only mode.
+converter is used for monitoring the drive parameters in read-only mode. See figure 5.
 <br>
 
-<img src="{{ site.baseurl }}/assets/images/lsn50v2-s31.svg" alt="Dragino LSN50v2-S31" width="400"/>
-<figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
+<img src="{{ site.baseurl }}/assets/images/modbus-monitor-loop" alt="Profinet Control and Modbus Monitor loop" width="400"/>
+<figcaption>figure 5: PLC control via Profinet and monitoring via Modbus-RTU.
+</figcaption>
 <hr>
 
 ### Connecting a new LoRaWAN sensor
