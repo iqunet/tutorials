@@ -180,28 +180,42 @@ probing the full range of all slave IDs from 1 to 247 may take a minute or two.
 
 ![iQunet Modbus RTU Scanner]({{ site.baseurl }}/assets/images/iqunet-modbus-rtu-scan.svg)
 <figcaption>figure 7: Scanning all Unit IDs of a Modbus-RTU network.</figcaption>
+<hr>
+
+### Auto-Detection of Modbus Devices
+When the iQunet server detects a Modbus slave device on the network, it attempts
+to identify the specifics of the slave for auto-configuration purposes. This
+process serves two main objectives:
+- **Device Identification**: A unique device MAC address is derived from the
+  device serial number. This allows for flexible remapping of IP addresses or
+  slave unit IDs, with monitoring data **tied to the device serial** rather than
+  the location in the network or the MAC address of the Modbus network card.
+- **Device Type Detection**: This is crucial for **automatic payload decoding**.
+  iQunet provides customized payload decoders upon request. The configuration
+  for the end-user is limited to basic parameters such as the polling interval
+  and the selection of data to be published to MQTT. This **simplifies the
+  commissioning** of new devices in the field, reducing the setup time to a
+  matter of minutes.
+
+In Figure 8 below, the **Optidrive E3** is detected on the local **Modbus-RTU gateway**
+at **Unit ID 1**. The dashboard automatically adapts to the device specifics and
+displays the most important configuration highlights of the device, such as the
+serial number, hardware model, and current configuration (e.g., **vector control** mode):
+
+![iQunet Optidrive Eco dashboard]({{ site.baseurl }}/assets/images/iqunet-optidrive-eco-status.svg)
+<figcaption>figure 8: Auto-detection and configuration of the Modbus payload decoder.</figcaption>
 
 
 
-
-
-
-The same kind of gist is for the modbus RTU gateway. It will scan all modbus
-slave id's in the configured range as shown in figure 8. Since modbus RTU is
-a synchronous serial protocol, parallel scanning is not possible so it takes
- some time to scan the full range 1-250 of modbus unit ID's, see figure 8:
-
-
-Communication with the sensor will not start until the encryption key is
-set up. For this, click on the "Edit" button next to the **Application Key**
-and fill in the 32-character key that comes with the Dragino Device.
-The AppKey (also known as the JOIN key) is only used once during the setup of
-the device.
 <br>
-
-![iQunet LoRaWAN AppKey]({{ site.baseurl }}/assets/images/iqunet-key-lorawan.svg)
-<figcaption>figure 7: Setup of the LoRaWAN Application Key in the dashboard.</figcaption>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 If the **Application Key** is correct, the sensor and the iQunet server will
 generate 2 new session keys:
 - The **Network Session Key** (NwkSKey) is used for all communications related to
