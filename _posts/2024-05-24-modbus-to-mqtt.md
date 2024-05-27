@@ -166,12 +166,30 @@ will display a new Modbus Master and Gateway node in the OPC-UA device list.
 The Modbus Master allows **scanning a single IP or subnet** for known devices
 (figure 7):
 
-![iQunet Modbus Master Scanner]({{ site.baseurl }}/assets/images/iqunet-modbus-tcp-scan.svg)
+![iQunet Modbus TCP Scanner]({{ site.baseurl }}/assets/images/iqunet-modbus-tcp-scan.svg)
 <figcaption>figure 7: Scanning a LAN subnet for Modbus-TCP devices.</figcaption>
 
 The scanner is also capable of scanning not only for **Modbus slave devices** on
 the **local network** (Ethernet or WiFi) but also for **remote devices** via any
-configured Wireguard VPN endpoint on the iQunet server.
+configured **Wireguard VPN** endpoint on the iQunet server.
+
+The **Modbus-RTU gateway** operates similarly, scanning all **slave Unit IDs**
+within the configured range, as illustrated in Figure 8. Because Modbus-RTU is a
+synchronous **serial protocol**, parallel scanning is not feasible. Therefore,
+probing the full range of all slave IDs from 1 to 247 may take a minute or two.
+
+![iQunet Modbus RTU Scanner]({{ site.baseurl }}/assets/images/iqunet-modbus-rtu-scan.svg)
+<figcaption>figure 7: Scanning all Unit IDs of a Modbus-RTU network.</figcaption>
+
+
+
+
+
+
+The same kind of gist is for the modbus RTU gateway. It will scan all modbus
+slave id's in the configured range as shown in figure 8. Since modbus RTU is
+a synchronous serial protocol, parallel scanning is not possible so it takes
+ some time to scan the full range 1-250 of modbus unit ID's, see figure 8:
 
 
 Communication with the sensor will not start until the encryption key is
