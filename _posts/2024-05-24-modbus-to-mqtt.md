@@ -136,19 +136,47 @@ converter is used for **monitoring** the drive parameters in **read-only mode**.
 <br>
 
 ![Profinet Control and Modbus Monitor loop]({{ site.baseurl }}/assets/images/modbus-monitor-loop.svg)
-<figcaption>figure 5: Optidrive E3: PLC control via Profinet and monitoring via Modbus-RTU.
+<figcaption>figure 5: Optidrive E3 - PLC control via Profinet and monitoring via Modbus-RTU.
 </figcaption>
 <hr>
 
-### Connecting a new LoRaWAN sensor
+### Scanning for Modbus Devices
+After the hardware is connected and powered up as shown in figure 4, the
+Optidrive E3 must be added to the list of monitored devices in the iQunet
+server software.
+
+The first step involves activating both the Modbus-TCP and the Modbus-RTU modules
+in the dashboard of the iQunet server. For this, click on the Config button
+<i style="margin: 0.2em; font-size: 0.7em" class="fa-solid fa-wrench"></i> in
+the menu bar, as shown in Figure 6:
+
+![iQunet Enable Modbus in Dashboard]({{ site.baseurl }}/assets/images/iqunet-modbus-enable.svg)
+<figcaption>figure 6: Enable the Modbus-TCP master and the Modbus-RTU gateway.</figcaption>
+
+- The **Modbus-TCP module** provides **Modbus master** functionality, which
+includes probing the connected devices at regular intervals and forwarding data
+to the OPC-UA historian database.
+- The **Modbus-RTU module** enables the drivers for the FTDI FT232R USB-to-serial
+interface and serves as a **gateway** for the Modbus master to communicate with
+RTU devices.
+
+When both modules are enabled, the Home menu <i class="fa-solid fa-home"></i>
+will show a new Modbus Master and Gateway node in the OPC-UA device list. The
+Modbus master allows to scan a single IP or subnet for known modbus devices
+(figure 7):
+
+![iQunet Modbus Master Scanner]({{ site.baseurl }}/assets/images/iqunet-modbus-tcp-scan.svg)
+<figcaption>figure 7: Scanning a subnet for Modbus-TCP devices.</figcaption>
+
+
+
+
 After the battery of the Dragino LSN50 sensor is inserted, the configuration
 dashboard of the iQunet server shall display a new LoRaWAN device under the LoRa
 Radio Module. The devEUI found on the LSN50 sensor should match the devEUI as
 displayed in the dashboard.
 
-![iQunet Dashboard new LoRaWAN]({{ site.baseurl }}/assets/images/iqunet-new-lorawan.svg)
-<figcaption>figure 6: The LoRaWAN sensor is detected and a new device LoRaWAN
-device is created in the sensor tree.</figcaption>
+
 
 Communication with the sensor will not start until the encryption key is
 set up. For this, click on the "Edit" button next to the **Application Key**
