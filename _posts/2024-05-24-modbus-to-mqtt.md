@@ -160,22 +160,18 @@ to the OPC-UA historian database.
 interface and serves as a **gateway** for the Modbus master to communicate with
 RTU devices.
 
-When both modules are enabled, the Home menu <i class="fa-solid fa-home"></i>
-will show a new Modbus Master and Gateway node in the OPC-UA device list. The
-Modbus master allows to scan a single IP or subnet for known modbus devices
+After both Modbus modules are enabled, the Home menu <i class="fa-solid fa-home"></i>
+will display a new Modbus Master and Gateway node in the OPC-UA device list.
+
+The Modbus Master allows **scanning a single IP or subnet** for known devices
 (figure 7):
 
 ![iQunet Modbus Master Scanner]({{ site.baseurl }}/assets/images/iqunet-modbus-tcp-scan.svg)
-<figcaption>figure 7: Scanning a subnet for Modbus-TCP devices.</figcaption>
+<figcaption>figure 7: Scanning a LAN subnet for Modbus-TCP devices.</figcaption>
 
-
-
-
-After the battery of the Dragino LSN50 sensor is inserted, the configuration
-dashboard of the iQunet server shall display a new LoRaWAN device under the LoRa
-Radio Module. The devEUI found on the LSN50 sensor should match the devEUI as
-displayed in the dashboard.
-
+The scanner is also capable of scanning not only for **Modbus slave devices** on
+the **local network** (Ethernet or WiFi) but also for **remote devices** via any
+configured Wireguard VPN endpoint on the iQunet server.
 
 
 Communication with the sensor will not start until the encryption key is
