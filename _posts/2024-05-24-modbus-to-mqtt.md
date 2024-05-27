@@ -112,22 +112,27 @@ In this tutorial, a Python program will then subscribe to the specified topic
 on the MQTT broker and display the incoming data on a real-time updated graph.
 <hr>
 
-### LoRaWAN Hardware Setup
+### Motor Drive + Modbus Hardware Setup
 
-Figure 4 shows a modular setup for a **private LoRaWAN network**. It consists
-of an **SX1302 LoRa Radio** receiver, an iQunet Edge SBC (database and OPC-UA
-server) and an (optional) 4G mobile router. The router is the temporary
-placeholder for -for example- a company VLAN.
+Figure 4 shows the minimal setup required to publish real-time motor drive data
+via MQTT. This configuration includes the **inverter drive** itself, an Ethernet
+**network switch**, the **iQunet server**, and an (optional) 4G mobile
+**access point** (AP), which serves as a temporary placeholder for, for example,
+a company VLAN.
 
-![iQunet Base Setup]({{ site.baseurl }}/assets/images/iqunet-setup.svg)
-<figcaption>figure 4: The setup with SX1302 concentrator module,
-OPC-UA server and mobile network</figcaption>
+The Modbus-RTU to TCP gateway is omitted because the drive depicted in Figure 4
+is equipped with a Modbus-TCP communication module. With this setup, MQTT data
+can be transmitted to either a private or a public internet-based MQTT broker.
 
-For the purpose of this tutorial, the Dragino LSN50v2-S31 temperature and
-humidity LoRaWAN sensor will be used. Both the LSN50 and the iQunet server
-understand the OTAA (over-the-air activation) protocol v1.0.4. OTAA allows to
-automatically generate and exchange the network and application security keys
-between sensor and the target application.
+![Modbus Example Hardware Setup]({{ site.baseurl }}/assets/images/iqunet-setup.svg)
+<figcaption>figure 4: The setup with motor drive, iQunet server and access point.
+</figcaption>
+
+For the remainder of this tutorial, the Invertek Optidrive E3 will be used.
+The Optidrive inverter supports both Modbus-RTU and Modbus-TCP via an additional
+module. However, because the Profibus interface occupies the sole available slot
+for PLC drive control, the on-board Modbus-RTU is used. A separate RS-485 to USB
+converter is used for monitoring the drive parameters in read-only mode.
 <br>
 
 <img src="{{ site.baseurl }}/assets/images/lsn50v2-s31.svg" alt="Dragino LSN50v2-S31" width="400"/>
