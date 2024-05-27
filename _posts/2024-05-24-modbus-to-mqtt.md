@@ -213,18 +213,39 @@ drive section (Figure 9) displays the most common parameters.
 <img src="{{ site.baseurl }}/assets/images/iqunet-optidrive-eco-monitor.svg" alt="iQunet Generic Motor drive monitor">
 <figcaption>figure 9: Displaying real-time and historical drive parameters.</figcaption>
 
-While the generic overview provides a graphical summary of the drive status,
-more detailed information about drive parameters and historical logs can be
-accessed by directly **browsing the OPC-UA node tree** of the internal OPC-UA
-server. To do this, click on the OPC-UA icon in the left menu:
+While the dashboard provides a graphical summary of the drive status, much more
+detailed information about drive parameters and historical logs can be accessed
+by directly **browsing the OPC-UA node tree** of the internal OPC-UA server. To
+do this, click on the OPC-UA icon in the left menu:
 
 <img src="{{ site.baseurl }}/assets/images/iqunet-optidrive-eco-opcua-dashboard.svg" alt="iQunet OPC-UA browser">
 <figcaption>figure 10: Accessing and exporting drive parameters via the OPC-UA browser.</figcaption>
 
-The built-in OPC-UA browser also allows immediate export to **Google Sheets** or a
+The built-in OPC-UA browser allows immediate export to **Google Sheets** or a
 plain **CSV file**. Additionally, as shown in Figure 10, any variable node of the
 OPC-UA tree can be enabled for **publication via MQTT** to an external broker.
+<hr>
 
+### Direct Access of Modbus Data via OPC-UA
+All **historical Modbus data** is stored in the **OPC-UA database** of the iQunet
+server. It can either be browsed via the dashboard of the web interface, or through
+**third-party OPC-UA clients** such as UaExpert, a popular OPC-UA client developed
+by Unified Automation
+[[unified-automation.com](https://www.unified-automation.com/products/development-tools/uaexpert.html)].
+
+Figure 11 shows the configuration of UaExpert to connect to the iQunet OPC-UA
+server at address 192.168.10.101, port 4840. Both encrypted and non-encrypted
+connections are supported.
+
+![UaExpert Setup]({{ site.baseurl }}/assets/images/uaexpert-setup.svg)
+<figcaption>figure 11: Unified Automation UaExpert OPC-UA client connection setup.</figcaption>
+
+When the **UaExpert client** is successfully connected to the **iQunet OPC-UA server**,
+direct access is provided to all real-time motor drive parameters, metadata and
+historical values as stored in the local database.
+
+<img src="{{ site.baseurl }}/assets/images/iqunet-optidrive-eco-opcua-uaexpert.svg" alt="UaExpert OPC-UA browser">
+<figcaption>figure 10: Accessing historical data with the UaExpert OPC-UA client.</figcaption>
 
 <br>
 <br>
