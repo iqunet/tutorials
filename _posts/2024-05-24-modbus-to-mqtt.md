@@ -197,14 +197,33 @@ process serves two main objectives:
   commissioning** of new devices in the field, reducing the setup time to a
   matter of minutes.
 
-In Figure 8 below, the **Optidrive E3** is detected on the local **Modbus-RTU gateway**
-at **Unit ID 1**. The dashboard automatically adapts to the device specifics and
-displays the most important configuration highlights of the device, such as the
-serial number, hardware model, and current configuration (e.g., **vector control** mode):
+In Figure 8 below, the **Optidrive E3** inverter is detected on the local
+**Modbus-RTU gateway** at **Unit ID 1**. The dashboard automatically adapts to
+the device specifics and displays the most important configuration highlights
+of the device, such as the serial number, hardware model, and current
+configuration (e.g., closed-loop **vector control** mode):
 
-![iQunet Optidrive Eco dashboard]({{ site.baseurl }}/assets/images/iqunet-optidrive-eco-status.svg)
+<img src="{{ site.baseurl }}/assets/images/iqunet-optidrive-eco-status.svg" alt="iQunet Optidrive Eco dashboard">
 <figcaption>figure 8: Auto-detection and configuration of the Modbus payload decoder.</figcaption>
 
+In addition to the static configuration, **real-time drive** and
+**historical parameters** are also available in the dashboard. The generic motor
+drive section (Figure 9) displays the most common parameters.
+
+<img src="{{ site.baseurl }}/assets/images/iqunet-optidrive-eco-monitor.svg" alt="iQunet Generic Motor drive monitor">
+<figcaption>figure 9: Displaying real-time and historical drive parameters.</figcaption>
+
+While the generic overview provides a graphical summary of the drive status,
+more detailed information about drive parameters and historical logs can be
+accessed by directly **browsing the OPC-UA node tree** of the internal OPC-UA
+server. To do this, click on the OPC-UA icon in the left menu:
+
+<img src="{{ site.baseurl }}/assets/images/iqunet-optidrive-eco-opcua-dashboard.svg" alt="iQunet OPC-UA browser">
+<figcaption>figure 10: Accessing and exporting drive parameters via the OPC-UA browser.</figcaption>
+
+The built-in OPC-UA browser also allows immediate export to **Google Sheets** or a
+plain **CSV file**. Additionally, as shown in Figure 10, any variable node of the
+OPC-UA tree can be enabled for **publication via MQTT** to an external broker.
 
 
 <br>
