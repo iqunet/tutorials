@@ -246,11 +246,13 @@ historical values as stored in the local database.
 
 <img src="{{ site.baseurl }}/assets/images/iqunet-optidrive-eco-opcua-uaexpert.svg" alt="UaExpert OPC-UA browser">
 <figcaption>figure 12: Accessing historical data with the UaExpert OPC-UA client.</figcaption>
+<hr>
 
-### OPC-UA versus MQTT: Payload Format and Data Types
+<div class="notice" markdown="1">
+### OPC-UA vs MQTT: Payload Format and Data Types
 **MQTT** is a widely used protocol for large-scale, **multi-site IoT deployments**.
 However, it does not define a specific data format. **JSON** is commonly used
-as the payload format, but it lacks data type definitions for the binary payload,
+as the payload encoding, but it lacks data type definitions for the payload,
 and thus needs careful manual coordination between data publishers and
 subscribers to ensure mutual compatibility.
 
@@ -268,6 +270,7 @@ the following strategy to link the OPC-UA core system to the MQTT subsystem:
 - The **JSON payload** consists of a dictionary dump, which includes the
   **numerical, string, or array data**, and the **source-** and **serverTimestamp**
   in ISO-8601 format.
+</div>
 
 ### Enabling the MQTT Subsystem for the iQunet Server
 Enabling the MQTT subsystem for the iQunet server is straightforward.
@@ -277,7 +280,8 @@ Enabling the MQTT subsystem for the iQunet server is straightforward.
   Optionally, set a custom **Client ID** (also serves as the root of the topics).
 - If supported by the broker, select the **TLS** encryption option.<br>
   Finally, toggle the button "MQTT OFF" to **"MQTT ON"**.
-- If the **ONLINE** icon is highlighted, the setup is complete and operational.
+- If the <span style="background-color: #abffab">**ONLINE**</span> icon is
+  highlighted, the setup is complete and operational.
 
 ![iQunet Server MQTT Configuration Menu]({{ site.baseurl }}/assets/images/iqunet-mqtt-configuration.svg)
 <figcaption>figure 13: MQTT Configuration Menu in the iQunet Dashboard.</figcaption>
