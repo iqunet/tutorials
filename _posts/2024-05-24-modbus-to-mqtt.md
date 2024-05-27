@@ -248,26 +248,26 @@ historical values as stored in the local database.
 <figcaption>figure 10: Accessing historical data with the UaExpert OPC-UA client.</figcaption>
 
 ### Publishing Inverter Drive Data via MQTT
-**MQTT** is a widely used protocol for **large-scale, multi-site IoT deployments**.
+**MQTT** is a widely used protocol for large-scale, **multi-site IoT deployments**.
 However, it does not define a specific data format. **JSON** is commonly used
 as the payload format, but it lacks data type definitions for the binary payload,
 and thus needs careful manual coordination between data publishers and
 subscribers to ensure mutual compatibility.
 
 On the other hand, **OPC-UA** is highly suitable for low latency networks,
-real-time data exchange, and has **well-defined object formatting**. It allows
-OPC-UA clients to autonomously resolve data type definitions without user
-intervention. However, the protocol is currently not widely used in
+real-time data exchange, and has **well-defined object type formatting**.
+It allows OPC-UA clients to autonomously resolve data type definitions without
+user intervention. However, the protocol is currently not widely used in
 internet-oriented big data platforms.
 
-For maximum flexibility, the **iQunet server** supports both protocols and
-employs the following strategy to link the OPC-UA core system to the MQTT system:
+For maximum flexibility, the iQunet server supports both protocols and employs
+the following strategy to link the OPC-UA core system to the MQTT system:
 
-- The OPC-UA node tree path is used as the topic for publishing data via MQTT.
-  A user-definable **Root/** can be set for the path (default: unique server name).
-- The JSON payload consists of a dictionary dump, which includes the numerical,
-  string, or array data, and the **source-** and **serverTimestamp** in
-  **ISO-8601** format.
+- The OPC-UA node **tree path is used as the topic** for publishing data via MQTT.
+  A user-definable "Root/" can be prepended to the path (default: server name).
+- The **JSON payload** consists of a dictionary dump, which includes the
+  **numerical, string, or array data**, and the **source-** and **serverTimestamp**
+  in ISO-8601 format.
 
 
 
