@@ -308,6 +308,22 @@ broker host and TLS Websocket port as below. Then click connect.
 <figcaption>figure 15: Connect the HiveMQ MQTT client to wss://broker.hivemq.com.
 </figcaption>
 
+Next, click **"Add New Topic Subscription"** and choose the topic to
+subscribe to. Use a multilevel wildcard (#) to subscribe to all topics at once.
+More info here [[hivemq.com](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/)]
+
+For example, if the topic published to by the iQunet Server is<br>
+`SERN-dca632xxxxxx/Objects/b1:dd:1f:e9/inverterTemperature`,
+then subscribe to<br>
+`SERN-dca632xxxxxx/#` to capture all messages from this server.
+
+![Subscribing the HiveMQ client to a topic]({{ site.baseurl }}/assets/images/hivemq-mqtt-subscribe.svg)
+<figcaption>Figure 16: Subscribing to a topic and viewing incoming JSON data.</figcaption>
+
+If the configuration is correct, JSON data will start arriving as soon as it
+is published by the iQunet Server!
+<hr>
+
 
 <!-- Configure the credentials (change to your own) as shown in figure 15:
  
