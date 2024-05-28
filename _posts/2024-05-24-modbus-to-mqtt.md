@@ -293,6 +293,51 @@ the OPC-UA tree and click the **MQTT "publish"** button.
 ![iQunet Server MQTT Add Published Node]({{ site.baseurl }}/assets/images/iqunet-mqtt-addnode.svg)
 <figcaption>figure 14: Publish a new node via MQTT in the iQunet Dashboard.</figcaption>
 
+### Testing the MQTT Setup
+To verify the MQTT setup, a **web-based MQTT client** will be connected to the
+broker to subscribe to the published data. Since browsers do not support raw
+TCP sockets, the Websocket port of the broker will be used.
+
+First, open the **HiveMQ MQTT Client**
+[[hivemq.com](https://www.hivemq.com/demos/websocket-client/)], and setup the
+broker host and TLS Websocket port as below. Then click connect.
+- **host**: broker.hivemq.com
+- **port**: 8884 (wss://)
+
+![Connecting the HiveMQ MQTT demo client]({{ site.baseurl }}/assets/images/hivemq-mqtt-client.svg)
+<figcaption>figure 15: Connect the HiveMQ MQTT client to wss://broker.hivemq.com.
+</figcaption>
+
+
+<!-- Configure the credentials (change to your own) as shown in figure 15:
+ 
+ ![Setup Figure]
+ 
+ Next, subscribe to all topics from the iQunet server using the root path with a wildcard. For example, use **"SERN-abcd1234/#"**.
+ 
+ Finally, click **Connect** to establish the connection. Incoming JSON packets in the client will confirm that the data is being published correctly.
+ 
+ 
+ ### Subscribe to a Topic with a Websocket Test Client
+ So in order to test here we are going to connect an mqtt client to the broker
+ and check if published data arrives. Therefor we shall use a webbased client
+ since the browser only supports HTTPS and Websocket we are going to use
+ the websocket port of the broker (in this case the broker is broker.hivemq.com
+ and the TLS websocket port is 8884)
+ 
+ We are going to use the hivemq mqtt client for this
+ [https://www.hivemq.com/demos/websocket-client/](hivemq.com), and setup the
+ **broker host** (broker.hivemq.com) and **Websocket port** (8884) as below:
+ 
+ 
+ 
+ 
+ [a figure comes here]
+ 
+ Then we subscribe to all topics of our iQunet server, which is the Root of the
+ path with a hash, in this case "SERN-abcd1234/#". So then we click connect
+ and we should confirm that there are incoming JSON packets in the client.
+-->
 
 <br>
 <br>
