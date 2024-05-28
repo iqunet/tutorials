@@ -321,7 +321,7 @@ then subscribe to<br>
 <figcaption>Figure 16: Subscribing to a topic and viewing incoming JSON data.</figcaption>
 
 If the configuration is correct, JSON packets will start arriving as soon as
-they are published by the iQunet Server.
+they are published by the iQunet Server!
 <hr>
 
 
