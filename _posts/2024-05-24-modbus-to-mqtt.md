@@ -324,182 +324,103 @@ If the configuration is correct, JSON packets will start arriving as soon as
 they are published by the iQunet Server!
 <hr>
 
+### Subscribing to MQTT and Plotting with Python
+This section provides Python boilerplate code to demonstrate how to subscribe
+to the MQTT broker, receive data from the iQunet server, and visualize this
+data in real-time.
 
-<!-- Configure the credentials (change to your own) as shown in figure 15:
- 
- ![Setup Figure]
- 
- Next, subscribe to all topics from the iQunet server using the root path with a wildcard. For example, use **"SERN-abcd1234/#"**.
- 
- Finally, click **Connect** to establish the connection. Incoming JSON packets in the client will confirm that the data is being published correctly.
- 
- 
- ### Subscribe to a Topic with a Websocket Test Client
- So in order to test here we are going to connect an mqtt client to the broker
- and check if published data arrives. Therefor we shall use a webbased client
- since the browser only supports HTTPS and Websocket we are going to use
- the websocket port of the broker (in this case the broker is broker.hivemq.com
- and the TLS websocket port is 8884)
- 
- We are going to use the hivemq mqtt client for this
- [https://www.hivemq.com/demos/websocket-client/](hivemq.com), and setup the
- **broker host** (broker.hivemq.com) and **Websocket port** (8884) as below:
- 
- 
- 
- 
- [a figure comes here]
- 
- Then we subscribe to all topics of our iQunet server, which is the Root of the
- path with a hash, in this case "SERN-abcd1234/#". So then we click connect
- and we should confirm that there are incoming JSON packets in the client.
--->
+<video width="640" height="360" controls loop autoplay muted>
+  <source src="{{ site.baseurl }}/assets/videos/test3.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-If the **Application Key** is correct, the sensor and the iQunet server will
-generate 2 new session keys:
-- The **Network Session Key** (NwkSKey) is used for all communications related to
-  the LoRaWAN protocol (e.g. regional parameters and frequencies).
-- The **Application Session Key** (AppSKey) is used for the exchange of sensor
-  data, in this particular case temperature and humidity.
-<br>
+The [Paho MQTT client](https://pypi.org/project/paho-mqtt/) is used for handling
+MQTT communication, and [Matplotlib](https://pypi.org/project/matplotlib/)
+is used for plotting the data.
 
-![iQunet LoRaWAN Session Keys]({{ site.baseurl }}/assets/images/iqunet-sessionkeys-lorawan.svg)
-<figcaption>figure 8: Secure Session keys are calculated from the Application Key.</figcaption>
+- **MQTT Client Configuration**: The Paho MQTT client connects to the HiveMQ
+   broker at `broker.hivemq.com` on TCP/TLS port `8883` and subscribes to the
+   specified topic where the iQunet server publishes data.
 
-After all OTAA keys have been successfully set up, the actual **uplink of
-sensor data** starts. The iQunet Server automatically detects the sensor model
-and selects the corresponding **payload decoder** module. Binary sensor data is
-now unpacked into the appropriate fields in the OPC-UA tree. The dashboard will
-adjust and display all relevant information. For example, the LSN50v2-S31 will
-transmit temperature, humidity and battery power, as shown in figure 9:
-<br>
+- **Message Handling**: When a message is received, the `on_message` callback
+   parses the JSON payload and appends the data to an in-memory `cache`.
+   The `data_event` signals to the plotting thread that new data is available.
 
-![iQunet custom dashboard]({{ site.baseurl }}/assets/images/iqunet-lsn50.svg)
-<figcaption>figure 9: Dashboard will adjust to the sensor type.</figcaption>
-
-When available, sensor settings can be adjusted via the **LoRaWAN downlink**
-channel. For example, the LSN50 allows the on-the-fly setup of the measurement
-interval. The configuration can be adjusted not only in the dashboard but also
-programmatically via the OPC-UA, MQTT, or GraphQL interface. This allows for
-**automated provisioning** of multiple sensors.
-<hr>
-
-### Embedded OPC-UA Client
-At this point, the sensor has successfully joined the private LoRaWAN network
-and incoming measurements are stored into the **local database**. Historical
-data can be retrieved via the OPC-UA "**historical access**" extension.
-
-Click the OPC-UA tab in the dashboard to open the embedded OPC-UA browser,
-as shown in figure 10:
-
-![iQunet OPC-UA browser]({{ site.baseurl }}/assets/images/iqunet-dashboard-opcua.svg)
-<figcaption>figure 10: Embedded OPC-UA client and browser.</figcaption>
-<hr>
-
-### UaExpert OPC-UA Client
-The server listens on all network interfaces (LAN, WLAN, wireguard VPN) at **port 4840**.
-
-For example, when the ethernet cable is connected to LAN network 192.168.10.0/24:
-<br>
-
-| Service             | URL                                      |
-|---------------------|------------------------------------------|
-| WebServer           | http://192.168.10.101:8000/dashboard     |
-| GraphQL server      | http://192.168.10.101:8000/graphql       |
-| **OPC-UA server**   | **opc.tcp://192.168.10.101:4840**        |
-
-The OPC-UA server is also accessible by all third-party client software, such
-as UaExpert, a popular OPC-UA client developed by Unified Automation
-[[unified-automation.com](https://www.unified-automation.com/products/development-tools/uaexpert.html)].
-
-Figure 11 shows the configuration of UaExpert to connect to the iQunet OPC-UA
-server at address 192.168.10.101, port 4840. Both encrypted and non-encrypted
-connections are supported.
-
-![UaExpert Setup]({{ site.baseurl }}/assets/images/uaexpert-setup.svg)
-<figcaption>figure 11: Unified Automation UaExpert OPC-UA client connection setup.</figcaption>
-
-When the UaExpert client is successfully connected to the iQunet OPC-UA server,
-direct access is provided to all realtime measurements, metadata and historical
-values as stored in the local database.
-
-![UaExpert History view]({{ site.baseurl }}/assets/images/uaexpert-history.svg)
-<figcaption>figure 12: Unified Automation UaExpert OPC-UA client: history view.</figcaption>
-<hr>
-
-### Post-processing OPC-UA data with Python
-The next step in this tutorial is connecting to the OPC-UA server using the
-Python programming language. This allows for flexible **postprocessing**, such
-as smoothing data, sending automated alarm messages or creating your own custom
-aggregate dashboards with realtime data.
-
-Below is the boilerplate Python code to connect to the OPC-UA server, extract
-the temperatures from the last day, and generate a basic plot.
-Three external libraries are used for this:
-*[opcua-asyncio](https://pypi.org/project/asyncua/)*,
-*[numpy](https://pypi.org/project/numpy/)* and
-*[matplotlib](https://pypi.org/project/matplotlib/)*.
+- **Plotting**: The `update_plot` function retrieves data from the cache,
+   extracts timestamps and values, and updates the plot. The `FuncAnimation`
+   class from Matplotlib refreshes the plot every second.
 
 ```python
-import asyncio
-import datetime
-import matplotlib.pyplot as plt
-import numpy as np
-from asyncua import Client
+from collections import deque
+from datetime import datetime
+from functools import partial
+import json
+import threading
+import time
 
-def moving_avg(values, window):
-    padded = np.pad(values, (window//2, window-1-window//2), mode='edge')
-    window = np.ones(window) / window
-    smooth = np.convolve(padded, window, mode='valid')
-    return smooth
+from matplotlib import pyplot as plt
+from matplotlib.animation import FuncAnimation
+import paho.mqtt.client as mqtt
 
-async def main():
-    url = 'opc.tcp://192.168.10.101:4840'
-    path = ['0:Objects', '2:31:86:84:11', '2:boardTemperature']
+# MQTT setup
+BROKER = 'broker.hivemq.com'
+PORT = 8883
+TOPIC = 'SERN-dca632c03aee/Objects/b1:dd:1f:e9/inverterTemperature'
 
-    async with Client(url=url) as client:
-        root = client.nodes.root
-        node = await root.get_child(path)
+# In-memory storage
+cache = deque(maxlen=1024)
 
-        # read history
-        start_time = datetime.datetime.now() - datetime.timedelta(days=1)
-        end_time = datetime.datetime.now()
-        history = await node.read_raw_history(start_time, end_time)
+# Event to trigger plot updates
+data_event = threading.Event()
 
-        # Extracting values
-        times = [x.SourceTimestamp for x in history]
-        values = [x.Value.Value for x in history]
+def on_connect(client, userdata, flags, rc, properties):
+    print(f'Connected with result code {rc}')
+    assert rc == 0
+    client.subscribe(TOPIC)
 
-        # Smooth
-        smooth = moving_avg(values, window=5)
+def on_message(client, userdata, message):
+    payload = json.loads(message.payload)
+    cache.append(payload)
+    data_event.set()
 
-        # Plot
-        plt.figure(figsize=(10, 5))
-        plt.plot(times, values, linestyle= '', marker='o', label='Original')
-        plt.plot(times, smooth, linestyle='-', color='red', label='Smoothed')
-        plt.xlabel('Timestamp')
-        plt.ylabel('Value')
-        plt.title('Temperature')
-        plt.grid(True)
-        plt.legend()
-        plt.show()
+def start_mqtt_loop():
+    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+    client.tls_set()
+    client.on_connect = on_connect
+    client.on_message = on_message
+    client.connect(BROKER, PORT, keepalive=60)
+    client.loop_start()
+    return client
+
+def update_plot(frame, ax):
+    if not data_event.is_set():
+        time.sleep(1)
+        return
+    c = list(cache)
+    x = [datetime.fromisoformat(pl['SourceTimestamp']) for pl in c]
+    y = [pl['Value'] for pl in c]
+
+    ax.clear()
+    ax.plot(x, y, marker='o')
+    ax.set_ylim(20, 70)
+    plt.xticks(rotation=45, ha='right')
+    plt.subplots_adjust(bottom=0.30)
+    plt.title('Inverter Temperature')
+    plt.xlabel('Timestamp')
+    plt.ylabel('degC')
+    data_event.clear()
 
 if __name__ == '__main__':
-    asyncio.run(main())
-
+    client = start_mqtt_loop()
+    try:
+        fig, ax = plt.subplots()
+        func = partial(update_plot, ax=ax)
+        ani = FuncAnimation(fig, func, interval=1000, cache_frame_data=False)
+        plt.show()
+    finally:
+        client.disconnect()
 ```
 
-![Temperature Plot]({{ site.baseurl }}/assets/images/temperature_plot.png)
-<figcaption>figure 13: Smoothed temperature plot using opcua-asyncio and matplotlib.</figcaption>
 <hr>
 
 ### Conclusion
