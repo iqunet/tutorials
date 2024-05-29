@@ -1,4 +1,173 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="/tutorials/feed.xml" rel="self" type="application/atom+xml" /><link href="/tutorials/" rel="alternate" type="text/html" /><updated>2024-05-29T11:01:54-05:00</updated><id>/tutorials/feed.xml</id><title type="html">iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN</title><subtitle>iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/iqunet_logo_bgwhite.svg&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;iQunet.com&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-house&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.com&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://linkedin.com/company/iqunet/&quot;}, {&quot;label&quot;=&gt;&quot;YouTube&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-youtube&quot;, &quot;url&quot;=&gt;&quot;https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.github.io/tutorials&quot;}]}</name></author><entry><title type="html">Modbus to MQTT</title><link href="/tutorials/blog/modbus-to-mqtt/" rel="alternate" type="text/html" title="Modbus to MQTT" /><published>2024-05-24T05:06:19-05:00</published><updated>2024-05-24T05:06:19-05:00</updated><id>/tutorials/blog/modbus-to-mqtt</id><content type="html" xml:base="/tutorials/blog/modbus-to-mqtt/"><![CDATA[<h3 id="mission-publish-modbus-over-mqtt-plot-in-python">Mission: Publish Modbus over MQTT, plot in Python</h3>
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.1 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Modbus to MQTT - iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN</title>
+<meta name="description" content="Mission: Publish Modbus over MQTT, plot in Python">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN">
+<meta property="og:title" content="Modbus to MQTT">
+<meta property="og:url" content="/tutorials/blog/modbus-to-mqtt/">
+
+
+  <meta property="og:description" content="Mission: Publish Modbus over MQTT, plot in Python">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-05-24T05:06:19-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="/tutorials/blog/modbus-to-mqtt/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/tutorials/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/tutorials/">
+          iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tutorials/posts/"
+                
+                
+              >Posts</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  <div class="sidebar sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#mission-publish-modbus-over-mqtt-plot-in-python">Mission: Publish Modbus over MQTT, plot in Python</a></li><li><a href="#typical-modbus-to-mqtt-information-flow">Typical Modbus-to-MQTT Information Flow</a></li><li><a href="#a-single-board-modbus-to-mqtt-setup">A Single-Board Modbus-to-MQTT Setup</a></li><li><a href="#publishing-to-mqtt">Publishing to MQTT</a></li><li><a href="#motor-drive--modbus-hardware-setup">Motor Drive + Modbus Hardware Setup</a></li><li><a href="#scanning-for-modbus-devices">Scanning for Modbus Devices</a></li><li><a href="#auto-detection-of-modbus-devices">Auto-Detection of Modbus Devices</a></li><li><a href="#direct-access-of-modbus-data-via-opc-ua">Direct Access of Modbus Data via OPC-UA</a></li><li><a href="#opc-ua-vs-mqtt-payload-format-and-data-types">OPC-UA vs MQTT: Payload Format and Data Types</a></li><li><a href="#enabling-the-mqtt-subsystem-for-the-iqunet-server">Enabling the MQTT Subsystem for the iQunet Server</a></li><li><a href="#testing-the-mqtt-setup">Testing the MQTT Setup</a></li><li><a href="#subscribing-to-mqtt-and-plotting-with-python">Subscribing to MQTT and Plotting with Python</a></li><li><a href="#conclusion">Conclusion</a></li></ul>
+            </nav>
+  </div>
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Modbus to MQTT">
+    <meta itemprop="description" content="Mission: Publish Modbus over MQTT, plot in Python">
+    <meta itemprop="datePublished" content="2024-05-24T05:06:19-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="/tutorials/blog/modbus-to-mqtt/" itemprop="url">Modbus to MQTT
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <h3 id="mission-publish-modbus-over-mqtt-plot-in-python">Mission: Publish Modbus over MQTT, plot in Python</h3>
 
 <p><img src="/tutorials/assets/images/modbus-mqtt-python.svg" alt="LoRaWAN to OPC UA" /></p>
 
@@ -456,301 +625,213 @@ For further exploration and support, check out our
 <a href="https://iqunet.com/resources/case-studies/case-study-1-international-airport/"><strong>case studies</strong></a>
 or reach out to our <a href="https://iqunet.com/contact/"><strong>support team</strong></a>.
 Happy data monitoring!
-</span></p>]]></content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/iqunet_logo_bgwhite.svg&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;iQunet.com&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-house&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.com&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://linkedin.com/company/iqunet/&quot;}, {&quot;label&quot;=&gt;&quot;YouTube&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-youtube&quot;, &quot;url&quot;=&gt;&quot;https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.github.io/tutorials&quot;}]}</name></author><category term="blog" /><summary type="html"><![CDATA[Mission: Publish Modbus over MQTT, plot in Python]]></summary></entry><entry><title type="html">Private LoRaWAN to OPC-UA</title><link href="/tutorials/blog/connecting-sensors-opcua/" rel="alternate" type="text/html" title="Private LoRaWAN to OPC-UA" /><published>2024-05-19T15:10:15-05:00</published><updated>2024-05-19T15:10:15-05:00</updated><id>/tutorials/blog/connecting-sensors-opcua</id><content type="html" xml:base="/tutorials/blog/connecting-sensors-opcua/"><![CDATA[<h3 id="mission-lorawan-temperature-data-to-python-graph">Mission: LoRaWAN Temperature Data to Python Graph</h3>
-
-<p><img src="/tutorials/assets/images/lora-opc-python.svg" alt="LoRaWAN to OPC UA" /></p>
-
-<p><span style="background-color: #ffff0054">
-<strong>Note:</strong> This tutorial uses the iQunet Industrial Edge Server
-[<a href="https://iqunet.com/products/servers/">link <i style="margin: 0.2em; font-size: 0.7em" class="fa-solid fa-arrow-up-right-from-square"></i></a>].
-<br />A demo gateway endpoint is provided for the purpose of this guide.
 </span></p>
 
-<blockquote>
-  <p>LoRaWAN (Long Range Wide Area Network) is a wireless communication protocol
-designed for low-power, long-range, and low-data-rate applications. This makes
-it ideal for IoT devices. For more detailed information, visit
-<a href="https://lora-alliance.org/about-lorawan/">lora-alliance.org</a>.
-<br /></p>
-</blockquote>
+        
+      </section>
 
-<blockquote>
-  <p>OPC-UA (Open Platform Communications Unified Architecture)
-is a machine-to-machine communication protocol for industrial automation
-developed for secure, realtime data exchange. Visit
-<a href="https://opcfoundation.org/about/opc-technologies/opc-ua/">opcfoundation.org</a>.</p>
-</blockquote>
+      <footer class="page__meta">
+        
+        
 
-<p>You will learn how to:</p>
-<ul>
-  <li>Connect a <strong>LoRaWAN sensor</strong> to the iQunet Industrial Edge Server.</li>
-  <li>Understand how sensor data is stored into the <strong>local OPC-UA database</strong>.</li>
-  <li>Test the OPC-UA server connection using <strong>UaExpert</strong>.</li>
-  <li>Use <strong>Python</strong> to connect to the OPC-UA server for post-processing and visualization.
-<br /></li>
-</ul>
-<hr />
 
-<h3 id="typical-lorawan-network-infrastructure">Typical LoRaWAN Network Infrastructure</h3>
+  
 
-<p>In a standard LoRaWAN setup, a sensor sends data to a <strong>gateway</strong>, which
-then forwards the encrypted data to a <strong>network server</strong> via the internet.
-The network server buffers the data and forwards it to an <strong>application server</strong>
-via MQTT [<a href="https://mqtt.org/">mqtt.org</a>]. The application server decrypts and unpacks
-the binary sensor data and stores the measurement in a database, where it can
-be retrieved by, for example, <strong>dashboarding software</strong> for visualization.</p>
 
-<p><img src="/tutorials/assets/images/typical-lora.svg" alt="Typical LoRaWAN setup" /></p>
-<figcaption>figure 1: Typical LoRaWAN setup for large networks</figcaption>
-<p>This multi-step process can be quite challenging for a simple one-time setup,
-particularly when integrating software from different vendors.</p>
-<hr />
+  
 
-<h3 id="a-single-board-private-lorawan-setup">A Single-Board Private LoRaWAN Setup</h3>
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tutorials/categories/#blog" class="page__taxonomy-item p-category" rel="tag">blog</a>
+    
+    </span>
+  </p>
 
-<p>The LoRaWAN gateway, network/application server and database can all be
-integrated in a single device, such as is the case for the iQunet Edge Server
-[<a href="https://iqunet.com/products/servers/">link</a>].
-The result is a secure standalone LoRaWAN network which requires only a <strong>local
-network</strong> (LAN) connection for API data access. Sensor data is immediately written
-to the <strong>local database</strong> and can be accessed via various protocols: OPC-UA, GraphQL,
-MQTT, CSV or the internal web interface.
-<br /></p>
 
-<p><img src="/tutorials/assets/images/iqunet-lora.svg" alt="iQunet LoRaWAN setup" /></p>
-<figcaption>figure 2: iQunet single-server LoRaWAN setup for
-medium size networks (e.g. 250 devices)</figcaption>
-<p>In this tutorial, the <strong><span style="background-color:#ff9494">red route</span></strong>
-indicated in figure 2 will be used. The iQunet Server will receive the
-LoRaWAN packets via the attached <strong>LoRa concentrator</strong> radio module, <strong>decode
-and unpack</strong> the payload and store the data in the <strong>built-in database</strong>.</p>
+        
 
-<h3 id="the-opc-ua-server-interface">The OPC-UA server interface</h3>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-05-24T05:06:19-05:00">May 24, 2024</time></p>
 
-<p>After being written to the database, the data is made accessible via the 
-<strong>embedded OPC-UA server</strong>.
-Measurements related to a single LoRaWAN sensor are organized under the
-corresponding DevEUI node of that sensor in the OPC-UA node tree (see figure 3).</p>
+      </footer>
 
-<p><img src="/tutorials/assets/images/iqunet-opcua.svg" alt="iQunet OPC-UA" /></p>
-<figcaption>figure 3: iQunet embedded OPC-UA server API</figcaption>
-<hr />
+      
 
-<h3 id="lorawan-hardware-setup">LoRaWAN Hardware Setup</h3>
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/blog/connecting-sensors-opcua/" class="pagination--pager" title="Private LoRaWAN to OPC-UA
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
 
-<p>Figure 4 shows a modular setup for a <strong>private LoRaWAN network</strong>. It consists
-of an <strong>SX1302 LoRa Radio</strong> receiver, an iQunet Edge SBC (database and OPC-UA
-server) and an (optional) 4G mobile router. The router is the temporary
-placeholder for -for example- a company VLAN.</p>
+    </div>
 
-<p><img src="/tutorials/assets/images/iqunet-setup.svg" alt="iQunet Base Setup" /></p>
-<figcaption>figure 4: The setup with SX1302 concentrator module,
-OPC-UA server and mobile network</figcaption>
+    
 
-<p>For the purpose of this tutorial, the Dragino LSN50v2-S31 temperature and
-humidity LoRaWAN sensor will be used. Both the LSN50 and the iQunet server
-understand the OTAA (over-the-air activation) protocol v1.0.4. OTAA allows to
-automatically generate and exchange the network and application security keys
-between sensor and the target application.
-<br /></p>
+    
+      <aside class="sidebar__right sticky">
+        
+  <div class="sidebar sidebar-company">
+  
 
-<p><img src="/tutorials/assets/images/lsn50v2-s31.svg" alt="Dragino LSN50v2-S31" width="400" /></p>
-<figcaption>figure 5: Dragino LSN50v2-S31 LoRaWAN temperature and humidity sensor.</figcaption>
-<hr />
 
-<h3 id="connecting-a-new-lorawan-sensor">Connecting a new LoRaWAN sensor</h3>
-<p>After the battery of the Dragino LSN50 sensor is inserted, the configuration
-dashboard of the iQunet server shall display a new LoRaWAN device under the LoRa
-Radio Module. The devEUI found on the LSN50 sensor should match the devEUI as
-displayed in the dashboard.</p>
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
 
-<p><img src="/tutorials/assets/images/iqunet-new-lorawan.svg" alt="iQunet Dashboard new LoRaWAN" /></p>
-<figcaption>figure 6: The LoRaWAN sensor is detected and a new device LoRaWAN
-device is created in the sensor tree.</figcaption>
+  
+    <div class="author__avatar">
+      <a href="/tutorials/">
+        <img src="/tutorials/assets/images/iqunet_logo_bgwhite.svg" alt="" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
 
-<p>Communication with the sensor will not start until the encryption key is
-set up. For this, click on the “Edit” button next to the <strong>Application Key</strong>
-and fill in the 32-character key that comes with the Dragino Device.
-The AppKey (also known as the JOIN key) is only used once during the setup of
-the device.
-<br /></p>
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="/tutorials/" itemprop="url"></a>
+    </h3>
+    
+  </div>
 
-<p><img src="/tutorials/assets/images/iqunet-key-lorawan.svg" alt="iQunet LoRaWAN AppKey" /></p>
-<figcaption>figure 7: Setup of the LoRaWAN Application Key in the dashboard.</figcaption>
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
 
-<p>If the <strong>Application Key</strong> is correct, the sensor and the iQunet server will
-generate 2 new session keys:</p>
-<ul>
-  <li>The <strong>Network Session Key</strong> (NwkSKey) is used for all communications related to
-the LoRaWAN protocol (e.g. regional parameters and frequencies).</li>
-  <li>The <strong>Application Session Key</strong> (AppSKey) is used for the exchange of sensor
-data, in this particular case temperature and humidity.
-<br /></li>
-</ul>
+      
+        
+          
+            <li><a href="https://iqunet.com" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-house" aria-hidden="true"></i><span class="label">iQunet.com</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/company/iqunet/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://iqunet.github.io/tutorials" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
 
-<p><img src="/tutorials/assets/images/iqunet-sessionkeys-lorawan.svg" alt="iQunet LoRaWAN Session Keys" /></p>
-<figcaption>figure 8: Secure Session keys are calculated from the Application Key.</figcaption>
+      
 
-<p>After all OTAA keys have been successfully set up, the actual <strong>uplink of
-sensor data</strong> starts. The iQunet Server automatically detects the sensor model
-and selects the corresponding <strong>payload decoder</strong> module. Binary sensor data is
-now unpacked into the appropriate fields in the OPC-UA tree. The dashboard will
-adjust and display all relevant information. For example, the LSN50v2-S31 will
-transmit temperature, humidity and battery power, as shown in figure 9:
-<br /></p>
+      
 
-<p><img src="/tutorials/assets/images/iqunet-lsn50.svg" alt="iQunet custom dashboard" /></p>
-<figcaption>figure 9: Dashboard will adjust to the sensor type.</figcaption>
+      
 
-<p>When available, sensor settings can be adjusted via the <strong>LoRaWAN downlink</strong>
-channel. For example, the LSN50 allows the on-the-fly setup of the measurement
-interval. The configuration can be adjusted not only in the dashboard but also
-programmatically via the OPC-UA, MQTT, or GraphQL interface. This allows for
-<strong>automated provisioning</strong> of multiple sensors.</p>
-<hr />
+      
 
-<h3 id="embedded-opc-ua-client">Embedded OPC-UA Client</h3>
-<p>At this point, the sensor has successfully joined the private LoRaWAN network
-and incoming measurements are stored into the <strong>local database</strong>. Historical
-data can be retrieved via the OPC-UA “<strong>historical access</strong>” extension.</p>
+      
 
-<p>Click the OPC-UA tab in the dashboard to open the embedded OPC-UA browser,
-as shown in figure 10:</p>
+      
 
-<p><img src="/tutorials/assets/images/iqunet-dashboard-opcua.svg" alt="iQunet OPC-UA browser" /></p>
-<figcaption>figure 10: Embedded OPC-UA client and browser.</figcaption>
-<hr />
+      
 
-<h3 id="uaexpert-opc-ua-client">UaExpert OPC-UA Client</h3>
-<p>The server listens on all network interfaces (LAN, WLAN, wireguard VPN) at <strong>port 4840</strong>.</p>
+      
 
-<p>For example, when the ethernet cable is connected to LAN network 192.168.10.0/24:
-<br /></p>
+      
 
-<table>
-  <thead>
-    <tr>
-      <th>Service</th>
-      <th>URL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>WebServer</td>
-      <td>http://192.168.10.101:8000/dashboard</td>
-    </tr>
-    <tr>
-      <td>GraphQL server</td>
-      <td>http://192.168.10.101:8000/graphql</td>
-    </tr>
-    <tr>
-      <td><strong>OPC-UA server</strong></td>
-      <td><strong>opc.tcp://192.168.10.101:4840</strong></td>
-    </tr>
-  </tbody>
-</table>
+      
 
-<p>The OPC-UA server is also accessible by all third-party client software, such
-as UaExpert, a popular OPC-UA client developed by Unified Automation
-[<a href="https://www.unified-automation.com/products/development-tools/uaexpert.html">unified-automation.com</a>].</p>
+      
 
-<p>Figure 11 shows the configuration of UaExpert to connect to the iQunet OPC-UA
-server at address 192.168.10.101, port 4840. Both encrypted and non-encrypted
-connections are supported.</p>
+      
 
-<p><img src="/tutorials/assets/images/uaexpert-setup.svg" alt="UaExpert Setup" /></p>
-<figcaption>figure 11: Unified Automation UaExpert OPC-UA client connection setup.</figcaption>
+      
 
-<p>When the UaExpert client is successfully connected to the iQunet OPC-UA server,
-direct access is provided to all realtime measurements, metadata and historical
-values as stored in the local database.</p>
+      
 
-<p><img src="/tutorials/assets/images/uaexpert-history.svg" alt="UaExpert History view" /></p>
-<figcaption>figure 12: Unified Automation UaExpert OPC-UA client: history view.</figcaption>
-<hr />
+      
 
-<h3 id="post-processing-opc-ua-data-with-python">Post-processing OPC-UA data with Python</h3>
-<p>The next step in this tutorial is connecting to the OPC-UA server using the
-Python programming language. This allows for flexible <strong>postprocessing</strong>, such
-as smoothing data, sending automated alarm messages or creating your own custom
-aggregate dashboards with realtime data.</p>
+      
 
-<p>Below is the boilerplate Python code to connect to the OPC-UA server, extract
-the temperatures from the last day, and generate a basic plot.
-Three external libraries are used for this:
-<em><a href="https://pypi.org/project/asyncua/">opcua-asyncio</a></em>,
-<em><a href="https://pypi.org/project/numpy/">numpy</a></em> and
-<em><a href="https://pypi.org/project/matplotlib/">matplotlib</a></em>.</p>
+      
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">asyncua</span> <span class="kn">import</span> <span class="n">Client</span>
+      
 
-<span class="k">def</span> <span class="nf">moving_avg</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">window</span><span class="p">):</span>
-    <span class="n">padded</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">pad</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="p">(</span><span class="n">window</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">window</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">window</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s">'edge'</span><span class="p">)</span>
-    <span class="n">window</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">window</span><span class="p">)</span> <span class="o">/</span> <span class="n">window</span>
-    <span class="n">smooth</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">padded</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'valid'</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">smooth</span>
+      
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="s">'opc.tcp://192.168.10.101:4840'</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="s">'0:Objects'</span><span class="p">,</span> <span class="s">'2:31:86:84:11'</span><span class="p">,</span> <span class="s">'2:boardTemperature'</span><span class="p">]</span>
+      
 
-    <span class="k">async</span> <span class="k">with</span> <span class="n">Client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">nodes</span><span class="p">.</span><span class="n">root</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="k">await</span> <span class="n">root</span><span class="p">.</span><span class="n">get_child</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+      
 
-        <span class="c1"># read history
-</span>        <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="p">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
-        <span class="n">history</span> <span class="o">=</span> <span class="k">await</span> <span class="n">node</span><span class="p">.</span><span class="n">read_raw_history</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+      
 
-        <span class="c1"># Extracting values
-</span>        <span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">SourceTimestamp</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">history</span><span class="p">]</span>
-        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">Value</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">history</span><span class="p">]</span>
+      
 
-        <span class="c1"># Smooth
-</span>        <span class="n">smooth</span> <span class="o">=</span> <span class="n">moving_avg</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+      
 
-        <span class="c1"># Plot
-</span>        <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span> <span class="s">''</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Original'</span><span class="p">)</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">smooth</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'-'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'red'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Smoothed'</span><span class="p">)</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Timestamp'</span><span class="p">)</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Value'</span><span class="p">)</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Temperature'</span><span class="p">)</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">asyncio</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+  
+    <div class="description_2">
+      iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.
+    </div>
+  </div>
 
-</code></pre></div></div>
 
-<p><img src="/tutorials/assets/images/temperature_plot.png" alt="Temperature Plot" /></p>
-<figcaption>figure 13: Smoothed temperature plot using opcua-asyncio and matplotlib.</figcaption>
-<hr />
+      </aside>
+      
 
-<h3 id="conclusion">Conclusion</h3>
-<p>Throughout this tutorial, we’ve demonstrated how to integrate a LoRaWAN sensor
-with the iQunet Industrial Edge Server, store sensor data in a local OPC-UA
-database, and visualize the data using Python. By following these steps, you
-have successfully set up a <strong>private LoRaWAN network</strong> and accessed <strong>real-time
-and historical data</strong> through the embedded OPC-UA server.</p>
+  </article>
 
-<p>Beyond the basics covered in this guide, iQunet offers extensive capabilities
-for more advanced data processing tasks. These include handling complex datasets
-like vibration data, implementing machine learning techniques for predictive
-maintenance, and enabling custom software adaptations for specific industrial
-needs.</p>
+  
+  
+</div>
 
-<p><span style="background-color: #ffff0054">
-For further exploration and support, check out our
-<a href="https://iqunet.com/resources/"><strong>documentation</strong></a>, get new ideas from some
-<a href="https://iqunet.com/resources/case-studies/case-study-1-international-airport/"><strong>case studies</strong></a>
-or reach out to our <a href="https://iqunet.com/contact/"><strong>support team</strong></a>.
-Happy data monitoring!
-</span></p>]]></content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/iqunet_logo_bgwhite.svg&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;iQunet.com&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-house&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.com&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://linkedin.com/company/iqunet/&quot;}, {&quot;label&quot;=&gt;&quot;YouTube&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-youtube&quot;, &quot;url&quot;=&gt;&quot;https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.github.io/tutorials&quot;}]}</name></author><category term="blog" /><summary type="html"><![CDATA[Mission: LoRaWAN Temperature Data to Python Graph]]></summary></entry></feed>
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 <a href="">iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN</a></div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/tutorials/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

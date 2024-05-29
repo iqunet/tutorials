@@ -4,4 +4,10 @@ var store = [{
         "tags": [],
         "url": "/tutorials/blog/connecting-sensors-opcua/",
         "teaser": null
+      },{
+        "title": "Modbus to MQTT",
+        "excerpt":"Mission: Publish Modbus over MQTT, plot in Python Note: This tutorial uses the iQunet Industrial Edge Server [link]. A demo gateway endpoint is provided for the purpose of this guide. Modbus is a wired communication protocol for industrial automation and data exchange between devices like sensors and PLC controllers. Visit...","categories": ["blog"],
+        "tags": [],
+        "url": "/tutorials/blog/modbus-to-mqtt/",
+        "teaser": null
       }]

@@ -44,7 +44,7 @@ In a typical Modbus/MQTT monitoring setup, an industrial device,
 <span>&mdash;&nbsp;</span>such as a **motor drive**<span>&nbsp;&mdash;</span>
 is connected to a **Modbus-TCP gateway** via an RS-485 serial interface.
 The gateway converts between the synchronous Modbus-RTU protocol and the
-asynchronous Modbus-TCP ethernet network protocol. This allows the use of
+asynchronous Modbus-TCP Ethernet network protocol. This allows the use of
 standard networking equipment. Some devices natively support Modbus-TCP,
 which eliminates the need for a gateway.
 
@@ -53,7 +53,7 @@ which eliminates the need for a gateway.
 
 A **Modbus-TCP master** actively polls connected devices to extract data, which
 is subsequently decoded from binary to a user-friendly format, typically
-JSON. This JSON data is then published to an MQTT platform, either on-premise
+JSON. This JSON data is then published to an MQTT platform, either on-premises
 or cloud-based, such as the HiveMQ **MQTT broker**.
 
 An **MQTT subscriber** retrieves the data from the broker and stores it in a database.
@@ -146,9 +146,9 @@ Optidrive E3 must be added to the list of monitored devices in the iQunet
 server software.
 
 The first step involves activating both the Modbus-TCP and the Modbus-RTU modules
-in the dashboard of the iQunet server. For this, click on the Config button
+in the dashboard of the iQunet server. For this, click the Config button
 <i style="margin: 0.2em; font-size: 0.7em" class="fa-solid fa-wrench"></i> in
-the menu bar, as shown in Figure 6:
+the menu bar, as shown in Figure 6.
 
 ![iQunet Enable Modbus in Dashboard]({{ site.baseurl }}/assets/images/iqunet-modbus-enable.svg)
 <figcaption>figure 6: Enable the Modbus-TCP master and the Modbus-RTU gateway.</figcaption>
@@ -216,7 +216,7 @@ drive section (Figure 9) displays the most common parameters.
 While the dashboard provides a graphical summary of the drive status, much more
 detailed information about drive parameters and historical logs can be accessed
 by directly **browsing the OPC-UA node tree** of the internal OPC-UA server. To
-do this, click on the OPC-UA icon in the left menu:
+do this, click the OPC-UA icon in the left menu:
 
 <img src="{{ site.baseurl }}/assets/images/iqunet-optidrive-eco-opcua-dashboard.svg" alt="iQunet OPC-UA browser">
 <figcaption>figure 10: Accessing and exporting drive parameters via the OPC-UA browser.</figcaption>
@@ -296,11 +296,11 @@ the OPC-UA tree and click the **MQTT "publish"** button.
 ### Testing the MQTT Setup
 To verify the MQTT setup, a **web-based MQTT client** will be connected to the
 broker to subscribe to the published data. Since browsers do not support raw
-TCP sockets, the Websocket port of the broker will be used.
+TCP sockets, the WebSocket port of the broker will be used.
 
 First, open the **HiveMQ MQTT Client**
 [[hivemq.com](https://www.hivemq.com/demos/websocket-client/)], and setup the
-broker host and TLS Websocket port as below. Then click connect.
+broker host and TLS WebSocket port as below. Then click connect.
 - **host**: broker.hivemq.com
 - **port**: 8884 (wss://)
 
@@ -310,7 +310,7 @@ broker host and TLS Websocket port as below. Then click connect.
 
 Next, click **"Add New Topic Subscription"** and choose the topic to
 subscribe to. Use a multilevel wildcard (#) to subscribe to all topics at once.
-More info here [[hivemq.com](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/)]
+More information here [[hivemq.com](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/)]
 
 For example, if the topic published to by the iQunet Server is<br>
 `SERN-dca632xxxxxx/Objects/b1:dd:1f:e9/inverterTemperature`,
@@ -329,7 +329,7 @@ This section provides Python boilerplate code to demonstrate how to subscribe
 to the MQTT broker, receive data from the iQunet server, and visualize this
 data in real-time.
 
-<video width="640" height="360" controls loop autoplay muted>
+<video width="100%" controls loop autoplay muted>
   <source src="{{ site.baseurl }}/assets/videos/test3.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -424,11 +424,10 @@ if __name__ == '__main__':
 <hr>
 
 ### Conclusion
-Throughout this tutorial, we've demonstrated how to integrate a LoRaWAN sensor
-with the iQunet Industrial Edge Server, store sensor data in a local OPC-UA
-database, and visualize the data using Python. By following these steps, you
-have successfully set up a **private LoRaWAN network** and accessed **real-time
-and historical data** through the embedded OPC-UA server.
+In this tutorial, we've demonstrated how to integrate a **Modbus-RTU** motor drive
+with the **iQunet Industrial Edge Server**, store sensor data in a **local OPC-UA
+database**, publish this sensor data to an **MQTT broker**, and finally
+**visualize** the data using Python for a **real-time monitoring** setup.
 
 Beyond the basics covered in this guide, iQunet offers extensive capabilities
 for more advanced data processing tasks. These include handling complex datasets
