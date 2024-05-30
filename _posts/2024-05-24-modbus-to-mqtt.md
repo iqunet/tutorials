@@ -5,15 +5,26 @@ categories: blog
 toc: true
 toc_sticky: true
 ---
-### Mission: Publish Modbus over MQTT, plot in Python
-
-![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/modbus-mqtt-python.svg)
-
 <span style="background-color: #ffff0054">
 **Note:** This tutorial uses the iQunet Industrial Edge Server
 [[link](https://iqunet.com/products/servers/)].
 <br>A demo gateway endpoint is provided for the purpose of this guide.
 </span>
+
+### Mission: Publish Modbus over MQTT, plot in Python
+<img src="{{ site.baseurl }}/assets/images/iqunet-setup-modbus-2.svg"
+     alt="Modbus Example Hardware Setup"
+     style="width: 16em">
+
+In this tutorial, you will learn how to:
+- Connect a **Modbus-RTU** motor drive to the iQunet Industrial Edge Server.
+- Understand the steps how sensor data is stored in the **local OPC-UA database**.
+- Next, publish this sensor data in realtime to an **MQTT broker**.
+- Subscribe to the MQTT broker using **Python** for post-processing and visualization.
+<br>
+<hr>
+
+### Terminology
 
 > **Modbus** is a wired communication protocol for industrial automation
 > and data exchange between devices like sensors and PLC controllers.
@@ -24,18 +35,13 @@ toc_sticky: true
 > - **Modbus-TCP:** Runs over Ethernet, using TCP/IP for integration with
 >   modern IT systems. A gateway is used to convert between Modbus-RTU and -TCP.
 
+![LoRaWAN to OPC UA]({{ site.baseurl }}/assets/images/modbus-mqtt-python.svg)
+
 > **MQTT** (Message Queuing Telemetry Transport) is a lightweight, publish-subscribe
 > network protocol designed for resource-constrained devices and low-bandwidth,
 > high-latency networks. It is widely used in internet-oriented services,
 > particularly for IoT applications. In contrast to OPC-UA, the payload format
 > is not part of the specification. Visit [mqtt.org](https://mqtt.org).
-
-In this tutorial, you will learn how to:
-- Connect a **Modbus-RTU** motor drive to the iQunet Industrial Edge Server.
-- Understand the steps how sensor data is stored in the **local OPC-UA database**.
-- Next, publish this sensor data in realtime to an **MQTT broker**.
-- Subscribe to the MQTT broker using **Python** for post-processing and visualization.
-<br>
 <hr>
 
 ### Typical Modbus-to-MQTT Information Flow

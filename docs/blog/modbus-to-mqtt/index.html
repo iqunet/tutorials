@@ -11,7 +11,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Modbus to MQTT - iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN</title>
-<meta name="description" content="Mission: Publish Modbus over MQTT, plot in Python">
+<meta name="description" content="Note: This tutorial uses the iQunet Industrial Edge Server [link]. A demo gateway endpoint is provided for the purpose of this guide.">
 
 
 
@@ -22,7 +22,7 @@
 <meta property="og:url" content="/tutorials/blog/modbus-to-mqtt/">
 
 
-  <meta property="og:description" content="Mission: Publish Modbus over MQTT, plot in Python">
+  <meta property="og:description" content="Note: This tutorial uses the iQunet Industrial Edge Server [link]. A demo gateway endpoint is provided for the purpose of this guide.">
 
 
 
@@ -126,13 +126,13 @@
   <div class="sidebar sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-              <ul class="toc__menu"><li><a href="#mission-publish-modbus-over-mqtt-plot-in-python">Mission: Publish Modbus over MQTT, plot in Python</a></li><li><a href="#typical-modbus-to-mqtt-information-flow">Typical Modbus-to-MQTT Information Flow</a></li><li><a href="#a-single-board-modbus-to-mqtt-setup">A Single-Board Modbus-to-MQTT Setup</a></li><li><a href="#publishing-to-mqtt">Publishing to MQTT</a></li><li><a href="#motor-drive--modbus-hardware-setup">Motor Drive + Modbus Hardware Setup</a></li><li><a href="#scanning-for-modbus-devices">Scanning for Modbus Devices</a></li><li><a href="#auto-detection-of-modbus-devices">Auto-Detection of Modbus Devices</a></li><li><a href="#direct-access-of-modbus-data-via-opc-ua">Direct Access of Modbus Data via OPC-UA</a></li><li><a href="#opc-ua-vs-mqtt-payload-format-and-data-types">OPC-UA vs MQTT: Payload Format and Data Types</a></li><li><a href="#enabling-the-mqtt-subsystem-for-the-iqunet-server">Enabling the MQTT Subsystem for the iQunet Server</a></li><li><a href="#testing-the-mqtt-setup">Testing the MQTT Setup</a></li><li><a href="#subscribing-to-mqtt-and-plotting-with-python">Subscribing to MQTT and Plotting with Python</a></li><li><a href="#conclusion">Conclusion</a></li></ul>
+              <ul class="toc__menu"><li><a href="#mission-publish-modbus-over-mqtt-plot-in-python">Mission: Publish Modbus over MQTT, plot in Python</a></li><li><a href="#terminology">Terminology</a></li><li><a href="#typical-modbus-to-mqtt-information-flow">Typical Modbus-to-MQTT Information Flow</a></li><li><a href="#a-single-board-modbus-to-mqtt-setup">A Single-Board Modbus-to-MQTT Setup</a></li><li><a href="#publishing-to-mqtt">Publishing to MQTT</a></li><li><a href="#motor-drive--modbus-hardware-setup">Motor Drive + Modbus Hardware Setup</a></li><li><a href="#scanning-for-modbus-devices">Scanning for Modbus Devices</a></li><li><a href="#auto-detection-of-modbus-devices">Auto-Detection of Modbus Devices</a></li><li><a href="#direct-access-of-modbus-data-via-opc-ua">Direct Access of Modbus Data via OPC-UA</a></li><li><a href="#opc-ua-vs-mqtt-payload-format-and-data-types">OPC-UA vs MQTT: Payload Format and Data Types</a></li><li><a href="#enabling-the-mqtt-subsystem-for-the-iqunet-server">Enabling the MQTT Subsystem for the iQunet Server</a></li><li><a href="#testing-the-mqtt-setup">Testing the MQTT Setup</a></li><li><a href="#subscribing-to-mqtt-and-plotting-with-python">Subscribing to MQTT and Plotting with Python</a></li><li><a href="#conclusion">Conclusion</a></li></ul>
             </nav>
   </div>
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Modbus to MQTT">
-    <meta itemprop="description" content="Mission: Publish Modbus over MQTT, plot in Python">
+    <meta itemprop="description" content="Note: This tutorial uses the iQunet Industrial Edge Server[link].A demo gateway endpoint is provided for the purpose of this guide.">
     <meta itemprop="datePublished" content="2024-05-24T05:06:19-05:00">
     
 
@@ -168,15 +168,26 @@
       
 
       <section class="page__content" itemprop="text">
-        <h3 id="mission-publish-modbus-over-mqtt-plot-in-python">Mission: Publish Modbus over MQTT, plot in Python</h3>
-
-<p><img src="/tutorials/assets/images/modbus-mqtt-python.svg" alt="LoRaWAN to OPC UA" /></p>
-
-<p><span style="background-color: #ffff0054">
+        <p><span style="background-color: #ffff0054">
 <strong>Note:</strong> This tutorial uses the iQunet Industrial Edge Server
 [<a href="https://iqunet.com/products/servers/">link</a>].
 <br />A demo gateway endpoint is provided for the purpose of this guide.
 </span></p>
+
+<h3 id="mission-publish-modbus-over-mqtt-plot-in-python">Mission: Publish Modbus over MQTT, plot in Python</h3>
+<p><img src="/tutorials/assets/images/iqunet-setup-modbus-2.svg" alt="Modbus Example Hardware Setup" style="width: 16em" /></p>
+
+<p>In this tutorial, you will learn how to:</p>
+<ul>
+  <li>Connect a <strong>Modbus-RTU</strong> motor drive to the iQunet Industrial Edge Server.</li>
+  <li>Understand the steps how sensor data is stored in the <strong>local OPC-UA database</strong>.</li>
+  <li>Next, publish this sensor data in realtime to an <strong>MQTT broker</strong>.</li>
+  <li>Subscribe to the MQTT broker using <strong>Python</strong> for post-processing and visualization.
+<br /></li>
+</ul>
+<hr />
+
+<h3 id="terminology">Terminology</h3>
 
 <blockquote>
   <p><strong>Modbus</strong> is a wired communication protocol for industrial automation
@@ -191,6 +202,8 @@ modern IT systems. A gateway is used to convert between Modbus-RTU and -TCP.</li
   </ul>
 </blockquote>
 
+<p><img src="/tutorials/assets/images/modbus-mqtt-python.svg" alt="LoRaWAN to OPC UA" /></p>
+
 <blockquote>
   <p><strong>MQTT</strong> (Message Queuing Telemetry Transport) is a lightweight, publish-subscribe
 network protocol designed for resource-constrained devices and low-bandwidth,
@@ -198,15 +211,6 @@ high-latency networks. It is widely used in internet-oriented services,
 particularly for IoT applications. In contrast to OPC-UA, the payload format
 is not part of the specification. Visit <a href="https://mqtt.org">mqtt.org</a>.</p>
 </blockquote>
-
-<p>In this tutorial, you will learn how to:</p>
-<ul>
-  <li>Connect a <strong>Modbus-RTU</strong> motor drive to the iQunet Industrial Edge Server.</li>
-  <li>Understand the steps how sensor data is stored in the <strong>local OPC-UA database</strong>.</li>
-  <li>Next, publish this sensor data in realtime to an <strong>MQTT broker</strong>.</li>
-  <li>Subscribe to the MQTT broker using <strong>Python</strong> for post-processing and visualization.
-<br /></li>
-</ul>
 <hr />
 
 <h3 id="typical-modbus-to-mqtt-information-flow">Typical Modbus-to-MQTT Information Flow</h3>

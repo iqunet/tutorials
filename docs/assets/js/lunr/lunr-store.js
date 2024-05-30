@@ -6,7 +6,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Modbus to MQTT",
-        "excerpt":"Mission: Publish Modbus over MQTT, plot in Python Note: This tutorial uses the iQunet Industrial Edge Server [link]. A demo gateway endpoint is provided for the purpose of this guide. Modbus is a wired communication protocol for industrial automation and data exchange between devices like sensors and PLC controllers. Visit...","categories": ["blog"],
+        "excerpt":"Note: This tutorial uses the iQunet Industrial Edge Server [link]. A demo gateway endpoint is provided for the purpose of this guide. Mission: Publish Modbus over MQTT, plot in Python In this tutorial, you will learn how to: Connect a Modbus-RTU motor drive to the iQunet Industrial Edge Server. Understand...","categories": ["blog"],
         "tags": [],
         "url": "/tutorials/blog/modbus-to-mqtt/",
         "teaser": null

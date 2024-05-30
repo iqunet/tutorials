@@ -1,12 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="/tutorials/feed.xml" rel="self" type="application/atom+xml" /><link href="/tutorials/" rel="alternate" type="text/html" /><updated>2024-05-30T06:22:14-05:00</updated><id>/tutorials/feed.xml</id><title type="html">iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN</title><subtitle>iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/iqunet_logo_bgwhite.svg&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;iQunet.com&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-house&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.com&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://linkedin.com/company/iqunet/&quot;}, {&quot;label&quot;=&gt;&quot;YouTube&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-youtube&quot;, &quot;url&quot;=&gt;&quot;https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.github.io/tutorials&quot;}]}</name></author><entry><title type="html">Modbus to MQTT</title><link href="/tutorials/blog/modbus-to-mqtt/" rel="alternate" type="text/html" title="Modbus to MQTT" /><published>2024-05-24T05:06:19-05:00</published><updated>2024-05-24T05:06:19-05:00</updated><id>/tutorials/blog/modbus-to-mqtt</id><content type="html" xml:base="/tutorials/blog/modbus-to-mqtt/"><![CDATA[<h3 id="mission-publish-modbus-over-mqtt-plot-in-python">Mission: Publish Modbus over MQTT, plot in Python</h3>
-
-<p><img src="/tutorials/assets/images/modbus-mqtt-python.svg" alt="LoRaWAN to OPC UA" /></p>
-
-<p><span style="background-color: #ffff0054">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="/tutorials/feed.xml" rel="self" type="application/atom+xml" /><link href="/tutorials/" rel="alternate" type="text/html" /><updated>2024-05-30T17:39:06-05:00</updated><id>/tutorials/feed.xml</id><title type="html">iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN</title><subtitle>iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/iqunet_logo_bgwhite.svg&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;iQunet.com&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-house&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.com&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://linkedin.com/company/iqunet/&quot;}, {&quot;label&quot;=&gt;&quot;YouTube&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-youtube&quot;, &quot;url&quot;=&gt;&quot;https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.github.io/tutorials&quot;}]}</name></author><entry><title type="html">Modbus to MQTT</title><link href="/tutorials/blog/modbus-to-mqtt/" rel="alternate" type="text/html" title="Modbus to MQTT" /><published>2024-05-24T05:06:19-05:00</published><updated>2024-05-24T05:06:19-05:00</updated><id>/tutorials/blog/modbus-to-mqtt</id><content type="html" xml:base="/tutorials/blog/modbus-to-mqtt/"><![CDATA[<p><span style="background-color: #ffff0054">
 <strong>Note:</strong> This tutorial uses the iQunet Industrial Edge Server
 [<a href="https://iqunet.com/products/servers/">link</a>].
 <br />A demo gateway endpoint is provided for the purpose of this guide.
 </span></p>
+
+<h3 id="mission-publish-modbus-over-mqtt-plot-in-python">Mission: Publish Modbus over MQTT, plot in Python</h3>
+<p><img src="/tutorials/assets/images/iqunet-setup-modbus-2.svg" alt="Modbus Example Hardware Setup" style="width: 16em" /></p>
+
+<p>In this tutorial, you will learn how to:</p>
+<ul>
+  <li>Connect a <strong>Modbus-RTU</strong> motor drive to the iQunet Industrial Edge Server.</li>
+  <li>Understand the steps how sensor data is stored in the <strong>local OPC-UA database</strong>.</li>
+  <li>Next, publish this sensor data in realtime to an <strong>MQTT broker</strong>.</li>
+  <li>Subscribe to the MQTT broker using <strong>Python</strong> for post-processing and visualization.
+<br /></li>
+</ul>
+<hr />
+
+<h3 id="terminology">Terminology</h3>
 
 <blockquote>
   <p><strong>Modbus</strong> is a wired communication protocol for industrial automation
@@ -21,6 +32,8 @@ modern IT systems. A gateway is used to convert between Modbus-RTU and -TCP.</li
   </ul>
 </blockquote>
 
+<p><img src="/tutorials/assets/images/modbus-mqtt-python.svg" alt="LoRaWAN to OPC UA" /></p>
+
 <blockquote>
   <p><strong>MQTT</strong> (Message Queuing Telemetry Transport) is a lightweight, publish-subscribe
 network protocol designed for resource-constrained devices and low-bandwidth,
@@ -28,15 +41,6 @@ high-latency networks. It is widely used in internet-oriented services,
 particularly for IoT applications. In contrast to OPC-UA, the payload format
 is not part of the specification. Visit <a href="https://mqtt.org">mqtt.org</a>.</p>
 </blockquote>
-
-<p>In this tutorial, you will learn how to:</p>
-<ul>
-  <li>Connect a <strong>Modbus-RTU</strong> motor drive to the iQunet Industrial Edge Server.</li>
-  <li>Understand the steps how sensor data is stored in the <strong>local OPC-UA database</strong>.</li>
-  <li>Next, publish this sensor data in realtime to an <strong>MQTT broker</strong>.</li>
-  <li>Subscribe to the MQTT broker using <strong>Python</strong> for post-processing and visualization.
-<br /></li>
-</ul>
 <hr />
 
 <h3 id="typical-modbus-to-mqtt-information-flow">Typical Modbus-to-MQTT Information Flow</h3>
@@ -456,7 +460,7 @@ For further exploration and support, check out our
 <a href="https://iqunet.com/resources/case-studies/case-study-1-international-airport/"><strong>case studies</strong></a>
 or reach out to our <a href="https://iqunet.com/contact/"><strong>support team</strong></a>.
 Happy data monitoring!
-</span></p>]]></content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/iqunet_logo_bgwhite.svg&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;iQunet.com&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-house&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.com&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://linkedin.com/company/iqunet/&quot;}, {&quot;label&quot;=&gt;&quot;YouTube&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-youtube&quot;, &quot;url&quot;=&gt;&quot;https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.github.io/tutorials&quot;}]}</name></author><category term="blog" /><summary type="html"><![CDATA[Mission: Publish Modbus over MQTT, plot in Python]]></summary></entry><entry><title type="html">Private LoRaWAN to OPC-UA</title><link href="/tutorials/blog/connecting-sensors-opcua/" rel="alternate" type="text/html" title="Private LoRaWAN to OPC-UA" /><published>2024-05-19T15:10:15-05:00</published><updated>2024-05-19T15:10:15-05:00</updated><id>/tutorials/blog/connecting-sensors-opcua</id><content type="html" xml:base="/tutorials/blog/connecting-sensors-opcua/"><![CDATA[<h3 id="mission-lorawan-temperature-data-to-python-graph">Mission: LoRaWAN Temperature Data to Python Graph</h3>
+</span></p>]]></content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/iqunet_logo_bgwhite.svg&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;iQunet.com&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-house&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.com&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://linkedin.com/company/iqunet/&quot;}, {&quot;label&quot;=&gt;&quot;YouTube&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-youtube&quot;, &quot;url&quot;=&gt;&quot;https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.github.io/tutorials&quot;}]}</name></author><category term="blog" /><summary type="html"><![CDATA[Note: This tutorial uses the iQunet Industrial Edge Server [link]. A demo gateway endpoint is provided for the purpose of this guide.]]></summary></entry><entry><title type="html">Private LoRaWAN to OPC-UA</title><link href="/tutorials/blog/connecting-sensors-opcua/" rel="alternate" type="text/html" title="Private LoRaWAN to OPC-UA" /><published>2024-05-19T15:10:15-05:00</published><updated>2024-05-19T15:10:15-05:00</updated><id>/tutorials/blog/connecting-sensors-opcua</id><content type="html" xml:base="/tutorials/blog/connecting-sensors-opcua/"><![CDATA[<h3 id="mission-lorawan-temperature-data-to-python-graph">Mission: LoRaWAN Temperature Data to Python Graph</h3>
 
 <p><img src="/tutorials/assets/images/lora-opc-python.svg" alt="LoRaWAN to OPC UA" /></p>
 
