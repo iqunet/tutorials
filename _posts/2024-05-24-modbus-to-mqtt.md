@@ -192,10 +192,10 @@ process serves two main objectives:
   the location in the network or the MAC address of the Modbus network card.
 - **Device Type Detection**: This is crucial for **automatic payload decoding**.
   iQunet provides customized payload decoders upon request. The configuration
-  for the end-user is limited to basic parameters such as the polling interval
-  and the selection of data to be published to MQTT. This **simplifies the
-  commissioning** of new devices in the field, reducing the setup time to a
-  matter of minutes.
+  for the end-user is reduced to setting some basic parameters such as the
+  polling interval and the selection of data to be published to MQTT. This
+  **simplifies the commissioning** of new devices in the field, reducing the
+  setup time to a matter of minutes.
 
 In Figure 8 below, the **Optidrive E3** inverter is detected on the local
 **Modbus-RTU gateway** at **Unit ID 1**. The dashboard automatically adapts to
