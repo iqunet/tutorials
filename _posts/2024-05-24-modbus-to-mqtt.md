@@ -115,16 +115,16 @@ on the MQTT broker and display the incoming data on a real-time updated graph.
 ### Motor Drive + Modbus Hardware Setup
 
 Figure 4 shows the minimal setup required to publish real-time motor drive data
-via MQTT. This configuration includes the **inverter drive** itself, an Ethernet
-**network switch**, the **iQunet server**, and an (optional) 4G mobile
-**access point** (AP), which serves as a temporary placeholder for, for example,
-a company VLAN. The Modbus-RTU to TCP gateway is omitted because the drive
-depicted in Figure 4 is equipped with a Modbus-TCP communication module.
+via MQTT. This configuration includes the **inverter drive** itself, an (optional)
+Ethernet **network switch**, the **iQunet server**, and a mobile **access point**,
+which serves as a temporary placeholder for, for example, a company VLAN. The
+Modbus-RTU to TCP gateway is omitted because the drive depicted in Figure 4 is
+equipped with a Modbus-TCP communication module.
 
 With this setup, MQTT data can be transmitted to either a private or a public
 internet-based MQTT broker.
 
-![Modbus Example Hardware Setup]({{ site.baseurl }}/assets/images/iqunet-setup.svg)
+![Modbus Example Hardware Setup]({{ site.baseurl }}/assets/images/iqunet-setup-modbus.svg)
 <figcaption>figure 4: The setup with motor drive, iQunet server and access point.
 </figcaption>
 
@@ -153,10 +153,10 @@ the menu bar, as shown in Figure 6.
 ![iQunet Enable Modbus in Dashboard]({{ site.baseurl }}/assets/images/iqunet-modbus-enable.svg)
 <figcaption>figure 6: Enable the Modbus-TCP master and the Modbus-RTU gateway.</figcaption>
 
-- The **Modbus-TCP module** provides **Modbus master** functionality, which
-includes probing the connected devices at regular intervals and forwarding data
-to the OPC-UA historian database.
-- The **Modbus-RTU module** enables the drivers for the FTDI FT232R USB-to-serial
+- The **Modbus-TCP** software module provides **Modbus master** functionality,
+which includes probing the connected devices at regular intervals and forwarding
+data to the OPC-UA historian database.
+- The **Modbus-RTU** module enables the drivers for the FTDI FT232R USB-to-serial
 interface and serves as a **gateway** for the Modbus master to communicate with
 RTU devices.
 
@@ -188,7 +188,7 @@ to identify the specifics of the slave for auto-configuration purposes. This
 process serves two main objectives:
 - **Device Identification**: A unique device MAC address is derived from the
   device serial number. This allows for flexible remapping of IP addresses or
-  slave unit IDs, with monitoring data **tied to the device serial** rather than
+  Unit (Slave) IDs, with monitoring data **tied to the device serial** rather than
   the location in the network or the MAC address of the Modbus network card.
 - **Device Type Detection**: This is crucial for **automatic payload decoding**.
   iQunet provides customized payload decoders upon request. The configuration

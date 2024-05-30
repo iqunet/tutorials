@@ -71,6 +71,7 @@
 
 <!-- end custom head snippets -->
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
   </head>
 
   <body class="layout--posts">
@@ -383,5 +384,25 @@
 
 
 
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('img').forEach(function(img, index) {
+            var link = document.createElement('a');
+            link.href = img.src;
+            link.setAttribute('data-lightbox', 'gallery');
+            
+            img.parentNode.insertBefore(link, img);
+            link.appendChild(img);
+        });
+
+        lightbox.option({
+            'fadeDuration': 0,       // No transition effect
+            'resizeDuration': 0,     // No transition effect
+            'imageFadeDuration': 0,  // No transition effect
+            'wrapAround': true       // Enable navigation between images
+        });
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
   </body>
 </html>

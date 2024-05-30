@@ -73,6 +73,7 @@
 
 <!-- end custom head snippets -->
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
   </head>
 
   <body class="layout--single">
@@ -284,16 +285,16 @@ on the MQTT broker and display the incoming data on a real-time updated graph.</
 <h3 id="motor-drive--modbus-hardware-setup">Motor Drive + Modbus Hardware Setup</h3>
 
 <p>Figure 4 shows the minimal setup required to publish real-time motor drive data
-via MQTT. This configuration includes the <strong>inverter drive</strong> itself, an Ethernet
-<strong>network switch</strong>, the <strong>iQunet server</strong>, and an (optional) 4G mobile
-<strong>access point</strong> (AP), which serves as a temporary placeholder for, for example,
-a company VLAN. The Modbus-RTU to TCP gateway is omitted because the drive
-depicted in Figure 4 is equipped with a Modbus-TCP communication module.</p>
+via MQTT. This configuration includes the <strong>inverter drive</strong> itself, an (optional)
+Ethernet <strong>network switch</strong>, the <strong>iQunet server</strong>, and a mobile <strong>access point</strong>,
+which serves as a temporary placeholder for, for example, a company VLAN. The
+Modbus-RTU to TCP gateway is omitted because the drive depicted in Figure 4 is
+equipped with a Modbus-TCP communication module.</p>
 
 <p>With this setup, MQTT data can be transmitted to either a private or a public
 internet-based MQTT broker.</p>
 
-<p><img src="/tutorials/assets/images/iqunet-setup.svg" alt="Modbus Example Hardware Setup" /></p>
+<p><img src="/tutorials/assets/images/iqunet-setup-modbus.svg" alt="Modbus Example Hardware Setup" /></p>
 <figcaption>figure 4: The setup with motor drive, iQunet server and access point.
 </figcaption>
 
@@ -323,10 +324,10 @@ the menu bar, as shown in Figure 6.</p>
 <figcaption>figure 6: Enable the Modbus-TCP master and the Modbus-RTU gateway.</figcaption>
 
 <ul>
-  <li>The <strong>Modbus-TCP module</strong> provides <strong>Modbus master</strong> functionality, which
-includes probing the connected devices at regular intervals and forwarding data
-to the OPC-UA historian database.</li>
-  <li>The <strong>Modbus-RTU module</strong> enables the drivers for the FTDI FT232R USB-to-serial
+  <li>The <strong>Modbus-TCP</strong> software module provides <strong>Modbus master</strong> functionality,
+which includes probing the connected devices at regular intervals and forwarding
+data to the OPC-UA historian database.</li>
+  <li>The <strong>Modbus-RTU</strong> module enables the drivers for the FTDI FT232R USB-to-serial
 interface and serves as a <strong>gateway</strong> for the Modbus master to communicate with
 RTU devices.</li>
 </ul>
@@ -360,7 +361,7 @@ process serves two main objectives:</p>
 <ul>
   <li><strong>Device Identification</strong>: A unique device MAC address is derived from the
 device serial number. This allows for flexible remapping of IP addresses or
-slave unit IDs, with monitoring data <strong>tied to the device serial</strong> rather than
+Unit (Slave) IDs, with monitoring data <strong>tied to the device serial</strong> rather than
 the location in the network or the MAC address of the Modbus network card.</li>
   <li><strong>Device Type Detection</strong>: This is crucial for <strong>automatic payload decoding</strong>.
 iQunet provides customized payload decoders upon request. The configuration
@@ -833,5 +834,25 @@ Happy data monitoring!
 
 
 
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('img').forEach(function(img, index) {
+            var link = document.createElement('a');
+            link.href = img.src;
+            link.setAttribute('data-lightbox', 'gallery');
+            
+            img.parentNode.insertBefore(link, img);
+            link.appendChild(img);
+        });
+
+        lightbox.option({
+            'fadeDuration': 0,       // No transition effect
+            'resizeDuration': 0,     // No transition effect
+            'imageFadeDuration': 0,  // No transition effect
+            'wrapAround': true       // Enable navigation between images
+        });
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
   </body>
 </html>
