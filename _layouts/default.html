@@ -35,7 +35,7 @@
     {% include scripts.html %}
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll('img').forEach(function(img, index) {
+        document.querySelectorAll('img:not(.nolightbox)').forEach(function(img, index) {
             var link = document.createElement('a');
             link.href = img.src;
             link.setAttribute('data-lightbox', 'gallery');
