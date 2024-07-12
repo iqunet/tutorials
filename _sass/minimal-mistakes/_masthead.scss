@@ -5,6 +5,7 @@
 .masthead {
   position: relative;
   border-bottom: 1px solid $border-color;
+  border-top: 2px solid #47c1fd;
   -webkit-animation: $intro-transition;
   animation: $intro-transition;
   -webkit-animation-delay: 0.15s;
@@ -59,7 +60,6 @@
   display: flex;
   -ms-flex-item-align: center;
   align-self: center;
-  font-weight: bold;
   color: rgb(30, 37, 70) !important;
   // z-index: 20;
 }
