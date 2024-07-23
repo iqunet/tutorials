@@ -80,42 +80,58 @@ of active power at 50 Hz. Although the cosine phi seemed to be well-corrected
 at around 0.98, the distortion power was the main factor reducing the true power
 factor to around TPF=0.65.
 
-#### Waveform Analysis
+#### Waveform Analysis and Root Cause
 The current waveform sensor also identified high harmonic distortion as seen in
 the system's spectral footprint, with significant spectral components at the 5th
-(250 Hz) and 7th (350 Hz) harmonics of the fundamental (50 Hz). Additionally,
-the time-domain waveform revealed the characteristic ripple caused by a 6-pulse
-3-phase rectifier at the DB-bus stage of the compressor VFD. From the ratios of
-the harmonics, it was determined that a damping choke is used to "just" comply
-with the IEEE 519 standard when operating at the nominal power of the compressor.
-At lower power levels, however, it was observed that the tuning of the damping
-choke results in a larger mismatch, leading to non-compliance with even those
-minimal regulatory requirements.
+(250 Hz) and 7th (350 Hz) harmonics of the fundamental (50 Hz).
+
+Additionally, the time-domain waveform revealed the characteristic ripple caused
+by a 6-pulse 3-phase rectifier at the DB-bus stage of the compressor VFD.
 
 ![Waveform and spectrum analysis of the current]({{ site.baseurl }}/assets/images/waveform-spectrum-analysis.svg)
 
-#### Technical Insight
-- **Harmonic Content:** The 5th harmonic was notably significant, making up about 30% of the main component current in the spectrum plot. This detailed harmonic analysis is critical for understanding and mitigating power quality issues.
+### In-depth Technical Audit
+The 5th harmonic was notably significant, making up about 30% of the main
+component current in the spectrum plot. From the ratios of the harmonics, it
+was determined that a damping choke is used to "just" comply with the IEEE 519
+standard when operating at the nominal power of the compressor.
+
+At lower power levels, however, it is observed that the tuning mismatch of the
+damping choke results in much worse THD performance characteristic, leading to
+non-compliance with even the minimal regulatory requirements.
 
 ---
 
 ### Results and Benefits
 
-#### Power Quality Insights
-The sensors provided detailed insights into power consumption patterns, allowing for better energy management and cost savings. The phase compensation was confirmed to be effective, but the high distortion power was identified as an area of concern.
+#### Insights
+The two sensors provided immediate, detailed insights into power consumption
+patterns, enabling better energy management and a deeper understanding of the
+root causes of heat losses. While phase compensation with capacitor banks offers
+only marginal improvements, the high distortion power is one of the primary
+issues that must be addressed.
+
+The customer must now calculate whether the cost of a more advanced VFD (with
+extra points of failure) is justified compared to the current situation. This
+includes not only the heat losses in the upstream transformer cabin but also
+the impact of harmonics on the reduced lifespan of nearby electrical and
+mechanical components, such as parasitic bearing currents in equipment connected
+to the same grid.
 
 #### Predictive Maintenance
-By regularly analyzing the current spectrum, the sensors enabled early detection of potential failures in the compressor's drive rectifier. This approach can significantly reduce downtime and maintenance costs.
+By regularly analyzing the current spectrum, the sensors enable the early
+detection of changes in the electronic or mechanical behavior of the compressor.
+This proactive approach can significantly reduce downtime and maintenance costs.
 
 #### Machine Learning Applications
-Using machine learning, the sensors track the current waveform to detect small variations in the operating state. These variations can predict future failures, allowing for timely interventions and preventing costly standstills.
+Additionally, iQunet offers an optional service to automate anomaly detection.
+Small variations in the machine's operating state cause related changes in the
+spectral footprint of electical current or mechanical vibrations. While these
+changes are difficult to detect with the naked eye, a custom-trained machine
+learning model can provide a reliable early warning system for the most
+critical assets.
 
 ![Example of predictive analytics dashboard]({{ site.baseurl }}/assets/images/predictive-analytics-dashboard.svg)
-
-#### Optimized Energy Use
-Regular measurements and detailed data analysis helped the client optimize energy usage, leading to cost savings and improved operational efficiency.
-
-![Picture of the installed equipment]({{ site.baseurl }}/assets/images/installed-equipment.svg)
 
 ---
 
