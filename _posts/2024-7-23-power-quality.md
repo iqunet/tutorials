@@ -81,16 +81,16 @@ at around 0.98, the distortion power was the main factor reducing the true power
 factor to around TPF=0.65.
 
 #### Waveform Analysis
-The current waveform sensor also identified high harmonic distortion in the
-system's spectral footprint, with significant spectral components at the 5th
+The current waveform sensor also identified high harmonic distortion as seen in
+the system's spectral footprint, with significant spectral components at the 5th
 (250 Hz) and 7th (350 Hz) harmonics of the fundamental (50 Hz). Additionally,
 the time-domain waveform revealed the characteristic ripple caused by a 6-pulse
 3-phase rectifier at the DB-bus stage of the compressor VFD. From the ratios of
 the harmonics, it was determined that a damping choke is used to "just" comply
 with the IEEE 519 standard when operating at the nominal power of the compressor.
 At lower power levels, however, it was observed that the tuning of the damping
-choke results in a larger mismatch, leading to non-compliance with even the
-minimal requirements.
+choke results in a larger mismatch, leading to non-compliance with even those
+minimal regulatory requirements.
 
 ![Waveform and spectrum analysis of the current]({{ site.baseurl }}/assets/images/waveform-spectrum-analysis.svg)
 
