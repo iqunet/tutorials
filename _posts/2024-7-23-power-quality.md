@@ -35,18 +35,39 @@ power supplies.
 ---
 
 ### Sensor Deployment and Capabilities
+One of our clients requested the installation of a power quality monitoring
+system at the entry point of one of their compressor rooms. The goal of this
+monitoring system is to gain better insights into both cumulative energy
+consumption and potential infrastructure improvements based on the captured
+sensor data.
+
+To achieve this, we deployed two sensors on the compressor room's electrical
+supply, each with a specific focus:
+
 One of our clients asked to install a power quality monitoring system at the
-entry point of one of their compressor rooms. The goal of this system is to get
-better insight in both the cumulative energy consumption and the possible
-infrastructure improvements learned from the captured sensor data.
+entry point of one of their compressor rooms. The goal of this monitoring
+system is to gain insight in both the cumulative energy consumption and also
+the possible infrastructure improvements learned from the captured sensor data.
 
-For this, two sensors were deployed on the compressor room electrical supply:
+For this, two sensors were deployed on the compressor room electrical supply,
+each with their specific focus:
 
-1. **GridMate AG1 Power Quality Monitor:** This LoRaWAN-enabled sensor measures grid voltage, RMS current, peak current, cosine phi, true power factor, and distortion power on all three phases every 10 minutes. It provides detailed data essential for identifying transient events and high-frequency harmonics.
+1. **GridMate AG1 Power Quality Monitor:** This LoRaWAN-enabled sensor measures
+aggregate data such as average grid voltage, RMS and peak current, cosine phi,
+true power factor and distortion power on all three phases on a 10 minute
+base interval. This provides us the long-term data essential for the total
+energy usage as well as the amount of displacement power and the harmonic
+contents.
 
-2. **Wireless Current Waveform Sensor:** Positioned on one of the phases, this sensor captures snapshots of the current waveform and its spectrum every 10 minutes. It delivers insights into the harmonic content and helps identify sources of distortion.
+2. **Wireless Current Waveform Sensor:** Positioned on one of the phases, this
+sensor captures high-speed snapshots (4kS/s) of the current waveform and its
+spectrum every 10 minutes. It delivers detailed insights into the time-domain
+and harmonic spectrum and helps identify the various sources of distortion and
+intermittent spike events (such as the upstart of the compressor).
 
-These sensors' high-frequency data collection and real-time analytics enable the early detection of potential issues, ensuring better energy management and maintenance strategies.
+The combination of these sensors allows for not only real-time analytics but
+also the historical data necessary for the early detection of potential faults.
+In the next chapter, we will delve into this aspect further.
 
 ![Example of data output from the sensors]({{ site.baseurl }}/assets/images/data-output-sensors.svg)
 
