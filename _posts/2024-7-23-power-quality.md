@@ -66,20 +66,31 @@ and harmonic spectrum and helps identify the various sources of distortion and
 intermittent spike events (such as the upstart of the compressor).
 
 The combination of these sensors allows for not only real-time analytics but
-also the historical data necessary for the early detection of potential faults.
-In the next chapter, we will delve into this aspect further.
+also provides the historical data necessary for the early detection of potential
+faults. In the next chapter, we will delve into this aspect further.
 
 ![Example of data output from the sensors]({{ site.baseurl }}/assets/images/data-output-sensors.svg)
 
 ---
 
-### Detection and Analysis
-
-#### Initial Findings
-Within the first week, data from the GridMate AG1 revealed a high level of distortion power approximately 40 kVArd at 250 Hz for 200 kW of real power at 50 Hz. While the cosine phi was well-corrected at around 0.98, the distortion power highlighted potential risks for the capacitor banks and wiring.
+### Initial Findings
+Within the first few hours, initial data from the GridMate AG1 revealed a high
+level of distortion power (approximately 40 kVArd at 250 Hz) compared to 200 kW
+of active power at 50 Hz. Although the cosine phi seemed to be well-corrected
+at around 0.98, the distortion power was the main factor reducing the true power
+factor to around TPF=0.65.
 
 #### Waveform Analysis
-The current waveform sensor identified the distortion source as a 6-pulse 3-phase rectifier with a damping choke. According to ABB's technical guide on harmonics with AC drives, such rectifiers produce harmonic currents at multiples of the fundamental frequency (e.g., 5th harmonic at 250 Hz on a 50 Hz network).
+The current waveform sensor also identified high harmonic distortion in the
+system's spectral footprint, with significant spectral components at the 5th
+(250 Hz) and 7th (350 Hz) harmonics of the fundamental (50 Hz). Additionally,
+the time-domain waveform revealed the characteristic ripple caused by a 6-pulse
+3-phase rectifier at the DB-bus stage of the compressor VFD. From the ratios of
+the harmonics, it was determined that a damping choke is used to "just" comply
+with the IEEE 519 standard when operating at the nominal power of the compressor.
+At lower power levels, however, it was observed that the tuning of the damping
+choke results in a larger mismatch, leading to non-compliance with even the
+minimal requirements.
 
 ![Waveform and spectrum analysis of the current]({{ site.baseurl }}/assets/images/waveform-spectrum-analysis.svg)
 
