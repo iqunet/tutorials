@@ -136,6 +136,17 @@ critical assets.
 ---
 
 ### Conclusion
-This case study demonstrates the capabilities of our sensor technology in addressing power quality issues in industrial settings. By providing detailed measurements and analysis, our sensors enable precise monitoring, better energy management, and predictive maintenance strategies, ultimately enhancing operational efficiency and reducing costs.
+This case study has demonstrated the capabilities of modern sensor technology
+in tackling power quality issues in industrial settings.
+
+By providing detailed measurements, the combination of the appropriate sensors
+enables precise registration of energy usage, along with the identification of
+the root causes of energy losses. For the experienced user, it offers profound
+insights into the installed equipment, including the ability to determine the
+VFD characteristics of attached machinery through black-box analysis.
+
+Finally, armed with this knowledge, the customer can take informed steps to
+implement future operational improvements and after that continue to monitor
+emerging anomalies as a foundation for predictive maintenance.
 
 For more detailed technical insights and support, explore our [documentation](https://iqunet.com/resources/) and [case studies](https://iqunet.com/resources/case-studies/case-study-1-international-airport/), or contact our [support team](https://iqunet.com/contact/).
