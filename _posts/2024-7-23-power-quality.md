@@ -89,7 +89,7 @@ considerable level of distortion (approximately 40 kVArd at 250 Hz) compared to
 seemed to be well-corrected at around PF=0.98, the distortion power (D=25kVAd)
 was the main factor reducing the true power factor to around TPF<0.9.
 
-<video width="450px" controls loop autoplay muted>
+<video width="500px" controls loop autoplay muted>
   <source src="{{ site.baseurl }}/assets/videos/power-phasor.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -101,20 +101,42 @@ The current waveform sensor (ADMOD-CURR) also identified high harmonic distortio
 as seen in the system's spectral footprint, with significant spectral components
 at the 5th (250 Hz) and 7th (350 Hz) harmonics of the fundamental (50 Hz).
 
+<img src="{{ site.baseurl }}/assets/images/power-dashboard-spectrum.png"
+  alt="Spectrum plot of the compressor current draw." width="500px" />
+<figcaption>figure 6: Spectrum plot of the compressor current draw, as shown
+  in the iQunet edge computer dashboard.</figcaption>
+
 Additionally, the time-domain waveform revealed the characteristic ripple caused
 by a 6-pulse 3-phase rectifier at the DB-bus stage of the compressor VFD.
 
-![Waveform and spectrum analysis of the current]({{ site.baseurl }}/assets/images/waveform-spectrum-analysis.svg)
+<img src="{{ site.baseurl }}/assets/images/power-dashboard-time.png"
+  alt="Waveform snapshot of the compressor current draw." width="500px" />
+<figcaption>figure 6: Time-waveform of the compressor current, as shown
+  in the iQunet edge computer dashboard.</figcaption>
 
 ### In-depth Technical Audit
 The 5th harmonic was notably significant, making up about 30% of the main
 component current in the spectrum plot. From the ratios of the harmonics, it
-was determined that a damping choke is used to "just" comply with the IEEE 519
-standard when operating at the nominal power of the compressor.
+can be determined that a damping choke is used to "just" comply with the IEEE 519
+standard when operating at the nominal power of the compressor. For more
+details on this see the "*ABB Technical Guide to harmonics with AC drives*"
+<a class="external"
+  href="https://library.e.abb.com/public/bc35ffb4386c4c039e3a8ec20cef89c5/Technical_guide_No_6_3AFE64292714_RevF_EN.pdf"
+  target="_blank">link
+</a>.
 
-At lower power levels, however, it is observed that the tuning mismatch of the
-damping choke results in much worse THD performance characteristic, leading to
-non-compliance with even the minimal regulatory requirements.
+<img src="{{ site.baseurl }}/assets/images/power-abb-6pulse-rect.png"
+  alt="Excerpt from the ABB Technical Guide to harmonics." />
+<figcaption>figure 7: Excerpt from "ABB Technical Guide to harmonics with AC drives".</figcaption>
+
+At power levels deviating from normal operation, however, it is observed that
+the tuning mismatch of the damping choke results in an increasingly worse THD
+performance characteristic, leading to non-compliance with even the regulatory
+requirements.
+
+<img src="{{ site.baseurl }}/assets/images/power-thd-plot.png"
+  alt="Cosine &phi; and True Power Factor history." />
+<figcaption>figure 8: Cosine &phi; and True Power Factor history.</figcaption>
 
 ---
 
