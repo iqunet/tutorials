@@ -7,7 +7,6 @@
   <head>
     {% include head.html %}
     {% include head/custom.html %}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
   </head>
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
@@ -38,7 +37,6 @@
         document.querySelectorAll('img:not(.nolightbox)').forEach(function(img, index) {
             var link = document.createElement('a');
             link.href = img.src;
-            link.setAttribute('data-lightbox', 'gallery');
             
             img.parentNode.insertBefore(link, img);
             link.appendChild(img);
@@ -52,6 +50,5 @@
         });
     });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
   </body>
 </html>

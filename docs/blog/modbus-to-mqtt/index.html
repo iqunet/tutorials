@@ -73,7 +73,6 @@
 
 <!-- end custom head snippets -->
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
   </head>
 
   <body class="layout--single">
@@ -847,7 +846,6 @@ Happy data monitoring!
         document.querySelectorAll('img:not(.nolightbox)').forEach(function(img, index) {
             var link = document.createElement('a');
             link.href = img.src;
-            link.setAttribute('data-lightbox', 'gallery');
             
             img.parentNode.insertBefore(link, img);
             link.appendChild(img);
@@ -861,6 +859,5 @@ Happy data monitoring!
         });
     });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
   </body>
 </html>
