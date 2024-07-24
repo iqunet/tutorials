@@ -154,10 +154,9 @@ components can be found
 ### Results and Benefits
 
 #### Insights
-The two sensors provided immediate, detailed insights into power consumption
-patterns, enabling better energy management and a deeper understanding of the
-root causes of heat losses. The high distortion power is one of the primary
-issues that must be addressed.
+The two sensors did provide immediate, detailed insights into power consumption
+patterns, enabling a deeper understanding of the root causes of heat losses.
+The high distortion power is one of the primary issues that must be addressed.
 
 While phase compensation or harmonics suppression with capacitor banks may
 offer some (marginal) improvements, there is also the very real increased risk
@@ -179,25 +178,32 @@ See "*ABB Technical guide No. 5 - Bearing currents in modern AC drive systems*"
 
 <img src="{{ site.baseurl }}/assets/images/power-ABB-bearing-current.jpg"
   alt="Bearing damage due to parasitic currents." width="400px" />
-<figcaption>Figure 9: Bearing damage due to parasitic currents. [credits: ABB]
+<figcaption>Figure 9: Bearing damage due to parasitic currents [credits: ABB].
 </figcaption>
 
 
 #### Predictive Maintenance
-By analyzing the current spectrum in a regular inverval, the sensors enable the
-early detection of changes in the electronic or mechanical behavior of the
-compressor. This proactive approach can significantly reduce downtime and
-maintenance costs.
+By analyzing the current spectrum in a regular inverval, the sensors also enable
+the early detection of changes in the electronic or mechanical behavior of the
+compressor. This proactive approach can significantly reduce unplanned downtime.
 
-##### Machine Learning Applications
-Additionally, iQunet offers an optional service to automate anomaly detection.
-Small variations in the machine's operating state cause related changes in the
-spectral footprint of electical current or mechanical vibrations. While these
-changes are difficult to detect with the naked eye, a custom-trained machine
-learning model can provide a reliable early warning system for the most
-critical assets.
+<img src="{{ site.baseurl }}/assets/images/power-anomaly.png"
+  alt="Example anomaly detection using Machine Learning." />
+<figcaption>Figure 10: Example of Anomaly Detection using Machine Learning.
+The step indicates a sudden change in behaviour of the machine, which needs
+attention but, because the deviation is stable, does not require immediate
+action.
+</figcaption>
 
-![Example of predictive analytics dashboard]({{ site.baseurl }}/assets/images/predictive-analytics-dashboard.svg)
+> **Machine Learning Applications**
+>
+> iQunet offers an optional service to automate anomaly detection.
+> Small variations in the machine's operating state cause related changes in
+> the spectral footprint of electical current or mechanical vibrations. While
+> these changes are difficult to detect with the naked eye, a custom-trained
+> machine > learning model can provide a reliable early-warning system for
+> critical assets, without the need for expert personnel to analyze the sensor
+> data.
 
 ---
 
@@ -205,14 +211,16 @@ critical assets.
 This case study has demonstrated the capabilities of modern sensor technology
 in tackling power quality issues in industrial settings.
 
-By providing detailed measurements, the combination of the appropriate sensors
-enables precise registration of energy usage, along with the identification of
-the root causes of energy losses. For the experienced user, it offers profound
-insights into the installed equipment, including the ability to determine the
-VFD characteristics of attached machinery through black-box analysis.
+By providing detailed measurements, the combination of the appropriate voltage
+and current sensors enables precise registration of energy usage, along with
+the identification of the root causes of energy losses due to harmonic distortion
+currents.
+For the more experienced user, it offers valuable insights into the installed
+equipment, down to the ability to determine the VFD characteristics of attached
+machinery through black-box analysis.
 
 Finally, armed with this knowledge, the customer can take informed steps to
-implement future operational improvements and after that continue to monitor
-emerging anomalies as a foundation for predictive maintenance.
+implement future operational improvements and monitor emerging anomalies as
+a foundation for predictive maintenance.
 
 For more detailed technical insights and support, explore our [documentation](https://iqunet.com/resources/) and [case studies](https://iqunet.com/resources/case-studies/case-study-1-international-airport/), or contact our [support team](https://iqunet.com/contact/).
