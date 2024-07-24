@@ -157,15 +157,16 @@ components can be found
 The two sensors provided immediate, detailed insights into power consumption
 patterns, enabling better energy management and a deeper understanding of the
 root causes of heat losses. While phase compensation with capacitor banks offers
-only marginal improvements, the high distortion power is one of the primary
-issues that must be addressed.
+only marginal improvements (or even worse performance due to the suspected
+oscillations), the high distortion power is one of the primary issues that
+must be addressed.
 
-The customer must now calculate whether the cost of a more advanced VFD (with
-extra points of failure) is justified compared to the current situation. This
-includes not only the heat losses in the upstream transformer cabin but also
-the impact of harmonics on the reduced lifespan of nearby electrical and
-mechanical components, such as parasitic bearing currents in equipment connected
-to the same grid.
+The customer has now all the necessary information to calculate whether the
+cost of a more advanced VFD (with extra failure points) is justified to improve
+to the current situation. This includes not only the heat losses in the upstream
+transformer cabin but also the impact of harmonics on the reduced lifespan of
+nearby electrical and mechanical components, such as parasitic bearing currents
+in rotating equipment connected to the same grid.
 
 #### Predictive Maintenance
 By regularly analyzing the current spectrum, the sensors enable the early
