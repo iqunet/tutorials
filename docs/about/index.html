@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.26.1 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
   Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,14 +10,14 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>About - iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN</title>
+<!-- begin _includes/seo.html --><title>About - Tutorials</title>
 <meta name="description" content="iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.">
 
 
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN">
+<meta property="og:site_name" content="Tutorials">
 <meta property="og:title" content="About">
 <meta property="og:url" content="/tutorials/about/">
 
@@ -91,8 +91,11 @@
       <nav id="site-nav" class="greedy-nav">
         
         <a class="site-title" href="/tutorials/">
-          iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN
-          
+          <div class="title-wrapper">
+            <img class="title-icon nolightbox" src="/tutorials/assets/images/iqunet_logo_bgwhite.svg" alt="iQunet">
+            Tutorials
+          </div>
+          <span class="site-subtitle">OPC-UA | MQTT | Modbus | LoRaWAN</span>
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
               <a
@@ -199,7 +202,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 <a href="">iQunet Tutorials: OPC-UA | MQTT | Modbus | LoRaWAN</a></div>
+<div class="page__footer-copyright">&copy; 2024 <a href="">Tutorials</a></div>
 
       </footer>
     </div>
@@ -217,7 +220,7 @@
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll('img').forEach(function(img, index) {
+        document.querySelectorAll('img:not(.nolightbox)').forEach(function(img, index) {
             var link = document.createElement('a');
             link.href = img.src;
             link.setAttribute('data-lightbox', 'gallery');

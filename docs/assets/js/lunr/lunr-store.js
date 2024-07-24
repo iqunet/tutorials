@@ -10,4 +10,10 @@ var store = [{
         "tags": [],
         "url": "/tutorials/blog/modbus-to-mqtt/",
         "teaser": null
+      },{
+        "title": "Monitoring Power Quality in Industrial Compressors",
+        "excerpt":"Introduction This tutorial covers the practical application of power and current monitoring sensors to track the power quality of industrial compressors. We demonstrate which parameters are crucial, such as the cosine φ (displacement power factor) and the impact of harmonic distortion, providing a detailed insight into these power quality metrics....","categories": ["blog"],
+        "tags": [],
+        "url": "/tutorials/blog/power-quality/",
+        "teaser": null
       }]
