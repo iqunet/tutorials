@@ -156,24 +156,40 @@ components can be found
 #### Insights
 The two sensors provided immediate, detailed insights into power consumption
 patterns, enabling better energy management and a deeper understanding of the
-root causes of heat losses. While phase compensation with capacitor banks offers
-only marginal improvements (or even worse performance due to the suspected
-oscillations), the high distortion power is one of the primary issues that
-must be addressed.
+root causes of heat losses. The high distortion power is one of the primary
+issues that must be addressed.
+
+While phase compensation or harmonics suppression with capacitor banks may
+offer some (marginal) improvements, there is also the very real increased risk
+of damage caused by unexpected resonances between multiple on-site systems. 
 
 The customer has now all the necessary information to calculate whether the
-cost of a more advanced VFD (with extra failure points) is justified to improve
-to the current situation. This includes not only the heat losses in the upstream
-transformer cabin but also the impact of harmonics on the reduced lifespan of
+cost of a more advanced VFD (e.g. with hybrid harmonic active filter) is
+justified to improve to the current situation.
+The decision process will not only involve the heat losses in the upstream
+transformer cabin, but also the impact of HF harmonics on the lifespan of
 nearby electrical and mechanical components, such as parasitic bearing currents
 in rotating equipment connected to the same grid.
 
-#### Predictive Maintenance
-By regularly analyzing the current spectrum, the sensors enable the early
-detection of changes in the electronic or mechanical behavior of the compressor.
-This proactive approach can significantly reduce downtime and maintenance costs.
+See "*ABB Technical guide No. 5 - Bearing currents in modern AC drive systems*"
+<a class="external"
+  href="https://library.e.abb.com/public/8c253c2417ed0238c125788f003cca8e/ABB_Technical_guide_No5_RevC.pdf"
+  target="_blank">link
+</a>.
 
-#### Machine Learning Applications
+<img src="{{ site.baseurl }}/assets/images/power-ABB-bearing-current.jpg"
+  alt="Bearing damage due to parasitic currents." width="400px" />
+<figcaption>Figure 9: Bearing damage due to parasitic currents. [credits: ABB]
+</figcaption>
+
+
+#### Predictive Maintenance
+By analyzing the current spectrum in a regular inverval, the sensors enable the
+early detection of changes in the electronic or mechanical behavior of the
+compressor. This proactive approach can significantly reduce downtime and
+maintenance costs.
+
+##### Machine Learning Applications
 Additionally, iQunet offers an optional service to automate anomaly detection.
 Small variations in the machine's operating state cause related changes in the
 spectral footprint of electical current or mechanical vibrations. While these
