@@ -1,0 +1,610 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Monitoring Power Quality in Industrial Compressors - Tutorials</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Tutorials">
+<meta property="og:title" content="Monitoring Power Quality in Industrial Compressors">
+<meta property="og:url" content="/tutorials/blog/power-quality/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-07-12T00:00:00-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="/tutorials/blog/power-quality/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/tutorials/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/tutorials/">
+          <div class="title-wrapper">
+            <img class="title-icon nolightbox" src="/tutorials/assets/images/iqunet_logo_bgwhite.svg" alt="iQunet">
+            Tutorials
+          </div>
+          <span class="site-subtitle">OPC-UA | MQTT | Modbus | LoRaWAN</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tutorials/posts/"
+                
+                
+              >Posts</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  <div class="sidebar sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#introduction">Introduction</a></li><li><a href="#technical-background-and-problem">Technical Background and Problem</a></li><li><a href="#sensor-deployment-and-capabilities">Sensor Deployment and Capabilities</a></li><li><a href="#initial-findings">Initial Findings</a><ul><li><a href="#waveform-analysis-and-root-cause">Waveform Analysis and Root Cause</a></li></ul></li><li><a href="#in-depth-technical-audit">In-depth Technical Audit</a></li><li><a href="#results-and-benefits">Results and Benefits</a><ul><li><a href="#insights">Insights</a></li><li><a href="#predictive-maintenance">Predictive Maintenance</a></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul>
+            </nav>
+  </div>
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Monitoring Power Quality in Industrial Compressors">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2024-07-12T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="/tutorials/blog/power-quality/" itemprop="url">Monitoring Power Quality in Industrial Compressors
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p><img src="/tutorials/assets/images/power-compressor.png" alt="Air Compressor Illustration" width="500" /></p>
+
+<h3 id="introduction">Introduction</h3>
+<p>This tutorial covers the practical application of power and current monitoring
+sensors to track the power quality of industrial compressors. We demonstrate
+which parameters are crucial, such as the cosine φ (displacement power factor)
+and the impact of harmonic distortion, providing a detailed insight into these
+power quality metrics.</p>
+
+<p><img src="/tutorials/assets/images/power-cosphi-distortion.png" alt="Displacement and Distortion" width="95%" /></p>
+<figcaption>figure 1: Displacement (cos &phi;) and Harmonic Distortion.</figcaption>
+
+<p>The ultimate goal is to predict potential failures, such as overheating, and
+offer a gateway to the optimization of industrial equipment.</p>
+
+<hr />
+
+<h3 id="technical-background-and-problem">Technical Background and Problem</h3>
+<p>Industrial compressors, especially high-power models like the 3-phase 200kW
+compressor used in this case study, can cause power quality issues such as
+harmonic distortion.</p>
+
+<p>In the upstream transformer cabin, the presence of higher-order frequencies
+increases core losses due to eddy currents, resulting in elevated transformer
+temperatures. Special K-factor transformers are used to withstand these heating
+problems, but the heat losses persist.</p>
+
+<p><img src="/tutorials/assets/images/power-eddycurrents.jpg" alt="FLIR thermal image of eddy currents" width="320" /></p>
+<figcaption>figure 2: Eddy currents cause energy losses, such as
+  <a class="external" href="https://cr4.globalspec.com/thread/119132/CT-Heating-Problem" target="_blank">here</a> resulting in thermal tripping of a generator.
+</figcaption>
+
+<p>Additionally, other equipment connected to the same power grid, such as small
+electronic equipment power supplies or capacitor banks, may experience a higher
+failure rate due to the stresses induced by the unexpected harmonic currents
+oscillating between the 200kW compressor and the passive components in their
+power supplies.</p>
+
+<hr />
+
+<h3 id="sensor-deployment-and-capabilities">Sensor Deployment and Capabilities</h3>
+<p>One of our clients asked to install a power quality monitoring system at the
+entry point of one of their compressor rooms. The goal of this monitoring
+system is to gain insight in both the cumulative energy consumption and also
+the possible infrastructure improvements learned from the captured sensor data.</p>
+
+<p>For this, two sensors were deployed on the compressor room electrical supply,
+each with their specific focus:</p>
+
+<p><strong>GridMate AG1 Power Quality Monitor:</strong> This LoRaWAN-enabled sensor measures
+aggregate data such as average grid voltage, RMS and peak current, cosine φ,
+true power factor (TPF) and distortion power (THD) on all three phases on a 10
+minute base interval. This provides us the long-term data essential for the
+total energy usage as well as the amount of displacement power and the harmonic
+contents.</p>
+
+<p><img src="/tutorials/assets/images/power-gridmate.jpg" alt="GridMate AG1 LoRaWAN Power Monitor" /></p>
+<figcaption>figure 3: GridMate AG1 LoRaWAN Power Monitor.</figcaption>
+
+<p><strong>Wireless Current Waveform Sensor:</strong> Positioned on one of the phases, this
+sensor captures high-speed snapshots (4kS/s) of the current waveform and its
+spectrum every 10 minutes. It delivers detailed insights into the time-domain
+and frequency spectrum and helps to identify the various sources of distortion
+and intermittent spike events (such as the upstart of the compressor).</p>
+
+<p><img src="/tutorials/assets/images/power-bridge.jpg" alt="iQunet ADMOD-CURR wireless current clamp" /></p>
+<figcaption>figure 4: iQunet wireless current clamp [model ADMOD-CURR].</figcaption>
+
+<p>The combination of these sensors allows for not only real-time analytics but
+also provides the historical data necessary for the early detection of potential
+faults. In the next chapter, we will delve into this aspect further.</p>
+
+<hr />
+
+<h3 id="initial-findings">Initial Findings</h3>
+<p>Within the first few hours, initial data from the GridMate AG1 revealed a
+considerable level of distortion (approx. D=3x20kVArd at 250 Hz) compared to
+170 kW of active power at the 50 Hz fundamental. Although the cosine φ
+seemed to be well-corrected at around PF=0.98, the distortion power was the main
+factor for reducing the true power factor to around TPF&lt;0.9.</p>
+
+<video width="500px" controls="" loop="" autoplay="" muted="">
+  <source src="/tutorials/assets/videos/power-phasor.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+<figcaption>figure 5: Power phasor as shown in the dashboard of the iQunet edge
+  server.</figcaption>
+
+<h4 id="waveform-analysis-and-root-cause">Waveform Analysis and Root Cause</h4>
+<p>The current waveform sensor (ADMOD-CURR) also identified high harmonic distortion
+as seen in the system’s spectral footprint, with significant spectral components
+at the 5th (250 Hz) and 7th (350 Hz) harmonics of the fundamental (50 Hz).</p>
+
+<p><img src="/tutorials/assets/images/power-dashboard-spectrum.png" alt="Spectrum plot of the compressor current draw." width="500px" /></p>
+<figcaption>figure 6: Spectrum plot of the compressor current draw, as shown
+  in the iQunet edge computer dashboard.</figcaption>
+
+<p>Additionally, the time-domain waveform revealed the characteristic ripple caused
+by a 6-pulse 3-phase rectifier at the DC-bus input stage of the compressor VFD.</p>
+
+<p><img src="/tutorials/assets/images/power-dashboard-time.png" alt="Waveform snapshot of the compressor current draw." width="500px" /></p>
+<figcaption>figure 6: Time-waveform of the compressor current, as shown
+  in the iQunet edge computer dashboard.</figcaption>
+
+<h3 id="in-depth-technical-audit">In-depth Technical Audit</h3>
+<p>The 5th harmonic was notably significant, making up about 30% of the main
+component current in the spectrum plot. From the ratios of the harmonics, it
+can be determined that a damping choke is used to “just” comply with the IEEE-519
+standard when operating at the nominal power of the compressor.</p>
+
+<p>For more details on this see the “<em>ABB Technical Guide to harmonics with AC drives</em>”
+<a class="external" href="https://library.e.abb.com/public/bc35ffb4386c4c039e3a8ec20cef89c5/Technical_guide_No_6_3AFE64292714_RevF_EN.pdf" target="_blank">link
+</a>.</p>
+
+<p><img src="/tutorials/assets/images/power-abb-6pulse-rect.png" alt="Excerpt from the ABB Technical Guide to harmonics." /></p>
+<figcaption>figure 7: Excerpt from "ABB Technical Guide to harmonics with AC drives".</figcaption>
+
+<p>At power levels deviating from the nominal operating point, however, it is
+observed that the tuning mismatch of the damping choke results in an
+increasingly worse THD performance characteristic, leading to non-compliance
+with even the regulatory requirements.</p>
+
+<p>More information on the problems of the suppression of harmonics with passive
+components can be found 
+<a class="external" href="https://powerquality.blog/2022/02/14/voltage-notching-and-distribution-systems-large-induction-motor-drive/" target="_blank">here [powerquality.blog]
+</a>.</p>
+
+<p><img src="/tutorials/assets/images/power-thd-plot.png" alt="Cosine &phi; and True Power Factor history." /></p>
+<figcaption>Figure 8: History of Cosine &phi; and True Power Factor. Although
+  Cosine &phi; regulation is effective, harmonic distortion (THD) increases as
+  compressor power decreases. The very high THD levels (TPF&lt;0.8) are believed
+  to be caused by 11th harmonic oscillations in the power grid caused by other
+  on-site capacitor banks (further investigation needed).
+</figcaption>
+
+<hr />
+
+<h3 id="results-and-benefits">Results and Benefits</h3>
+
+<h4 id="insights">Insights</h4>
+<p>The two sensors did provide immediate, detailed insights into power consumption
+patterns, enabling a deeper understanding of the root causes of heat losses.
+The high distortion power is one of the primary issues that must be addressed.</p>
+
+<p>While phase compensation or harmonics suppression with capacitor banks may
+offer some (marginal) improvements, there is also the very real increased risk
+of damage caused by unexpected resonances between multiple on-site systems.</p>
+
+<p>The customer has now all the necessary information to calculate whether the
+cost of a more advanced VFD (e.g. with hybrid harmonic active filter) is
+justified to improve to the current situation.
+The decision process will not only involve the heat losses in the upstream
+transformer cabin, but also the impact of HF harmonics on the lifespan of
+nearby electrical and mechanical components, such as parasitic bearing currents
+in rotating equipment connected to the same grid.</p>
+
+<p>See “<em>ABB Technical guide No. 5 - Bearing currents in modern AC drive systems</em>”
+<a class="external" href="https://library.e.abb.com/public/8c253c2417ed0238c125788f003cca8e/ABB_Technical_guide_No5_RevC.pdf" target="_blank">link
+</a>.</p>
+
+<p><img src="/tutorials/assets/images/power-ABB-bearing-current.jpg" alt="Bearing damage due to parasitic currents." width="400px" /></p>
+<figcaption>Figure 9: Bearing damage due to parasitic currents [credits: ABB].
+</figcaption>
+
+<h4 id="predictive-maintenance">Predictive Maintenance</h4>
+<p>By analyzing the current spectrum in a regular inverval, the sensors also enable
+the early detection of changes in the electronic or mechanical behavior of the
+compressor. This proactive approach can significantly reduce unplanned downtime.</p>
+
+<p><img src="/tutorials/assets/images/power-anomaly.png" alt="Example anomaly detection using Machine Learning." /></p>
+<figcaption>Figure 10: Example of Anomaly Detection using Machine Learning.
+The step indicates a sudden change in behaviour of the machine, which needs
+attention but, because the deviation is stable, does not require immediate
+action.
+</figcaption>
+
+<blockquote>
+  <p><strong>Machine Learning Applications</strong></p>
+
+  <p>iQunet offers an optional service to automate anomaly detection.
+Small variations in the machine’s operating state cause related changes in
+the spectral footprint of electical current or mechanical vibrations. While
+these changes are difficult to detect with the naked eye, a custom-trained
+machine learning model can provide a reliable early-warning system for
+critical assets, without the need for expert personnel to analyze the sensor
+data.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="conclusion">Conclusion</h3>
+<p>This case study has demonstrated the capabilities of modern sensor technology
+in tackling power quality issues in industrial settings.</p>
+
+<p>By providing detailed measurements, the combination of the appropriate voltage
+and current sensors enables precise registration of energy usage, along with
+the identification of the root causes of energy losses due to harmonic distortion
+currents.
+For the more experienced user, it offers valuable insights into the installed
+equipment, down to the ability to determine the VFD characteristics of attached
+machinery through black-box analysis.</p>
+
+<p>Finally, armed with this knowledge, the customer can take informed steps to
+implement future operational improvements and monitor emerging anomalies as
+a foundation for predictive maintenance.</p>
+
+<p>For more detailed technical insights and support, explore our <a href="https://iqunet.com/resources/">documentation</a> and <a href="https://iqunet.com/resources/case-studies/case-study-1-international-airport/">case studies</a>, or contact our <a href="https://iqunet.com/contact/">support team</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tutorials/categories/#blog" class="page__taxonomy-item p-category" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-07-12T00:00:00-05:00">July 12, 2024</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/blog/modbus-to-mqtt/" class="pagination--pager" title="Modbus to MQTT
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+
+    
+      <aside class="sidebar__right sticky">
+        
+  <div class="sidebar sidebar-company">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="/tutorials/">
+        <img src="/tutorials/assets/images/iqunet_logo_bgwhite.svg" alt="" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="/tutorials/" itemprop="url"></a>
+    </h3>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://iqunet.com" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-house" aria-hidden="true"></i><span class="label">iQunet.com</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/company/iqunet/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://iqunet.github.io/tutorials" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="description_2">
+      iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.
+    </div>
+  </div>
+
+
+      </aside>
+      
+
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 <a href="">Tutorials</a></div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/tutorials/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('img:not(.nolightbox)').forEach(function(img, index) {
+            var link = document.createElement('a');
+            link.href = img.src;
+            link.setAttribute('data-lightbox', 'gallery');
+            
+            img.parentNode.insertBefore(link, img);
+            link.appendChild(img);
+        });
+
+        lightbox.option({
+            'fadeDuration': 0,       // No transition effect
+            'resizeDuration': 0,     // No transition effect
+            'imageFadeDuration': 0,  // No transition effect
+            'wrapAround': true       // Enable navigation between images
+        });
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  </body>
+</html>
+
