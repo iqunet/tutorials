@@ -129,14 +129,25 @@ details on this see the "*ABB Technical Guide to harmonics with AC drives*"
   alt="Excerpt from the ABB Technical Guide to harmonics." />
 <figcaption>figure 7: Excerpt from "ABB Technical Guide to harmonics with AC drives".</figcaption>
 
-At power levels deviating from normal operation, however, it is observed that
-the tuning mismatch of the damping choke results in an increasingly worse THD
-performance characteristic, leading to non-compliance with even the regulatory
-requirements.
+At power levels deviating from the nominal operating point, however, it is
+observed that the tuning mismatch of the damping choke results in an
+increasingly worse THD performance characteristic, leading to non-compliance
+with even the regulatory requirements.
+More information on the problems of the suppression of harmonics with passive
+components can be found 
+<a class="external"
+  href="https://powerquality.blog/2022/02/14/voltage-notching-and-distribution-systems-large-induction-motor-drive/"
+  target="_blank">here [powerquality.blog]
+</a>.
 
 <img src="{{ site.baseurl }}/assets/images/power-thd-plot.png"
   alt="Cosine &phi; and True Power Factor history." />
-<figcaption>figure 8: Cosine &phi; and True Power Factor history.</figcaption>
+<figcaption>Figure 8: History of Cosine &phi; and True Power Factor. Although
+  Cosine &phi; regulation is effective, harmonic distortion (THD) increases as
+  compressor power decreases. The very high THD levels (TPF<0.8) are believed
+  to be caused by 11th harmonic oscillations in the power grid caused by other
+  on-site capacitor banks (further investigation needed).
+</figcaption>
 
 ---
 
