@@ -16,7 +16,7 @@ and the impact of harmonic distortion, providing a detailed insight into these
 power quality metrics.
 
 <img src="{{ site.baseurl }}/assets/images/power-cosphi-distortion.png" alt="Displacement and Distortion" width="95%"/>
-<figcaption>figure 1: Displacement (cos &phi;) and Distortion.</figcaption>
+<figcaption>figure 1: Displacement (cos &phi;) and Harmonic Distortion.</figcaption>
 
 The ultimate goal is to predict potential failures, such as overheating, and
 offer a gateway to the optimization of industrial equipment.
@@ -26,10 +26,12 @@ offer a gateway to the optimization of industrial equipment.
 ### Technical Background and Problem
 Industrial compressors, especially high-power models like the 3-phase 200kW
 compressor used in this case study, can cause power quality issues such as
-harmonic distortion. In the upstream transformer cabin, the presence of
-higher-order harmonics increases core losses due to eddy currents, resulting
-in elevated transformer temperatures. Special K-factor transformers are used
-to withstand these heating problems, but the heat losses persist.
+harmonic distortion.
+
+In the upstream transformer cabin, the presence of higher-order frequencies
+increases core losses due to eddy currents, resulting in elevated transformer
+temperatures. Special K-factor transformers are used to withstand these heating
+problems, but the heat losses persist.
 
 <img src="{{ site.baseurl }}/assets/images/power-eddycurrents.jpg"
   alt="FLIR thermal image of eddy currents" width="320"/>
@@ -69,7 +71,7 @@ contents.
 **Wireless Current Waveform Sensor:** Positioned on one of the phases, this
 sensor captures high-speed snapshots (4kS/s) of the current waveform and its
 spectrum every 10 minutes. It delivers detailed insights into the time-domain
-and harmonic spectrum and helps to identify the various sources of distortion
+and frequency spectrum and helps to identify the various sources of distortion
 and intermittent spike events (such as the upstart of the compressor).
 
 <img src="{{ site.baseurl }}/assets/images/power-bridge.jpg"
@@ -84,10 +86,10 @@ faults. In the next chapter, we will delve into this aspect further.
 
 ### Initial Findings
 Within the first few hours, initial data from the GridMate AG1 revealed a
-considerable level of distortion (approximately 40 kVArd at 250 Hz) compared to
-200 kW of active power at the 50 Hz fundamental. Although the cosine &phi;
-seemed to be well-corrected at around PF=0.98, the distortion power (D=25kVAd)
-was the main factor reducing the true power factor to around TPF<0.9.
+considerable level of distortion (approx. D=3x20kVArd at 250 Hz) compared to
+170 kW of active power at the 50 Hz fundamental. Although the cosine &phi;
+seemed to be well-corrected at around PF=0.98, the distortion power was the main
+factor for reducing the true power factor to around TPF<0.9.
 
 <video width="500px" controls loop autoplay muted>
   <source src="{{ site.baseurl }}/assets/videos/power-phasor.mp4" type="video/mp4">
@@ -107,7 +109,7 @@ at the 5th (250 Hz) and 7th (350 Hz) harmonics of the fundamental (50 Hz).
   in the iQunet edge computer dashboard.</figcaption>
 
 Additionally, the time-domain waveform revealed the characteristic ripple caused
-by a 6-pulse 3-phase rectifier at the DB-bus stage of the compressor VFD.
+by a 6-pulse 3-phase rectifier at the DC-bus input stage of the compressor VFD.
 
 <img src="{{ site.baseurl }}/assets/images/power-dashboard-time.png"
   alt="Waveform snapshot of the compressor current draw." width="500px" />
@@ -117,9 +119,10 @@ by a 6-pulse 3-phase rectifier at the DB-bus stage of the compressor VFD.
 ### In-depth Technical Audit
 The 5th harmonic was notably significant, making up about 30% of the main
 component current in the spectrum plot. From the ratios of the harmonics, it
-can be determined that a damping choke is used to "just" comply with the IEEE 519
-standard when operating at the nominal power of the compressor. For more
-details on this see the "*ABB Technical Guide to harmonics with AC drives*"
+can be determined that a damping choke is used to "just" comply with the IEEE-519
+standard when operating at the nominal power of the compressor.
+
+For more details on this see the "*ABB Technical Guide to harmonics with AC drives*"
 <a class="external"
   href="https://library.e.abb.com/public/bc35ffb4386c4c039e3a8ec20cef89c5/Technical_guide_No_6_3AFE64292714_RevF_EN.pdf"
   target="_blank">link
@@ -133,6 +136,7 @@ At power levels deviating from the nominal operating point, however, it is
 observed that the tuning mismatch of the damping choke results in an
 increasingly worse THD performance characteristic, leading to non-compliance
 with even the regulatory requirements.
+
 More information on the problems of the suppression of harmonics with passive
 components can be found 
 <a class="external"
@@ -201,7 +205,7 @@ action.
 > Small variations in the machine's operating state cause related changes in
 > the spectral footprint of electical current or mechanical vibrations. While
 > these changes are difficult to detect with the naked eye, a custom-trained
-> machine > learning model can provide a reliable early-warning system for
+> machine learning model can provide a reliable early-warning system for
 > critical assets, without the need for expert personnel to analyze the sensor
 > data.
 
