@@ -83,16 +83,23 @@ faults. In the next chapter, we will delve into this aspect further.
 ---
 
 ### Initial Findings
-Within the first few hours, initial data from the GridMate AG1 revealed a high
-level of distortion power (approximately 40 kVArd at 250 Hz) compared to 200 kW
-of active power at 50 Hz. Although the cosine &phi; seemed to be well-corrected
-at around 0.98, the distortion power was the main factor reducing the true power
-factor to around TPF=0.65.
+Within the first few hours, initial data from the GridMate AG1 revealed a
+considerable level of distortion (approximately 40 kVArd at 250 Hz) compared to
+200 kW of active power at the 50 Hz fundamental. Although the cosine &phi;
+seemed to be well-corrected at around PF=0.98, the distortion power (D=25kVAd)
+was the main factor reducing the true power factor to around TPF<0.9.
+
+<video width="450px" controls loop autoplay muted>
+  <source src="{{ site.baseurl }}/assets/videos/power-phasor.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<figcaption>figure 5: Power phasor as shown in the dashboard of the iQunet edge
+  server.</figcaption>
 
 #### Waveform Analysis and Root Cause
-The current waveform sensor also identified high harmonic distortion as seen in
-the system's spectral footprint, with significant spectral components at the 5th
-(250 Hz) and 7th (350 Hz) harmonics of the fundamental (50 Hz).
+The current waveform sensor (ADMOD-CURR) also identified high harmonic distortion
+as seen in the system's spectral footprint, with significant spectral components
+at the 5th (250 Hz) and 7th (350 Hz) harmonics of the fundamental (50 Hz).
 
 Additionally, the time-domain waveform revealed the characteristic ripple caused
 by a 6-pulse 3-phase rectifier at the DB-bus stage of the compressor VFD.
