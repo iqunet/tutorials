@@ -6,12 +6,17 @@ toc: true
 toc_sticky: true
 ---
 
+<img src="{{ site.baseurl }}/assets/images/power-compressor.png" alt="Air Compressor Illustration" width="500"/>
+
 ### Introduction
 This tutorial covers the practical application of power and current monitoring
 sensors to track the power quality of industrial compressors. We demonstrate
-which parameters are crucial, such as the cosine phi (displacement power factor)
+which parameters are crucial, such as the cosine &phi; (displacement power factor)
 and the impact of harmonic distortion, providing a detailed insight into these
 power quality metrics.
+
+<img src="{{ site.baseurl }}/assets/images/power-cosphi-distortion.png" alt="Displacement and Distortion" width="95%"/>
+<figcaption>figure 1: Displacement (cos &phi;) and Distortion.</figcaption>
 
 The ultimate goal is to predict potential failures, such as overheating, and
 offer a gateway to the optimization of industrial equipment.
@@ -26,6 +31,13 @@ higher-order harmonics increases core losses due to eddy currents, resulting
 in elevated transformer temperatures. Special K-factor transformers are used
 to withstand these heating problems, but the heat losses persist.
 
+<img src="{{ site.baseurl }}/assets/images/power-eddycurrents.jpg"
+  alt="FLIR thermal image of eddy currents" width="320"/>
+<figcaption>figure 2: Eddy currents cause energy losses, such as
+  <a class="external" href="https://cr4.globalspec.com/thread/119132/CT-Heating-Problem"
+  target="_blank">here</a> resulting in thermal tripping of a generator.
+</figcaption>
+
 Additionally, other equipment connected to the same power grid, such as small
 electronic equipment power supplies or capacitor banks, may experience a higher
 failure rate due to the stresses induced by the unexpected harmonic currents
@@ -35,15 +47,6 @@ power supplies.
 ---
 
 ### Sensor Deployment and Capabilities
-One of our clients requested the installation of a power quality monitoring
-system at the entry point of one of their compressor rooms. The goal of this
-monitoring system is to gain better insights into both cumulative energy
-consumption and potential infrastructure improvements based on the captured
-sensor data.
-
-To achieve this, we deployed two sensors on the compressor room's electrical
-supply, each with a specific focus:
-
 One of our clients asked to install a power quality monitoring system at the
 entry point of one of their compressor rooms. The goal of this monitoring
 system is to gain insight in both the cumulative energy consumption and also
@@ -52,31 +55,37 @@ the possible infrastructure improvements learned from the captured sensor data.
 For this, two sensors were deployed on the compressor room electrical supply,
 each with their specific focus:
 
-1. **GridMate AG1 Power Quality Monitor:** This LoRaWAN-enabled sensor measures
-aggregate data such as average grid voltage, RMS and peak current, cosine phi,
-true power factor and distortion power on all three phases on a 10 minute
-base interval. This provides us the long-term data essential for the total
-energy usage as well as the amount of displacement power and the harmonic
+**GridMate AG1 Power Quality Monitor:** This LoRaWAN-enabled sensor measures
+aggregate data such as average grid voltage, RMS and peak current, cosine &phi;,
+true power factor (TPF) and distortion power (THD) on all three phases on a 10
+minute base interval. This provides us the long-term data essential for the
+total energy usage as well as the amount of displacement power and the harmonic
 contents.
 
-2. **Wireless Current Waveform Sensor:** Positioned on one of the phases, this
+<img src="{{ site.baseurl }}/assets/images/power-gridmate.jpg"
+  alt="GridMate AG1 LoRaWAN Power Monitor"/>
+<figcaption>figure 3: GridMate AG1 LoRaWAN Power Monitor.</figcaption>
+
+**Wireless Current Waveform Sensor:** Positioned on one of the phases, this
 sensor captures high-speed snapshots (4kS/s) of the current waveform and its
 spectrum every 10 minutes. It delivers detailed insights into the time-domain
-and harmonic spectrum and helps identify the various sources of distortion and
-intermittent spike events (such as the upstart of the compressor).
+and harmonic spectrum and helps to identify the various sources of distortion
+and intermittent spike events (such as the upstart of the compressor).
+
+<img src="{{ site.baseurl }}/assets/images/power-bridge.jpg"
+  alt="iQunet ADMOD-CURR wireless current clamp"/>
+<figcaption>figure 4: iQunet wireless current clamp [model ADMOD-CURR].</figcaption>
 
 The combination of these sensors allows for not only real-time analytics but
 also provides the historical data necessary for the early detection of potential
 faults. In the next chapter, we will delve into this aspect further.
-
-![Example of data output from the sensors]({{ site.baseurl }}/assets/images/data-output-sensors.svg)
 
 ---
 
 ### Initial Findings
 Within the first few hours, initial data from the GridMate AG1 revealed a high
 level of distortion power (approximately 40 kVArd at 250 Hz) compared to 200 kW
-of active power at 50 Hz. Although the cosine phi seemed to be well-corrected
+of active power at 50 Hz. Although the cosine &phi; seemed to be well-corrected
 at around 0.98, the distortion power was the main factor reducing the true power
 factor to around TPF=0.65.
 
