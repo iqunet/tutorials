@@ -81,6 +81,7 @@
 
 <!-- end custom head snippets -->
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
   </head>
 
   <body class="layout--home">
@@ -434,9 +435,13 @@ A demo gateway endpoint is provided for the purpose of this guide.
         document.querySelectorAll('img:not(.nolightbox)').forEach(function(img, index) {
             var link = document.createElement('a');
             link.href = img.src;
+            link.setAttribute('data-lightbox', 'gallery');
             
             img.parentNode.insertBefore(link, img);
             link.appendChild(img);
+
+            // workaround to disable magnificPopup
+            $.magnificPopup.proto.open = Function.prototype
         });
 
         lightbox.option({
@@ -447,5 +452,6 @@ A demo gateway endpoint is provided for the purpose of this guide.
         });
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
   </body>
 </html>
