@@ -127,6 +127,7 @@ For more details on this see the "*ABB Technical Guide to harmonics with AC driv
   href="https://library.e.abb.com/public/bc35ffb4386c4c039e3a8ec20cef89c5/Technical_guide_No_6_3AFE64292714_RevF_EN.pdf"
   target="_blank">link
 </a>.
+<!-- https://vfds.com/what-pulse-vfd-should-you-be-using -->
 
 <img src="{{ site.baseurl }}/assets/images/power-abb-6pulse-rect.png"
   alt="Excerpt from the ABB Technical Guide to harmonics." />
