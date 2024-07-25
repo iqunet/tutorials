@@ -57,16 +57,16 @@ the possible infrastructure improvements learned from the captured sensor data.
 For this, two sensors were deployed on the compressor room electrical supply,
 each with their specific focus:
 
-**GridMate AG1 Power Quality Monitor:** This LoRaWAN-enabled sensor measures
-aggregate data such as average grid voltage, RMS and peak current, cosine &phi;,
-true power factor (TPF) and distortion power (THD) on all three phases on a 10
-minute base interval. This provides us the long-term data essential for the
-total energy usage as well as the amount of displacement power and the harmonic
-contents.
+**iQunet GridMate AG1 Power Quality Monitor:** This LoRaWAN-enabled sensor
+measures aggregate data such as average grid voltage, RMS and peak current,
+cosine &phi;, true power factor (TPF) and distortion power (THD) on all three
+phases on a 10 minute base interval. This provides us the long-term data
+essential for the total energy usage as well as the amount of displacement
+power and the harmonic contents.
 
 <img src="{{ site.baseurl }}/assets/images/power-gridmate.jpg"
-  alt="GridMate AG1 LoRaWAN Power Monitor"/>
-<figcaption>figure 3: GridMate AG1 LoRaWAN Power Monitor.</figcaption>
+  alt="AG1 LoRaWAN Power Monitor"/>
+<figcaption>figure 3: AG1 LoRaWAN Power Monitor.</figcaption>
 
 **Wireless Current Waveform Sensor:** Positioned on one of the phases, this
 sensor captures high-speed snapshots (4kS/s) of the current waveform and its
@@ -85,11 +85,11 @@ faults. In the next chapter, we will delve into this aspect further.
 ---
 
 ### Initial Findings
-Within the first few hours, initial data from the GridMate AG1 revealed a
+Within the first few hours, initial data from the AG1 monitor revealed a
 considerable level of distortion (approx. D=3x20kVArd at 250 Hz) compared to
 170 kW of active power at the 50 Hz fundamental. Although the cosine &phi;
-seemed to be well-corrected at around PF=0.98, the distortion power was the main
-factor for reducing the true power factor to around TPF<0.9.
+seemed to be well-corrected at around PF=0.98, the distortion power was the
+main factor for reducing the true power factor to around TPF<0.9.
 
 <video width="500px" controls loop autoplay muted>
   <source src="{{ site.baseurl }}/assets/videos/power-phasor.mp4" type="video/mp4">

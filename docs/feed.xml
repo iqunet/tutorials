@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="/tutorials/feed.xml" rel="self" type="application/atom+xml" /><link href="/tutorials/" rel="alternate" type="text/html" /><updated>2024-07-24T18:28:26-05:00</updated><id>/tutorials/feed.xml</id><title type="html">Tutorials</title><subtitle>iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/iqunet_logo_bgwhite.svg&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;iQunet.com&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-house&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.com&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://linkedin.com/company/iqunet/&quot;}, {&quot;label&quot;=&gt;&quot;YouTube&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-youtube&quot;, &quot;url&quot;=&gt;&quot;https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.github.io/tutorials&quot;}]}</name></author><entry><title type="html">Monitoring Power Quality in Industrial Compressors</title><link href="/tutorials/blog/power-quality/" rel="alternate" type="text/html" title="Monitoring Power Quality in Industrial Compressors" /><published>2024-07-12T00:00:00-05:00</published><updated>2024-07-12T00:00:00-05:00</updated><id>/tutorials/blog/power-quality</id><content type="html" xml:base="/tutorials/blog/power-quality/"><![CDATA[<p><img src="/tutorials/assets/images/power-compressor.png" alt="Air Compressor Illustration" width="500" /></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="/tutorials/feed.xml" rel="self" type="application/atom+xml" /><link href="/tutorials/" rel="alternate" type="text/html" /><updated>2024-07-25T04:07:32-05:00</updated><id>/tutorials/feed.xml</id><title type="html">Tutorials</title><subtitle>iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/iqunet_logo_bgwhite.svg&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;iQunet.com&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-house&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.com&quot;}, {&quot;label&quot;=&gt;&quot;LinkedIn&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://linkedin.com/company/iqunet/&quot;}, {&quot;label&quot;=&gt;&quot;YouTube&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-youtube&quot;, &quot;url&quot;=&gt;&quot;https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://iqunet.github.io/tutorials&quot;}]}</name></author><entry><title type="html">Monitoring Power Quality in Industrial Compressors</title><link href="/tutorials/blog/power-quality/" rel="alternate" type="text/html" title="Monitoring Power Quality in Industrial Compressors" /><published>2024-07-12T00:00:00-05:00</published><updated>2024-07-12T00:00:00-05:00</updated><id>/tutorials/blog/power-quality</id><content type="html" xml:base="/tutorials/blog/power-quality/"><![CDATA[<p><img src="/tutorials/assets/images/power-compressor.png" alt="Air Compressor Illustration" width="500" /></p>
 
 <h3 id="introduction">Introduction</h3>
 <p>This tutorial covers the practical application of power and current monitoring
@@ -47,15 +47,15 @@ the possible infrastructure improvements learned from the captured sensor data.<
 <p>For this, two sensors were deployed on the compressor room electrical supply,
 each with their specific focus:</p>
 
-<p><strong>GridMate AG1 Power Quality Monitor:</strong> This LoRaWAN-enabled sensor measures
-aggregate data such as average grid voltage, RMS and peak current, cosine φ,
-true power factor (TPF) and distortion power (THD) on all three phases on a 10
-minute base interval. This provides us the long-term data essential for the
-total energy usage as well as the amount of displacement power and the harmonic
-contents.</p>
+<p><strong>iQunet GridMate AG1 Power Quality Monitor:</strong> This LoRaWAN-enabled sensor
+measures aggregate data such as average grid voltage, RMS and peak current,
+cosine φ, true power factor (TPF) and distortion power (THD) on all three
+phases on a 10 minute base interval. This provides us the long-term data
+essential for the total energy usage as well as the amount of displacement
+power and the harmonic contents.</p>
 
-<p><img src="/tutorials/assets/images/power-gridmate.jpg" alt="GridMate AG1 LoRaWAN Power Monitor" /></p>
-<figcaption>figure 3: GridMate AG1 LoRaWAN Power Monitor.</figcaption>
+<p><img src="/tutorials/assets/images/power-gridmate.jpg" alt="AG1 LoRaWAN Power Monitor" /></p>
+<figcaption>figure 3: AG1 LoRaWAN Power Monitor.</figcaption>
 
 <p><strong>Wireless Current Waveform Sensor:</strong> Positioned on one of the phases, this
 sensor captures high-speed snapshots (4kS/s) of the current waveform and its
@@ -73,11 +73,11 @@ faults. In the next chapter, we will delve into this aspect further.</p>
 <hr />
 
 <h3 id="initial-findings">Initial Findings</h3>
-<p>Within the first few hours, initial data from the GridMate AG1 revealed a
+<p>Within the first few hours, initial data from the AG1 monitor revealed a
 considerable level of distortion (approx. D=3x20kVArd at 250 Hz) compared to
 170 kW of active power at the 50 Hz fundamental. Although the cosine φ
-seemed to be well-corrected at around PF=0.98, the distortion power was the main
-factor for reducing the true power factor to around TPF&lt;0.9.</p>
+seemed to be well-corrected at around PF=0.98, the distortion power was the
+main factor for reducing the true power factor to around TPF&lt;0.9.</p>
 
 <video width="500px" controls="" loop="" autoplay="" muted="">
   <source src="/tutorials/assets/videos/power-phasor.mp4" type="video/mp4" />

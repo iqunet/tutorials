@@ -220,15 +220,15 @@ the possible infrastructure improvements learned from the captured sensor data.<
 <p>For this, two sensors were deployed on the compressor room electrical supply,
 each with their specific focus:</p>
 
-<p><strong>GridMate AG1 Power Quality Monitor:</strong> This LoRaWAN-enabled sensor measures
-aggregate data such as average grid voltage, RMS and peak current, cosine φ,
-true power factor (TPF) and distortion power (THD) on all three phases on a 10
-minute base interval. This provides us the long-term data essential for the
-total energy usage as well as the amount of displacement power and the harmonic
-contents.</p>
+<p><strong>iQunet GridMate AG1 Power Quality Monitor:</strong> This LoRaWAN-enabled sensor
+measures aggregate data such as average grid voltage, RMS and peak current,
+cosine φ, true power factor (TPF) and distortion power (THD) on all three
+phases on a 10 minute base interval. This provides us the long-term data
+essential for the total energy usage as well as the amount of displacement
+power and the harmonic contents.</p>
 
-<p><img src="/tutorials/assets/images/power-gridmate.jpg" alt="GridMate AG1 LoRaWAN Power Monitor" /></p>
-<figcaption>figure 3: GridMate AG1 LoRaWAN Power Monitor.</figcaption>
+<p><img src="/tutorials/assets/images/power-gridmate.jpg" alt="AG1 LoRaWAN Power Monitor" /></p>
+<figcaption>figure 3: AG1 LoRaWAN Power Monitor.</figcaption>
 
 <p><strong>Wireless Current Waveform Sensor:</strong> Positioned on one of the phases, this
 sensor captures high-speed snapshots (4kS/s) of the current waveform and its
@@ -246,11 +246,11 @@ faults. In the next chapter, we will delve into this aspect further.</p>
 <hr />
 
 <h3 id="initial-findings">Initial Findings</h3>
-<p>Within the first few hours, initial data from the GridMate AG1 revealed a
+<p>Within the first few hours, initial data from the AG1 monitor revealed a
 considerable level of distortion (approx. D=3x20kVArd at 250 Hz) compared to
 170 kW of active power at the 50 Hz fundamental. Although the cosine φ
-seemed to be well-corrected at around PF=0.98, the distortion power was the main
-factor for reducing the true power factor to around TPF&lt;0.9.</p>
+seemed to be well-corrected at around PF=0.98, the distortion power was the
+main factor for reducing the true power factor to around TPF&lt;0.9.</p>
 
 <video width="500px" controls="" loop="" autoplay="" muted="">
   <source src="/tutorials/assets/videos/power-phasor.mp4" type="video/mp4" />
