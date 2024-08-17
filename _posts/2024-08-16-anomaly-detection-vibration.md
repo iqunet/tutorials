@@ -95,26 +95,17 @@ effectively reducing standstills to virtually 0 excess downtime.
 
 ### Sensor Data Processing and Machine Learning
 
-The MEMS-based wireless vibration sensors provide detailed, day-by-day insights
+The MEMS-based wireless vibration sensors provide detailed, day-to-day insights
 into machine behavior. Each sensor captures three-axis vibration snapshots every
 15 minutes (or at a configurable interval) at a sampling rate of 3200 Hz (also
-configurable). Each measurement, consisting of 25,000 samples, is wirelessly
-transmitted to a central edge server.
+configurable). A measurement, consisting of 25,000 samples, is wirelessly
+transmitted to a central edge server equipped with an embedded historian database.
 
-Depending on the capture settings and environment, the battery lifetime is
-around 20-50,000 measurements. A battery replacement takes less than a minute.
-
-The edge server is equipped with an embedded historian database. Up to 25GB or
-historical data is retained, which corresponds to multiple years of accumulated
-sensor data.
-The embedded software includes a TensorFlow inference processor for machine
-learning models, along with a customizable web-based dashboard, making it a
-complete offline standalone solution, suitable for displaying in kiosk mode and
-providing condense information for the plant operator/engineer.
-
-For compatibility with external systems, the platform also features an OPC-UA
-server and MQTT publishing client, enabling real-time data export to third-party
-tools.
+The system includes a TensorFlow inference processor for machine learning, along
+with a customizable dashboard, making it a complete standalone solution. For
+compatibility with external systems, the platform also includes an OPC-UA server
+and MQTT publishing client, enabling real-time data export to third-party
+applications.
 
 #### Data Processing: From Raw Data to Actionable Insights
 
