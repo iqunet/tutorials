@@ -113,7 +113,7 @@ modern SCADA platforms (Kepware, Ignition, Siemens SIMATIC, etc.).
 The raw data collected by the sensors undergoes several processing steps to
 extract several aggregate parameters and complex parameters.
 
-#### Prefiltering and Data Streams
+#### Prefiltering, Data Streams and Domains
 
 1. **Prefiltering:**  
    Certain types of piezo sensors can generate high dynamic range velocity
@@ -176,13 +176,25 @@ extract several aggregate parameters and complex parameters.
 
 #### Challenges with Manual Analysis and Traditional Methods
 
-Linking specific fault patterns to particular machine components usually requires expert knowledge. Recognizing issues like bearing faults or diagnosing machine-specific anomalies demands experience and regular inspections. However, relying on specialists is costly, and extended intervals between inspections can lead to missed random faults.
+   Linking specific fault patterns to particular machine components usually
+   requires expert knowledge. Recognizing issues like bearing faults or
+   diagnosing machine-specific anomalies demands experience and regular
+   inspections. However, relying on specialists only is costly, and the
+   extensive interval between two inspections can lead to missed random faults.
 
-Given the sheer volume of data—hundreds of plots generated daily—manual analysis becomes impractical. Traditional automated methods, such as frequency binning and setting thresholds for each bin, are widely accepted but come with their own limitations:
+   In addition, the sheer volume of data --hundreds of plots generated daily--
+   makes manual analysis impractical. Traditional automated methods, such as
+   frequency binning and manually setting thresholds for each bin, are widely
+   accepted but come with their own limitations:
 
-- **Dependency on Expertise:** Setting accurate thresholds requires deep expertise in the machine’s internals.
-- **Constant Operating Conditions:** These methods work best for machines that operate at constant speeds and loads.
-- **Adapting to Variability:** When machines operate under variable speeds, loads, and process noise, traditional methods begin to struggle.
+   - **Dependency on Expertise:** Setting accurate thresholds requires
+     understanding of the machine's internals.
+
+   - **Operating point variability:** Traditional threshold-based methods work
+     best for machines that operate at constant speeds and loads. Varying
+     conditions require relaxation of the alarm thresholds at best and the
+     necessary headroom to avoid false positives affects the sensitivity of the
+     monitoring system drastically.
 
 #### The Power of Machine Learning
 
