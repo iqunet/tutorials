@@ -103,9 +103,10 @@ transmitted to a central edge server equipped with an embedded historian databas
 
 The system includes a TensorFlow inference processor for machine learning, along
 with a customizable dashboard, making it a complete standalone solution. For
-compatibility with external systems, the platform also includes an OPC-UA server
-and MQTT publishing client, enabling real-time data export to third-party
-applications.
+compatibility with third-party applications, the platform also includes an
+OPC-UA server and MQTT publishing client, enabling real-time visualization on
+modern SCADA platforms (Kepware, Ignition, Siemens SIMATIC, etc.).
+
 
 #### Data Processing: From Raw Data to Actionable Insights
 
