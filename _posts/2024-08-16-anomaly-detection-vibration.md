@@ -5,6 +5,7 @@ date: 2024-XX-XX
 categories: blog
 toc: true
 toc_sticky: true
+published: false
 ---
 
 ### Introduction
@@ -110,7 +111,65 @@ modern SCADA platforms (Kepware, Ignition, Siemens SIMATIC, etc.).
 
 #### Data Processing: From Raw Data to Actionable Insights
 
-The raw data is first used to generate spectral plots, which display the frequency components of the vibration signals. These spectral plots allow us to observe patterns in the frequency domain and identify any irregularities. However, spectral analysis alone is insufficient to capture every anomaly. For instance, short impacts or peaks in the time domain signal can be missed, as they often spread across a wide frequency band and are difficult to detect in the spectrum.
+The raw data is first prefiltered to remove DC components from the signal. From
+there on, several separate streams of processed data are generated, such as
+acceleration, velocity and rms values. The data is also transformed to spectral
+plots, which allows us to observe fault patterns and irregulatities in the
+the frequency domain. While the time domain is useful to detect short impacts
+or peaks, such information in not visible in the frequency domain. In addition,
+making the link between the actual fault pattern and the machine component
+often requires expert-level knowledge (both about for example bearing faults
+and the specifics of the machine) and regular investigation of the measurement
+data. Such experts are quite expensive and therefore the inspection interval
+is too large to catch random machine faults.
+Given that hundreds of these plots are generated each day, manual analysis
+becomes impractical. For this purpose, we must rely on automated fault detection
+techniques. Accepted ways for this automated systems
+are for example frequency binning and setting thresholds for each bin based on
+which alarms can be generated. Again, this requires careful knowledge of the
+internals of the machine and is mostly used for equipment which operates under
+constant speed and loads. When this comfort zone is left behind, and we are
+talking about unknown interals, variable speed drives, varying loads and process
+noise, these somewhat dated techniques start to fall apart.
+Enter the fairly recent field op deep learning and machine learning techniques,
+where we can train mathematical models to represent the time and frequency
+data from the sensor in so-called latent variables. Latent variables can be
+seen as an abstracted representation of a machine's behaviour. For example,
+in the autoencoder (one ot the types of ML), we train the model to represent
+the machine's time- and frequency domain data with a limited set of latent
+variables. In more understandable terms, a STFT representation is first generated
+which is a combination of both the time and frequency representation of the
+sensor data, just transformed to another domain. The STFT allows us to detect
+both wideband anomalies (think short clicks or sudden events) and also
+anomalies in the spectrum. For the shaker for example imbalance due to worn out
+dampers will cause even harmonics to appear. Anyways this is not relevant here
+It contains the same data as the raw sensor data, only transformed to another
+orthogonal domain. This is the input of the machine learning thing. Then, we
+force the ML algorithm to abstract the machine's behaviour in a few variables.
+Think about, when the machine is running under x load and x speed, I expect to
+see a pattern of these frequencies with these relative amplitudes. By training
+the model on all types of real-world data, temperature, loads, the model can
+represent a much more complex representation (marketing term digital twin) of
+the actual machine than a human being can do. When a certain fault appears, for
+example imbalance or a bearing fault which suddenly causes a frequency component
+to appear (or even disappear under certain conditions!), the trained model will
+suddenly start to deviate from the data that we had trained on before. This
+deviation, called the loss function in expert terms, is a number (or even an
+output which indicates a particular fault if trained for this matter), which can
+be used to indicate how far the machine is operating from any normal condition
+that it was trained before. Think like just a temperature gauge, but instead
+of degrees celcius, we have a number that represents the "anomaly level"
+(loss function). If we plot this number over time, even for an untrained
+personnel this can be grasped that something is off with the machine and
+closer inspection is needed. Also, since we have collapsed the 25.000 point
+measurement data in a single number now, we can easily set a threshold to 
+generate some kind of alarm upstream in the SCADA system. Since this system
+runs 24/7 in case of the waste production plant we can early detect emerging
+faults, order replacement parts and have everything ready for the next
+planned maintainance.
+
+
+used to generate spectral plots, which display the frequency components of the vibration signals. These spectral plots allow us to observe patterns in the frequency domain and identify any irregularities. However, spectral analysis alone is insufficient to capture every anomaly. For instance, short impacts or peaks in the time domain signal can be missed, as they often spread across a wide frequency band and are difficult to detect in the spectrum.
 
 To address this, Short-Time Fourier Transform (STFT) plots are also generated. The STFT provides a time-frequency representation of the signal, allowing us to detect both spectral and temporal events. This combination is critical for identifying subtle anomalies that could indicate emerging issues, even when they aren’t immediately obvious in the spectral data.
 
