@@ -145,29 +145,34 @@ extract several aggregate parameters and complex parameters.
    machine learning techniques.
 
 3. **Spectral Plots:**  
-Why do we use both the time and frequency domains? Although they represent the same underlying data, each domain has unique advantages when it comes to detecting specific signal patterns. For instance, short clicks or transient events in the signal are easily identified in the time domain, where their energy is concentrated in a short interval. However, in the frequency domain, these events may only appear as a slight increase in the noise floor, making them difficult to detect.
+   Why do we use both the time and frequency domains? Although they represent
+   the same underlying data, each domain has unique advantages when it comes to
+   detecting specific signal patterns. For instance, one-time transient events
+   in the signal (e.g. a mechanical shock) are easily identified in the time
+   domain, where their energy is concentrated in a short interval. However, in
+   the frequency domain, these events merely appear as a slight increase in the
+   noise floor, making them difficult to detect, both for humans and automated
+   systems.
 
-This distinction is crucial to understanding why we use the Short-Time Fourier Transform (STFT) when feeding data into the machine learning algorithm. The STFT allows us to represent the sensor signal in both the time and frequency domains simultaneously. By doing so, we capture all relevant information (for the sake of simplicity, we¿re excluding phase information here), ensuring that various fault patterns, whether time-based or frequency-based, can be detected.
+   The above consideration is crucial for understanding why we use the
+   Short-Time Fourier Transform (STFT) when feeding data into the machine
+   learning algorithm. The STFT allows us to represent the sensor signal in
+   both the time- and frequency-domain simultaneously. By doing so, we capture
+   all relevant information (for the sake of simplicity, we exclude phase
+   information here) and ensure that the signal power of various fault patterns,
+   whether time-based or frequency-based, remains concentrated and is more
+   easily detected.
 
-While it's theoretically possible for a machine learning algorithm to perform domain transforms internally, this approach would require a significant portion of the model structure (specifically, the convolutional layers) to handle these transformations. This would unnecessarily complicate the training process and reduce the efficiency of the model. By using the STFT as a fixed preprocessing step, we effectively offload this task and provide the ML algorithm with a rich input that combines the strengths of both domains. In this sense, the STFT acts as a pre-trained, fixed component of the machine learning model, streamlining the detection process and improving the overall performance and reducing the training cost.
-
-   Why do we use both the time- and the frequency domain? Although they represent
-   the same data in an orthogonal domain, some signal patterns are better detected
-   in only on of the domains. For example, short clicks in the signal will
-   clearly have their energy concentrated and visible in the time domain, while
-   in the frequency domain they are barely noticable as a marginal apparent
-   rise in the noise floor.
-   This is important for the remaining part of this discussion and explains
-   why we use the STFT (short-term fourier transform) when inputting the data
-   to the machine learning algorithm. The STFT represents the sensor signal
-   both in the time and the frequency domain. It contains all data (for the
-   sake of the discussion we ignore the phase information here) so that any
-   type fault pattern can be detected. While in theory a machine learning
-   algorithm can perform these domain transforms internally, this would take
-   part of the model structure (the convolutions) to achieve this and make
-   the training unnecessary more difficult for our purpose. In this regard,
-   we can see the STFT as a fixed pre-trained part of the ML model.
-
+   While is very doable for a machine learning algorithm to perform domain
+   transforms internally, this approach would require a significant portion of
+   the model structure (specifically, the convolutional layers) to handle these
+   transformations. This would unnecessarily complicate the training phase
+   as it would also take considerable time to tune the ML model parameters to
+   'reinvent' these transforms. By using the STFT as a fixed preprocessing step,
+   we effectively offload this task and provide the ML algorithm with a rich
+   input that combines the strengths of both domains. In this sense, the STFT
+   acts as a pre-trained, fixed component of the machine learning model itself,
+   simplifying the detection process and reducing the training cost.
 
 #### Challenges with Manual Analysis and Traditional Methods
 
