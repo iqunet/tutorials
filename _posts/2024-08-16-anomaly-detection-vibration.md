@@ -8,11 +8,11 @@ toc_sticky: true
 ---
 
 ### Introduction
-Waste management plants rely on serial processing lines where failures
-cause significant capacity loss due to limited redundancy. This makes some
-level of predictive maintainance monitoring critical to prevent downtime.
+Waste management plants rely on serial processing lines where failures cause
+significant capacity loss due to limited redundancy. This makes some level of
+predictive maintainance monitoring critical to prevent unplanned downtime.
 
-While PLCs are in the control of the pipeline, machine manufacturers
+While digital PLCs are in the control of the pipeline, machine manufacturers
 treat health monitoring mostly as an afterthought, leaving it to the customers
 to handle failures. In unhealthy environments filled with dust, humidity, and
 noise, daily manual inspections are not practical.
@@ -28,11 +28,51 @@ machine defects we are trying to detect here.
 ---
 
 ### Challenges in Monitoring Shaker Machines
-Describe the operational environment and challenges of monitoring shaker machines in a waste processing plant. Focus on the harsh conditions, lack of redundancy in the production line, and the critical need to prevent downtime.
+So, having set the image of the environment, let's focus on the sorting machines.
+The sorting machines are in multiple purposes and sizes, but one example is
+a vibratory feeder followed by and optical sorter.
+The vibratory feeder is basically a big shaker table driven by an eccentric
+link with counterweight to balance and minimize the load on the bearings. At
+the non-driven side the machine is attached to mechanical anti-vibration dampers
+which absorb the energy that would otherwise directly be transferred to the
+mounting points of the machine. The vibratory feeder will spread the material
+as much as possible for the optical sorter, which then
+separates on material types with the help of compressed air to alter the
+direction of the material towards multiple output flows.
+The best solution would be to place a wired piezo accerelometer as close to
+the bearing as possible. However, this is where we meet reality, as the large
+displacements of the feeder (order of 10cm) makes any wiring and contacts
+prone to extreme wear and failure, especially over a long time of continuous
+operation. Secondly, due to the regular maintainance intervals where part of
+the drive end are disassembled and removed for maintainance, the sensor would
+also have to be removed and installed multiple times over the lifetime of the
+DUT, which makes it prone to human error, such as differences in installed
+orientation etc. For this reason, it was preferred by the customer itself to
+install the sensor as far as 40cm away from the ideal location, on the carrier
+construction rather than on the drive train. This, of course, drastically
+reduces the sensitivity of the system, where the ultrasonic measurements are
+useless because of the multiple boundaries between materials that reflect and
+attenuate these signals. On the other hand RMS sensors are on the other end
+of the spectrum because they throw away all middle ground information. For
+this reason, a triax MEMS-based wireless vibration sensor is the perfect fit,
+not only because of the frequency band up to 1600Hz, but also because of their
+excellent robustness against failure (piezo sensors must be handle carfully
+because of cracks in their ceramic material renders them useless)
+Still the sensors allow to easily select the most sensitive axis for anomaly
+detection, and also allow to be selective on the frequency spectrum to
+separate the noise of the production process from the actual faults, thus
+increasing the detection period.
+The goal of the customer is here to be able to detect and align the replacement
+of worn out parts with the already planned standstill maintainence interval,
+thus reducing excess unplanned outages to practically zero time.
+A last thing is that the wireless sensors have a range between 20 and 50 meters,
+totally avoiding the cabling cost in expense of the delay between two measurements
+of course. For most practical applications that are not critical systems which
+require immediate shutdown as is the case here, this makes the difference between
+monitoring or just no monitoring at all.
 
-- Harsh conditions: Dust, humidity, noise, and hazardous materials.
-- No daily checks: Reliance on automated monitoring due to the environment.
-- Wireless sensor placement: Explain why wired sensors aren't feasible and the challenges of sensor placement far from ideal locations.
+
+
 
 ---
 
