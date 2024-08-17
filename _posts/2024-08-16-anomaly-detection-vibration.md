@@ -176,27 +176,27 @@ extract several aggregate parameters and complex parameters.
 
 #### Challenges with Manual Analysis and Traditional Methods
 
-   Linking specific fault patterns to particular machine components usually
-   requires expert knowledge. Recognizing issues like bearing faults or
-   diagnosing machine-specific anomalies demands experience and regular
-   inspections. However, relying on specialists only is costly, and the
-   extensive interval between two inspections can lead to missed random faults.
+   Linking specific fault patterns to particular machine components typically
+   requires expert knowledge. Diagnosing issues like bearing faults or other
+   machine-specific anomalies demands experience and regular inspections.
+   However, relying solely on specialists is costly, and the extended intervals
+   between inspections can result in missed random faults.
 
-   In addition, the sheer volume of data --hundreds of plots generated daily--
+   Moreover, the sheer volume of data --hundreds of plots generated daily-- 
    makes manual analysis impractical. Traditional automated methods, such as
    frequency binning and manually setting thresholds for each bin, are widely
-   accepted but come with their own limitations:
+   accepted but come with inherent limitations:
 
-   - **Dependency on Expertise:** Setting accurate thresholds requires
+   - **Dependency on Expertise:** Setting accurate thresholds requires good
      understanding of the machine's internals.
 
-   - **Operating point variability:** Traditional threshold-based methods work
-     best for machines that operate at constant speeds and loads. Varying
-     conditions require relaxation of the alarm thresholds at best and the
-     necessary headroom to avoid false positives affects the sensitivity of the
-     monitoring system drastically.
+   - **Operating point variability:** Traditional threshold-based methods are
+     most effective when machines operate under constant speeds and loads. In
+     environments with varying conditions, thresholds often need to be relaxed
+     to avoid false positives, which significantly reduces the sensitivity of
+     the monitoring system.
 
-#### The Power of Machine Learning
+#### Enter the Power of Machine Learning
 
 Machine learning (ML) techniques offer a more adaptable solution. These models can represent the machine’s time and frequency data using latent variables, which provide a more abstract yet comprehensive view of the machine’s behavior.
 
