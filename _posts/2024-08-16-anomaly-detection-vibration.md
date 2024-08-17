@@ -108,65 +108,100 @@ compatibility with third-party applications, the platform also includes an
 OPC-UA server and MQTT publishing client, enabling real-time visualization on
 modern SCADA platforms (Kepware, Ignition, Siemens SIMATIC, etc.).
 
+### Data Processing: From Raw Data to Actionable Insights
 
-#### Data Processing: From Raw Data to Actionable Insights
+The raw data collected by the sensors undergoes several processing steps to
+extract several aggregate parameters and complex parameters.
 
-The raw data is first prefiltered to remove DC components from the signal. From
-there on, several separate streams of processed data are generated, such as
-acceleration, velocity and rms values. The data is also transformed to spectral
-plots, which allows us to observe fault patterns and irregulatities in the
-the frequency domain. While the time domain is useful to detect short impacts
-or peaks, such information in not visible in the frequency domain. In addition,
-making the link between the actual fault pattern and the machine component
-often requires expert-level knowledge (both about for example bearing faults
-and the specifics of the machine) and regular investigation of the measurement
-data. Such experts are quite expensive and therefore the inspection interval
-is too large to catch random machine faults.
-Given that hundreds of these plots are generated each day, manual analysis
-becomes impractical. For this purpose, we must rely on automated fault detection
-techniques. Accepted ways for this automated systems
-are for example frequency binning and setting thresholds for each bin based on
-which alarms can be generated. Again, this requires careful knowledge of the
-internals of the machine and is mostly used for equipment which operates under
-constant speed and loads. When this comfort zone is left behind, and we are
-talking about unknown interals, variable speed drives, varying loads and process
-noise, these somewhat dated techniques start to fall apart.
-Enter the fairly recent field op deep learning and machine learning techniques,
-where we can train mathematical models to represent the time and frequency
-data from the sensor in so-called latent variables. Latent variables can be
-seen as an abstracted representation of a machine's behaviour. For example,
-in the autoencoder (one ot the types of ML), we train the model to represent
-the machine's time- and frequency domain data with a limited set of latent
-variables. In more understandable terms, a STFT representation is first generated
-which is a combination of both the time and frequency representation of the
-sensor data, just transformed to another domain. The STFT allows us to detect
-both wideband anomalies (think short clicks or sudden events) and also
-anomalies in the spectrum. For the shaker for example imbalance due to worn out
-dampers will cause even harmonics to appear. Anyways this is not relevant here
-It contains the same data as the raw sensor data, only transformed to another
-orthogonal domain. This is the input of the machine learning thing. Then, we
-force the ML algorithm to abstract the machine's behaviour in a few variables.
-Think about, when the machine is running under x load and x speed, I expect to
-see a pattern of these frequencies with these relative amplitudes. By training
-the model on all types of real-world data, temperature, loads, the model can
-represent a much more complex representation (marketing term digital twin) of
-the actual machine than a human being can do. When a certain fault appears, for
-example imbalance or a bearing fault which suddenly causes a frequency component
-to appear (or even disappear under certain conditions!), the trained model will
-suddenly start to deviate from the data that we had trained on before. This
-deviation, called the loss function in expert terms, is a number (or even an
-output which indicates a particular fault if trained for this matter), which can
-be used to indicate how far the machine is operating from any normal condition
-that it was trained before. Think like just a temperature gauge, but instead
-of degrees celcius, we have a number that represents the "anomaly level"
-(loss function). If we plot this number over time, even for an untrained
-personnel this can be grasped that something is off with the machine and
-closer inspection is needed. Also, since we have collapsed the 25.000 point
-measurement data in a single number now, we can easily set a threshold to 
-generate some kind of alarm upstream in the SCADA system. Since this system
-runs 24/7 in case of the waste production plant we can early detect emerging
-faults, order replacement parts and have everything ready for the next
-planned maintainance.
+#### Prefiltering and Data Streams
+
+1. **Prefiltering:**  
+   Certain types of piezo sensors can generate high dynamic range velocity
+   signals at very low frequencies using a charge amplifier. However, MEMS
+   sensor data is acceleration based and must be prefiltered to remove any
+   near-DC components before the conversion to velocity. This is a
+   non-straighforward mathematical process similar to the stabilization time
+   in piezo sensors, and it must be ensured that the high rejection ratio
+   linear-phase filter does not introduce ripple near the LPF cut-off frequency,
+   which would cause severe drift when integrating from acceleration to velocity.
+   
+2. **Data Streams:**  
+   Once the DC-offset is removed, the data is converted into several useful
+   streams in the edge server, including:
+   - **Acceleration**
+   - **Velocity**
+   - **RMS values**
+   - **Kurtosis**
+   - **Time domain view**
+   - **Frequency domain**
+   
+   These are the basic tools used by vibration experts to determine the state
+   of the machine, and in more advance cases, also the origin of the fault,
+   such as a loose mount or a bearing fault. Other tools exist that will
+   further postprocess the signal, such as enveloping demodulation, but they
+   are mostly focused towards representing the data in a format which is
+   easily understandable by the human eye. We will ignore these cases since
+   this blogpost is focused towards the automated detection of faults using
+   machine learning techniques.
+
+3. **Spectral Plots:**  
+Why do we use both the time and frequency domains? Although they represent the same underlying data, each domain has unique advantages when it comes to detecting specific signal patterns. For instance, short clicks or transient events in the signal are easily identified in the time domain, where their energy is concentrated in a short interval. However, in the frequency domain, these events may only appear as a slight increase in the noise floor, making them difficult to detect.
+
+This distinction is crucial to understanding why we use the Short-Time Fourier Transform (STFT) when feeding data into the machine learning algorithm. The STFT allows us to represent the sensor signal in both the time and frequency domains simultaneously. By doing so, we capture all relevant information (for the sake of simplicity, we�re excluding phase information here), ensuring that various fault patterns, whether time-based or frequency-based, can be detected.
+
+While it's theoretically possible for a machine learning algorithm to perform domain transforms internally, this approach would require a significant portion of the model structure (specifically, the convolutional layers) to handle these transformations. This would unnecessarily complicate the training process and reduce the efficiency of the model. By using the STFT as a fixed preprocessing step, we effectively offload this task and provide the ML algorithm with a rich input that combines the strengths of both domains. In this sense, the STFT acts as a pre-trained, fixed component of the machine learning model, streamlining the detection process and improving the overall performance and reducing the training cost.
+
+   Why do we use both the time- and the frequency domain? Although they represent
+   the same data in an orthogonal domain, some signal patterns are better detected
+   in only on of the domains. For example, short clicks in the signal will
+   clearly have their energy concentrated and visible in the time domain, while
+   in the frequency domain they are barely noticable as a marginal apparent
+   rise in the noise floor.
+   This is important for the remaining part of this discussion and explains
+   why we use the STFT (short-term fourier transform) when inputting the data
+   to the machine learning algorithm. The STFT represents the sensor signal
+   both in the time and the frequency domain. It contains all data (for the
+   sake of the discussion we ignore the phase information here) so that any
+   type fault pattern can be detected. While in theory a machine learning
+   algorithm can perform these domain transforms internally, this would take
+   part of the model structure (the convolutions) to achieve this and make
+   the training unnecessary more difficult for our purpose. In this regard,
+   we can see the STFT as a fixed pre-trained part of the ML model.
+
+
+#### Challenges with Manual Analysis and Traditional Methods
+
+Linking specific fault patterns to particular machine components usually requires expert knowledge. Recognizing issues like bearing faults or diagnosing machine-specific anomalies demands experience and regular inspections. However, relying on specialists is costly, and extended intervals between inspections can lead to missed random faults.
+
+Given the sheer volume of data—hundreds of plots generated daily—manual analysis becomes impractical. Traditional automated methods, such as frequency binning and setting thresholds for each bin, are widely accepted but come with their own limitations:
+
+- **Dependency on Expertise:** Setting accurate thresholds requires deep expertise in the machine’s internals.
+- **Constant Operating Conditions:** These methods work best for machines that operate at constant speeds and loads.
+- **Adapting to Variability:** When machines operate under variable speeds, loads, and process noise, traditional methods begin to struggle.
+
+#### The Power of Machine Learning
+
+Machine learning (ML) techniques offer a more adaptable solution. These models can represent the machine’s time and frequency data using latent variables, which provide a more abstract yet comprehensive view of the machine’s behavior.
+
+- **Latent Variables:**  
+  In autoencoder models, for example, the system is trained to distill the machine’s vibration data into a limited set of latent variables, which encapsulate its typical behavior.
+
+- **STFT (Short-Time Fourier Transform):**  
+  The sensor data is first transformed using the STFT, which combines time and frequency domain information. This approach enables the detection of both:
+  - **Wideband Anomalies:** Sudden clicks or impacts.
+  - **Spectral Anomalies:** Changes in frequency components, such as those caused by imbalances or wear.
+
+By training the model on real-world data—across varying temperatures, loads, and conditions—the ML model develops a more comprehensive understanding of the machine’s expected behavior, effectively creating a "digital twin."
+
+#### Turning Detection into Actionable Insights
+
+When faults arise, such as imbalances or bearing issues, the ML model detects deviations from the normal patterns it has learned. These deviations are quantified through a loss function, producing an anomaly score that indicates how far the machine’s current operation deviates from its expected performance.
+
+- **Simplified Metric:**  
+  The anomaly score serves as a straightforward "health indicator" for the machine. Similar to a temperature gauge, this score gives a numerical value representing the machine's condition. Even non-experts can track this number over time to identify when something seems off.
+
+- **Thresholds and Alarms:**  
+  Since the model condenses 25,000 data points into a single anomaly score, it’s easy to set thresholds that trigger alarms in the SCADA system. This real-time monitoring allows operators to detect emerging issues early, order replacement parts, and plan repairs during scheduled maintenance, minimizing unexpected downtime.
 
 
 #### Machine Learning for Anomaly Detection
