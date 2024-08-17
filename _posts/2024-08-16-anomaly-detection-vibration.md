@@ -27,7 +27,7 @@ machine defects we are trying to detect here.
 
 ---
 
-### Challenges in Monitoring Shaker Machines
+### Monitoring Shaker Machines
 
 Monitoring vibrating equipment in waste management plants presents it's own
 challenges:
@@ -92,6 +92,63 @@ and used to align otherwise unplanned downtime with scheduled maintenance tasks,
 effectively reducing standstills to virtually 0 excess downtime.
 
 ---
+
+### Sensor Data Processing and Machine Learning
+
+The MEMS-based wireless vibration sensors provide detailed, day-by-day insights
+into machine behavior. Each sensor captures three-axis vibration snapshots every
+15 minutes (or at a configurable interval) at a sampling rate of 3200 Hz (also
+configurable). Each measurement, consisting of 25,000 samples, is wirelessly
+transmitted to a central edge server equipped with an embedded historian database.
+
+This edge system includes a TensorFlow inference processor for machine learning,
+along with a customizable dashboard, making it a complete standalone solution,
+suitable for displaying in kiosk mode and providing condense information for
+the operator of the plant.
+
+For compatibility with external systems, the platform also features an OPC-UA
+server and MQTT client, enabling real-time data export to third-party
+applications.
+
+#### Data Processing: From Raw Data to Actionable Insights
+
+The raw data is first used to generate spectral plots, which display the frequency components of the vibration signals. These spectral plots allow us to observe patterns in the frequency domain and identify any irregularities. However, spectral analysis alone is insufficient to capture every anomaly. For instance, short impacts or peaks in the time domain signal can be missed, as they often spread across a wide frequency band and are difficult to detect in the spectrum.
+
+To address this, Short-Time Fourier Transform (STFT) plots are also generated. The STFT provides a time-frequency representation of the signal, allowing us to detect both spectral and temporal events. This combination is critical for identifying subtle anomalies that could indicate emerging issues, even when they aren’t immediately obvious in the spectral data.
+
+Given that hundreds of these plots are generated each day, manual analysis becomes impractical. This is where machine learning steps in to automate the process.
+
+#### Machine Learning for Anomaly Detection
+
+The STFT data is fed into a machine learning model, specifically an autoencoder, which has been trained on previously captured data. The autoencoder learns the normal operating patterns of the machine and generates an anomaly score based on how well the current data matches the learned patterns.
+
+The advantage of using this approach is that it can detect a variety of anomalies:
+
+- **Emerging Faults:** A frequency component that suddenly appears is flagged as an anomaly.
+- **Disappearing or Shifting Frequencies:** A frequency component that vanishes or shifts can also indicate an issue, even though this might decrease the overall RMS value.
+
+The ML model accounts for variability due to temperature, speed, and load, making it robust enough to adapt to changing operating conditions. The result is an anomaly score that quantifies the deviation from the machine’s nominal operating point.
+
+#### Simplifying Complex Data for Decision-Makers
+
+Not every operator is a vibration expert, and in busy industrial environments, complex data needs to be presented in a simple, actionable format. The output of the autoencoder is distilled into an easy-to-understand metric. 
+
+- **Anomaly Score:** This single number represents the degree of deviation. A stable but elevated score suggests that the fault is present but not worsening. However, a rising anomaly score signals that immediate action may be required to prevent a failure.
+
+This data can be integrated into higher-level platforms using OPC UA or MQTT for automated reporting, enabling operators to respond in a timely manner.
+
+#### Broader Applications Beyond Shaker Machines
+
+This machine learning-based approach is versatile and can be applied to other types of equipment with complex operating conditions. For example, cavitation in pumps or noise in homogenizers can be detected by the same methodology. The autoencoder learns the machine’s normal behavior without needing supervised training, allowing it to identify both known and unknown failure modes.
+
+
+
+
+
+
+
+
+
 
 ### Sensor Setup and Data Collection
 Detail the technical setup of the wireless vibration sensors. Discuss the sensor specs, sampling rate, and the practical limitations of sensor placement on large shaker machines.
