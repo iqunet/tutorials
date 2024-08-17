@@ -169,12 +169,6 @@ faults, order replacement parts and have everything ready for the next
 planned maintainance.
 
 
-used to generate spectral plots, which display the frequency components of the vibration signals. These spectral plots allow us to observe patterns in the frequency domain and identify any irregularities. However, spectral analysis alone is insufficient to capture every anomaly. For instance, short impacts or peaks in the time domain signal can be missed, as they often spread across a wide frequency band and are difficult to detect in the spectrum.
-
-To address this, Short-Time Fourier Transform (STFT) plots are also generated. The STFT provides a time-frequency representation of the signal, allowing us to detect both spectral and temporal events. This combination is critical for identifying subtle anomalies that could indicate emerging issues, even when they aren’t immediately obvious in the spectral data.
-
-Given that hundreds of these plots are generated each day, manual analysis becomes impractical. This is where machine learning steps in to automate the process.
-
 #### Machine Learning for Anomaly Detection
 
 The STFT data is fed into a machine learning model, specifically an autoencoder, which has been trained on previously captured data. The autoencoder learns the normal operating patterns of the machine and generates an anomaly score based on how well the current data matches the learned patterns.
