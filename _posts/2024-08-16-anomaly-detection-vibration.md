@@ -28,51 +28,54 @@ machine defects we are trying to detect here.
 ---
 
 ### Challenges in Monitoring Shaker Machines
-So, having set the image of the environment, let's focus on the sorting machines.
-The sorting machines are in multiple purposes and sizes, but one example is
-a vibratory feeder followed by and optical sorter.
-The vibratory feeder is basically a big shaker table driven by an eccentric
-link with counterweight to balance and minimize the load on the bearings. At
-the non-driven side the machine is attached to mechanical anti-vibration dampers
-which absorb the energy that would otherwise directly be transferred to the
-mounting points of the machine. The vibratory feeder will spread the material
-as much as possible for the optical sorter, which then
-separates on material types with the help of compressed air to alter the
-direction of the material towards multiple output flows.
-The best solution would be to place a wired piezo accerelometer as close to
-the bearing as possible. However, this is where we meet reality, as the large
-displacements of the feeder (order of 10cm) makes any wiring and contacts
-prone to extreme wear and failure, especially over a long time of continuous
-operation. Secondly, due to the regular maintainance intervals where part of
-the drive end are disassembled and removed for maintainance, the sensor would
-also have to be removed and installed multiple times over the lifetime of the
-DUT, which makes it prone to human error, such as differences in installed
-orientation etc. For this reason, it was preferred by the customer itself to
-install the sensor as far as 40cm away from the ideal location, on the carrier
-construction rather than on the drive train. This, of course, drastically
-reduces the sensitivity of the system, where the ultrasonic measurements are
-useless because of the multiple boundaries between materials that reflect and
-attenuate these signals. On the other hand RMS sensors are on the other end
-of the spectrum because they throw away all middle ground information. For
-this reason, a triax MEMS-based wireless vibration sensor is the perfect fit,
-not only because of the frequency band up to 1600Hz, but also because of their
-excellent robustness against failure (piezo sensors must be handle carfully
-because of cracks in their ceramic material renders them useless)
-Still the sensors allow to easily select the most sensitive axis for anomaly
-detection, and also allow to be selective on the frequency spectrum to
-separate the noise of the production process from the actual faults, thus
-increasing the detection period.
-The goal of the customer is here to be able to detect and align the replacement
-of worn out parts with the already planned standstill maintainence interval,
-thus reducing excess unplanned outages to practically zero time.
-A last thing is that the wireless sensors have a range between 20 and 50 meters,
-totally avoiding the cabling cost in expense of the delay between two measurements
-of course. For most practical applications that are not critical systems which
-require immediate shutdown as is the case here, this makes the difference between
-monitoring or just no monitoring at all.
 
+Monitoring vibrating equipment in waste management plants is not straightforward
+for the following reasons. The facilities are large, and traditional monitoring
+systems are often not in place. Installing cabling across the site is not only
+expensive but also impractical, because the machines most prone to breakage
+experience large vibrations during operation.
 
+A good example is vibratory feeders, which play a role in spreading the material
+before optical sorting. These machines face several challenges:
 
+- **Large Displacements:** Vibratory feeders experience displacements of up to
+10 cm, making wired sensors vulnerable to wear and failure both in the connector
+and in the wire itself.
+
+- **Regular Maintenance:** When parts of the machine are disassembled for
+maintainance, any sensor installation would be part of the handling. However,
+we want the sensors to be as non-intrusive as possible while maintaining a
+consistent location and orientation. This makes the machine learning algorithms
+more sensitive as discussed later.
+
+Due to these challenges, the customer has opted for wireless sensors. However,
+these sensors are installed 40 cm away from the ideal location, on the machine
+frame instead of the motor/drive train. While this evidently reduces sensitivity
+for high-frequency bearing faults, this ensures consistent operation of the
+sensors over a long period.
+
+Other factors also must be taken into account:
+
+- **Signal Propagation:** Due to the placement of the sensor, there are multiple
+material boundaries which would attenuate/reflect high-frequency signals. For
+this reason, measurements of >10KHz up to the ultrasonic spectrum would not only
+be costly but also provide very marginal advantages.
+- **Unsuitability of RMS:** Due to the amount of processing noise, simple RMS
+sensors will see the fault signals simply be covered by the process noise itself.
+
+For this reason, triaxial MEMS-based wireless vibration sensors are ideal:
+
+- **Frequency Response:** capture vibrations up to 1600 Hz in 3 axes, which
+allows to separate process noise from the fault detection, which increases the
+SNR and the sensitivity.
+- **Robustness:** MEMS sensors are highly durable and well-suited for long-term
+use in harsh environments.
+- **Wireless:** With a range of 20 to 50 meters, these sensors eliminate the
+need for fragile and expensive cabling.
+
+In the next chapters, we will discuss how the sensors data is processed and
+used to align unplanned downtime to the scheduled maintainance, effectively
+eliminating costly standstills.
 
 ---
 
