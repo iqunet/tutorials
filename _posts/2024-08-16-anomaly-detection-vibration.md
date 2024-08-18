@@ -240,7 +240,67 @@ extract several aggregate parameters and complex parameters.
    of what machine learning can offer beyond the "black mystery box" that it
    may appear to many people in the field of vibration analysis.
 
-#### Turning Detection into Actionable Insights
+#### Real-world Vibratory Feeder Data
+
+   So in this section we will explore the incoming data from one of the sensors
+   that is placed on a vibratory feeder for many months in a row. We will see
+   the appearance of a fault in the spectrum, see the many stages of the fault
+   progress over time until the bearing fault was solved by placing a new bearing
+   on the machine.
+
+   // here we insert the time domain data of the vibratory feeder
+
+   In the time domain data there is not so much to see because of the process
+   noise itself. Hence, the rms energy of the fault itself will be under the
+   noise floor until the very late stages of the fault, where the energy of
+   the fault emerges above the process noise.
+
+   // then we go to the time domain before and after the fault appears.
+
+   In the frequency data, we have more luck, as the energy components of the
+   shaking process appear mostly at the lower frequencies. the dampers will
+   also suppress higher frequencies of the product itself so as expected it
+   is very useful to look at the upper half of the frequency spectrum. however,
+   still it is not clear at all how to set the thresholds for each of the
+   frequency bins as would be done in the traditional approach. Now, let's
+   go to the STFT spectrum and plot all data in a single plot (of course,
+   in a typical machine setup we dont have this data before a particular fault
+   has occurred so keep that in mind.)
+
+   // Here comes the STFT spectrum plot
+
+   We explain here that the horizontal axis is time and the vertical axis
+   is frequency from 0Hz to 1600Hz nyquist. The colormap represents the
+   magnitude of the frequency component on that date, with dark blue the
+   lowest and yellow the highest amplitude.
+
+   On the STFT plot we can now see that most of the process noise is clearly
+   limited to the fundamental drive frequency, which is converted to repeated
+   discontinuous (nonlinear) friction on the waste by the structure of the
+   feeder topology. (ref https://www.sciencedirect.com/science/article/abs/pii/S0263224117300416)
+   This part of the spectrum is less interesting for us as it contains more
+   information about the process itself than about the status of the drive motor,
+   the bearings and the dampers. However this does not imply that this is useless
+   data, as it is a totally valid use case to monitor the continuity of the
+   waste processing itself over long time.
+
+   So we focus on the upper part of the STFT spectrum.
+   In the middle we see that the first anomaly appeared weeks before the actual
+   problem, went away for some time (probably maintainance) and then reappeared
+   at full strength before actual intervention and replacement of the bearing.
+   After that, the machine reverts to normal operation. The reader may wonder
+   why the oldschool setup with thresholds would not work here well, there
+   was no information about the machine itself nor the type of faults that may
+   appear. Here ML takes in a lot of data and declares that the standard operating
+   condition. Any deviation from that would increase the loss indicator and
+   trigger an alarm. Now that we have enough data, of course we could set
+   thresholds for each bin but that would bring no additional extra info
+   if we would not be able to determine the type of fault. Now we can begin
+   labelling and start with supervised learning to pinpoint the actual fault
+   to the failed component automatically but that is already far beyond what
+   the client expected from the system.
+   
+   
 
 When faults arise, such as imbalances or bearing issues, the ML model detects deviations from the normal patterns it has learned. These deviations are quantified through a loss function, producing an anomaly score that indicates how far the machine’s current operation deviates from its expected performance.
 
