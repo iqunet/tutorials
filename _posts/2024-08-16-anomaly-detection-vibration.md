@@ -308,36 +308,70 @@ extract several aggregate parameters and complex parameters.
    reduce the complex data in a simple loss indicator which can be used as an
    temperature-like indicator for the health status of the machine.
 
-
 ### Autoencoder-Based Machine Health Prediction
 
-In the final part of this discussion, we will demonstrate how an autoencoder can be used to predict the health status of a machine, without requiring any prior knowledge about its internal components.
+In the final part of this discussion, we will demonstrate with real-world data
+how the autoencoder was used to successfully predict the health status of the
+vibratory feeder, without requiring any a-priori knowledge about its internal
+components.
 
 #### STFT Representation and Input Data
 
-Instead of feeding the autoencoder with time- or frequency-domain data separately, as discussed earlier, we use the STFT representation. Each measurement is converted into a numeric representation similar to the spectral heatmap described previously. However, in this case, the input data is extended to three dimensions:
+Instead of feeding the autoencoder with time- or frequency-domain data
+separately, as discussed earlier, we use the STFT representation. Each
+measurement is converted into a numeric representation similar to the spectral
+heatmap described previously. However, in this case, the input data is extended
+to three dimensions.
 
-- **Spectrum:** Frequency-domain data.
-- **Sample Time:** Time between samples within the measurement (not to be confused with the time of measurement in the heatmap).
-- **Measurement Sequence:** The sequence of measurements over time.
+- **Time domain:** Time between 3x8192 samples within the measurement
+- **Spectrum:** Frequency-domain data of above time domain.
+- **Measurement Index:** The sequence of measurements over time.
+  (x-axis/dates in the heatmap).
 
-This complex, multi-feature input signal provides a rich dataset for the autoencoder to analyze. With some additional data augmentation (beyond the scope of this text), this dataset becomes the training input for the autoencoder.
+While this complex input signal is difficult for the human brain to understand
+or analyse, this multi-feature input provides a rich dataset for the autoencoder
+so it can detect both events in the time domain (sudden shocks) as in the
+frequency domain (bearing faults, imbalance, etc). With some additional data
+augmentation (beyond the scope of this text), this dataset becomes the training
+input for the autoencoder. Please keep in mind that only the first month of
+data was used to train the ML model, and the full spectral heatmap of the
+previous chapter was only captured in the next months. However we use all data
+here to help the reader to understand.
 
 #### Autoencoder Functionality
 
-The autoencoder attempts to compress this 3D input signal into a reduced n-dimensional latent space. Once trained, the autoencoder reconstructs each new measurement and compares it with the original STFT input. The difference between the original and reconstructed signal is calculated using a loss function, which maps this discrepancy to a single numerical value—representing the anomaly score.
-
-#### Anomaly Detection and Visualization
+The autoencoder attempts to compress this Nx3 input signal into a reduced
+l-dimensional latent space. Once trained, the autoencoder reconstructs each
+new measurement and compares it with the original STFT input. The difference
+between the original and reconstructed signal is quantified using a loss
+function (MAE, MSE, logCosh, ...), which maps this discrepancy to a single
+numerical value representing the anomaly score as shown in the figure below.
 
 // Insert figure with the anomaly output of the autoencoder here
 
-The output of the loss function clearly shows an increase in the anomaly score at the timestamps corresponding to the issues we visually detected in the heatmap from the previous chapter. The key advantage here is that this anomaly detection is done without needing to manually set individual thresholds for each frequency bin.
+#### Anomaly Detection and Visualization
+
+The output of the loss function clearly shows an increase in the anomaly score
+at the very same timestamps corresponding to the issues we visually detected
+in the heatmap from the previous chapter. However, the key advantage here is
+that this anomaly detection is done without needing to visually inspect a
+heatmap or to manually set individual thresholds for each frequency bin. In
+addition, the level of the anomaly score will gain us useful insight in the
+stability of the anomaly, and give a good estimate about the rate in which
+the machine is deviating from that operating point (i.e. how fast an
+intervention must be planned)
 
 #### Thresholding and False Alarm Mitigation
 
-Since we now have a useful indicator for the anomaly score, we can implement a simple, temperature-like threshold based on historical anomaly levels. To reduce the risk of false alarms, the output of the loss detector can be smoothed using a rolling window quantile estimator before being compared to the threshold level.
+Since we now have a useful indicator for the anomaly score, we can implement
+a simple, temperature-like threshold based on historical anomaly levels. To
+reduce the risk of false alarms, the output of the loss detector is first
+smoothed using a rolling window quantile estimator before being compared to
+the threshold level.
 
-This approach allows us to define multiple confidence levels for the anomaly score, taking into account the past n measurements to reduce variance and avoid false alarms. This setup strikes a balance between response time and uncertainty, providing a more reliable indication of machine health.
+This allows us to define multiple confidence levels for the anomaly score,
+taking into account the past n measurements to reduce variance and avoid false
+alarms.
 
 
 
