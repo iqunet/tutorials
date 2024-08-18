@@ -240,16 +240,44 @@ extract several aggregate parameters and complex parameters.
    of what machine learning can offer beyond the "black mystery box" that it
    may appear to many people in the field of vibration analysis.
 
-#### Real-world Vibratory Feeder Data
+### Real-world Vibratory Feeder Data
 
-   So in this section we will explore the incoming data from one of the sensors
-   that is placed on a vibratory feeder for many months in a row. We will see
-   the appearance of a fault in the spectrum, see the many stages of the fault
-   progress over time until the bearing fault was solved by placing a new bearing
-   on the machine.
+   In this section, we will examine the data collected from a sensor placed on
+   a vibratory feeder over several months. We'll track the progression of a
+   bearing fault, exploring its appearance in the spectrum, and follow its
+   development over time until the bearing was eventually replaced.
 
-   // here we insert the time domain data of the vibratory feeder
+#### Time Domain Data
 
+   // Insert comparison of time domain data before and after the fault appears
+
+   Initially, the time domain data does not reveal much due to the presence of
+   process noise. The fault's energy remains buried below the noise floor until
+   the very late stages, when the fault's energy becomes high enough to rise
+   above the process noise. As a result, relying solely on time-domain data or
+   simple RMS energy thresholds is insufficient to detect early warning signs
+   and track the stability of a developing fault.
+
+#### Frequency Domain Data
+
+   When we convert to the frequency domain, the picture becomes clearer. The
+   energy components of the vibratory process are mainly concentrated at the
+   lower frequencies, as expected. Additionally, the vibration dampers suppress
+   higher frequencies associated with the product processing somewhat, making
+   the upper half of the spectrum the ideal candidate to focus on for fault
+   detection. 
+
+   However, setting precise thresholds for each frequency bin as would be done
+   with traditional monitoring approaches, remains a tedious challenge. Also,
+   the intermodulation of the drive frequencies and harmonics with the actual
+   fault frequencies may even cause certain spectral components to disappear,
+   which is excactly the opposite from what setting a threshold is trying to
+   achieve. This is where the autoencoder approach becomes a valuable asset in
+   our toolbox.
+
+
+
+======
    In the time domain data there is not so much to see because of the process
    noise itself. Hence, the rms energy of the fault itself will be under the
    noise floor until the very late stages of the fault, where the energy of
@@ -300,8 +328,6 @@ extract several aggregate parameters and complex parameters.
    to the failed component automatically but that is already far beyond what
    the client expected from the system.
    
-   
-
 When faults arise, such as imbalances or bearing issues, the ML model detects deviations from the normal patterns it has learned. These deviations are quantified through a loss function, producing an anomaly score that indicates how far the machine’s current operation deviates from its expected performance.
 
 - **Simplified Metric:**  
