@@ -272,9 +272,109 @@ extract several aggregate parameters and complex parameters.
    the intermodulation of the drive frequencies and harmonics with the actual
    fault frequencies may even cause certain spectral components to disappear,
    which is excactly the opposite from what setting a threshold is trying to
-   achieve. This is where the autoencoder approach becomes a valuable asset in
-   our toolbox.
+   achieve. Without expert knowledge about the machine characteristics, the
+   risk for incorrect thresholds is real. This is where the autoencoder ML
+   approach becomes a valuable asset in our toolbox.
 
+#### Spectal Heatmap
+
+   Before we review the ML results, we make an intermediate step and introduce
+   the spectral heatmap. In this plot, the horizontal x-axis represents time,
+   and the vertical slices (y-axis) represents the frequency spectrum of a
+   single measurement. The amplitude of the spectrum is now represented by a
+   color map, with dark blue indicating the lowest magnitude and yellow the
+   highest peaks in the frequency spectrum.
+
+   On this plot, we can observe that the gross of process noise is concentrated
+   around the fundamental drive frequency and multiple odd harmonics thereof.
+   The higher harmonics originate from the conversion process for the sinusoidal
+   movement of the feeder, which is converted to nonlinear friction on the
+   processed waste by the structure of the feeder topology (ref here).
+   For the remainder of this discussion, we will ignore the lower part of the
+   spectrum, as this portion of the heatmap mainly contains spectral components
+   of the waste processing, and we are mostly interested to detect faults of
+   the feeder components. However, it does not imply that the lower part of
+   the spectrum is useless, as it may contain valueable information about the
+   waste processing itself.
+
+   In the upper part of the spectrum, we can observe some early stage signs
+   of an upcoming change in the behaviour of the machine. First around x weeks
+   before the actual damage of the bearing, then it disappears temperorarily
+   because of planned revisions and about x days before the fatal damage it
+   appears again. In the final stages of the bearing damage, we can see the
+   fault spectrum spread out over all frequency bands, which is the well-known
+   indicator stage 4 bearing damage.
+   In the next chapter we will feed this sensor data to a ML autoencoder to
+   reduce the complex data in a simple loss indicator which can be used as an
+   temperature-like indicator for the health status of the machine.
+
+
+### Autoencoder-Based Machine Health Prediction
+
+In the final part of this discussion, we will demonstrate how an autoencoder can be used to predict the health status of a machine, without requiring any prior knowledge about its internal components.
+
+#### STFT Representation and Input Data
+
+Instead of feeding the autoencoder with time- or frequency-domain data separately, as discussed earlier, we use the STFT representation. Each measurement is converted into a numeric representation similar to the spectral heatmap described previously. However, in this case, the input data is extended to three dimensions:
+
+- **Spectrum:** Frequency-domain data.
+- **Sample Time:** Time between samples within the measurement (not to be confused with the time of measurement in the heatmap).
+- **Measurement Sequence:** The sequence of measurements over time.
+
+This complex, multi-feature input signal provides a rich dataset for the autoencoder to analyze. With some additional data augmentation (beyond the scope of this text), this dataset becomes the training input for the autoencoder.
+
+#### Autoencoder Functionality
+
+The autoencoder attempts to compress this 3D input signal into a reduced n-dimensional latent space. Once trained, the autoencoder reconstructs each new measurement and compares it with the original STFT input. The difference between the original and reconstructed signal is calculated using a loss function, which maps this discrepancy to a single numerical value—representing the anomaly score.
+
+#### Anomaly Detection and Visualization
+
+// Insert figure with the anomaly output of the autoencoder here
+
+The output of the loss function clearly shows an increase in the anomaly score at the timestamps corresponding to the issues we visually detected in the heatmap from the previous chapter. The key advantage here is that this anomaly detection is done without needing to manually set individual thresholds for each frequency bin.
+
+#### Thresholding and False Alarm Mitigation
+
+Since we now have a useful indicator for the anomaly score, we can implement a simple, temperature-like threshold based on historical anomaly levels. To reduce the risk of false alarms, the output of the loss detector can be smoothed using a rolling window quantile estimator before being compared to the threshold level.
+
+This approach allows us to define multiple confidence levels for the anomaly score, taking into account the past n measurements to reduce variance and avoid false alarms. This setup strikes a balance between response time and uncertainty, providing a more reliable indication of machine health.
+
+
+
+#### STFT and ML Autoencoders
+
+   In the final part of this discussion, we will use an autoencoder to predict
+   the health status of the machine, without any a-priori knowledge about it's
+   internal components.
+   We could feed the autoencoder with time- or frequency domain data, but as
+   discussed before, we use the STFT representation where each measurement is
+   itself is converted to the numeric representation, similar to the above
+   description of a spectral heatmap, but in this case we will have 3 dimensions:
+   instead of only showing the spectrum in the heatmap, a third sample-time
+   dimension is added to the input (not to be confused with the time of the
+   measurement in the above heatmap).
+   This complex multi-feature input signal is then used (with some data
+   augmentation which is out of the scope of this text) as the training data
+   for the autoencoder. The autoencoder will then try to compress the 3d input
+   signal to a reduced n-dimensional latent space and compare each new
+   measurement with the reconstructed STFT image at the input. The difference
+   is then mapped to a single numerical value by the loss function as seen
+   in figure x.
+
+   // Here comes figure with the anomaly output of the autoencoder.
+
+   The output of the loss function clearly shows an increase in the anomaly
+   score at the correct timestamps we have visually detected in the heatmap
+   of the previous chapter, without requiring us to set individual thresholds
+   in the frequency output. Moreover, since we now have a useful indicator
+   for the anomaly score, we can set a simple temperature-like threshold based
+   on the historical levels of the anomaly level. To prevent false alarms,
+   the output of the loss detector can the first fed into a rolling window
+   quantile estimator before being compared to the threshold level. This way
+   we can define multiple confidence levels to the anomaly score, which take
+   into account the past n measurements to reduce the variance on the anomaly
+   score and avoid false alarms (trade-off between response time and
+   incertainty).
 
 
 ======
