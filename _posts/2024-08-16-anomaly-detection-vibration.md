@@ -1,12 +1,25 @@
-
 ---
-title: "Real-Time Anomaly Detection in Industrial Shaker Machines Using Wireless Vibration Sensors and Machine Learning"
-date: 2024-XX-XX
+title: "Anomaly Detection Using MEMS Vibration Sensors and Machine Learning"
+date: 2024-08-18
 categories: blog
 toc: true
 toc_sticky: true
-published: false
+published: true
 ---
+
+### Scope and TL;DR
+This blog post explores how wireless vibration sensors and machine learning
+techniques are used for anomaly detection in industrial shaker machines. By
+monitoring vibration data and using deep-learning models, mechanical faults
+are detected at an early stage. We cover the technical setup and data
+postprocessing using autoencoders, which are key elements for fully automated
+fault detection.
+
+Based on a real-world example from a household waste processing plant in the
+Benelux, this post examines both the strengths and weaknesses of the system.
+It is targeted at both vibration experts and readers interested in gaining
+better understanding of the practical applications of machine learning, beyond
+the hype that has surrounded it in recent years.
 
 ### Introduction
 Waste management plants rely on serial processing lines where failures cause
