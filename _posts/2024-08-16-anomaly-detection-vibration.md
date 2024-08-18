@@ -23,7 +23,7 @@ beyond the hype that has surrounded it in recent years.
 
 ### Introduction
 Waste management plants rely on long serial processing lines. Failures in any
-key stage may cause severe capacity loss due to the limited redundancy. This
+pivotal stage may cause severe capacity loss due to the limited redundancy. This
 makes some level of monitoring targeted towards machine health and predictive
 maintainance critical to avoid unplanned downtimes and the costs that inevitably
 come with it.
