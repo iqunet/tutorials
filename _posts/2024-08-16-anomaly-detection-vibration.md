@@ -24,8 +24,9 @@ beyond the hype that has surrounded it in recent years.
 ### Introduction
 Waste management plants rely on long serial processing lines. Failures in any
 component may cause significant capacity loss due to limited redundancy.
-This makes some level of predictive maintainance monitoring critical to
-avoid unplanned downtimes and the costs that come with it.
+This makes some level of monitoring targeted towards machine health and
+predictive maintainance critical to avoid unplanned downtimes and the costs
+that inevitably come with it.
 
 While digital PLCs are in the control of the pipeline and can already detect
 the most acute faults in realtime, machine manufacturers treat health monitoring
