@@ -10,16 +10,16 @@ published: true
 ### Scope and TL;DR
 This blog post explores how wireless vibration sensors and machine learning
 techniques are used for anomaly detection in industrial shaker machines. By
-monitoring vibration data and using deep-learning models, mechanical faults
-are detected at an early stage. We cover the technical setup and data
-postprocessing using autoencoders, which are key elements for fully automated
-fault detection.
+monitoring vibration data and using deep-learning models, various types of
+mechanical faults can be detected at an early stage. We cover the technical
+setup and data postprocessing using autoencoders, which are the key elements
+for reliable and fully automated fault detection.
 
-Based on a real-world example from a household waste processing plant in the
-Benelux, this post examines both the strengths and weaknesses of the system.
-It is targeted at both vibration experts and readers interested in gaining
-better understanding of the practical applications of machine learning, beyond
-the hype that has surrounded it in recent years.
+Based on real-world data from a household waste processing plant in the Benelux,
+this post examines both the strengths and weaknesses of the system. It is
+targeted at both the vibration expert and the casual reader interested in
+gaining better insight in the practical applications of machine learning,
+beyond the hype that has surrounded it in recent years.
 
 ### Introduction
 Waste management plants rely on serial processing lines where failures cause
