@@ -373,176 +373,19 @@ This allows us to define multiple confidence levels for the anomaly score,
 taking into account the past n measurements to reduce variance and avoid false
 alarms.
 
-
-
-#### STFT and ML Autoencoders
-
-   In the final part of this discussion, we will use an autoencoder to predict
-   the health status of the machine, without any a-priori knowledge about it's
-   internal components.
-   We could feed the autoencoder with time- or frequency domain data, but as
-   discussed before, we use the STFT representation where each measurement is
-   itself is converted to the numeric representation, similar to the above
-   description of a spectral heatmap, but in this case we will have 3 dimensions:
-   instead of only showing the spectrum in the heatmap, a third sample-time
-   dimension is added to the input (not to be confused with the time of the
-   measurement in the above heatmap).
-   This complex multi-feature input signal is then used (with some data
-   augmentation which is out of the scope of this text) as the training data
-   for the autoencoder. The autoencoder will then try to compress the 3d input
-   signal to a reduced n-dimensional latent space and compare each new
-   measurement with the reconstructed STFT image at the input. The difference
-   is then mapped to a single numerical value by the loss function as seen
-   in figure x.
-
-   // Here comes figure with the anomaly output of the autoencoder.
-
-   The output of the loss function clearly shows an increase in the anomaly
-   score at the correct timestamps we have visually detected in the heatmap
-   of the previous chapter, without requiring us to set individual thresholds
-   in the frequency output. Moreover, since we now have a useful indicator
-   for the anomaly score, we can set a simple temperature-like threshold based
-   on the historical levels of the anomaly level. To prevent false alarms,
-   the output of the loss detector can the first fed into a rolling window
-   quantile estimator before being compared to the threshold level. This way
-   we can define multiple confidence levels to the anomaly score, which take
-   into account the past n measurements to reduce the variance on the anomaly
-   score and avoid false alarms (trade-off between response time and
-   incertainty).
-
-
-======
-   In the time domain data there is not so much to see because of the process
-   noise itself. Hence, the rms energy of the fault itself will be under the
-   noise floor until the very late stages of the fault, where the energy of
-   the fault emerges above the process noise.
-
-   // then we go to the time domain before and after the fault appears.
-
-   In the frequency data, we have more luck, as the energy components of the
-   shaking process appear mostly at the lower frequencies. the dampers will
-   also suppress higher frequencies of the product itself so as expected it
-   is very useful to look at the upper half of the frequency spectrum. however,
-   still it is not clear at all how to set the thresholds for each of the
-   frequency bins as would be done in the traditional approach. Now, let's
-   go to the STFT spectrum and plot all data in a single plot (of course,
-   in a typical machine setup we dont have this data before a particular fault
-   has occurred so keep that in mind.)
-
-   // Here comes the STFT spectrum plot
-
-   We explain here that the horizontal axis is time and the vertical axis
-   is frequency from 0Hz to 1600Hz nyquist. The colormap represents the
-   magnitude of the frequency component on that date, with dark blue the
-   lowest and yellow the highest amplitude.
-
-   On the STFT plot we can now see that most of the process noise is clearly
-   limited to the fundamental drive frequency, which is converted to repeated
-   discontinuous (nonlinear) friction on the waste by the structure of the
-   feeder topology. (ref https://www.sciencedirect.com/science/article/abs/pii/S0263224117300416)
-   This part of the spectrum is less interesting for us as it contains more
-   information about the process itself than about the status of the drive motor,
-   the bearings and the dampers. However this does not imply that this is useless
-   data, as it is a totally valid use case to monitor the continuity of the
-   waste processing itself over long time.
-
-   So we focus on the upper part of the STFT spectrum.
-   In the middle we see that the first anomaly appeared weeks before the actual
-   problem, went away for some time (probably maintainance) and then reappeared
-   at full strength before actual intervention and replacement of the bearing.
-   After that, the machine reverts to normal operation. The reader may wonder
-   why the oldschool setup with thresholds would not work here well, there
-   was no information about the machine itself nor the type of faults that may
-   appear. Here ML takes in a lot of data and declares that the standard operating
-   condition. Any deviation from that would increase the loss indicator and
-   trigger an alarm. Now that we have enough data, of course we could set
-   thresholds for each bin but that would bring no additional extra info
-   if we would not be able to determine the type of fault. Now we can begin
-   labelling and start with supervised learning to pinpoint the actual fault
-   to the failed component automatically but that is already far beyond what
-   the client expected from the system.
-   
-When faults arise, such as imbalances or bearing issues, the ML model detects deviations from the normal patterns it has learned. These deviations are quantified through a loss function, producing an anomaly score that indicates how far the machine’s current operation deviates from its expected performance.
-
-- **Simplified Metric:**  
-  The anomaly score serves as a straightforward "health indicator" for the machine. Similar to a temperature gauge, this score gives a numerical value representing the machine's condition. Even non-experts can track this number over time to identify when something seems off.
-
-- **Thresholds and Alarms:**  
-  Since the model condenses 25,000 data points into a single anomaly score, it’s easy to set thresholds that trigger alarms in the SCADA system. This real-time monitoring allows operators to detect emerging issues early, order replacement parts, and plan repairs during scheduled maintenance, minimizing unexpected downtime.
-
-
-#### Machine Learning for Anomaly Detection
-
-The STFT data is fed into a machine learning model, specifically an autoencoder, which has been trained on previously captured data. The autoencoder learns the normal operating patterns of the machine and generates an anomaly score based on how well the current data matches the learned patterns.
-
-The advantage of using this approach is that it can detect a variety of anomalies:
-
-- **Emerging Faults:** A frequency component that suddenly appears is flagged as an anomaly.
-- **Disappearing or Shifting Frequencies:** A frequency component that vanishes or shifts can also indicate an issue, even though this might decrease the overall RMS value.
-
-The ML model accounts for variability due to temperature, speed, and load, making it robust enough to adapt to changing operating conditions. The result is an anomaly score that quantifies the deviation from the machine’s nominal operating point.
-
-#### Simplifying Complex Data for Decision-Makers
-
-Not every operator is a vibration expert, and in busy industrial environments, complex data needs to be presented in a simple, actionable format. The output of the autoencoder is distilled into an easy-to-understand metric. 
-
-- **Anomaly Score:** This single number represents the degree of deviation. A stable but elevated score suggests that the fault is present but not worsening. However, a rising anomaly score signals that immediate action may be required to prevent a failure.
-
-This data can be integrated into higher-level platforms using OPC UA or MQTT for automated reporting, enabling operators to respond in a timely manner.
-
-#### Broader Applications Beyond Shaker Machines
-
-This machine learning-based approach is versatile and can be applied to other types of equipment with complex operating conditions. For example, cavitation in pumps or noise in homogenizers can be detected by the same methodology. The autoencoder learns the machine’s normal behavior without needing supervised training, allowing it to identify both known and unknown failure modes.
-
-
-
-
-
-
-
-
-
-
-### Sensor Setup and Data Collection
-Detail the technical setup of the wireless vibration sensors. Discuss the sensor specs, sampling rate, and the practical limitations of sensor placement on large shaker machines.
-
-- Sensor type: 3-axis MEMS vibration sensors.
-- Sampling rate and interval: 3200Hz sampling rate with a 15-minute interval.
-- Data collection: Mention the 25k data points per measurement and how they are transmitted to a central receiver.
-
----
-
-### Advanced Data Analysis: Spectral and Temporal Insights
-Explain the importance of both spectral and temporal data in detecting anomalies. Dive into the specifics of using STFT plots to capture short, impactful events that might go unnoticed in traditional spectral analysis.
-
-- Spectral plots: Their role in monitoring frequency components.
-- STFT plots: How they help detect short, temporal events like clicks or peaks.
-- Real-world benefits: Mention that this combination allows for more accurate and comprehensive monitoring of machines beyond just spectral data.
-
----
-
-### Machine Learning for Anomaly Detection
-Discuss how the STFT data is fed into an ML autoencoder for anomaly detection. Explain how this process works, what an anomaly score represents, and how it simplifies complex vibration data into actionable insights.
-
-- Autoencoder explanation: Briefly explain how the ML model learns from previous data and flags deviations.
-- Anomaly score: Describe how it quantifies deviations and what the scores mean for operational decisions.
-- ML advantages: The system is easy for non-experts to use, similar to reading a simple dial, yet powerful enough to detect complex issues.
-
----
-
-### Broader Applications Beyond Shaker Machines
-Expand on how this technology can be applied to other types of industrial machinery with similar challenges. Mention examples like pumps experiencing cavitation or homogenizers with high background noise.
-
-- Flexibility of ML models: Discuss how the same approach can be adapted to different machines and processes.
-- Avoiding overfitting: Touch on the importance of correctly configuring the ML model for diverse applications.
-
----
-
 ### Dashboard and Integration with Other Systems
-Explain how the collected data and anomaly scores can be integrated into higher-level systems like OPC UA or MQTT for automated reporting. Also, mention how smaller companies can use the iQunet system as a stand-alone platform for monitoring and analysis.
+The iQunet Edge system provides all functionality for the above described
+signal processing functions in one edge device. This edge device contains
+not only the controller for up to more than 100 vibration sensors in a single
+device, but also all postprocessing functionality for the conversion to RMS,
+spectral plots, historical trends, machine learning inference and
+thresholding-based alarms.
 
-- Data integration: Mention how the data can be sent to higher-level platforms.
-- Customizable dashboards: Discuss the iQunet dashboard capabilities for displaying trends, spectral plots, and anomaly data in a user-friendly way.
+The visualization can be done using the built-in fully customizable dashboard
+or raw or postprocessed data can be exported to any third-party tools that
+support OPC-UA, GraphQL or the MQTT protocols. Below is such an example of a
+customized multi-page dashboard for the plant-operator. No external tools except
+for a browser in kiosk mode is required to get started.
 
 ---
 
