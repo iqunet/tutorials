@@ -198,49 +198,47 @@ extract several aggregate parameters and complex parameters.
 
 #### Enter the Power of Machine Learning
 
-   Machine learning (ML) techniques offer a more adaptable solution. The models
-   used in ML can represent the machine's time- and frequency-data using latent
-   variables, which provide an abstract view of the machine's internal behavior.
-   This discussion will be limited to unsupervised learning, as it can be used
-   across a broad range of applications, without the need for costly manual
+   Machine learning (ML) techniques offer a more adaptable solution to track
+   the health of a machine. The models used in ML can represent the machine's
+   time- and frequency-data using latent (internal) variables, which provide
+   an abstract view of the machine's internal behavior.
+   This discussion will focus on unsupervised learning, as it can be applied
+   to a broad range of applications, without the need for costly manual
    training.
 
    - **Latent Variables:**  
-     In an autoencoder, for example, the ML model is trained to distill the
-     vibration data (STFT representation in our case) into a limited set of
-     latent variables, which encapsulate its typical behavior over hundreds
-     or thousands of training samples, much like a 'digital twin' in recent
-     marketing.
+     In an autoencoder, for example, the ML model is trained to compress the
+     vibration data (the STFT representation in our case) into a limited set
+     of latent variables, essentially creating what some marketing materials
+     might call a "digital twin."
 
-   After training, the latent variables will be optimized to model the subtle
-   interactions between speed, load temperature and the time- and frequency
-   components in the input signal. Think like the simple relationship between
-   increasing load and temperature, but on a far more complex level and in
-   multiple dimensions.
+   After training, these latent variables capture the subtle interactions
+   between speed, load, temperature, and the time- and frequency-domain
+   components of the input signal. Think of this as a much more sophisticated
+   version of the relationship between load and temperature, but in multiple
+   dimensions and with greater complexity.
 
-   While the latent variable of the model are of little use by themselves, they
-   can be used to estimate how far the machine (vibration data) is operating
-   from it's normal operating point. The normal operating point being the
-   complex behaviour of interactions described above.
-   When, for example a certain harmonic signal appears in the input, or even
-   a certain set of combinations of harmonics that was not present in the training
-   data, the model will not be optimized to represent this state using the
-   current set of latent variables, and the output of the autoencoder will
-   start to diverge from the input. It is this descrepancy between the input
-   and the model output which is transformed by the loss function in a single
-   numeric value, representing the 'anomaly' level that we discussed before.
+   While the latent variables themselves don't give us clear insight in the
+   machine's health status, they do provide the foundation for estimating how
+   far the the machine's current behaviour deviates from its normal operating
+   point. The normal state is defined by the complex patterens captured during
+   the training phase. For example, if a harmonic signal appears (or disappears
+   for that matter) in the input that wasn't present during the training, or if
+   a specific combination of harmonics occurs, the latent variables won't be
+   optimized to accurately represent this newfound state. As a result, the
+   output of the autoencoder will start to diverge from the input.
 
-   The next chapter will return to the real world example of the vibratory
-   feeder. First we will look into the data to have some understanding about
-   the signal itself, then we will convert this data to the STFT representation
-   and feed it into the autoencoder. 
+   This discrepancy between the input and the model's output is measured by a
+   loss function, for example the MAE (mean absolute error), which transforms
+   it into a single numerical value: the loss or so-called "anomaly level" that
+   indicates how far the machine is operating from its expected behavior.
 
-- **STFT (Short-Time Fourier Transform):**  
-  The sensor data is first transformed using the STFT, which combines time and frequency domain information. This approach enables the detection of both:
-  - **Wideband Anomalies:** Sudden clicks or impacts.
-  - **Spectral Anomalies:** Changes in frequency components, such as those caused by imbalances or wear.
-
-By training the model on real-world data—across varying temperatures, loads, and conditions—the ML model develops a more comprehensive understanding of the machine’s expected behavior, effectively creating a "digital twin."
+   In the next chapter, we will return to our real-world example of the
+   vibratory feeder. We'll start by examining the raw data to better understand
+   the signal itself, then convert that data to its STFT representation and
+   feed it into the autoencoder. By the end, we'll have a clearer understanding
+   of what machine learning can offer beyond the "black mystery box" that it
+   may appear to many people in the field of vibration analysis.
 
 #### Turning Detection into Actionable Insights
 
