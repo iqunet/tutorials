@@ -23,10 +23,10 @@ beyond the hype that has surrounded it in recent years.
 
 ### Introduction
 Waste management plants rely on long serial processing lines. Failures in any
-component may cause significant capacity loss due to limited redundancy.
-This makes some level of monitoring targeted towards machine health and
-predictive maintainance critical to avoid unplanned downtimes and the costs
-that inevitably come with it.
+stage may cause severe capacity loss due to the limited redundancy. This makes
+some level of monitoring targeted towards machine health and predictive
+maintainance critical to avoid unplanned downtimes and the costs that inevitably
+come with it.
 
 While digital PLCs are in the control of the pipeline and can already detect
 the most acute faults in realtime, machine manufacturers treat health monitoring
@@ -35,12 +35,13 @@ random failures. However, in unhealthy environments filled with dust, humidity,
 and noise, daily manual inspections are not practical.
 
 In this blogpost, we will explore how ruggedized wireless vibration sensors
-and machine learning provide regular health updates, enabling early detection
-of issues. We shall cover the technical setup, the data processing, and the
-machine learning which automate the anomaly detection in noisy environments.
-Noisy, in this case, refers to the sensor signal, which is polluted with
-unwanted vibrations from the production process itself, in addition to the
-machine defects we are trying to detect here.
+and machine learning in the data postprocessing chain provide us with consistent
+regular health updates, enabling early detection of issues. We shall cover the
+technical setup, the data processing, and the machine learning which automate
+the anomaly detection in noisy environments. Noisy, in this case, refers to
+the sensor signal, which is polluted with unwanted vibrations from the
+production process itself, in addition to the machine defects we are trying to
+detect here.
 
 ---
 
