@@ -52,12 +52,14 @@ possible while also maintaining consistent location and orientation. This
 stability improves the accuracy of the machine learning algorithms, as discussed
 later in this post.
 
-Due to these challenges, the customer opted for wireless sensors. In addition,
-the sensors were installed 40 cm away from the ideal location, on the machine
-frame instead of the motor and drive train. While this placement severely
-reduces sensitivity to high-frequency bearing faults, it ensures that the
-sensors generate consistant data over a long period, as they are excluded from
-any part exchanges during repairs.
+Given the challenges of monitoring shaker machines, the customer opted for
+wireless sensors to avoid issues related to cable and connector fatigue.
+In addition, to ensure that regular maintenance tasks could be performed
+without disturbing the sensors, they were installed 40 cm away from the ideal
+location. This placement on the machine frame, rather than directly on the
+motor and drive train, reduces the sensitivity to high-frequency bearing faults
+but ensures consistent data collection over a long period, even after part
+replacements.
 
 Other factors that need to be considered include:
 
