@@ -22,14 +22,16 @@ gaining better insight in the practical applications of machine learning,
 beyond the hype that has surrounded it in recent years.
 
 ### Introduction
-Waste management plants rely on serial processing lines where failures cause
-significant capacity loss due to limited redundancy. This makes some level of
-predictive maintainance monitoring critical to prevent unplanned downtime.
+Waste management plants rely on long serial processing lines. Failures in any
+component may cause significant capacity loss due to limited redundancy.
+This makes some level of predictive maintainance monitoring critical to
+avoid unplanned downtimes and the costs that come with it.
 
-While digital PLCs are in the control of the pipeline, machine manufacturers
-treat health monitoring mostly as an afterthought, leaving it to the customers
-to handle failures. In unhealthy environments filled with dust, humidity, and
-noise, daily manual inspections are not practical.
+While digital PLCs are in the control of the pipeline and can already detect
+the most acute faults in realtime, machine manufacturers treat health monitoring
+mostly as an afterthought, leaving it to the customers to handle unexpected
+random failures. However, in unhealthy environments filled with dust, humidity,
+and noise, daily manual inspections are not practical.
 
 In this blogpost, we will explore how ruggedized wireless vibration sensors
 and machine learning provide regular health updates, enabling early detection
