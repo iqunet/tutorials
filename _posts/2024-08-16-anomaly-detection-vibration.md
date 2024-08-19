@@ -257,19 +257,21 @@ more complex signal transformations.
    While the latent variables themselves won't give us direct insight in the
    machine's health status, they do provide the foundation for estimating how
    far the the machine's current behaviour deviates from its normal operating
-   point. The normal state is defined by the complex patterns captured from
-   the thousands of measurements during the training phase.
+   point. The normal state is defined by a cluster of complex patterns captured
+   from the thousands of measurements during the training phase.
 
    For example, if a harmonic signal appears (or disappears for that matter)
    in the input that wasn't present during the training, or if a specific
-   combination of harmonics occurs, the latent variables won't be optimized to
-   accurately represent this newfound state. As a result, the output of the
-   autoencoder will start to diverge from the input.
+   unexpected combination of harmonics occurs, the latent variables won't be
+   optimized to accurately represent this newfound state. As a result, the
+   output of the autoencoder will start to diverge from the input.
 
    This discrepancy between the input and the model's output is measured by a
    loss function, for example the MAE (mean absolute error), which transforms
    it into a single numerical value: the loss or so-called "anomaly level" that
-   indicates how far the machine is operating from its expected behavior.
+   indicates how good the model can represent the current measurement and thus
+   indirectly how far the machine is operating from its pre-trained cluster of
+   behavioural states.
 
    In the next chapter, we will return to our real-world example of the
    vibratory feeder. We'll start by examining the raw data to better understand
