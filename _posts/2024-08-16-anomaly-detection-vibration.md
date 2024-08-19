@@ -207,10 +207,9 @@ more complex signal transformations.
 ---
 #### Challenges with Manual Analysis and Traditional Methods
 
-   Linking specific fault patterns to their root cause in particular machine
-   components typically requires expert knowledge. Diagnosing issues like
-   bearing faults or other machine-specific anomalies demands experience and
-   regular inspections.
+   Linking specific fault patterns to their root cause typically requires expert
+   knowledge. Diagnosing issues like bearing faults or other machine-specific
+   anomalies demands experience and regular inspections.
 
    However, relying solely on specialists is costly, and the extended intervals
    between inspections can result in missed random faults. Oftentimes, the
