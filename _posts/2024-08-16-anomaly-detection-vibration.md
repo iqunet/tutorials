@@ -389,10 +389,11 @@ observe the emerging bearing failure.
 
 The autoencoder attempts to compress this NxMx3 input signal into a reduced
 L-dimensional latent space. Once trained, the autoencoder reconstructs each
-new measurement and compares it with the original STFT input. The difference
-between the original and reconstructed signal is quantified using a loss
-function (MAE, MSE, logCosh, ...), which maps this discrepancy to a single
-numerical value representing the anomaly score as shown in the figure below.
+new (i.e. unseen) measurement and compares it with the original STFT input.
+The difference between the original and reconstructed signal is quantified
+using a loss function (MAE, MSE, logCosh, ...), which maps this discrepancy
+to a single numerical value representing the anomaly score as shown in the
+figure below.
 
 // Insert figure with the anomaly output of the autoencoder here
 
