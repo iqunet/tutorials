@@ -260,7 +260,7 @@ more complex signal transformations.
    point. The normal state is defined by a cluster of complex patterns captured
    from the thousands of measurements during the training phase.
 
-   For example, if a harmonic signal appears (or disappears for that matter)
+   For example, if a harmonic component appears (or disappears for that matter)
    in the input that wasn't present during the training, or if a specific
    unexpected combination of harmonics occurs, the latent variables won't be
    optimized to accurately represent this newfound state. As a result, the
@@ -277,7 +277,7 @@ more complex signal transformations.
    vibratory feeder. We'll start by examining the raw data to better understand
    the signal itself, then convert that data to its STFT representation and
    feed it into the autoencoder. By the end, we'll have a clearer understanding
-   of what machine learning can offer beyond the "black mystery box" that it
+   of what machine learning can offer beyond the "black magic box" that it
    may appear to many people in the field of vibration analysis.
 
 ### Real-world Vibratory Feeder Data
