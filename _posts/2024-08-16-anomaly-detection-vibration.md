@@ -141,7 +141,7 @@ more complex signal transformations.
 
 #### Prefiltering, Data Streams and Domains
 
-1. **Prefiltering:**  
+**Prefiltering**  
    Certain types of piezo sensors can generate high dynamic range velocity
    signals at very low frequencies using a charge-mode amplifier. However,
    MEMS sensor data is acceleration based and must be prefiltered to remove
@@ -152,34 +152,36 @@ more complex signal transformations.
    frequency, which would cause distortion in the time domain signal and severe
    drift when integrating from acceleration to velocity.
    
-2. **Data Streams:**  
+**Data Streams**  
    Once the DC-offset is removed, the data is converted into several useful
-   streams in the edge server, including:
-   - **Acceleration**
-   - **Velocity**
-   - **RMS values**
-   - **Kurtosis**
-   - **Time domain view**
-   - **Frequency domain**
-   
-   These are the basic tools used by vibration experts to determine the state
-   of the machine, and in more advance cases, also the origin of the fault,
-   such as a loose mount or a bearing fault. Other tools exist that will
-   further postprocess the signal, such as enveloping demodulation, but they
-   are mostly focused towards representing the data in a format which is
-   easily understandable by the human eye. We will ignore these cases since
-   this blogpost is focused towards the automated detection of faults using
-   machine learning techniques.
+   information streams in the edge server, including:
 
-3. **Spectral Plots:**  
-   Why do we use both the time and frequency domains? Although they represent
-   the same underlying data, each domain has unique advantages when it comes to
-   detecting specific signal patterns. For instance, one-time transient events
-   in the signal (e.g. a mechanical shock) are easily identified in the time
-   domain, where their energy is concentrated in a short interval. However, in
-   the frequency domain, these events merely appear as a slight increase in the
-   noise floor, making them difficult to detect, both for humans and automated
-   systems.
+   - **Acceleration and velocity**
+   - **RMS and Kurtosis aggregate values**
+   - **Time and frequency domain views**
+   
+   These are some of the basic tools used by vibration experts to determine
+   the state of the machine, and in more advance cases, also the origin of a
+   fault, such as a loose mount or a bearing fault.
+
+   Other tools, such as enveloping demodulation, further postprocess the signal,
+   primarily to represent the same data in a format or domain that is more
+   easily understood by the human eye.
+
+   However, this blog post focuses on the automated detection of anomalies and
+   faults using machine learning techniques. It's important to understand that
+   the specific formats in which vibration data is represented are less critical
+   for deep-learning models, as these tools will 'learn' the optimal latent
+   representation of the data during the training phase.
+
+**Spectral Plots**  
+   So why would an export vibration export use both the time and frequency
+   views? Although they represent the same underlying information, each domain
+   has its advantages when it comes to detecting specific signal patterns. For
+   instance, one-time transient events in the signal (e.g. a mechanical shock)
+   are easily identified in the time domain, where their energy is concentrated
+   in a short interval. However, in the frequency domain, these events merely
+   appear as a slight raise in the noise floor, making them difficult to detect.
 
    The above consideration is crucial for understanding why we use the
    Short-Time Fourier Transform (STFT) when feeding data into the machine
