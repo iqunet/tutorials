@@ -103,9 +103,10 @@ fault sensitivity.
 (\* the installed sensors have a Nyquist bandwidth of +/-1.5KHz)
   
 - **Robustness:** MEMS sensors are highly durable and well-suited for long-term
-use in harsh environments. Piezo accelerometers not prone to material failures
-of the ceramic sensing elements and need more careful handling to maintain their
-calibrated sensitivity.
+use in harsh environments. Piezo accelerometers on the other hand, have superior
+noise characteristics but are more prone to material failures of the ceramic
+sensing elements and need more careful handling to maintain their calibrated
+sensitivity.
   
 - **Wireless Range:** With a range of 20 to 50 meters, wireless sensors
 eliminate the need for fragile and expensive cabling. Downside is the need for
