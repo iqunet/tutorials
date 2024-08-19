@@ -61,8 +61,8 @@ which ensure the even distribution of material, pose several challenges:
 
 - **Large Displacements:** Vibratory feeders experience translational
 displacements of up to 10 cm, making not only themselves prone to considerable
-stresses but also make wired sensors susceptible to both connector and cable
-fatique wear.
+stresses but also make wired sensors susceptible to both connector wear and
+cable fatigue.
   
 - **Regular Maintenance:** Parts of these machine are frequently disassembled
 for maintenance. It is preferred that any sensors should be as non-intrusive as
