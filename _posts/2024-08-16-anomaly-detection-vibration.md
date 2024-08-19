@@ -66,9 +66,9 @@ fatique wear.
   
 - **Regular Maintenance:** Parts of these machine are frequently disassembled
 for maintenance. It is preferred that any sensors should be as non-intrusive as
-possible while also maintaining consistent location and orientation. This
-stability improves the accuracy of the machine learning algorithms, as discussed
-later in this post.
+possible during these manipulation while also maintaining consistent location
+and orientation. This stability improves the accuracy of the machine learning
+algorithms, as discussed later in this post.
 
 Given the challenges of monitoring shaker machines, the customer opted for
 wireless sensors to avoid issues related to cable and connector fatigue.
