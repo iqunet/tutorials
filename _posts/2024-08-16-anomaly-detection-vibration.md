@@ -419,9 +419,9 @@ reduce the risk of false alarms, the output of the loss detector is first
 smoothed using a rolling window quantile estimator before being compared to
 the threshold level.
 
-This allows us to define multiple confidence levels for the anomaly score,
-taking into account the past n measurements to reduce variance and avoid false
-alarms.
+The rolling estimator allows us to define multiple confidence levels for the
+anomaly score, taking into account the past n measurements to reduce variance
+and avoid false alarms.
 
 ### Dashboard and Integration with Other Systems
 The iQunet Edge system provides all functionality for the above described
@@ -432,7 +432,7 @@ spectral plots, historical trends, machine learning inference and
 thresholding-based alarms.
 
 The visualization can be done using the built-in fully customizable dashboard
-or raw or postprocessed data can be exported to any third-party tools that
+and raw or postprocessed data can be exported to any third-party tools that
 support OPC-UA, GraphQL or the MQTT protocols. Below is such an example of a
 customized multi-page dashboard for the plant-operator. No external tools except
 for a browser in kiosk mode is required to get started.
