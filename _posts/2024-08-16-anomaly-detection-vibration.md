@@ -268,10 +268,10 @@ more complex signal transformations.
 
    This discrepancy between the input and the model's output is measured by a
    loss function, for example the MAE (mean absolute error), which transforms
-   it into a single numerical value: the loss or so-called "anomaly level" that
-   indicates how good the model can represent the current measurement and thus
-   indirectly how far the machine is operating from its pre-trained cluster of
-   behavioural states.
+   it into a single numerical value: the loss value or so-called "anomaly level"
+   that indicates how good the model can represent the current measurement and
+   thus indirectly how far the machine is operating from its pre-trained cluster
+   of behavioural states.
 
    In the next chapter, we will return to our real-world example of the
    vibratory feeder. We'll start by examining the raw data to better understand
