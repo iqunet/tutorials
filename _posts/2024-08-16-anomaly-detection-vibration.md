@@ -408,8 +408,8 @@ manually set individual thresholds for each frequency bin.
 
 In addition, the level of the anomaly score will gain us useful insight in the
 stability of the anomaly, and give a good estimate about the rate in which
-the machine is deviating from that operating point (i.e. how fast an
-intervention must be planned)
+the machine is deviating from that operating point (i.e. how soon an inspection
+or intervention must be planned).
 
 #### Thresholding and False Alarm Mitigation
 
