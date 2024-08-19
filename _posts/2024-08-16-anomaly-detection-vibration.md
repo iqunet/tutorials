@@ -53,11 +53,11 @@ lacking. Installing cabling across such large sites is not only expensive but
 also prone to fatigue failures. This is especially true for machines that
 experience significant translational vibrations.
 
-One example is vibratory feeders, which spread household waste material before
-it undergoes optical sorting. In the optical sorter, spectral cameras detect
-different materials, and pressurized air is then used to separate individual
-pieces of waste into different output flows. These vibratory feeders, which
-ensure the even distribution of material, face several challenges:
+One example is vibratory feeders, which spread the household waste material
+before it undergoes optical sorting. In the optical sorter, spectral cameras
+detect different materials, and pressurized air is then used to separate
+individual pieces of waste into different output flows. These vibratory feeders,
+which ensure the even distribution of material, face several challenges:
 
 - **Large Displacements:** Vibratory feeders experience displacements of up to
 10 cm, making not only themselves prone to considerable wear but also make wired
