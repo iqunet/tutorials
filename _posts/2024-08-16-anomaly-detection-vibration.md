@@ -174,14 +174,15 @@ more complex signal transformations.
    for deep-learning models, as these tools will 'learn' the optimal latent
    representation of the data during the training phase.
 
-**Spectral Plots**  
+**Time and Frequency Domain**  
    So why would an export vibration export use both the time and frequency
    views? Although they represent the same underlying information, each domain
    has its advantages when it comes to detecting specific signal patterns. For
    instance, one-time transient events in the signal (e.g. a mechanical shock)
    are easily identified in the time domain, where their energy is concentrated
-   in a short interval. However, in the frequency domain, these events merely
-   appear as a slight raise in the noise floor, making them difficult to detect.
+   in a short interval. However, in the frequency domain, the same short event
+   merely appear as a slight raise in the noise floor, making them difficult to
+   detect.
 
    The above consideration is crucial for understanding why we use the
    Short-Time Fourier Transform (STFT) when feeding data into the machine
@@ -192,24 +193,28 @@ more complex signal transformations.
    whether time-based or frequency-based, remains concentrated and is more
    easily detected.
 
-   While is very doable for a machine learning algorithm to perform domain
+   While is very possible for a machine learning algorithm to perform domain
    transforms internally, this approach would require a significant portion of
    the model structure (specifically, the convolutional layers) to handle these
    transformations. This would unnecessarily complicate the training phase
    as it would also take considerable time to tune the ML model parameters to
-   'reinvent' these transforms. By using the STFT as a fixed preprocessing step,
+   'invent' these transforms. By using the STFT as a fixed preprocessing step,
    we effectively offload this task and provide the ML algorithm with a rich
-   input that combines the strengths of both domains. In this sense, the STFT
-   acts as a pre-trained, fixed component of the machine learning model itself,
-   simplifying the detection process and reducing the training cost.
+   feature input that combines the strengths of both domains. In this sense,
+   the STFT acts as a pre-trained, fixed component of the machine learning model
+   itself, simplifying the detection process and reducing the training time.
 
+---
 #### Challenges with Manual Analysis and Traditional Methods
 
    Linking specific fault patterns to particular machine components typically
    requires expert knowledge. Diagnosing issues like bearing faults or other
    machine-specific anomalies demands experience and regular inspections.
    However, relying solely on specialists is costly, and the extended intervals
-   between inspections can result in missed random faults.
+   between inspections can result in missed random faults. Oftentimes, the
+   plant operator just wants to be alerted in time about an upcoming problem
+   and will just replace the faulty component without the need for a detailed
+   report about the fault.
 
    Moreover, the sheer volume of data --hundreds of plots generated daily-- 
    makes manual analysis impractical. Traditional automated methods, such as
