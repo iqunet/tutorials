@@ -71,8 +71,7 @@ and orientation. This stability improves the accuracy of the machine learning
 algorithms, as discussed later in this post.
 
 Given the challenges of monitoring shaker machines, the customer here opted
-for wireless sensors to avoid the above issues. The downside of course is that
-batteries need to be replaced every 20-50,000 measurements.
+for wireless sensors to avoid the above issues.
 
 Also, to ensure that routine maintenance tasks can be performed without
 disturbing the sensors, they were installed 40 cm away from the ideal location.
@@ -112,7 +111,7 @@ sensitivity.
 eliminate the need for fragile and expensive cabling. Downside is the need for
 battery replacement every 20-50,000 spectral measurements.
 
-In the following chapters, we will discuss how the sensor data is post-processed
+In the next chapters, we will discuss how the sensor data is post-processed
 and used to align otherwise unplanned downtime with scheduled maintenance tasks,
 effectively reducing standstills to virtually 0 excess downtime.
 
@@ -120,15 +119,16 @@ effectively reducing standstills to virtually 0 excess downtime.
 
 ### Sensor Data Processing and Machine Learning
 
-The MEMS-based wireless vibration sensors provide detailed, day-to-day insights
-into machine behavior. Each sensor captures three-axis vibration snapshots every
-15 minutes (or at a configurable interval) at a sampling rate of 3200 Hz (also
-configurable). A measurement, consisting of 25,000 samples, is wirelessly
-transmitted to a central edge server equipped with an embedded historian database.
+The MEMS-based wireless vibration sensors (IVIB161010-ACC3-016) gather detailed,
+day-to-day insights into machine behavior. Each sensor captures three-axis
+vibration snapshots every 15 minutes (configurable) at a sampling rate of 3200Hz
+(also configurable).
+A measurement, consisting of up to 25,000 samples, is wirelessly transferred
+to a central edge server equipped with an embedded historian database.
 
-The system includes a TensorFlow inference processor for machine learning, along
-with a customizable dashboard, making it a complete standalone solution. For
-compatibility with third-party applications, the platform also includes an
+The edge system includes a TensorFlow inference processor for machine learning,
+along with a customizable dashboard, making it a complete standalone solution.
+For compatibility with third-party applications, the platform also includes an
 OPC-UA server and MQTT publishing client, enabling real-time visualization on
 modern SCADA platforms (Kepware, Ignition, Siemens SIMATIC, etc.).
 
