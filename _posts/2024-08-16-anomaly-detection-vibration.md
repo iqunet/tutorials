@@ -84,25 +84,27 @@ a typical installation.
 
 Other factors that need to be considered include:
 
-- **Signal Propagation:** The sensor's placement introduces multiple wave
-propagation boundaries (i.e. transitions between materials), which attenuate
-and reflect high-frequency signals. This makes measurements above 10 kHz,
-including ultrasonic frequencies, costly and of limited benefit.
+- **Signal Propagation:** The sensor's non-ideal placement introduces multiple
+wave propagation boundaries (i.e. transitions between materials), which
+attenuate and reflect high-frequency signals. This makes measurements above
+10 kHz, including ultrasonic frequencies, costly and of limited benefit.
   
-- **Unsuitability of RMS Sensors:** The amount of process noise means that
-simple RMS sensors would likely mask fault signals, making them ineffective
-for vibratory feeders, except for the most obvious (catastrophic) failure modes.
+- **Unsuitability of RMS Sensors:** In simple RMS sensors, fault signals will
+be masked by process noise, making them ineffective for vibratory feeders
+except for the most obvious late-stage catastrophic failures.
 
-Given these conditions, triaxial MEMS-based wireless vibration sensors are an
-ideal choice:
+Given these prerequisites, triaxial MEMS-based wireless vibration sensors are
+an ideal choice:
 
-- **Frequency Response:** These sensors capture vibrations up to 1600 Hz in
-three axes, allowing for better separation of process noise from fault detection,
-allowing to tune the signal-to-noise ratio and overall sensitivity.
+- **Frequency Response:** These sensors capture vibrations up to a few kHz(\*) in
+three axes. This allows for spectral separation of process noise and fault
+frequencies, so we can tune for the optimal the signal-to-noise ratio and
+fault sensitivity.
+(\* the installed sensors have a Nyquist bandwidth of +/-1.5KHz)
   
 - **Robustness:** MEMS sensors are highly durable and well-suited for long-term
-use in harsh environments. Piezo accelerometers are not prone to material
-failures of the ceramic sensing elements and need careful handling to keep their
+use in harsh environments. Piezo accelerometers not prone to material failures
+of the ceramic sensing elements and need more careful handling to maintain their
 calibrated sensitivity.
   
 - **Wireless Range:** With a range of 20 to 50 meters, wireless sensors
