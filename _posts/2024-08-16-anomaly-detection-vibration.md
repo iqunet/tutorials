@@ -301,11 +301,11 @@ more complex signal transformations.
 #### Frequency Domain Data
 
    When we convert to the frequency domain, the picture becomes clearer. The
-   energy components of the vibratory process are mainly concentrated at the
-   lower frequencies, as expected. Additionally, the vibration dampers absorb
-   higher frequencies associated with the product processing somewhat, making
-   the upper half of the spectrum the ideal candidate to focus on for fault
-   detection. 
+   energy components of the vibratory feeder process are mainly concentrated
+   at the lower frequencies, as expected. Additionally, the vibration dampers
+   absorb higher frequencies associated with the product processing somewhat,
+   making the upper half of the spectrum the ideal candidate to focus on for
+   fault detection. 
 
    In most cases, there is no a-priori information about the machine provided
    by the customer, simply because it does not exist. Setting precise thresholds
