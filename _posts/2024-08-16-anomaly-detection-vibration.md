@@ -426,7 +426,7 @@ and avoid false alarms.
 ### Dashboard and Integration with Other Systems
 The iQunet Edge system provides all functionality for the above described
 signal processing functions in one edge device. This edge device contains
-not only the controller for up to more than 100 vibration sensors in a single
+not only the controller for up to more than 100 (vibration) sensors in a single
 device, but also all postprocessing functionality for the conversion to RMS,
 spectral plots, historical trends, machine learning inference and
 thresholding-based alarms.
@@ -449,6 +449,6 @@ to align repairs with the scheduled maintenance. The ability to automatically
 detect complex issues without relying on manual inspections or preset thresholds
 highlights the potential of integrating machine learning into industrial
 maintenance strategies, bringing the required level of understanding from
-expert level to anyone with some technical background.
+expert vibration analist to anyone with a good technical background.
 
 For more detailed technical insights and support, explore our [documentation](https://iqunet.com/resources/) and [case studies](https://iqunet.com/resources/case-studies/case-study-1-international-airport/), or contact our [support team](https://iqunet.com/contact/).
