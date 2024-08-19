@@ -378,17 +378,17 @@ or analyse, this multi-feature input provides a rich dataset for the autoencoder
 so it can be trained on both events in the time domain (sudden shocks) and in
 the frequency domain (bearing faults, imbalance, etc).
 
-With some additional data augmentation (beyond the scope of this text), this
-dataset becomes the training input for the autoencoder. Please keep in mind
-that only the first month of data was used to train the ML model, and the full
-spectral heatmap of the previous chapter was only captured in the next months.
-However we use all data here to help the reader to understand and observe the
-emerging bearing failure.
+With some additional data augmentation and mini batches (beyond the scope of
+this text), this dataset becomes the training input for the autoencoder. Please
+keep in mind that only the first month of data was used to train the ML model,
+and the full spectral heatmap of the previous chapter was only captured in the
+next months. However we use all data here to help the reader to understand and
+observe the emerging bearing failure.
 
 #### Autoencoder Functionality
 
 The autoencoder attempts to compress this NxMx3 input signal into a reduced
-l-dimensional latent space. Once trained, the autoencoder reconstructs each
+L-dimensional latent space. Once trained, the autoencoder reconstructs each
 new measurement and compares it with the original STFT input. The difference
 between the original and reconstructed signal is quantified using a loss
 function (MAE, MSE, logCosh, ...), which maps this discrepancy to a single
