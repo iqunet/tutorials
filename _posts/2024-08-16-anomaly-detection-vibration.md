@@ -225,8 +225,8 @@ more complex signal transformations.
    - **Dependency on Expertise:** Setting accurate thresholds requires good
      understanding of the machine's internals.
 
-   - **Operating point variability:** Traditional threshold-based methods are
-     most effective when machines operate under constant speeds and loads. In
+   - **Operating point variability:** Threshold-based frequency band alarms are
+     most effective when machines operate under stable speeds and loads. In
      environments with varying conditions, thresholds often need to be relaxed
      to avoid false positives, which significantly reduces the sensitivity of
      the monitoring system.
