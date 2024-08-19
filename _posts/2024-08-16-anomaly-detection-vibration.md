@@ -310,14 +310,14 @@ more complex signal transformations.
    In most cases, there is no a-priori information about the machine provided
    by the customer, simply because it does not exist. Setting precise thresholds
    for each frequency bin as would be done with traditional monitoring
-   approaches, remains a tedious challenge.
+   approaches, remains a tedious challenge. Without expert knowledge about the
+   machine characteristics, the risk for incorrect thresholds is real.
 
    For example, the intermodulation of the drive frequencies and harmonics with
-   the actual fault frequencies may even cause certain spectral components to
+   the actual fault frequencies may cause certain spectral components to
    disappear, which is excactly the opposite from what setting a threshold is
-   trying to achieve. Without expert knowledge about the machine characteristics,
-   the risk for incorrect thresholds is real. This is where the autoencoder ML
-   approach becomes a valuable asset in our toolbox.
+   trying to achieve. This is where the autoencoder ML approach becomes a
+   valuable asset in our toolbox.
 
 #### Spectal Heatmap
 
