@@ -313,8 +313,8 @@ more complex signal transformations.
    band alarm approaches, remains a tedious challenge. Without expert knowledge
    about the machine characteristics, the risk for incorrect thresholds is real.
 
-   For example, the intermodulation of the drive frequencies and harmonics with
-   the actual fault frequencies may cause certain spectral components to
+   For example, the intermodulation of the drive train frequencies and harmonics
+   with the actual fault frequencies may cause certain spectral components to
    disappear when a fault occurs, which is excactly the opposite from what
    setting a threshold is trying to achieve. This is where the autoencoder ML
    approach becomes a valuable asset in our toolbox.
