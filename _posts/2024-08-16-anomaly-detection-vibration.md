@@ -66,18 +66,18 @@ cable fatigue.
   
 - **Regular Maintenance:** Parts of these machine are frequently disassembled
 for maintenance. It is preferred that any sensors should be as non-intrusive as
-possible during these manipulation while also maintaining consistent location
+possible during these manipulations while also maintaining consistent location
 and orientation. This stability improves the accuracy of the machine learning
 algorithms, as discussed later in this post.
 
-Given the challenges of monitoring shaker machines, the customer opted for
-wireless sensors to avoid issues related to cable and connector fatigue.
-In addition, to ensure that regular maintenance tasks could be performed
-without disturbing the sensors, they were installed 40 cm away from the ideal
-location. This placement on the machine frame, rather than directly on the
-motor and drive train, reduces the sensitivity to high-frequency bearing faults
-but ensures consistent data collection over a long period, even after part
-replacements.
+Given the challenges of monitoring shaker machines, the customer here opted
+for wireless sensors to avoid the above issues. The downside of course is that
+batteries need to be replaced every 20-50,000 measurements. Also, to ensure
+that routine maintenance tasks can be performed without disturbing the sensors,
+they were installed 40 cm away from the ideal location. This placement on the
+machine frame, rather than directly on the motor and drive train, reduces the
+sensitivity to high-frequency bearing faults but ensures consistent data
+collection over a long period, even after part replacements.
 
 Other factors that need to be considered include:
 
