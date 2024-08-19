@@ -45,13 +45,13 @@ detect here.
 
 ---
 
-### Monitoring Shaker Machines
+### Monitoring Shaker Conveyors
 
 Monitoring vibrating equipment in waste management plants presents unique
 challenges. These plants are large, and network infrastructure is often
 lacking. Installing cabling across such large sites is not only expensive but
-also impractical. This is especially true for machines that experience
-significant vibrations during operation.
+also prone to fatigue failures. This is especially true for machines that
+experience significant translational vibrations.
 
 One example is vibratory feeders, which spread household waste material before
 it undergoes optical sorting. In the optical sorter, spectral cameras detect
