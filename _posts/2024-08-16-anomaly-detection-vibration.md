@@ -207,14 +207,16 @@ more complex signal transformations.
 ---
 #### Challenges with Manual Analysis and Traditional Methods
 
-   Linking specific fault patterns to particular machine components typically
-   requires expert knowledge. Diagnosing issues like bearing faults or other
-   machine-specific anomalies demands experience and regular inspections.
+   Linking specific fault patterns to their root cause in particular machine
+   components typically requires expert knowledge. Diagnosing issues like
+   bearing faults or other machine-specific anomalies demands experience and
+   regular inspections.
+
    However, relying solely on specialists is costly, and the extended intervals
    between inspections can result in missed random faults. Oftentimes, the
-   plant operator just wants to be alerted in time about an upcoming problem
-   and will just replace the faulty component without the need for a detailed
-   report about the fault.
+   plant operator just wants to be alerted in time about an upcoming problem,
+   the progress over the next days and will just replace the faulty component
+   without the need for a detailed report about the fault.
 
    Moreover, the sheer volume of data --hundreds of plots generated daily-- 
    makes manual analysis impractical. Traditional automated methods, such as
