@@ -364,9 +364,9 @@ components.
 
 Instead of feeding the autoencoder with time- or frequency-domain data
 separately, as discussed earlier, we use the STFT representation. Each
-measurement is converted into a numeric representation similar to the spectral
-heatmap described previously. However, in this case, the input data is extended
-to three dimensions.
+measurement is converted into a numeric matrix similar to the spectral
+heatmap described previously. However, in this case, the input data is
+extended to three dimensions.
 
 - **Time domain:** The 3x8192 samples within each single measurement.
 - **Spectrum:** Frequency-domain data of above time domain.
