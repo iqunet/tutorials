@@ -305,13 +305,13 @@ more complex signal transformations.
    at the lower frequencies, as expected. Additionally, the vibration dampers
    absorb higher frequencies associated with the product processing somewhat,
    making the upper half of the spectrum the ideal candidate to focus on for
-   fault detection. 
+   anomaly detection. 
 
    In most cases, there is no a-priori information about the machine provided
    by the customer, simply because it does not exist. Setting precise thresholds
-   for each frequency bin as would be done with traditional monitoring
-   approaches, remains a tedious challenge. Without expert knowledge about the
-   machine characteristics, the risk for incorrect thresholds is real.
+   for each frequency bin as would be done with traditional threshold-based
+   band alarm approaches, remains a tedious challenge. Without expert knowledge
+   about the machine characteristics, the risk for incorrect thresholds is real.
 
    For example, the intermodulation of the drive frequencies and harmonics with
    the actual fault frequencies may cause certain spectral components to
