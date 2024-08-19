@@ -50,18 +50,19 @@ detect here.
 Monitoring vibrating equipment in waste management plants presents unique
 challenges. These plants are large, and network infrastructure is often
 lacking. Installing cabling across such large sites is not only expensive but
-also prone to fatigue failures. This is especially true for machines that
-experience significant translational vibrations.
+also prone to failures. This is especially true for machines that experience
+significant vibrations.
 
 One example is vibratory feeders, which spread the household waste material
 before it undergoes optical sorting. In the optical sorter, spectral cameras
 detect different materials, and pressurized air is then used to separate
 individual pieces of waste into different output flows. These vibratory feeders,
-which ensure the even distribution of material, face several challenges:
+which ensure the even distribution of material, pose several challenges:
 
-- **Large Displacements:** Vibratory feeders experience displacements of up to
-10 cm, making not only themselves prone to considerable wear but also make wired
-sensors susceptible to both connector and cable failure.
+- **Large Displacements:** Vibratory feeders experience translational
+displacements of up to 10 cm, making not only themselves prone to considerable
+stresses but also make wired sensors susceptible to both connector and cable
+fatique wear.
   
 - **Regular Maintenance:** Parts of these machine are frequently disassembled
 for maintenance. It is preferred that any sensors should be as non-intrusive as
