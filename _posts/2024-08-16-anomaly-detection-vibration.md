@@ -387,7 +387,7 @@ emerging bearing failure.
 
 #### Autoencoder Functionality
 
-The autoencoder attempts to compress this Nx3 input signal into a reduced
+The autoencoder attempts to compress this NxMx3 input signal into a reduced
 l-dimensional latent space. Once trained, the autoencoder reconstructs each
 new measurement and compares it with the original STFT input. The difference
 between the original and reconstructed signal is quantified using a loss
