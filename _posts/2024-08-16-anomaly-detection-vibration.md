@@ -315,9 +315,9 @@ more complex signal transformations.
 
    For example, the intermodulation of the drive frequencies and harmonics with
    the actual fault frequencies may cause certain spectral components to
-   disappear, which is excactly the opposite from what setting a threshold is
-   trying to achieve. This is where the autoencoder ML approach becomes a
-   valuable asset in our toolbox.
+   disappear when a fault occurs, which is excactly the opposite from what
+   setting a threshold is trying to achieve. This is where the autoencoder ML
+   approach becomes a valuable asset in our toolbox.
 
 #### Spectal Heatmap
 
