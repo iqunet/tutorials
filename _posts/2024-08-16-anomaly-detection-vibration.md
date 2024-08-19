@@ -62,7 +62,7 @@ which ensure the even distribution of material, pose several challenges:
 - **Large Displacements:** Vibratory feeders experience translational
 displacements of up to 10 cm, making not only themselves prone to considerable
 stresses but also make wired sensors susceptible to both connector wear and
-cable fatigue.
+cable fatigue in the long term.
   
 - **Regular Maintenance:** Parts of these machine are frequently disassembled
 for maintenance. It is preferred that any sensors should be as non-intrusive as
@@ -72,12 +72,14 @@ algorithms, as discussed later in this post.
 
 Given the challenges of monitoring shaker machines, the customer here opted
 for wireless sensors to avoid the above issues. The downside of course is that
-batteries need to be replaced every 20-50,000 measurements. Also, to ensure
-that routine maintenance tasks can be performed without disturbing the sensors,
-they were installed 40 cm away from the ideal location. This placement on the
-machine frame, rather than directly on the motor and drive train, reduces the
-sensitivity to high-frequency bearing faults but ensures consistent data
-collection over a long period, even after part replacements.
+batteries need to be replaced every 20-50,000 measurements.
+
+Also, to ensure that routine maintenance tasks can be performed without
+disturbing the sensors, they were installed 40 cm away from the ideal location.
+This placement on the machine frame, rather than directly on the motor and
+drive train, reduces the sensitivity to high-frequency bearing faults but
+ensures consistent data collection over a long period, even after part
+replacements.
 
 Other factors that need to be considered include:
 
