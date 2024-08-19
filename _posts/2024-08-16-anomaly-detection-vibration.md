@@ -282,9 +282,9 @@ more complex signal transformations.
 
 ### Real-world Vibratory Feeder Data
 
-   In this section, we will examine the data collected from a sensor placed on
-   a vibratory feeder over several months. We'll track the progression of a
-   bearing fault, exploring its appearance in the spectrum, and follow its
+   In this section, we will examine the data collected from a triax MEMS sensor
+   placed on a vibratory feeder over several months. We'll track the progression
+   of a bearing fault, exploring its appearance in the spectrum, and follow its
    development over time until the bearing was eventually replaced.
 
 #### Time Domain Data
