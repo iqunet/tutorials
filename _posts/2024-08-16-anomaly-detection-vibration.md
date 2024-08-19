@@ -347,7 +347,7 @@ more complex signal transformations.
    disappears temperorarily because of routine maintainance and about x days
    before the fatal damage it appears again. In the final stages of the bearing
    damage, we can see the fault spectrum spread out over all frequency bands,
-   which is the well-known indicator stage 4 bearing damage.
+   which is the well-known indicator for stage-4 bearing damage.
 
    In the next chapter we will feed this sensor data to a ML autoencoder to
    reduce the complex data in a simple loss indicator which can be used as an
@@ -368,20 +368,22 @@ measurement is converted into a numeric representation similar to the spectral
 heatmap described previously. However, in this case, the input data is extended
 to three dimensions.
 
-- **Time domain:** Time between 3x8192 samples within the measurement
+- **Time domain:** The 3x8192 samples within each single measurement.
 - **Spectrum:** Frequency-domain data of above time domain.
-- **Measurement Index:** The sequence of measurements over time.
-  (x-axis/dates in the heatmap).
+- **Measurement Index:** The stack of measurements over time
+  (dates in the heatmap).
 
 While this complex input signal is difficult for the human brain to understand
 or analyse, this multi-feature input provides a rich dataset for the autoencoder
-so it can detect both events in the time domain (sudden shocks) as in the
-frequency domain (bearing faults, imbalance, etc). With some additional data
-augmentation (beyond the scope of this text), this dataset becomes the training
-input for the autoencoder. Please keep in mind that only the first month of
-data was used to train the ML model, and the full spectral heatmap of the
-previous chapter was only captured in the next months. However we use all data
-here to help the reader to understand.
+so it can be trained on both events in the time domain (sudden shocks) and in
+the frequency domain (bearing faults, imbalance, etc).
+
+With some additional data augmentation (beyond the scope of this text), this
+dataset becomes the training input for the autoencoder. Please keep in mind
+that only the first month of data was used to train the ML model, and the full
+spectral heatmap of the previous chapter was only captured in the next months.
+However we use all data here to help the reader to understand and observe the
+emerging bearing failure.
 
 #### Autoencoder Functionality
 
