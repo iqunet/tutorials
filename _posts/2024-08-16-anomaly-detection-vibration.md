@@ -341,13 +341,13 @@ more complex signal transformations.
    the spectrum is useless, as it may contain valueable information about the
    waste processing itself.
 
-   In the upper part of the spectrum, we can observe some early stage signs
-   of an upcoming change in the behaviour of the machine. First signs are
-   around x weeks before the critical damage of the bearing, then it disappears
-   temperorarily because of planned maintainance and about x days before the
-   fatal damage it appears again. In the final stages of the bearing damage,
-   we can see the fault spectrum spread out over all frequency bands, which is
-   the well-known indicator stage 4 bearing damage.
+   In the upper part of the spectrum, we can observe some early stage
+   indicators of an upcoming change in the behaviour of the machine. First signs
+   are around x weeks before the critical damage of the bearing, then it
+   disappears temperorarily because of routine maintainance and about x days
+   before the fatal damage it appears again. In the final stages of the bearing
+   damage, we can see the fault spectrum spread out over all frequency bands,
+   which is the well-known indicator stage 4 bearing damage.
 
    In the next chapter we will feed this sensor data to a ML autoencoder to
    reduce the complex data in a simple loss indicator which can be used as an
