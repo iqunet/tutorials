@@ -284,8 +284,8 @@ more complex signal transformations.
 
    In this section, we will examine the data collected from a triax MEMS sensor
    placed on a vibratory feeder over several months. We'll track the progression
-   of a bearing fault, exploring its appearance in the spectrum, and follow its
-   development over time until the bearing was eventually replaced.
+   of an emerging bearing fault, exploring its appearance in the spectrum, and
+   follow its development over time until the bearing was eventually replaced.
 
 #### Time Domain Data
 
@@ -295,25 +295,28 @@ more complex signal transformations.
    process noise. The fault's energy remains buried below the noise floor until
    the very late stages, when the fault's energy becomes high enough to rise
    above the process noise. As a result, relying solely on time-domain data or
-   simple RMS energy thresholds is insufficient to detect early warning signs
+   simple RMS power thresholds is insufficient to detect early warning signs
    and track the stability of a developing fault.
 
 #### Frequency Domain Data
 
    When we convert to the frequency domain, the picture becomes clearer. The
    energy components of the vibratory process are mainly concentrated at the
-   lower frequencies, as expected. Additionally, the vibration dampers suppress
+   lower frequencies, as expected. Additionally, the vibration dampers absorb
    higher frequencies associated with the product processing somewhat, making
    the upper half of the spectrum the ideal candidate to focus on for fault
    detection. 
 
-   However, setting precise thresholds for each frequency bin as would be done
-   with traditional monitoring approaches, remains a tedious challenge. Also,
-   the intermodulation of the drive frequencies and harmonics with the actual
-   fault frequencies may even cause certain spectral components to disappear,
-   which is excactly the opposite from what setting a threshold is trying to
-   achieve. Without expert knowledge about the machine characteristics, the
-   risk for incorrect thresholds is real. This is where the autoencoder ML
+   In most cases, there is no a-priori information about the machine provided
+   by the customer, simply because it does not exist. Setting precise thresholds
+   for each frequency bin as would be done with traditional monitoring
+   approaches, remains a tedious challenge.
+
+   For example, the intermodulation of the drive frequencies and harmonics with
+   the actual fault frequencies may even cause certain spectral components to
+   disappear, which is excactly the opposite from what setting a threshold is
+   trying to achieve. Without expert knowledge about the machine characteristics,
+   the risk for incorrect thresholds is real. This is where the autoencoder ML
    approach becomes a valuable asset in our toolbox.
 
 #### Spectal Heatmap
