@@ -321,7 +321,7 @@ more complex signal transformations.
 
 #### Spectal Heatmap
 
-   Before we review the ML results, we make an intermediate step and introduce
+   Before we review the ML results, we make an intermediate stop and introduce
    the spectral heatmap. In this plot, the horizontal x-axis represents time,
    and the vertical slices (y-axis) represents the frequency spectrum of a
    single measurement. The amplitude of the spectrum is now represented by a
@@ -330,23 +330,25 @@ more complex signal transformations.
 
    On this plot, we can observe that the gross of process noise is concentrated
    around the fundamental drive frequency and multiple odd harmonics thereof.
-   The higher harmonics originate from the conversion process for the sinusoidal
-   movement of the feeder, which is converted to nonlinear friction on the
-   processed waste by the structure of the feeder topology (ref here).
+   The higher harmonics originate from the conversion process of the sinusoidal
+   movement of the feeder to the nonlinear friction on the processed waste by
+   the structure of the feeder topology (ref here).
+
    For the remainder of this discussion, we will ignore the lower part of the
    spectrum, as this portion of the heatmap mainly contains spectral components
-   of the waste processing, and we are mostly interested to detect faults of
-   the feeder components. However, it does not imply that the lower part of
+   of the waste processing, and we are mostly interested to detect faults in
+   the feeder drive train. However, it does not imply that the lower part of
    the spectrum is useless, as it may contain valueable information about the
    waste processing itself.
 
    In the upper part of the spectrum, we can observe some early stage signs
-   of an upcoming change in the behaviour of the machine. First around x weeks
-   before the actual damage of the bearing, then it disappears temperorarily
-   because of planned revisions and about x days before the fatal damage it
-   appears again. In the final stages of the bearing damage, we can see the
-   fault spectrum spread out over all frequency bands, which is the well-known
-   indicator stage 4 bearing damage.
+   of an upcoming change in the behaviour of the machine. First signs are
+   around x weeks before the critical damage of the bearing, then it disappears
+   temperorarily because of planned maintainance and about x days before the
+   fatal damage it appears again. In the final stages of the bearing damage,
+   we can see the fault spectrum spread out over all frequency bands, which is
+   the well-known indicator stage 4 bearing damage.
+
    In the next chapter we will feed this sensor data to a ML autoencoder to
    reduce the complex data in a simple loss indicator which can be used as an
    temperature-like indicator for the health status of the machine.
