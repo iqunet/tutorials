@@ -233,35 +233,38 @@ more complex signal transformations.
 
 #### Enter the Power of Machine Learning
 
-   Machine learning (ML) techniques offer a more adaptable solution to track
+   Machine learning (ML) techniques offer a more flexible solution to track
    the health of a machine. The models used in ML can represent the machine's
-   time- and frequency-data using latent (internal) variables, which provide
-   an abstract view of the machine's internal behavior.
+   time and frequency vibration data using latent (internal) variables, which
+   provide an abstract view of the machine's internal state.
+
    This discussion will focus on unsupervised learning, as it can be applied
    to a broad range of applications, without the need for costly manual
    training.
 
    - **Latent Variables:**  
      In an autoencoder, for example, the ML model is trained to compress the
-     vibration data (the STFT representation in our case) into a limited set
+     vibration data (the STFT representation in our case) into a compact set
      of latent variables, essentially creating what some marketing materials
      might call a "digital twin."
 
-   After training, these latent variables capture the subtle interactions
-   between speed, load, temperature, and the time- and frequency-domain
-   components of the input signal. Think of this as a much more sophisticated
-   version of the relationship between load and temperature, but in multiple
-   dimensions and with greater complexity.
+   After the training phase, these latent variables capture the subtle
+   interactions between speed, load, temperature, and the time and frequency
+   domain components of the input signal. Think of this as a more sophisticated
+   version of the relationship between machine load and temperature, but in
+   multiple dimensions, with more variables and with greater complexity.
 
    While the latent variables themselves don't give us clear insight in the
    machine's health status, they do provide the foundation for estimating how
    far the the machine's current behaviour deviates from its normal operating
-   point. The normal state is defined by the complex patterens captured during
-   the training phase. For example, if a harmonic signal appears (or disappears
-   for that matter) in the input that wasn't present during the training, or if
-   a specific combination of harmonics occurs, the latent variables won't be
-   optimized to accurately represent this newfound state. As a result, the
-   output of the autoencoder will start to diverge from the input.
+   point. The normal state is defined by the complex patterens captured from
+   the thousands of measurements during the training phase.
+
+   For example, if a harmonic signal appears (or disappears for that matter)
+   in the input that wasn't present during the training, or if a specific
+   combination of harmonics occurs, the latent variables won't be optimized to
+   accurately represent this newfound state. As a result, the output of the
+   autoencoder will start to diverge from the input.
 
    This discrepancy between the input and the model's output is measured by a
    loss function, for example the MAE (mean absolute error), which transforms
