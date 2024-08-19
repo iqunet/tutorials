@@ -66,7 +66,7 @@ cable fatigue in the long term.
   
 - **Regular Maintenance:** Parts of these machine are frequently disassembled
 for maintenance. It is preferred that any sensors should be as non-intrusive as
-possible during these manipulations while also maintaining consistent location
+possible during such manipulations while also maintaining consistent location
 and orientation. This stability improves the accuracy of the machine learning
 algorithms, as discussed later in this post.
 
@@ -77,16 +77,17 @@ batteries need to be replaced every 20-50,000 measurements.
 Also, to ensure that routine maintenance tasks can be performed without
 disturbing the sensors, they were installed 40 cm away from the ideal location.
 This placement on the machine frame, rather than directly on the motor and
-drive train, reduces the sensitivity to high-frequency bearing faults but
-ensures consistent data collection over a long period, even after part
-replacements.
+drive train, drastically reduces the sensitivity to high-frequency bearing
+faults but ensures consistent data collection over a long period, even after
+part replacements. This highlights the gap between ideal lab conditions and
+a typical installation.
 
 Other factors that need to be considered include:
 
-- **Signal Propagation:** The sensor's placement introduces multiple material
-boundaries, which attenuate and reflect high-frequency signals. This makes
-measurements above 10 kHz, including ultrasonic frequencies, costly and of
-limited benefit.
+- **Signal Propagation:** The sensor's placement introduces multiple wave
+propagation boundaries (i.e. transitions between materials), which attenuate
+and reflect high-frequency signals. This makes measurements above 10 kHz,
+including ultrasonic frequencies, costly and of limited benefit.
   
 - **Unsuitability of RMS Sensors:** The amount of process noise means that
 simple RMS sensors would likely mask fault signals, making them ineffective
