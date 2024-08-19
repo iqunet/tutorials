@@ -126,16 +126,18 @@ vibration snapshots every 15 minutes (configurable) at a sampling rate of 3200Hz
 A measurement, consisting of up to 25,000 samples, is wirelessly transferred
 to a central edge server equipped with an embedded historian database.
 
-The edge system includes a TensorFlow inference processor for machine learning,
+The edge server includes a TensorFlow inference processor for machine learning,
 along with a customizable dashboard, making it a complete standalone solution.
-For compatibility with third-party applications, the platform also includes an
+For compatibility with third-party applications, the software also includes an
 OPC-UA server and MQTT publishing client, enabling real-time visualization on
-modern SCADA platforms (Kepware, Ignition, Siemens SIMATIC, etc.).
+the most common SCADA platforms (Kepware, Ignition, Siemens SIMATIC, etc.) and
+cloud-based IoT systems.
 
-### Data Processing: From Raw Data to Actionable Insights
+### From Raw Data to Actionable Insights
 
-The raw data collected by the sensors undergoes several processing steps to
-extract several aggregate parameters and complex parameters.
+The raw vibration data (i.e. acceleration time series vectors) collected by the
+sensors undergoes several preprocessing steps to extract several aggregate and
+more complex signal transformations.
 
 #### Prefiltering, Data Streams and Domains
 
