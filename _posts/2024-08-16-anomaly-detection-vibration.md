@@ -399,12 +399,14 @@ figure below.
 
 #### Anomaly Detection and Visualization
 
-The output of the loss function clearly shows an increase in the anomaly score
-at the very same timestamps corresponding to the issues we visually detected
-in the heatmap from the previous chapter. However, the key advantage here is
-that this anomaly detection is done without needing to visually inspect a
-heatmap or to manually set individual thresholds for each frequency bin. In
-addition, the level of the anomaly score will gain us useful insight in the
+The output of the loss function (i.e. the loss value over the historical
+measurements) clearly shows an increase in the anomaly score at the very same
+timestamps corresponding to the events we had already visually detected in the
+heatmap from the previous chapter. However, the key advantage here is that this
+anomaly detection is done without needing to visually inspect a heatmap or to
+manually set individual thresholds for each frequency bin.
+
+In addition, the level of the anomaly score will gain us useful insight in the
 stability of the anomaly, and give a good estimate about the rate in which
 the machine is deviating from that operating point (i.e. how fast an
 intervention must be planned)
