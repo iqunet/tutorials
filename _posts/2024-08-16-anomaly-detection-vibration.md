@@ -143,13 +143,14 @@ more complex signal transformations.
 
 1. **Prefiltering:**  
    Certain types of piezo sensors can generate high dynamic range velocity
-   signals at very low frequencies using a charge amplifier. However, MEMS
-   sensor data is acceleration based and must be prefiltered to remove any
-   near-DC components before the conversion to velocity. This is a
-   non-straighforward mathematical process similar to the stabilization time
-   in piezo sensors, and it must be ensured that the high rejection ratio
-   linear-phase filter does not introduce ripple near the LPF cut-off frequency,
-   which would cause severe drift when integrating from acceleration to velocity.
+   signals at very low frequencies using a charge-mode amplifier. However,
+   MEMS sensor data is acceleration based and must be prefiltered to remove
+   any near-DC components before the conversion to velocity. This is a
+   non-straighforward mathematical process similar to the preamp stabilization
+   time in piezo sensors, and it must be ensured that the high rejection ratio
+   linear-phase highpass filter does not introduce ripple near the LPF cut-off
+   frequency, which would cause distortion in the time domain signal and severe
+   drift when integrating from acceleration to velocity.
    
 2. **Data Streams:**  
    Once the DC-offset is removed, the data is converted into several useful
