@@ -254,10 +254,10 @@ more complex signal transformations.
    version of the relationship between machine load and temperature, but in
    multiple dimensions, with more variables and with greater complexity.
 
-   While the latent variables themselves don't give us clear insight in the
+   While the latent variables themselves won't give us direct insight in the
    machine's health status, they do provide the foundation for estimating how
    far the the machine's current behaviour deviates from its normal operating
-   point. The normal state is defined by the complex patterens captured from
+   point. The normal state is defined by the complex patterns captured from
    the thousands of measurements during the training phase.
 
    For example, if a harmonic signal appears (or disappears for that matter)
