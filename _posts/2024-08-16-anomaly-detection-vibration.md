@@ -68,10 +68,11 @@ In this blogpost, we will explore how ruggedized wireless vibration sensors
 and machine learning in the data postprocessing chain provide us with consistent
 regular health updates, enabling early detection of issues. We shall cover the
 technical setup, the data processing, and the machine learning which automate
-the anomaly detection in noisy environments. Noisy, in this case, refers to
-the sensor signal, which is polluted with unwanted vibrations from the
-production process itself, in addition to the machine defects we are trying to
-detect here.
+the anomaly detection in noisy environments.
+
+> *Noisy, in this case, refers to the sensor signal, which is polluted with
+> unwanted vibrations from the production process itself, in addition to the
+> machine defects we are trying to detect here.*
 
 ---
 
@@ -86,8 +87,27 @@ significant vibrations.
 One example is vibratory feeders, which spread the household waste material
 before it undergoes optical sorting. In the optical sorter, spectral cameras
 detect different materials, and pressurized air is then used to separate
-individual pieces of waste into different output flows. These vibratory feeders,
-which ensure the even distribution of material, pose several challenges:
+individual pieces of waste into different output flows.
+
+See "*SPALECK: Recycling Waste Screens*"
+<a class="external"
+  href="https://www.spaleck.eu/screening-machines"
+  target="_blank">[spaleck.eu]
+</a>.
+
+<img
+  src="{{ site.baseurl }}/assets/images/vibration-vibratory-feeder.jpg"
+  alt="Vibratory Feeder with Vibration Sensor Location"
+  width="100%"
+  style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);"
+/>
+<figcaption>
+  Figure 4: Vibratory Feeder with the location of the Vibration Sensor
+  [image credit: SPALECK].
+</figcaption>
+
+These vibratory feeders, which ensure the even distribution of material, pose
+several challenges:
 
 - **Large Displacements:** Vibratory feeders experience translational
 displacements of up to 10 cm, making not only themselves prone to considerable
