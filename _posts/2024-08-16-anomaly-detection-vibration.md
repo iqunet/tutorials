@@ -41,6 +41,23 @@ makes some level of monitoring targeted towards machine health and predictive
 maintainance crucial to avoid unplanned downtimes and the cost that inevitably
 comes with it.
 
+See "*How does the post-separation process work?*"
+<a class="external"
+  href="https://www.avr.nl/en/optimal-process/nascheidingsinstallatie-nsi"
+  target="_blank">AVR.nl
+</a>.
+
+<img
+  src="{{ site.baseurl }}/assets/images/vibration-avr-separation.svg"
+  alt="Schematic Representation of the AVR Separation Plant"
+  width="100%"
+  style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);"
+/>
+<figcaption>
+  Figure 3: Overview of the Household Waste Separation Process
+  (click to enlarge) [credits: AVR].
+</figcaption>
+
 While digital PLCs are in the control of the pipeline and can already detect
 the most acute faults in realtime, machine manufacturers treat health monitoring
 mostly as an afterthought, leaving it to the customers to handle unexpected
