@@ -59,10 +59,20 @@ See "*How does the post-separation process work?*"
 </figcaption>
 
 While digital PLCs are in the control of the pipeline and can already detect
-the most acute faults in realtime, machine manufacturers treat health monitoring
-mostly as an afterthought, leaving it to the customers to handle unexpected
-random failures. However, in unhealthy environments filled with dust, humidity,
-and noise, daily manual inspections are not practical.
+the most acute faults in realtime, machine manufacturers treat predictive
+monitoring mostly as an afterthought, leaving it to the customers to handle
+unexpected random failures. However, in unhealthy environments filled with dust,
+humidity, and noise, daily manual inspections are not practical.
+
+<img
+  src="{{ site.baseurl }}/assets/images/vibration-dust.jpg"
+  alt="Unhealthy Environment with Dust"
+  width="500px"
+/>
+<figcaption>
+  Figure 4: Unhealthy environment at a waste processing plant &mdash;<br />
+  Accumulation of dust on the receiver module after several weeks of operation.
+</figcaption>
 
 In this blogpost, we will explore how ruggedized wireless vibration sensors
 and machine learning in the data postprocessing chain provide us with consistent
@@ -102,7 +112,7 @@ See "*SPALECK: Recycling Waste Screens*"
   style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);"
 />
 <figcaption>
-  Figure 4: Vibratory Feeder with the location of the Vibration Sensor
+  Figure 5: Vibratory Feeder with the location of the Vibration Sensor
   [image credit: SPALECK].
 </figcaption>
 
@@ -123,6 +133,13 @@ algorithms, as discussed later in this post.
 Given the challenges of monitoring shaker machines, the customer here opted
 for wireless sensors to avoid the above issues.
 
+<video width="300px" controls loop autoplay muted style="margin-left: 1em;">
+  <source src="{{ site.baseurl }}/assets/videos/vibration-screen-render.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<figcaption>figure 6: Video Demonstrating Sensor Placement and the Challenging
+  Conditions on a Shaker Screen in a Waste Processing Plant.</figcaption>
+
 Also, to ensure that routine maintenance tasks can be performed without
 disturbing the sensors, they were installed 40 cm away from the ideal location.
 This placement on the machine frame, rather than directly on the motor and
@@ -142,14 +159,60 @@ attenuate and reflect high-frequency signals. This makes measurements above
 be masked by process noise, making them ineffective for vibratory feeders
 except for the most obvious late-stage catastrophic failures.
 
-Given these prerequisites, triaxial MEMS-based wireless vibration sensors are
-an ideal choice:
+---
 
-- **Frequency Response:** These sensors capture vibrations up to a few kHz(\*) in
+### MEMS Accelerometers
+
+Given the above prerequisites, triaxial MEMS-based wireless vibration sensors
+are an ideal choice.
+
+<img
+  src="{{ site.baseurl }}/assets/images/vibration-mems-die.jpg"
+  alt="Microphotograph of a MEMS Accelerometer Die"
+  width="500px"
+  style="margin-left: 1em;"
+/>
+<figcaption>
+  Figure 7: Microphotograph (2x2mm) of a MEMS Accelerometer (without ASIC processor).
+  <br /> Hollocher et al., "A Very Low Cost, 3-axis, MEMS Accelerometer for
+  Consumer Applications," 2009. 
+  <a class="external"
+    href="https://www.researchgate.net/publication/224107749"
+    target="_blank">[researchgate.net]
+  </a>.
+</figcaption>
+
+Fully integrated MEMS (micro-electromechanical system) vibration sensors detect
+acceleration by measuring changes in capacitance (distance) between a fixed
+electrode and a suspended on-chip proof mass. The variations in capacitance are
+then digitized by the ASIC postprocessor embedded in the same
+<a class="external"
+  href="https://en.wikipedia.org/wiki/System_in_a_package"
+  target="_blank">SiP package
+</a>
+and converted into their corresponding acceleration values.
+
+- **Frequency Response:** MEMS sensors capture vibrations up to a few kHz(\*) in
 three axes. This allows for spectral separation of process noise and fault
 frequencies, so we can tune for the optimal the signal-to-noise ratio and
 fault sensitivity.
-(\* the installed sensors have a Nyquist bandwidth of +/-1.5KHz)
+(\* the installed sensors have a Nyquist -3dB bandwidth of +/-1KHz)
+
+<img
+  src="{{ site.baseurl }}/assets/images/vibration-IVIB161010-ACC3-016-RBW-performance.png"
+  alt="Noise Performance of the iQunet IVIB161010-ACC3-016 Accelerometer"
+  width="90%"
+  style="margin-left: 1em; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);"
+/>
+<figcaption>
+  Figure 8: Peak and Noise Performance of the iQunet IVIB161010-ACC3-016
+  Accelerometer.
+  <br />Detailed background on Frequency Response and RBW performance figures
+  <a class="external"
+    href="https://www.analog.com/media/en/analog-dialogue/volume-51/number-3/articles/mems-vibration-monitoring-acceleration-to-velocity.pdf"
+    target="_blank">here
+  </a>.
+</figcaption>
   
 - **Robustness:** MEMS sensors are highly durable and well-suited for long-term
 use in harsh environments. Piezo accelerometers on the other hand, have superior
