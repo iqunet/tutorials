@@ -192,6 +192,12 @@ then digitized by the ASIC postprocessor embedded in the same
 </a>
 and converted into their corresponding acceleration values.
 
+- **Robustness:** MEMS sensors are highly durable and well-suited for long-term
+use in harsh environments. Piezo accelerometers on the other hand, have superior
+noise characteristics but are more prone to material failures of the ceramic
+sensing elements and need more careful handling to maintain their calibrated
+sensitivity.
+
 - **Frequency Response:** MEMS sensors capture vibrations up to a few kHz(\*) in
 three axes. This allows for spectral separation of process noise and fault
 frequencies, so we can tune for the optimal the signal-to-noise ratio and
@@ -213,12 +219,6 @@ fault sensitivity.
     target="_blank">here
   </a>.
 </figcaption>
-  
-- **Robustness:** MEMS sensors are highly durable and well-suited for long-term
-use in harsh environments. Piezo accelerometers on the other hand, have superior
-noise characteristics but are more prone to material failures of the ceramic
-sensing elements and need more careful handling to maintain their calibrated
-sensitivity.
 
 - **Wireless Range:** With a range of 20 to 50 meters, wireless sensors
 eliminate the need for fragile and expensive cabling. Downside is the need for
@@ -228,6 +228,18 @@ battery replacement every 20-50,000 spectral measurements.
 Switching to piezoelectric sensors would significantly increase costs, tripling
 the expense for the sensor elements alone compared to the total cost of the
 complete wireless MEMS-based system.
+
+<img
+  src="{{ site.baseurl }}/assets/images/vibration-wired-bridge.jpg"
+  alt="Wireless Bridge for IEPE Vibration Sensors"
+  width="90%"
+  style="margin-left: 1em; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);"
+/>
+<figcaption>
+  Figure 9: Despite offering better sensitivity, a wireless IEPE bridge, with
+  its additional cabling, is not a viable alternative to the existing 4x
+  wireless MEMS triax sensors on the vibratory screen.
+</figcaption>
 
 In the next chapters, we will discuss how the sensor data is post-processed
 and used to align otherwise unplanned downtime with scheduled maintenance tasks,
