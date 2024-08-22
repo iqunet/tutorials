@@ -319,7 +319,7 @@ more complex signal transformations.
   style="margin-left: 1em;"
 />
 <figcaption>
-  Figure 12: Processing flows of raw vibration data in the edge server. RMS
+  Figure 12: Raw vibration data post-processing flows in the edge server. RMS
   data is the least sensitive for fault detection. Frequency plots and heatmaps
   are the preferred methods for experts. Machine learning-based anomaly
   detection combines the simplicity of RMS thresholds with the sensitivity
