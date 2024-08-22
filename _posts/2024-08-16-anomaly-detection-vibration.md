@@ -307,6 +307,21 @@ more complex signal transformations.
    MEMS sensor data is acceleration based and must be prefiltered to remove
    any near-DC components before the conversion to velocity.
 
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration_linear_phase_filter.png"
+     alt="Removing the DC-offset with a linear-phase filter."
+     width="70%"
+     style="margin-left: 1em;"
+   />
+   <figcaption>
+     Figure 12: To integrate acceleration data into a velocity signal, the DC
+     offset must be removed to avoid drift in the integrated output. A
+     linear-phase higpass filter, such as a Biquad FIR filter, is essential to
+     preserve signal integrity during this process. In contrast, a
+     nonlinear-phase filter, like the Chebyshev IIR filter, introduces severe
+     phase distortion.
+   </figcaption>
+
    > **Expert Insights**  
    > Filtering is a complex mathematical process, similar to the preamp
    > stabilization time in piezo sensors. It is important to ensure that the
@@ -331,7 +346,7 @@ more complex signal transformations.
   style="margin-left: 1em;"
 />
 <figcaption>
-  Figure 12: Raw vibration data post-processing flows in the edge server. RMS
+  Figure 13: Raw vibration data post-processing flows in the edge server. RMS
   data is the least sensitive for fault detection. Frequency plots and heatmaps
   are the preferred methods for experts. Machine learning-based anomaly
   detection combines the simplicity of RMS thresholds with the sensitivity
