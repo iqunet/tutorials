@@ -308,9 +308,23 @@ more complex signal transformations.
    any near-DC components before the conversion to velocity. This is a
    non-straighforward mathematical process similar to the preamp stabilization
    time in piezo sensors, and it must be ensured that the high rejection ratio
-   linear-phase highpass filter does not introduce ripple near the LPF cut-off
+   linear-phase highpass filter does not introduce ripple near the HPF cut-off
    frequency, which would cause distortion in the time domain signal and severe
    drift when integrating from acceleration to velocity.
+
+<img
+  src="{{ site.baseurl }}/assets/images/vibration_processing_flow.png"
+  alt="Processing flow of vibration data in the edge server."
+  width="95%"
+  style="margin-left: 1em;"
+/>
+<figcaption>
+  Figure 12: Processing flows of raw vibration data in the edge server. RMS
+  data is the least sensitive for fault detection. Frequency plots and heatmaps
+  are the preferred methods for experts. Machine learning-based anomaly
+  detection combines the simplicity of RMS thresholds with the sensitivity
+  of manual time/frequency domain analysis.
+</figcaption>
    
 **Data Streams**  
    Once the DC-offset is removed, the data is converted into several useful
