@@ -251,17 +251,47 @@ effectively reducing standstills to virtually 0 excess downtime.
 
 The MEMS-based wireless vibration sensors (IVIB161010-ACC3-016) gather detailed,
 day-to-day insights into machine behavior. Each sensor captures three-axis
-vibration snapshots every 15 minutes (configurable) at a sampling rate of 3200Hz
+vibration snapshots every 20 minutes (configurable) at a sampling rate of 3200Hz
 (also configurable).
 A measurement, consisting of up to 25,000 samples, is wirelessly transferred
 to a central edge server equipped with an embedded historian database.
 
-The edge server includes a TensorFlow inference processor for machine learning,
+<img
+  src="{{ site.baseurl }}/assets/images/vibration-opcua-historian.png"
+  alt="OPC-UA client showing historian vibration data."
+  width="95%"
+  style="margin-left: 1em;"
+/>
+<figcaption>
+  Figure 10: Up to 25GB of raw vibration data is stored in the OPC-UA historian
+  database, which is used to train a deep learning model of the machine's
+  behavior across different operating conditions.
+  <br /><i>(image: UaExpert OPC-UA client.
+  <a class="external"
+    href="https://www.unified-automation.com/products/development-tools/uaexpert.html"
+    target="_blank">[link]</a>)</i>
+</figcaption>
+
+The edge server includes a TensorFlow processor for machine learning inference,
 along with a customizable dashboard, making it a complete standalone solution.
-For compatibility with third-party applications, the software also includes an
-OPC-UA server and MQTT publishing client, enabling real-time visualization on
-the most common SCADA platforms (Kepware, Ignition, Siemens SIMATIC, etc.) and
-cloud-based IoT systems.
+For compatibility with third-party applications, the software also comes with
+an OPC-UA server and MQTT publishing client, enabling real-time visualization
+on the most common SCADA platforms (Kepware, Ignition, Siemens SIMATIC, etc.)
+and cloud-based IoT systems.
+
+<img
+  src="{{ site.baseurl }}/assets/images/vibration-dashboard-322-9944.png"
+  alt="Screenshot of the embedded web interface of the edge server."
+  width="95%"
+  style="margin-left: 1em;"
+/>
+<figcaption>
+  Figure 11: The edge server comes with an embedded web interface and supports
+  third-party software integration through OPC-UA, MQTT, and GraphQL. Both
+  raw vibration data and post-processed derived metrics such as RMS, velocity
+  and ML anomaly levels are exposed at all interfaces.
+  [image: iQunet] <br /><i>(click to enlarge)</i>.
+</figcaption>
 
 ### From Raw Data to Actionable Insights
 
