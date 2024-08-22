@@ -289,7 +289,7 @@ and cloud-based IoT systems.
   Figure 11: The edge server comes with an embedded web interface and supports
   third-party software integration through OPC-UA, MQTT, and GraphQL. Both
   raw vibration data and post-processed derived metrics such as RMS, velocity
-  and ML anomaly levels are exposed at all interfaces.
+  and ML anomaly levels are exposed by all interfaces.
   [image: iQunet] <br /><i>(click to enlarge)</i>.
 </figcaption>
 
