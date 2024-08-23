@@ -484,6 +484,36 @@ more complex signal transformations.
    knowledge. Diagnosing issues like bearing faults or other machine-specific
    anomalies demands experience and regular inspections.
 
+   > https://cs229.stanford.edu/main_notes.pdf
+oftentimes, the neural
+network will discover complex features which are very useful for predicting
+the output but may be difficult for a human to understand or interpret
+
+Deep_Learning_Algorithms_for_Bearing_Fault_Diagnos.pdf
+
+V. DISCUSSIONS ON DEEP LEARNING ALGORITHMS
+FOR BEARING FAULT DIAGNOSIS
+A. AUTOMATED FEATURE EXTRACTION AND
+SELECTION
+As opposed to feature engineering of ML algorithms, which
+manually selects features that preserve the discriminative
+characteristics of the data, the DL based algorithms can learn
+the discriminative feature representation directly from input
+data in an end-to-end manner. The DL based approach does
+not require human expertise or prior knowledge of the problem, and is therefore advantageous in bearing fault diagnosis,
+where it is sometimes challenging to determine the fault
+characteristic features accurately. Specifically, DL methods
+perform feature learning from raw data and classification
+in a simultaneous and intertwined manner, as illustrated in
+the cluster visualization results of multiple convolutional
+layers in Fig. 12. A glimpse of the clustering effect can be
+observed in convolutional layer C2; and it becomes increasingly apparent in later convolutional layers. For comparison
+reasons, many DL based papers also present results using
+classical ML methods with human engineered features for
+bearing fault detection. The majority of DL based methods
+are reported to outperform traditional ML methods, especially in the presence of external noise and frequent change
+of operating conditions.
+
    However, relying solely on specialists is costly, and the extended intervals
    between inspections can result in missed random faults. Oftentimes, the
    plant operator just wants to be alerted in time about an upcoming problem,
