@@ -464,6 +464,11 @@ more complex signal transformations.
      pattern occurs, the latent space fails to represent it accurately, leading
      to a loss value (i.e. anomaly) proportional to the deviation from the
      machine's normal operating point.
+     Image based on
+     <a class="external"
+       href="https://en.wikipedia.org/wiki/Autoencoder"
+       target="_blank">[wikipedia.org]
+     </a>.
    </figcaption>
 
    By using the STFT as a fixed preprocessing step, we effectively offload this
