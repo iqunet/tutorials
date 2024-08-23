@@ -428,7 +428,7 @@ more complex signal transformations.
    easily detected.
 
    <img
-     src="{{ site.baseurl }}/assets/images/vibration-pulse-stft.png"
+     src="{{ site.baseurl }}/assets/images/vibration-pulse-stft.jpg"
      alt="STFT heatmap representation of a repetitive impact fault"
      width="90%"
      style="margin-left: 1em;"
@@ -436,8 +436,12 @@ more complex signal transformations.
    <figcaption>
      Figure 16: The STFT provides simultaneous time and frequency resolution,
      enabling machine learning algorithms to detect faults that manifest in
-     either domain. The trade-off between time and frequency resolution is
-     a fundamental limit of the STFT.
+     either domain. The trade-off between time and frequency resolution is a
+     fundamental limitation of the STFT
+     <a class="external"
+       href="https://sigproc.mit.edu/_static/fall20/lectures/lec09a_slides.pdf"
+       target="_blank">[mit.edu]
+     </a>.
    </figcaption>
 
    While is very possible for a machine learning algorithm to perform domain
@@ -445,11 +449,13 @@ more complex signal transformations.
    the model structure (specifically, the convolutional layers) to handle these
    transformations. This would unnecessarily complicate the training phase
    as it would also take considerable time to tune the ML model parameters to
-   'invent' these transforms. By using the STFT as a fixed preprocessing step,
-   we effectively offload this task and provide the ML algorithm with a rich
-   feature input that combines the strengths of both domains. In this sense,
-   the STFT acts as a pre-trained, fixed component of the machine learning model
-   itself, simplifying the detection process and reducing the training time.
+   'invent' these transforms.
+
+   By using the STFT as a fixed preprocessing step, we effectively offload this
+   task and provide the ML algorithm with a rich feature input that combines
+   the strengths of both domains. In this sense, the STFT acts as a pre-trained,
+   fixed component of the machine learning model itself, simplifying the
+   detection process and reducing the training time.
 
 ---
 #### Challenges with Manual Analysis and Traditional Methods
