@@ -372,7 +372,7 @@ more complex signal transformations.
    Although they represent the same underlying information, each domain has its
    advantages when it comes to detecting specific signal patterns.
 
-   For instance, one-time or repititive transient events in the signal (e.g. a
+   For instance, one-time or repetitive transient events in the signal (e.g. a
    mechanical impulse or a bearing failure) are easily identified in the time
    domain, where their energy is concentrated in a short interval. However, in
    the frequency domain, the same short event merely appear as a slight raise
@@ -380,16 +380,44 @@ more complex signal transformations.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-pulse-timedomain.png"
-     alt="Impulse response from a bearing defect displayed in time and frequency domains"
-     width="80%"
+     alt="Impulse response from a bearing defect in time and frequency domains"
+     width="90%"
      style="margin-left: 1em;"
    />
    <figcaption>
-     Figure 13: Example of a bearing fault. Impulse responses are easily
-     detectible in the time domain but spread across a broad frequency range,
+     Figure 14: Example of a bearing fault. Impulse responses are easily
+     detectable in the time domain but spread across a broad frequency range,
      particularly in variable-speed machines or for non-repetitive events.
    </figcaption>
 
+   Early-stage bearing faults (stage 1/2) are most effectively detected at
+   ultrasonic frequencies, where the noise floor is more favorable. However,
+   practical constraints may dictate the use of MEMS sensors, which offer a
+   cost-effective solution in real-world applications.
+
+   For repetitive impulses, energy concentrates around key fault frequencies(\*),
+   such as BPFI and BPFO (stage 2/3), which are well within the capabilities
+   of modern MEMS sensors. Nevertheless, capturing sufficient impulses to rise
+   above the noise floor is essential. Extended measurements, however, may pose
+   challenges for wireless sensors due to their data and battery constraints.  
+   (\*) More info here:
+   <a class="external"
+     href="https://www.reliabilityconnect.com/bearing-problems-fault-frequency-and-artificial-intelligence-based-methods/"
+     target="_blank">[reliabilityconnect.com]
+   </a>.
+
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-pulse-repetitive.png"
+     alt="Repetitive bearing fault defect in time and frequency domains"
+     width="90%"
+     style="margin-left: 1em;"
+   />
+   <figcaption>
+     Figure 15: Example of a repetitive impact fault. This one is easily
+     detected above the noise in the frequency domain as the energy from
+     multiple impacts concentrates around the repetition frequency.
+   </figcaption>
+   
    The above consideration is crucial for understanding why we use the
    Short-Time Fourier Transform (STFT) when feeding data into the machine
    learning algorithm. The STFT allows us to represent the sensor signal in
@@ -398,6 +426,19 @@ more complex signal transformations.
    information here) and ensure that the signal power of various fault patterns,
    whether time-based or frequency-based, remains concentrated and is more
    easily detected.
+
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-pulse-stft.png"
+     alt="STFT heatmap representation of a repetitive impact fault"
+     width="90%"
+     style="margin-left: 1em;"
+   />
+   <figcaption>
+     Figure 16: The STFT provides simultaneous time and frequency resolution,
+     enabling machine learning algorithms to detect faults that manifest in
+     either domain. The trade-off between time and frequency resolution is
+     a fundamental limit of the STFT.
+   </figcaption>
 
    While is very possible for a machine learning algorithm to perform domain
    transforms internally, this approach would require a significant portion of
