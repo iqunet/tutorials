@@ -458,9 +458,12 @@ more complex signal transformations.
      style="margin-left: 0em;"
    />
    <figcaption>
-     Figure 15: Example of a repetitive impact fault. This one is easily
-     detected above the noise in the frequency domain as the energy from
-     multiple impacts concentrates around the repetition frequency.
+     Figure 17: STFT data is stacked into a third dimension, then split into
+     training, validation, and test sets. Each set is further divided into
+     mini-batches to train the autoencoder model. When an unseen vibration
+     pattern occurs, the latent space fails to represent it accurately, leading
+     to a loss value (i.e. anomaly) proportional to the deviation from the
+     machine's normal operating point.
    </figcaption>
 
    By using the STFT as a fixed preprocessing step, we effectively offload this
