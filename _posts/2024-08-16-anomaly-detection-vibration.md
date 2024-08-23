@@ -451,6 +451,18 @@ more complex signal transformations.
    as it would also take considerable time to tune the ML model parameters to
    'invent' these transforms.
 
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-autoencoder-latent.png"
+     alt="Repetitive bearing fault defect in time and frequency domains"
+     width="95%"
+     style="margin-left: 1em;"
+   />
+   <figcaption>
+     Figure 15: Example of a repetitive impact fault. This one is easily
+     detected above the noise in the frequency domain as the energy from
+     multiple impacts concentrates around the repetition frequency.
+   </figcaption>
+
    By using the STFT as a fixed preprocessing step, we effectively offload this
    task and provide the ML algorithm with a rich feature input that combines
    the strengths of both domains. In this sense, the STFT acts as a pre-trained,
