@@ -455,7 +455,7 @@ more complex signal transformations.
      src="{{ site.baseurl }}/assets/images/vibration-autoencoder-latent.png"
      alt="Repetitive bearing fault defect in time and frequency domains"
      width="95%"
-     style="margin-left: 1em;"
+     style="margin-left: 0em;"
    />
    <figcaption>
      Figure 15: Example of a repetitive impact fault. This one is easily
