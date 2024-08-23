@@ -368,14 +368,27 @@ more complex signal transformations.
    representation of the data during the training phase.
 
 **Time and Frequency Domain**  
-   So why would an export vibration export use both the time and frequency
-   views? Although they represent the same underlying information, each domain
-   has its advantages when it comes to detecting specific signal patterns. For
-   instance, one-time transient events in the signal (e.g. a mechanical shock)
-   are easily identified in the time domain, where their energy is concentrated
-   in a short interval. However, in the frequency domain, the same short event
-   merely appear as a slight raise in the noise floor, making them difficult to
-   detect.
+   So why would a vibration expert use both the time and frequency views?
+   Although they represent the same underlying information, each domain has its
+   advantages when it comes to detecting specific signal patterns.
+
+   For instance, one-time or repititive transient events in the signal (e.g. a
+   mechanical impulse or a bearing failure) are easily identified in the time
+   domain, where their energy is concentrated in a short interval. However, in
+   the frequency domain, the same short event merely appear as a slight raise
+   in the noise floor, making them difficult to detect.
+
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-pulse-timedomain.png"
+     alt="Impulse response from a bearing defect displayed in time and frequency domains"
+     width="80%"
+     style="margin-left: 1em;"
+   />
+   <figcaption>
+     Figure 13: Example of a bearing fault. Impulse responses are easily
+     detectible in the time domain but spread across a broad frequency range,
+     particularly in variable-speed machines or for non-repetitive events.
+   </figcaption>
 
    The above consideration is crucial for understanding why we use the
    Short-Time Fourier Transform (STFT) when feeding data into the machine
