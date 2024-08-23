@@ -307,10 +307,19 @@ more complex signal transformations.
    MEMS sensor data is acceleration based and must be prefiltered to remove
    any near-DC components before the conversion to velocity.
 
+   > **Expert Insights**  
+   > Filtering is a complex mathematical process, similar to the preamp
+   > stabilization time in piezo sensors. It is important to ensure that the
+   > high rejection ratio of a highpass filter does not introduce ripple or
+   > phase errors, as these can distort the time-domain signal and cause
+   > significant drift when integrating from acceleration to velocity. Linear
+   > phase-filters, such as multi-stage digital FIR filters, are typically
+   > used to address these challenges.
+
    <img
-     src="{{ site.baseurl }}/assets/images/vibration_linear_phase_filter.png"
+     src="{{ site.baseurl }}/assets/images/vibration-linear-phase-filter.jpg"
      alt="Removing the DC-offset with a linear-phase filter."
-     width="70%"
+     width="95%"
      style="margin-left: 1em;"
    />
    <figcaption>
@@ -322,15 +331,6 @@ more complex signal transformations.
      phase distortion.
    </figcaption>
 
-   > **Expert Insights**  
-   > Filtering is a complex mathematical process, similar to the preamp
-   > stabilization time in piezo sensors. It is important to ensure that the
-   > high rejection ratio of a highpass filter does not introduce ripple or
-   > phase errors, as these can distort the time-domain signal and cause
-   > significant drift when integrating from acceleration to velocity. Linear
-   > phase-filters, such as multi-stage digital FIR filters, are typically
-   > used to address these challenges.
-
 **Data Streams**  
    Once the DC-offset is removed, the data is converted into several useful
    information streams in the edge server, including:
@@ -338,6 +338,10 @@ more complex signal transformations.
    - **Acceleration and velocity**
    - **RMS and Kurtosis aggregate values**
    - **Time and frequency domain views**
+
+   These are some of the basic tools used by vibration experts to determine
+   the state of the machine, and in more advance cases, also the origin of a
+   fault, such as a loose mount or a bearing fault.
 
 <img
   src="{{ site.baseurl }}/assets/images/vibration_processing_flow.png"
@@ -352,10 +356,6 @@ more complex signal transformations.
   detection combines the simplicity of RMS thresholds with the sensitivity
   of manual time/frequency domain analysis.
 </figcaption>
-   
-   These are some of the basic tools used by vibration experts to determine
-   the state of the machine, and in more advance cases, also the origin of a
-   fault, such as a loose mount or a bearing fault.
 
    Other tools, such as enveloping demodulation, further postprocess the signal,
    primarily to represent the same data in a format or domain that is more
