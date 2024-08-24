@@ -484,55 +484,75 @@ more complex signal transformations.
    knowledge. Diagnosing issues like bearing faults or other machine-specific
    anomalies demands experience and regular inspections.
 
-   > https://cs229.stanford.edu/main_notes.pdf
-oftentimes, the neural
-network will discover complex features which are very useful for predicting
-the output but may be difficult for a human to understand or interpret
+   However, these manual methods depend on understanding of the machine's
+   internal dynamics and require the measurements to be done in a constant
+   operating point to accurately track fault progression over time.
 
-Deep_Learning_Algorithms_for_Bearing_Fault_Diagnos.pdf
+   <div style="padding: 0 2em 0.5em 1em">
+   <iframe
+     width="560"
+     height="315"
+     src="https://www.youtube.com/embed/67Et4vbKhOM?si=kcDpT6cfHer5wFOe"
+     title="YouTube video player"
+     frameborder="0"
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+     referrerpolicy="strict-origin-when-cross-origin"
+     allowfullscreen
+   >
+   </iframe>
+   </div>
+   <figcaption>
+     Figure 18: Traditional vibration analysis using conventional methods
+     requires expert knowledge and is typically not performed on non-critical
+     assets due to cost restrictions.
+     <br /><i>Credits: Mobius Institute
+     <a class="external"
+       href="https://www.mobiusinstitute.com/learn"
+       target="_blank">[mobiusinstitute.com]
+     </a></i>.
+   </figcaption>
 
-V. DISCUSSIONS ON DEEP LEARNING ALGORITHMS
-FOR BEARING FAULT DIAGNOSIS
-A. AUTOMATED FEATURE EXTRACTION AND
-SELECTION
-As opposed to feature engineering of ML algorithms, which
-manually selects features that preserve the discriminative
-characteristics of the data, the DL based algorithms can learn
-the discriminative feature representation directly from input
-data in an end-to-end manner. The DL based approach does
-not require human expertise or prior knowledge of the problem, and is therefore advantageous in bearing fault diagnosis,
-where it is sometimes challenging to determine the fault
-characteristic features accurately. Specifically, DL methods
-perform feature learning from raw data and classification
-in a simultaneous and intertwined manner, as illustrated in
-the cluster visualization results of multiple convolutional
-layers in Fig. 12. A glimpse of the clustering effect can be
-observed in convolutional layer C2; and it becomes increasingly apparent in later convolutional layers. For comparison
-reasons, many DL based papers also present results using
-classical ML methods with human engineered features for
-bearing fault detection. The majority of DL based methods
-are reported to outperform traditional ML methods, especially in the presence of external noise and frequent change
-of operating conditions.
-
-   However, relying solely on specialists is costly, and the extended intervals
-   between inspections can result in missed random faults. Oftentimes, the
-   plant operator just wants to be alerted in time about an upcoming problem,
-   the progress over the next days and will just replace the faulty component
-   without the need for a detailed report about the fault.
+   Relying solely on specialists is costly, and the extended intervals between
+   inspections can result in missed random faults. Oftentimes, the plant
+   operator just wants to be alerted in time about an upcoming problem,
+   follows the fault progress over the next days more closely and will just
+   replace the faulty component without the need for a detailed report about
+   the fault.
 
    Moreover, the sheer volume of data --hundreds of plots generated daily-- 
-   makes manual analysis impractical. Traditional automated methods, such as
-   frequency binning and manually setting thresholds for each bin, are widely
-   accepted but come with inherent limitations:
+   makes manual analysis impractical. Automated analysis tools become
+   essential here. 
+
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-thresholds.png"
+     alt="Repetitive bearing fault defect in time and frequency domains"
+     width="95%"
+     style="margin-left: 0em;"
+   />
+   <figcaption>
+     Figure 19: Automated alarm systems often mirror the approach of a
+     vibration expert in software, requiring order tracking and manual
+     threshold tuning. False alarms may lead operators to ignore alerts
+     altogether, including valid warnings.
+     <br /><i>Image: AMC VIBRO
+     <a class="external"
+       href="https://amcvibro.com/publications/10-alarm-thresholds/"
+       target="_blank">[amcvibro.com]
+     </a></i>.
+   </figcaption>
+
+   Traditional automated methods, such as frequency binning and manually
+   setting thresholds for each bin, are widely accepted but come with inherent
+   limitations.
 
    - **Dependency on Expertise:** Setting accurate thresholds requires good
      understanding of the machine's internals.
 
-   - **Operating point variability:** Threshold-based frequency band alarms are
-     most effective when a machine operates under stable speeds and loads. In
-     environments with varying conditions, thresholds often need to be relaxed
-     to avoid false positives, which significantly reduces the sensitivity of
-     the monitoring system.
+   - **Operating point variability:** Threshold-based frequency band or
+     enveloping alarms are most effective when a machine operates under stable
+     speeds and loads. In environments with varying conditions, thresholds often
+     need to be relaxed to avoid false positives, which significantly reduces
+     the sensitivity of the monitoring system.
 
 #### Enter the Power of Machine Learning
 
