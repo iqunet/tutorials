@@ -654,6 +654,16 @@ more complex signal transformations.
    thus indirectly how far the machine is operating from its pre-trained cluster
    of behavioural states.
 
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-encode-decode-loss.svg"
+     alt="t-SNE visualization of the latent space of machine operating point"
+     width="100%"
+     style="margin-left: 0em;"
+   />
+   <figcaption>
+     Figure 22: TODO
+   </figcaption>
+
    In the next chapter, we will return to our real-world example of the
    vibratory feeder. We'll start by examining the raw data to better understand
    the signal itself, then convert that data to its STFT representation and
