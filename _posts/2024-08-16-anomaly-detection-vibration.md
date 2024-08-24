@@ -624,20 +624,20 @@ more complex signal transformations.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-t-sne.svg"
-     alt="Repetitive bearing fault defect in time and frequency domains"
+     alt="t-SNE visualization of the latent space of machine operating point"
      width="100%"
      style="margin-left: 0em;"
    />
    <figcaption>
-     Figure 21: Automated alarm systems often mirror the approach of a
-     vibration expert in software, requiring order tracking and manual
-     threshold tuning. False alarms may lead operators to ignore alerts
-     altogether, including valid warnings.
-     <br /><i>Image: AMC VIBRO
-     <a class="external"
-       href="https://amcvibro.com/publications/10-alarm-thresholds/"
-       target="_blank">[amcvibro.com]
-     </a></i>.
+     Figure 21: t-SNE visualization of the L-dimensional latent space reveals
+     clusters corresponding to different machine operating points. t-SNE is a
+     nonlinear transformation that reduces high-dimensional data to 2D or 3D
+     for visualization. It keeps similar data points close together in the
+     lower-dimensional space.
+     <br /><i>More info:
+     <a class="external" href="https://www.youtube.com/watch?v=wvsE8jm1GzE"
+       target="_blank">[youtube.com/GoogleDevelopers]
+     </a></i>
    </figcaption>
 
    For example, if a harmonic component appears (or disappears for that matter)
