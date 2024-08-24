@@ -554,6 +554,7 @@ more complex signal transformations.
      need to be relaxed to avoid false positives, which significantly reduces
      the sensitivity of the monitoring system.
 
+---
 #### Enter the Power of Machine Learning
 
    Machine learning (ML) techniques offer a more flexible solution to track
@@ -561,21 +562,59 @@ more complex signal transformations.
    time and frequency vibration data using latent (internal) variables, which
    provide an abstract view of the machine's internal state.
 
-   This discussion will focus on unsupervised learning, as it can be applied
-   to a broad range of applications, without the need for costly manual
-   training.
+   > **Latent Variables:**  
+   >  In an autoencoder, for example, the ML model is trained to compress the
+   >  vibration data (the STFT representation in our case) into a compact set
+   >  of latent variables, essentially creating what some marketing materials
+   >  might call a "digital twin."
 
-   - **Latent Variables:**  
-     In an autoencoder, for example, the ML model is trained to compress the
-     vibration data (the STFT representation in our case) into a compact set
-     of latent variables, essentially creating what some marketing materials
-     might call a "digital twin."
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-vae.png"
+     alt="autoencoder banner"
+     width="90%"
+     style="margin-left: 1em;"
+   />
+
+   This discussion will focus on unsupervised learning and **autoencoders** in
+   particular, as they can be applied to a broad range of topics, without the
+   need for costly manual training.
+
+   <div style="max-width: 20em;">
+   <iframe
+     width="560"
+     height="315"
+     src="https://www.youtube.com/embed/JoR5HCs0n0s"
+     title="YouTube video player"
+     frameborder="0"
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+     referrerpolicy="strict-origin-when-cross-origin"
+     allowfullscreen
+   >
+   </iframe>
+   </div>
+   <figcaption>
+     Figure 20: Introduction to Autoencoders.
+     <a class="external" href="https://www.youtube.com/sentdex"
+       target="_blank">[youtube.com/Sentdex]
+     </a>
+   </figcaption>
 
    After the training phase, these latent variables capture the subtle
    interactions between speed, load, temperature, and the time and frequency
    domain components of the input signal. Think of this as a more sophisticated
    version of the relationship between machine load and temperature, but in
    multiple dimensions, with more variables and with greater complexity.
+
+   > "Oftentimes, the neural network will discover complex features which are
+   > very useful for predicting the output but may be difficult for a human
+   > to understand or interpret."  
+   > <small>Andrew Ng. CS229 Lecture Notes: Deep Learning, Chapter II. Stanford
+   > University, June 2023.
+   > <br/> Retrieved from
+   >  <a class="external" href="https://cs229.stanford.edu/main_notes.pdf"
+   >    target="_blank">[stanford.edu]
+   >  </a>
+   > </small>
 
    While the latent variables themselves won't give us direct insight in the
    machine's health status, they do provide the foundation for estimating how
