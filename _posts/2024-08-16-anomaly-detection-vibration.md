@@ -515,13 +515,13 @@ more complex signal transformations.
    Relying solely on specialists is costly, and the extended intervals between
    inspections can result in missed random faults. Oftentimes, the plant
    operator just wants to be alerted in time about an upcoming problem,
-   follows the fault progress over the next days more closely and will just
-   replace the faulty component without the need for a detailed report about
-   the fault.
+   then follows the fault progress over the next days more closely and will
+   replace the faulty component without the need for an expensive detailed
+   report about the fault.
 
-   Moreover, the sheer volume of data --hundreds of plots generated daily-- 
-   makes manual analysis impractical. Automated analysis tools become
-   essential here. 
+   For online monitoring, the sheer volume of data --hundreds of plots
+   generated daily-- makes manual analysis impractical. Automated analysis
+   tools are essential here. 
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-thresholds.png"
@@ -542,8 +542,8 @@ more complex signal transformations.
    </figcaption>
 
    Traditional automated methods, such as frequency binning and manually
-   setting thresholds for each bin, are widely accepted but come with inherent
-   limitations.
+   setting thresholds for each bin, have widely proven their value but come
+   with inherent limitations.
 
    - **Dependency on Expertise:** Setting accurate thresholds requires good
      understanding of the machine's internals.
