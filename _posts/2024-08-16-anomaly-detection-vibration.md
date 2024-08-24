@@ -647,15 +647,8 @@ more complex signal transformations.
    As a result, the output of the autoencoder will start to diverge from the
    input.
 
-   This discrepancy between the input and the model's output is measured by a
-   loss function, for example the MAE (mean absolute error), which transforms
-   it into a single numerical value: the loss value or so-called "anomaly level"
-   that indicates how good the model can represent the current measurement and
-   thus indirectly how far the machine is operating from its pre-trained cluster
-   of behavioural states.
-
    <img
-     src="{{ site.baseurl }}/assets/images/vibration-encode-decode-loss.svg"
+     src="{{ site.baseurl }}/assets/images/vibraton-encode-decode-loss.svg"
      alt="t-SNE visualization of the latent space of machine operating point"
      width="100%"
      style="margin-left: 0em;"
@@ -663,6 +656,13 @@ more complex signal transformations.
    <figcaption>
      Figure 22: TODO
    </figcaption>
+
+   This discrepancy between the input and the model's output is measured by a
+   loss function, for example the LogCosh (log of the hyperbolic cosine of the
+   prediction error), which transforms it into a single numerical value: the
+   loss value or so-called "anomaly level" that indicates how good the model
+   can represent the current measurement and thus indirectly how far the machine
+   is operating from its pre-trained cluster of behavioural states.
 
    In the next chapter, we will return to our real-world example of the
    vibratory feeder. We'll start by examining the raw data to better understand
