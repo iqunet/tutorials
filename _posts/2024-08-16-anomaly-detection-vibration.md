@@ -622,6 +622,24 @@ more complex signal transformations.
    point. The normal state is defined by a cluster of complex patterns captured
    from the thousands of measurements during the training phase.
 
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-t-sne.svg"
+     alt="Repetitive bearing fault defect in time and frequency domains"
+     width="100%"
+     style="margin-left: 0em;"
+   />
+   <figcaption>
+     Figure 21: Automated alarm systems often mirror the approach of a
+     vibration expert in software, requiring order tracking and manual
+     threshold tuning. False alarms may lead operators to ignore alerts
+     altogether, including valid warnings.
+     <br /><i>Image: AMC VIBRO
+     <a class="external"
+       href="https://amcvibro.com/publications/10-alarm-thresholds/"
+       target="_blank">[amcvibro.com]
+     </a></i>.
+   </figcaption>
+
    For example, if a harmonic component appears (or disappears for that matter)
    in the input that wasn't present during the training, or if a specific
    unexpected combination of harmonics occurs, the latent variables won't be
