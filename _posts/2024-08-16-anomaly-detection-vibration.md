@@ -641,10 +641,11 @@ more complex signal transformations.
    </figcaption>
 
    For example, if a harmonic component appears (or disappears for that matter)
-   in the input that wasn't present during the training, or if a specific
-   unexpected combination of harmonics occurs, the latent variables won't be
-   optimized to accurately represent this newfound state. As a result, the
-   output of the autoencoder will start to diverge from the input.
+   in the STFT that wasn't present during the training (e.g. a bearing fault),
+   or if a specific unexpected combination of harmonics occurs, the latent
+   variables won't be optimized to accurately represent this newfound state.
+   As a result, the output of the autoencoder will start to diverge from the
+   input.
 
    This discrepancy between the input and the model's output is measured by a
    loss function, for example the MAE (mean absolute error), which transforms
