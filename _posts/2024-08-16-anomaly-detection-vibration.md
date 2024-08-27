@@ -690,7 +690,7 @@ more complex signal transformations.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-screen3131-losses.svg"
-     alt="t-SNE visualization of the latent space of machine operating point"
+     alt="Autoencoder loss history graph showing bearing fault progress"
      width="100%"
      style="margin-left: 0em;"
    />
@@ -702,10 +702,22 @@ more complex signal transformations.
    </figcaption>
 
    Beyond the bearing failure, the data also shows a new increase in the anomaly
-   level on August 8. This rise has been confirmed to be caused by a bent shaft,
-   which is scheduled for replacement during the next maintenance cycle.
+   level on August 8 (far right side fig. 23). This rise has been confirmed to
+   be caused by a bent shaft, which was scheduled for replacement during the
+   upcoming maintenance cycle.
 
-#### Time Domain Data
+#### Time Domain RMS Data
+
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-screen3131-rms.svg"
+     alt="RMS historian plot only reveals stage-5 bearing faults"
+     width="100%"
+     style="margin-left: 0em;"
+   />
+   <figcaption>
+     Figure 24: Unless tuned to the specific fault frequencies, the RMS history
+     only reveals the last stage of a bearing failure.
+   </figcaption>
 
    // Insert comparison of time domain data before and after the fault appears
 
