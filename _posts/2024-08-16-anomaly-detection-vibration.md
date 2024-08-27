@@ -683,7 +683,7 @@ more complex signal transformations.
    The historical data reveals the progression of a bearing fault over time:
 
    - Training set from February to March (600 measurements)
-   - Signs of **initial damage** became detectable around March 24 (T-70d)
+   - Signs of **initial damage** become detectable around March 24 (T-70d)
    - Further **deterioration** from May 22 onwards (T-11d)
    - **Critical damage** (stage 5 bearing fault) on June 2 (T)
    - The bearing was **replaced** on June 17 (T+15d)
@@ -695,15 +695,15 @@ more complex signal transformations.
      style="margin-left: 0em;"
    />
    <figcaption>
-     Figure 23: Autoencoder loss (anomaly) depicting the progression of a
-     bearing fault in a vibratory screen. While unsupervised learning does not
-     identify the root cause of the anomaly, it serves as an early detection
-     system and allows to track the fault progression over time.
+     Figure 23: Autoencoder loss (anomaly) showing the progression of a bearing
+     fault in a vibratory screen. While unsupervised learning does not reveal
+     the root cause, it provides an early detection system and allows to track
+     the fault progression hour-by-hour with little effort.
    </figcaption>
 
-   Beyond the bearing failure, the data also highlights a new increase in the
-   anomaly level on August 8. This rise was confirmed to be caused by a bent
-   shaft, which is scheduled for replacement during the next maintenance cycle.
+   Beyond the bearing failure, the data also shows a new increase in the anomaly
+   level on August 8. This rise has been confirmed to be caused by a bent shaft,
+   which is scheduled for replacement during the next maintenance cycle.
 
 #### Time Domain Data
 
