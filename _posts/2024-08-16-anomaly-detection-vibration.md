@@ -706,7 +706,13 @@ more complex signal transformations.
    be caused by a bent shaft, which was scheduled for replacement during the
    upcoming maintenance cycle.
 
-#### Time Domain RMS Data
+#### Limitations of RMS-only sensors
+
+   Figure 24 illustrates the limitations of using RMS-only sensors. Due to
+   in-band process noise, the fault's energy remains undetectable until the
+   last stages, when it rises above the total integrated noise floor. Relying
+   solely on time-domain data or simple RMS thresholds is insufficient for
+   early fault warnings.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-screen3131-rms.svg"
