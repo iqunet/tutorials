@@ -654,7 +654,10 @@ more complex signal transformations.
      style="margin-left: 0em;"
    />
    <figcaption>
-     Figure 22: TODO
+     Figure 22: Autoencoder-based anomaly detection using STFT spectrograms.
+     The input is compressed into a latent space and decoded again; anomalies
+     introduce reconstruction errors, leading to divergence and increased values
+     in the loss history plot.
    </figcaption>
 
    This discrepancy between the input and the model's output is measured by a
@@ -673,10 +676,34 @@ more complex signal transformations.
 
 ### Real-world Vibratory Feeder Data
 
-   In this section, we will examine the data collected from a triax MEMS sensor
-   placed on a vibratory feeder over several months. We'll track the progression
-   of an emerging bearing fault, exploring its appearance in the spectrum, and
-   follow its development over time until the bearing was eventually replaced.
+   Figure 23 shows the autoencoder loss of a vibratory screen, based on 4,400
+   measurements (8192 samples) collected from a triaxial MEMS sensor between
+   February and August 2024. 
+
+   The historical data reveals the progression of a bearing fault over time:
+
+   - Training set from February to March (600 measurements)
+   - Signs of **initial damage** became detectable around March 24 (T-70d)
+   - Further **deterioration** from May 22 onwards (T-11d)
+   - **Critical damage** (stage 5 bearing fault) on June 2 (T)
+   - The bearing was **replaced** on June 17 (T+15d)
+
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-screen3131-losses.svg"
+     alt="t-SNE visualization of the latent space of machine operating point"
+     width="100%"
+     style="margin-left: 0em;"
+   />
+   <figcaption>
+     Figure 23: Autoencoder loss (anomaly) depicting the progression of a
+     bearing fault in a vibratory screen. While unsupervised learning does not
+     identify the root cause of the anomaly, it serves as an early detection
+     system and allows to track the fault progression over time.
+   </figcaption>
+
+   Beyond the bearing failure, the data also highlights a new increase in the
+   anomaly level on August 8. This rise was confirmed to be caused by a bent
+   shaft, which is scheduled for replacement during the next maintenance cycle.
 
 #### Time Domain Data
 
