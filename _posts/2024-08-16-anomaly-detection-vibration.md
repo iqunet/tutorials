@@ -708,11 +708,11 @@ more complex signal transformations.
 
 #### Limitations of RMS-only sensors
 
-   Figure 24 illustrates the limitations of using RMS-only sensors. Due to
-   in-band process noise, the fault's energy remains undetectable until the
-   last stages, when it rises above the total integrated noise floor. Relying
-   solely on time-domain data or simple RMS thresholds is insufficient for
-   early fault warnings.
+   Figure 24 illustrates the limitations of an RMS-only sensor for bearing
+   fault detection. Due to the in-band process noise, the fault's energy stays
+   undetectable until the very last stages, when it rises above the total
+   integrated noise floor. Relying only on time-domain data or simple RMS
+   thresholds is thus insufficient for early fault warnings.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-screen3131-rms.svg"
