@@ -706,9 +706,19 @@ more complex signal transformations.
    be caused by a bent shaft, which was scheduled for replacement during the
    upcoming maintenance cycle.
 
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-bearing-photo.jpg"
+     alt="Photo after removing the damaged bearing"
+     width="480px"
+     style="margin-left: 1em;"
+   />
+   <figcaption>
+     Figure 24: Photograph of the damaged bearing upon removal on June 17.
+   </figcaption>
+
 #### Limitations of RMS-only sensors
 
-   Figure 24 illustrates the lack of sensitivity of an RMS-only sensor for
+   Figure 25 illustrates the lack of sensitivity of an RMS-only sensor for
    bearing fault detection. Due to the in-band process noise, the fault's
    energy stays undetectable until the very last stages, when it rises above
    the total integrated noise floor. Relying only on time-domain data or simple
@@ -721,39 +731,20 @@ more complex signal transformations.
      style="margin-left: 0em;"
    />
    <figcaption>
-     Figure 24: Unless specifically tuned to the specific fault frequencies,
+     Figure 25: Unless specifically tuned to the specific fault frequencies,
      the RMS aggregate is only sensitive to last stage of a bearing failure.
    </figcaption>
 
-#### Frequency Domain Data
-
-   When we convert to the frequency domain, the picture becomes clearer. The
-   energy components of the vibratory feeder process are mainly concentrated
-   at the lower frequencies, as expected. Additionally, the vibration dampers
-   absorb higher frequencies associated with the product processing somewhat,
-   making the upper half of the spectrum the ideal candidate to focus on for
-   anomaly detection. 
-
-   In most cases, there is no a-priori information about the machine provided
-   by the customer, simply because it does not exist. Setting precise thresholds
-   for each frequency bin as would be done with traditional threshold-based
-   band alarm approaches, remains a tedious challenge. Without expert knowledge
-   about the machine characteristics, the risk for incorrect thresholds is real.
-
-   For example, the intermodulation of the drive train frequencies and harmonics
-   with the actual fault frequencies may cause certain spectral components to
-   disappear when a fault occurs, which is excactly the opposite from what
-   setting a threshold is trying to achieve. This is where the autoencoder ML
-   approach becomes a valuable asset in our toolbox.
-
 #### Spectal Heatmap
 
-   Before we review the ML results, we make an intermediate stop and introduce
-   the spectral heatmap. In this plot, the horizontal x-axis represents time,
-   and the vertical slices (y-axis) represents the frequency spectrum of a
-   single measurement. The amplitude of the spectrum is now represented by a
-   color map, with dark blue indicating the lowest magnitude and yellow the
-   highest peaks in the frequency spectrum.
+   To review the ML results, we introduce the spectral heatmap. In this plot,
+   the horizontal x-axis represents measurement date, and the vertical slices
+   (y-axis) represents the frequency spectrum of 1 single measurement. Similar
+   to the STFT, the energy in the spectrum is represented by a color map, with
+   dark blue indicating the lowest magnitude and yellow the highest peaks.
+
+
+
 
    On this plot, we can observe that the gross of process noise is concentrated
    around the fundamental drive frequency and multiple odd harmonics thereof.
@@ -779,6 +770,53 @@ more complex signal transformations.
    In the next chapter we will feed this sensor data to a ML autoencoder to
    reduce the complex data in a simple loss indicator which can be used as an
    temperature-like indicator for the health status of the machine.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### Frequency Domain Data
+
+   When we convert to the frequency domain, the picture becomes clearer. The
+   energy components of the vibratory feeder process are mainly concentrated
+   at the lower frequencies, as expected. Additionally, the vibration dampers
+   absorb higher frequencies associated with the product processing somewhat,
+   making the upper half of the spectrum the ideal candidate to focus on for
+   anomaly detection. 
+
+   In most cases, there is no a-priori information about the machine provided
+   by the customer, simply because it does not exist. Setting precise thresholds
+   for each frequency bin as would be done with traditional threshold-based
+   band alarm approaches, remains a tedious challenge. Without expert knowledge
+   about the machine characteristics, the risk for incorrect thresholds is real.
+
+   For example, the intermodulation of the drive train frequencies and harmonics
+   with the actual fault frequencies may cause certain spectral components to
+   disappear when a fault occurs, which is excactly the opposite from what
+   setting a threshold is trying to achieve. This is where the autoencoder ML
+   approach becomes a valuable asset in our toolbox.
+
+
 
 ### Autoencoder-Based Machine Health Prediction
 
