@@ -680,12 +680,15 @@ more complex signal transformations.
    measurements (3x8192 samples/meas) collected from a triax MEMS sensor between
    February and August 2024. 
 
+   > The monitoring period spans a period of 7 months of measurements and
+   > telemetry data with an estimated 70% of remaining battery capacity.
+
    The historical data reveals the progression of a bearing fault over time:
 
    - Training set from February to March (600 measurements)
    - Signs of **initial damage** become detectable around March 24 (T-70d)
    - Further **deterioration** from May 22 onwards (T-11d)
-   - **Critical damage** (stage 5 bearing fault) on June 2 (T)
+   - **Critical damage** (stage 4 bearing fault) on June 2 (T)
    - The bearing was **replaced** on June 17 (T+15d)
 
    <img
@@ -726,7 +729,7 @@ more complex signal transformations.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-screen3131-rms.svg"
-     alt="RMS historian plot only reveals stage-5 bearing faults"
+     alt="RMS historian plot only reveals stage-4 bearing faults"
      width="100%"
      style="margin-left: 0em;"
    />
@@ -739,18 +742,89 @@ more complex signal transformations.
 
    To review the ML results, we introduce the spectral heatmap. In this plot,
    the horizontal x-axis represents measurement date, and the vertical slices
-   (y-axis) represents the frequency spectrum of 1 single measurement. Similar
-   to the STFT, the energy in the spectrum is represented by a color map, with
-   dark blue indicating the lowest magnitude and yellow the highest peaks.
+   (y-axis) represents the frequency spectrum of 1 single measurement (z-axis).
+   Similar to the STFT, the energy in the spectrum is represented by a color
+   map, with dark blue indicating the lowest magnitude and yellow the highest
+   peaks.
+
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-screen3131-heatmap.svg"
+     alt="Vibratory screen spectral heatmap from February to August 2024"
+     width="100%"
+     style="margin-left: 0em;"
+   />
+   <figcaption>
+     Figure 24: Photograph of the damaged bearing upon removal on June 17.
+   </figcaption>
+
+   **Upper part of the spectrum**  
+   In the spectrum above 300Hz (bin >1500), we can observe some early stage
+   indicators of an upcoming change in the behaviour of the machine. The first
+   warning ('initial damage') appears around 10 weeks before the critical damage
+   of the bearing, then it disappears temperorarily because of routine
+   maintainance.
+
+   Around 11 days before the bearing failure it appears again. In the final
+   stage of the bearing damage, we can see the fault spectrum spread out over
+   all frequency bands, which is the well-known indicator for stage-4 bearing
+   damage. 
+
+   **Lower part of the spectrum**  
+   Figure 24 also shows that most of the process noise is concentrated around
+   the fundamental drive frequency and its harmonics. For example, bin 500
+   (97Hz) shows the process noise modulated onto the 2nd harmonic (synchronous
+   motor at mains frequency of 50Hz with 3% slip).
+
+   In the lower part of the spectrum, the higher harmonics originate partially
+   from the inevitable slight imbalance of the very rigid structure of the
+   screen itself and partially due to the nonlinear friction of the processed
+   waste on the screen's separator structures. Apart from the static load on
+   the bearing, the high forces due to the rigid bearing and the dynamic
+   imbalance are the main cause of a reduced service life of the eccentric
+   shaft bearing.
+
+   For an in-depth analysis, see:
+   <a href="https://www.researchgate.net/publication/373367839" target="_blank">
+     <img
+       src="{{ site.baseurl }}/assets/images/vibration-screen-model-paper.png"
+       alt="Diagnostics of Bolted Joints in Vibrating Screens Based on a Multi-Body Dynamical Model"
+       width="100%"
+       style="margin-left: 0em;"
+     />
+   </a>
 
 
 
 
-   On this plot, we can observe that the gross of process noise is concentrated
-   around the fundamental drive frequency and multiple odd harmonics thereof.
-   The higher harmonics originate from the conversion process of the sinusoidal
-   movement of the feeder to the nonlinear friction on the processed waste by
-   the structure of the feeder topology (ref here).
+
+
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+
+
+
+//   // Link researchgate.net/publication/373367839
+//   // Dynamic_characteristics_analysis_of_a_circular_vib.pdf
+//   // The main shaft of the vibration exciter is designed as an eccentric shaft, so that the exciting
+//force is evenly distributed on the whole shaft to avoid concentrated load. The bearing capacity of
+//the main shaft is more reasonable, which can improve the service life and structural reliability of
+//the main shaft, as shown in Fig. 2
+
+
+
 
    For the remainder of this discussion, we will ignore the lower part of the
    spectrum, as this portion of the heatmap mainly contains spectral components
@@ -759,13 +833,7 @@ more complex signal transformations.
    the spectrum is useless, as it may contain valueable information about the
    waste processing itself.
 
-   In the upper part of the spectrum, we can observe some early stage
-   indicators of an upcoming change in the behaviour of the machine. First signs
-   are around x weeks before the critical damage of the bearing, then it
-   disappears temperorarily because of routine maintainance and about x days
-   before the fatal damage it appears again. In the final stages of the bearing
-   damage, we can see the fault spectrum spread out over all frequency bands,
-   which is the well-known indicator for stage-4 bearing damage.
+
 
    In the next chapter we will feed this sensor data to a ML autoencoder to
    reduce the complex data in a simple loss indicator which can be used as an
