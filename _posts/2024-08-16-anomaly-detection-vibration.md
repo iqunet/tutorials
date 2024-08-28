@@ -871,3 +871,8 @@ more complex signal transformations.
      <source src="{{ site.baseurl }}/assets/videos/vibration-iqunet-ads.mp4" type="video/mp4">
      Your browser does not support the video tag.
    </video>
+
+For more detailed technical insights and support, explore our
+[documentation](https://iqunet.com/resources/) and
+[case studies](https://iqunet.com/resources/case-studies/case-study-1-international-airport/),
+or contact our [support team](https://iqunet.com/contact/).
