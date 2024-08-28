@@ -677,7 +677,7 @@ more complex signal transformations.
 ### Real-world Vibratory Feeder Data
 
    Figure 23 shows the autoencoder loss of a vibratory screen, based on 4,400
-   measurements (8192 samples) collected from a triaxial MEMS sensor between
+   measurements (3x8192 samples/meas) collected from a triax MEMS sensor between
    February and August 2024. 
 
    The historical data reveals the progression of a bearing fault over time:
@@ -708,11 +708,11 @@ more complex signal transformations.
 
 #### Limitations of RMS-only sensors
 
-   Figure 24 illustrates the limitations of an RMS-only sensor for bearing
-   fault detection. Due to the in-band process noise, the fault's energy stays
-   undetectable until the very last stages, when it rises above the total
-   integrated noise floor. Relying only on time-domain data or simple RMS
-   thresholds is thus insufficient for early fault warnings.
+   Figure 24 illustrates the lack of sensitivity of an RMS-only sensor for
+   bearing fault detection. Due to the in-band process noise, the fault's
+   energy stays undetectable until the very last stages, when it rises above
+   the total integrated noise floor. Relying only on time-domain data or simple
+   RMS thresholds is thus insufficient for early fault warnings.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-screen3131-rms.svg"
@@ -721,18 +721,9 @@ more complex signal transformations.
      style="margin-left: 0em;"
    />
    <figcaption>
-     Figure 24: Unless tuned to the specific fault frequencies, the RMS history
-     only reveals the last stage of a bearing failure.
+     Figure 24: Unless specifically tuned to the specific fault frequencies,
+     the RMS aggregate is only sensitive to last stage of a bearing failure.
    </figcaption>
-
-   // Insert comparison of time domain data before and after the fault appears
-
-   Initially, the time domain data does not reveal much due to the presence of
-   process noise. The fault's energy remains buried below the noise floor until
-   the very late stages, when the fault's energy becomes high enough to rise
-   above the process noise. As a result, relying solely on time-domain data or
-   simple RMS power thresholds is insufficient to detect early warning signs
-   and track the stability of a developing fault.
 
 #### Frequency Domain Data
 
