@@ -782,15 +782,16 @@ more complex signal transformations.
    bearing, the high forces due to the rigid bearing and the dynamic imbalance
    are the main cause of a reduced service life of the eccentric shaft bearing.
 
-   For an in-depth analysis, see:
+   For an in-depth analysis, see
    <a href="https://www.researchgate.net/publication/373367839" target="_blank">
-     <img class="nolightbox"
-       src="{{ site.baseurl }}/assets/images/vibration-screen-model-paper.png"
-       alt="Diagnostics of Bolted Joints in Vibrating Screens Based on a Multi-Body Dynamical Model"
-       width="100%"
-       style="margin-left: 0em;"
-     />
-   </a>
+     [researchgate.net]
+   </a>:
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-screen-model-paper.png"
+     alt="Diagnostics of Bolted Joints in Vibrating Screens Based on a Multi-Body Dynamical Model"
+     width="100%"
+     style="margin-left: 0em;"
+   />
 
    ---
 
@@ -865,7 +866,6 @@ more complex signal transformations.
    industrial maintenance strategies, bringing the required level of
    understanding from expert vibration analist to anyone with a good technical
    background.
-
 
    <video width="90%" controls loop autoplay muted style="margin-left: 1em;">
      <source src="{{ site.baseurl }}/assets/videos/vibration-iqunet-ads.mp4" type="video/mp4">
