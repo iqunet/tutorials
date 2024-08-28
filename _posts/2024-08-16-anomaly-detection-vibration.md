@@ -816,8 +816,8 @@ more complex signal transformations.
    />
    <figcaption>
      Figure 25: The Canvas plugin of the iQunet edge server allows the user
-     to build custom dashboards. In this screenshot, the dashboard shows the
-     50% median rolling estimate of the autoencoder anomaly score for 4 sensors
+     to build custom dashboards. In this screenshot, the page shows the 50%
+     median rolling estimate of the autoencoder anomaly score for 4 sensors
      on the vibratory screen. <br><i>[Click image to enlarge]</i>
    </figcaption>
 
@@ -845,6 +845,8 @@ more complex signal transformations.
    machine is deviating from its operational baseline. It provides useful data
    in how fast an intervention must be planned.
 
+   ---
+
 ### Conclusion
 
    Wireless vibration sensors combined with machine learning provide a powerful
@@ -863,122 +865,7 @@ more complex signal transformations.
    background.
 
 
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-
-
-#### Frequency Domain Data
-
-   When we convert to the frequency domain, the picture becomes clearer. The
-   energy components of the vibratory feeder process are mainly concentrated
-   at the lower frequencies, as expected. Additionally, the vibration dampers
-   absorb higher frequencies associated with the product processing somewhat,
-   making the upper half of the spectrum the ideal candidate to focus on for
-   anomaly detection. 
-
-   In most cases, there is no a-priori information about the machine provided
-   by the customer, simply because it does not exist. Setting precise thresholds
-   for each frequency bin as would be done with traditional threshold-based
-   band alarm approaches, remains a tedious challenge. Without expert knowledge
-   about the machine characteristics, the risk for incorrect thresholds is real.
-
-   For example, the intermodulation of the drive train frequencies and harmonics
-   with the actual fault frequencies may cause certain spectral components to
-   disappear when a fault occurs, which is excactly the opposite from what
-   setting a threshold is trying to achieve. This is where the autoencoder ML
-   approach becomes a valuable asset in our toolbox.
-
-
-
-### Autoencoder-Based Machine Health Prediction
-
-In the final part of this discussion, we will demonstrate with real-world data
-how the autoencoder was used to successfully predict the health status of the
-vibratory feeder, without requiring any a-priori knowledge about its internal
-components.
-
-#### STFT Representation and Input Data
-
-Instead of feeding the autoencoder with time- or frequency-domain data
-separately, as discussed earlier, we use the STFT representation. Each
-measurement is converted into a numeric matrix similar to the spectral
-heatmap described previously. However, in this case, the input data is
-extended to three dimensions.
-
-- **Time domain:** The 3x8192 samples within each single measurement.
-- **Spectrum:** Frequency-domain data of above time domain.
-- **Measurement Index:** The stack of measurements over time
-  (dates in the heatmap).
-
-While this complex input signal is difficult for the human brain to understand
-or analyse, this multi-feature input provides a rich dataset for the autoencoder
-so it can be trained on both events in the time domain (sudden shocks) and in
-the frequency domain (bearing faults, imbalance, etc).
-
-With some additional data augmentation and mini batches (beyond the scope of
-this text), this dataset becomes the training input for the autoencoder. Please
-keep in mind that only the first month of data was used to train the ML model,
-and the full spectral heatmap of the previous chapter was only captured in the
-next months. However we use all data here to help the reader to understand and
-observe the emerging bearing failure.
-
-#### Autoencoder Functionality
-
-The autoencoder attempts to compress this NxMx3 input signal into a reduced
-L-dimensional latent space. Once trained, the autoencoder reconstructs each
-new (i.e. unseen) measurement and compares it with the original STFT input.
-The difference between the original and reconstructed signal is quantified
-using a loss function (MAE, MSE, logCosh, ...), which maps this discrepancy
-to a single numerical value representing the anomaly score as shown in the
-figure below.
-
-// Insert figure with the anomaly output of the autoencoder here
-
-
-
-
-
-#### Thresholding and False Alarm Mitigation
-
-Since we now have a useful indicator for the anomaly score, we can implement
-a simple, temperature-like threshold based on historical anomaly levels. To
-reduce the risk of false alarms, the output of the loss detector is first
-smoothed using a rolling window quantile estimator before being compared to
-the threshold level.
-
-The rolling estimator allows us to define multiple confidence levels for the
-anomaly score, taking into account the past n measurements to reduce variance
-and avoid false alarms.
-
-### Dashboard and Integration with Other Systems
-The iQunet Edge system provides all functionality for the above described
-signal processing functions in one edge device. This edge device contains
-not only the controller for up to more than 100 (vibration) sensors in a single
-device, but also all postprocessing functionality for the conversion to RMS,
-spectral plots, historical trends, machine learning inference and
-thresholding-based alarms.
-
-The visualization can be done using the built-in fully customizable dashboard
-and raw or postprocessed data can be exported to any third-party tools that
-support OPC-UA, GraphQL or the MQTT protocols. Below is such an example of a
-customized multi-page dashboard for the plant-operator. No external tools except
-for a browser in kiosk mode is required to get started.
-
----
-
-
-
-For more detailed technical insights and support, explore our [documentation](https://iqunet.com/resources/) and [case studies](https://iqunet.com/resources/case-studies/case-study-1-international-airport/), or contact our [support team](https://iqunet.com/contact/).
+   <video width="90%" controls loop autoplay muted style="margin-left: 1em;">
+     <source src="{{ site.baseurl }}/assets/videos/vibration-iqunet-ads.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
