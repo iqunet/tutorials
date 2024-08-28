@@ -738,7 +738,7 @@ more complex signal transformations.
      the RMS aggregate is only sensitive to last stage of a bearing failure.
    </figcaption>
 
-#### Spectal Heatmap
+#### Spectral Heatmap
 
    To review the ML results, we introduce the spectral heatmap. In this plot,
    the horizontal x-axis represents measurement date, and the vertical slices
@@ -775,13 +775,12 @@ more complex signal transformations.
    (97Hz) shows the process noise modulated onto the 2nd harmonic (synchronous
    motor at mains frequency of 50Hz with 3% slip).
 
-   In the lower part of the spectrum, the higher harmonics originate partially
-   from the inevitable slight imbalance of the very rigid structure of the
-   screen itself and partially due to the nonlinear friction of the processed
-   waste on the screen's separator structures. Apart from the static load on
-   the bearing, the high forces due to the rigid bearing and the dynamic
-   imbalance are the main cause of a reduced service life of the eccentric
-   shaft bearing.
+   In the lower part of the spectrum, the harmonics originate partially from
+   the inevitable slight imbalance of the very rigid structure of the screen
+   itself and partially due to the nonlinear friction of the processed waste
+   on the screen's separator structures. Apart from the static load on the
+   bearing, the high forces due to the rigid bearing and the dynamic imbalance
+   are the main cause of a reduced service life of the eccentric shaft bearing.
 
    For an in-depth analysis, see:
    <a href="https://www.researchgate.net/publication/373367839" target="_blank">
@@ -793,9 +792,75 @@ more complex signal transformations.
      />
    </a>
 
+#### Mitigation of False Positives
 
+   While the spectral heatmap provides detailed insights into the operational
+   behavior of the vibratory screen, visually inspecting heatmaps is impractical
+   for daily machine monitoring.
+   
+   The key advantage of the STFT + autoencoder approach is its ability to
+   project complex sensor signals onto a single numeric "anomaly score" through
+   nonlinear transformation.
 
+   The anomaly score allows the implementation of a simple, temperature-like
+   threshold based on historical anomaly levels. This eliminates the need to
+   manually set alarm levels for each individual frequency subrange. This is
+   especially true for equipment that comes with little a-priori information,
+   such as small ubiquitous equipment like pumps, conveyor belts, or fans.
 
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-canvas-iqunet.jpg"
+     alt="Screenshot of the Canvas plugin of the iQunet Edge server"
+     width="100%"
+     style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);"
+   />
+   <figcaption>
+     Figure 25: The Canvas plugin of the iQunet edge server allows the user
+     to build custom dashboards. In this screenshot, the dashboard shows the
+     50% median rolling estimate of the autoencoder anomaly score for 4 sensors
+     on the vibratory screen. <br><i>[Click image to enlarge]</i>
+   </figcaption>
+
+   To minimize false alarms, the output of the loss detector is smoothed using
+   a rolling window quantile estimator before being compared to the threshold.
+   A lower quantile with a larger window reduces the likelihood of false alarms
+   but slows response time. Conversely, a higher quantile increases sensitivity
+   at the expense of more false positives. Using multiple quantiles with a
+   single threshold allows for alarms with varying severity levels.
+
+   <img
+     src="{{ site.baseurl }}/assets/images/vibration-anomaly-quantiles.png"
+     alt="Anomaly score with 5%, 50% and 95% rolling window quantiles"
+     width="517px"
+     style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);"
+   />
+   <figcaption>
+     Figure 26: iQunet dashboard showing the 5%, 50% and 95% rolling window
+     anomaly anomaly score quantiles. The same data is also available in
+     OPC-UA (/MQTT) for export to any factory SCADA (/IoT) platform.
+   </figcaption>
+   
+   When an alarm is triggered, the anomaly score continues to provide insights
+   into the stability of the anomaly. It brings an estimate of how rapidly the
+   machine is deviating from its operational baseline. It provides useful data
+   in how fast an intervention must be planned.
+
+### Conclusion
+
+   Wireless vibration sensors combined with machine learning provide a powerful
+   solution for the day-to-day anomaly detection in industrial screens. By
+   continuously monitoring machine behavior and processing data through
+   deep-learning ML models, emerging random faults can be detected before they
+   become catastrophic, by leveraging the strength of big data to balance the
+   reduced sensitivity/bandwidth compared to piezo sensor technology.
+
+   This predictive approach minimizes unplanned downtime, and allows to align
+   repairs with the scheduled maintenance. The ability to automatically
+   detect complex issues without relying on manual inspections or preset
+   thresholds highlights the potential of integrating machine learning into
+   industrial maintenance strategies, bringing the required level of
+   understanding from expert vibration analist to anyone with a good technical
+   background.
 
 
    <br />
@@ -813,54 +878,6 @@ more complex signal transformations.
    <br />
    <br />
    <br />
-
-
-
-//   // Link researchgate.net/publication/373367839
-//   // Dynamic_characteristics_analysis_of_a_circular_vib.pdf
-//   // The main shaft of the vibration exciter is designed as an eccentric shaft, so that the exciting
-//force is evenly distributed on the whole shaft to avoid concentrated load. The bearing capacity of
-//the main shaft is more reasonable, which can improve the service life and structural reliability of
-//the main shaft, as shown in Fig. 2
-
-
-
-
-   For the remainder of this discussion, we will ignore the lower part of the
-   spectrum, as this portion of the heatmap mainly contains spectral components
-   of the waste processing, and we are mostly interested to detect faults in
-   the feeder drive train. However, it does not imply that the lower part of
-   the spectrum is useless, as it may contain valueable information about the
-   waste processing itself.
-
-
-
-   In the next chapter we will feed this sensor data to a ML autoencoder to
-   reduce the complex data in a simple loss indicator which can be used as an
-   temperature-like indicator for the health status of the machine.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #### Frequency Domain Data
@@ -930,19 +947,9 @@ figure below.
 
 // Insert figure with the anomaly output of the autoencoder here
 
-#### Anomaly Detection and Visualization
 
-The output of the loss function (i.e. the loss value over the historical
-measurements) clearly shows an increase in the anomaly score at the very same
-timestamps corresponding to the events we had already visually detected in the
-heatmap from the previous chapter. However, the key advantage here is that this
-anomaly detection is done without needing to visually inspect a heatmap or to
-manually set individual thresholds for each frequency bin.
 
-In addition, the level of the anomaly score will gain us useful insight in the
-stability of the anomaly, and give a good estimate about the rate in which
-the machine is deviating from that operating point (i.e. how soon an inspection
-or intervention must be planned).
+
 
 #### Thresholding and False Alarm Mitigation
 
@@ -972,16 +979,6 @@ for a browser in kiosk mode is required to get started.
 
 ---
 
-### Conclusion
-Wireless vibration sensors combined with machine learning provide a powerful
-solution for the day-to-day anomaly detection in industrial shaker machines.
-By continuously monitoring machine behavior and processing data through
-advanced ML models, emerging random faults can be detected before they become
-catastrophic. This predictive approach minimizes unplanned downtime, and allows
-to align repairs with the scheduled maintenance. The ability to automatically
-detect complex issues without relying on manual inspections or preset thresholds
-highlights the potential of integrating machine learning into industrial
-maintenance strategies, bringing the required level of understanding from
-expert vibration analist to anyone with a good technical background.
+
 
 For more detailed technical insights and support, explore our [documentation](https://iqunet.com/resources/) and [case studies](https://iqunet.com/resources/case-studies/case-study-1-international-airport/), or contact our [support team](https://iqunet.com/contact/).
