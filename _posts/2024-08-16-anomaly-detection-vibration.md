@@ -784,13 +784,15 @@ more complex signal transformations.
 
    For an in-depth analysis, see:
    <a href="https://www.researchgate.net/publication/373367839" target="_blank">
-     <img
+     <img class="nolightbox"
        src="{{ site.baseurl }}/assets/images/vibration-screen-model-paper.png"
        alt="Diagnostics of Bolted Joints in Vibrating Screens Based on a Multi-Body Dynamical Model"
        width="100%"
        style="margin-left: 0em;"
      />
    </a>
+
+   ---
 
 #### Mitigation of False Positives
 
