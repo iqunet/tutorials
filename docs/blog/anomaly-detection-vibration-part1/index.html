@@ -1,0 +1,633 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 1/3 Introduction - Tutorials</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Tutorials">
+<meta property="og:title" content="Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 1/3 Introduction">
+<meta property="og:url" content="/tutorials/blog/anomaly-detection-vibration-part1/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-08-18T00:00:00-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="/tutorials/blog/anomaly-detection-vibration-part1/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/tutorials/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/tutorials/">
+          <div class="title-wrapper">
+            <img class="title-icon nolightbox" src="/tutorials/assets/images/iqunet_logo_bgwhite.svg" alt="iQunet">
+            Tutorials
+          </div>
+          <span class="site-subtitle">OPC-UA | MQTT | Modbus | LoRaWAN</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tutorials/posts/"
+                
+                
+              >Posts</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  <div class="sidebar sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#scope-and-tldr">Scope and TL;DR</a></li><li><a href="#introduction">Introduction</a></li><li><a href="#monitoring-vibration-screens">Monitoring Vibration Screens</a></li><li><a href="#mems-accelerometers">MEMS Accelerometers</a></li></ul>
+            </nav>
+  </div>
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 1/3 Introduction">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2024-08-18T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="/tutorials/blog/anomaly-detection-vibration-part1/" itemprop="url">Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 1/3 Introduction
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p><img src="/tutorials/assets/images/recycling_plant.jpg" alt="Recycling Plant Artists Impression" width="500px" /></p>
+
+<h3 id="scope-and-tldr">Scope and TL;DR</h3>
+<p>This post explores how <strong>wireless vibration sensors</strong> and machine learning
+techniques are used for <strong>anomaly detection</strong> in industrial shaker screens.
+By monitoring vibration data and using deep-learning models, various types of
+mechanical faults can be detected at an early stage.</p>
+
+<p class="description_3">This is the first part in a three-part series.<br />
+<a href="/tutorials/blog/anomaly-detection-vibration-part2">Part 2: Anomaly Detection with Autoencoders</a><br />
+<a href="/tutorials/blog/anomaly-detection-vibration-part3">Part 3: Real-world Vibratory Screen Data</a></p>
+
+<p>We cover the technical setup and data postprocessing using autoencoders
+(part 2), which are the key elements for reliable and fully automated fault
+detection.</p>
+
+<p>Finally, based on real-world data collected during an 7-month long data
+collection example from a household waste processing plant in the Benelux, the
+reader will understand both the strengths and weaknesses of the system (part 3).</p>
+
+<p><img src="/tutorials/assets/images/vibration-to-anomaly.jpg" alt="Teaser Banner Vibration Sensors to Anomaly Score" width="100%" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" /></p>
+
+<p>This read is targeted at both the vibration expert and the casual reader
+interested in gaining better insight in the practical applications of machine
+learning, beyond the hype that has surrounded it in recent years.</p>
+
+<h3 id="introduction">Introduction</h3>
+<p>Waste management plants rely on long serial processing lines. Failures in any
+pivotal stage may cause severe capacity loss due to the limited redundancy. This
+makes some level of monitoring targeted towards machine health and predictive
+maintainance crucial to avoid unplanned downtimes and the cost that inevitably
+comes with it.</p>
+
+<p>See “<em>How does the post-separation process work?</em>” by
+<a class="external" href="https://www.avr.nl/en/optimal-process/nascheidingsinstallatie-nsi" target="_blank">AVR.nl
+</a> for additional photos.</p>
+
+<p><img src="/tutorials/assets/images/vibration-avr-separation.svg" alt="Schematic Representation of the AVR Separation Plant" width="100%" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" /></p>
+<figcaption>
+  Figure 3: Overview of the Household Waste Separation Process
+  (click to enlarge) [credits: AVR].
+</figcaption>
+
+<p>While <strong>digital PLCs</strong> are in the control of the pipeline and can already
+detect the most <strong>acute faults</strong> in realtime, machine manufacturers treat
+predictive monitoring mostly as an afterthought, leaving it to the maintanance
+staff to handle unexpected random failures. However, in unhealthy environments
+filled with dust, humidity, and noise, routine manual inspections are not
+practical.</p>
+
+<p><img src="/tutorials/assets/images/vibration-dust.jpg" alt="Unhealthy Environment with Dust" width="500px" /></p>
+<figcaption>
+  Figure 4: Unhealthy environment at a waste processing plant &mdash;<br />
+  Accumulation of dust on the receiver module after several weeks of operation.
+</figcaption>
+
+<p>In this blogpost, we will show that ruggedized <strong>wireless vibration sensors</strong>
+and machine learning in the data postprocessing chain provide us with 
+<strong>consistent health updates</strong> at a regular interval, enabling early detection
+of issues. We shall cover the technical setup, the data processing, and the
+machine learning which automate the anomaly detection in noisy environments.</p>
+
+<blockquote>
+  <p><em>Noisy, in this case, refers to the sensor signal, which is polluted with
+unwanted vibrations from the production process itself, in addition to the
+machine defects we are trying to detect here.</em></p>
+</blockquote>
+
+<hr />
+
+<h3 id="monitoring-vibration-screens">Monitoring Vibration Screens</h3>
+
+<p>Monitoring vibrating conveyor equipment in waste management plants presents
+unique challenges. These plants are large, and network infrastructure or good
+cellular coverage is often lacking. Installing <strong>cabling across large sites</strong> is
+not only <strong>expensive</strong> but also prone to failures. This is especially true for
+machines that experience significant vibrations.</p>
+
+<p>One example such an is a <strong>vibratory screen</strong>, which pre-sorts the household
+waste material on size before it undergoes optical sorting. In the optical
+sorter, spectral cameras detect different materials, and pressurized air is
+then used to further separate individual pieces into different output flows.</p>
+
+<p>See “<em>SPALECK: Recycling Waste Screens</em>”
+<a class="external" href="https://www.spaleck.eu/screening-machines" target="_blank">[spaleck.eu]
+</a>.</p>
+
+<p><img src="/tutorials/assets/images/vibration-vibratory-screen.jpg" alt="Vibratory Screen with Vibration Sensor Location" width="100%" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" /></p>
+<figcaption>
+  Figure 5: Vibratory Screen with the location of the Vibration Sensor
+  [image credit: SPALECK].
+</figcaption>
+
+<p>These vibratory screens, driven by a synchronous motor that powers an eccentric
+axle with counterweight, pose several challenges:</p>
+
+<ul>
+  <li>
+    <p><strong>Large Displacements:</strong> Translational displacements of up to 10 cm make not
+only the shaker itself prone to considerable stresses, but also any wired
+sensor setup will be susceptible to both <strong>connector wear and cable fatigue</strong>
+in the long term.</p>
+  </li>
+  <li>
+    <p><strong>Regular Maintenance:</strong> Parts of these machine are frequently disassembled
+for maintenance. It is preferred that any sensors should be as non-intrusive as
+possible during such manipulations. This ensures a <strong>consistent sensor location
+and orientation</strong> and improves the accuracy of the machine learning algorithms.</p>
+  </li>
+</ul>
+
+<p>Given the challenges of monitoring shaker machines, the customer here opted
+for wireless sensors to avoid the above issues.</p>
+
+<video width="300px" controls="" loop="" autoplay="" muted="" style="margin-left: 1em;">
+  <source src="/tutorials/assets/videos/vibration-screen-render.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+<figcaption>figure 6: Video Demonstrating Sensor Placement and the Challenging
+  Conditions on a Shaker Screen in a Waste Processing Plant.</figcaption>
+
+<p>To ensure that routine maintenance tasks can be performed without disturbing
+the sensors, they were installed 40 cm away from the ideal location.</p>
+
+<p>The sensors are located on the machine frame, instead of directly on the bearing
+housing of the eccentric axle, which  inevitably reduces the sensitivity to
+high-frequency bearing faults. This highlights the gap between ideal lab
+conditions and a typical installation.</p>
+
+<p>So factors that need to be considered include:</p>
+
+<ul>
+  <li>
+    <p><strong>Signal Propagation:</strong> The sensor’s non-ideal placement introduces multiple
+wave propagation boundaries (i.e. transitions between materials), which
+attenuate and reflect high-frequency signals. This makes any measurements above
+10 kHz, including ultrasonic frequencies, costly and of limited benefit.</p>
+  </li>
+  <li>
+    <p><strong>Unsuitability of RMS Sensors:</strong> For simple RMS sensors, the fault signals
+will be masked by process noise. This makes them ineffective for vibratory
+screens except for the most obvious late-stage catastrophic failures (see part 3).</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="mems-accelerometers">MEMS Accelerometers</h3>
+
+<p>Given the above prerequisites, triaxial MEMS-based wireless vibration sensors
+are an ideal choice.</p>
+
+<p><img src="/tutorials/assets/images/vibration-mems-die.jpg" alt="Microphotograph of a MEMS Accelerometer Die" width="500px" style="margin-left: 1em;" /></p>
+<figcaption>
+  Figure 7: Microphotograph (2x2mm) of a MEMS Accelerometer (without the ASIC processor).
+  <br /> Hollocher et al., "A Very Low Cost, 3-axis, MEMS Accelerometer for
+  Consumer Applications," 2009. 
+  <a class="external" href="https://www.researchgate.net/publication/224107749" target="_blank">[researchgate.net]
+  </a>.
+</figcaption>
+
+<p>Fully integrated <strong>MEMS vibration sensors</strong> (micro-electromechanical system)
+detect acceleration by measuring changes in capacitance (distance) between a
+fixed electrode and a suspended <strong>on-chip proof mass</strong>. The variations in
+capacitance are then digitized by the ASIC postprocessor embedded in the same
+<a class="external" href="https://en.wikipedia.org/wiki/System_in_a_package" target="_blank">SiP package
+</a>
+and converted into their corresponding acceleration values.</p>
+
+<p>Characteristics of MEMS:</p>
+
+<ul>
+  <li>
+    <p><strong>Robustness:</strong> Highly durable and well-suited for long-term use in harsh
+environments. Piezo accelerometers on the other hand, have superior noise
+characteristics but are more prone to material failures of the ceramic sensing
+elements and need more careful handling to maintain their calibrated
+sensitivity.</p>
+  </li>
+  <li>
+    <p><strong>Frequency Response:</strong> MEMS sensors capture vibrations up to a few kHz(*) in
+three axes. This allows for spectral separation of process noise and fault
+frequencies, so we can tune for the optimal the signal-to-noise ratio and
+fault sensitivity.<br />
+(* the installed sensors have a Nyquist -3dB bandwidth of +/-1KHz)</p>
+  </li>
+</ul>
+
+<p><img src="/tutorials/assets/images/vibration-IVIB161010-ACC3-016-RBW-performance.png" alt="Noise Performance of the iQunet IVIB161010-ACC3-016 Accelerometer" width="90%" style="margin-left: 1em; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" /></p>
+<figcaption>
+  Figure 8: Peak and Noise Performance of the iQunet IVIB161010-ACC3-016
+  Accelerometer.
+  <br />Detailed background on Frequency Response and RBW performance figures
+  <a class="external" href="https://www.analog.com/media/en/analog-dialogue/volume-51/number-3/articles/mems-vibration-monitoring-acceleration-to-velocity.pdf" target="_blank">here
+  </a>.
+</figcaption>
+
+<p>Advantages of wireless sensors:</p>
+
+<ul>
+  <li>
+    <p><strong>Wireless Range:</strong> With a range of 20 to 50 meters, wireless sensors
+eliminate the need for fragile and expensive cabling. Downside is the need for
+battery replacement every 20-50,000 spectral measurements.</p>
+  </li>
+  <li>
+    <p><strong>Cost:</strong> Each vibratory screen is equipped with 4 triaxial sensors.
+Switching to piezoelectric sensors would significantly increase costs, tripling
+the expense for the sensor elements alone compared to the total cost of the
+complete wireless MEMS-based system.</p>
+  </li>
+</ul>
+
+<p><img src="/tutorials/assets/images/vibration-wired-bridge.jpg" alt="Wireless Bridge for IEPE Vibration Sensors" width="90%" style="margin-left: 1em; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);" /></p>
+<figcaption>
+  Figure 9: Despite offering better sensitivity, a wireless IEPE bridge, with
+  its additional cabling, is not a viable alternative to the existing 4x
+  wireless MEMS triax sensors on the vibratory screen.
+</figcaption>
+
+<p>In the next chapters, we will discuss how the sensor data is post-processed
+and used to align otherwise unplanned downtime with scheduled maintenance tasks,
+effectively reducing standstills to virtually 0 excess downtime.</p>
+
+<hr />
+
+<p><a href="/tutorials/blog/anomaly-detection-vibration-part2">Part 2: Anomaly Detection with Autoencoders</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tutorials/categories/#blog" class="page__taxonomy-item p-category" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-08-18T00:00:00-05:00">August 18, 2024</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/blog/power-quality/" class="pagination--pager" title="Monitoring Power Quality in Industrial Compressors
+">Previous</a>
+    
+    
+      <a href="/tutorials/blog/anomaly-detection-vibration-part2/" class="pagination--pager" title="Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 2/3 Deep Learning
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+
+    
+      <aside class="sidebar__right sticky">
+        
+  <div class="sidebar sidebar-company">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="/tutorials/">
+        <img src="/tutorials/assets/images/iqunet_logo_bgwhite.svg" alt="" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="/tutorials/" itemprop="url"></a>
+    </h3>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://iqunet.com" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-house" aria-hidden="true"></i><span class="label">iQunet.com</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/company/iqunet/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://iqunet.github.io/tutorials" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="description_2">
+      iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.
+    </div>
+  </div>
+
+
+      </aside>
+      
+
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 <a href="">Tutorials</a></div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/tutorials/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('img:not(.nolightbox)').forEach(function(img, index) {
+            var link = document.createElement('a');
+            link.href = img.src;
+            link.setAttribute('data-lightbox', 'gallery');
+            
+            img.parentNode.insertBefore(link, img);
+            link.appendChild(img);
+
+            // workaround to disable magnificPopup
+            $.magnificPopup.proto.open = Function.prototype
+        });
+
+        lightbox.option({
+            'fadeDuration': 0,       // No transition effect
+            'resizeDuration': 0,     // No transition effect
+            'imageFadeDuration': 0,  // No transition effect
+            'wrapAround': true       // Enable navigation between images
+        });
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  </body>
+</html>

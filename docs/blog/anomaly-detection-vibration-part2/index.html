@@ -1,0 +1,784 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 2/3 Deep Learning - Tutorials</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Tutorials">
+<meta property="og:title" content="Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 2/3 Deep Learning">
+<meta property="og:url" content="/tutorials/blog/anomaly-detection-vibration-part2/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-08-18T00:00:00-05:00">
+
+
+
+
+
+
+<link rel="canonical" href="/tutorials/blog/anomaly-detection-vibration-part2/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/tutorials/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/tutorials/">
+          <div class="title-wrapper">
+            <img class="title-icon nolightbox" src="/tutorials/assets/images/iqunet_logo_bgwhite.svg" alt="iQunet">
+            Tutorials
+          </div>
+          <span class="site-subtitle">OPC-UA | MQTT | Modbus | LoRaWAN</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tutorials/posts/"
+                
+                
+              >Posts</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  <div class="sidebar sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#sensor-data-processing-and-machine-learning">Sensor Data Processing and Machine Learning</a></li><li><a href="#from-raw-data-to-actionable-insights">From Raw Data to Actionable Insights</a><ul><li><a href="#prefiltering-data-streams-and-domains">Prefiltering, Data Streams and Domains</a></li><li><a href="#challenges-with-manual-analysis-and-traditional-methods">Challenges with Manual Analysis and Traditional Methods</a></li><li><a href="#enter-the-power-of-machine-learning">Enter the Power of Machine Learning</a></li></ul></li></ul>
+            </nav>
+  </div>
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 2/3 Deep Learning">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2024-08-18T00:00:00-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="/tutorials/blog/anomaly-detection-vibration-part2/" itemprop="url">Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 2/3 Deep Learning
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          11 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p><img src="/tutorials/assets/images/recycling_plant.jpg" alt="Recycling Plant Artists Impression" width="200px" /></p>
+
+<p class="description_3">This is the second part in a three-part series.<br />
+<a href="/tutorials/blog/anomaly-detection-vibration-part1">Part 1: Sensors in a Waste Processing Plant</a><br />
+<a href="/tutorials/blog/anomaly-detection-vibration-part3">Part 3: Real-world Vibratory Screen Data</a></p>
+
+<h3 id="sensor-data-processing-and-machine-learning">Sensor Data Processing and Machine Learning</h3>
+
+<p>The MEMS-based wireless vibration sensors (IVIB161010-ACC3-016) gather detailed,
+day-to-day data containing info about the vibratory screen’s behavior (see part 1).</p>
+
+<p>Each sensor captures three-axis vibration snapshots every 20 minutes
+(configurable) at a sampling rate of 3200Hz (also configurable). A measurement,
+consisting of up to 25,000 samples, is wirelessly transferred to a central edge
+server equipped with an embedded historian database.</p>
+
+<p><img src="/tutorials/assets/images/vibration-opcua-historian.png" alt="OPC-UA client showing historian vibration data." width="95%" style="margin-left: 1em;" /></p>
+<figcaption>
+  Figure 10: Up to 25GB of raw vibration data is stored in the OPC-UA historian
+  database, which is used to train a deep learning model of the machine's
+  behavior across different operating conditions.
+  <br /><i>(image: UaExpert OPC-UA client.
+  <a class="external" href="https://www.unified-automation.com/products/development-tools/uaexpert.html" target="_blank">[link]</a>)</i>
+</figcaption>
+
+<p>The iQunet edge server includes a TensorFlow processor for machine learning
+inference, along with a customizable dashboard, making it a complete standalone
+solution. For compatibility with third-party applications, the software also
+comes with an OPC-UA server and MQTT publishing client, enabling real-time
+visualization on the most common SCADA platforms (Kepware, Ignition, Siemens
+SIMATIC, etc.) and cloud-based IoT systems.</p>
+
+<p><img src="/tutorials/assets/images/vibration-dashboard-322-9944.png" alt="Screenshot of the embedded web interface of the iQunet edge server." width="95%" style="margin-left: 1em;" /></p>
+<figcaption>
+  Figure 11: The iQunet edge server comes with an embedded web interface and
+  supports third-party software integration through OPC-UA, MQTT, and GraphQL.
+  Both raw vibration data and post-processed derived metrics such as RMS,
+  velocity and ML anomaly levels are exposed by all interfaces.
+  [image: iQunet] <br /><i>(click to enlarge)</i>.
+</figcaption>
+
+<h3 id="from-raw-data-to-actionable-insights">From Raw Data to Actionable Insights</h3>
+
+<p>The raw vibration data (i.e. acceleration time series vectors) collected by the
+sensors undergoes several preprocessing steps to extract several aggregate and
+more complex signal transformations, discussed below:</p>
+
+<h4 id="prefiltering-data-streams-and-domains">Prefiltering, Data Streams and Domains</h4>
+
+<p><strong>Prefiltering</strong><br />
+   While some types of piezo sensors can directly generate high dynamic range
+   velocity signals at very low frequencies using a charge-mode amplifier, most
+   sensors types are acceleration-based. This means that the output needs to be
+   integrated from m/s<sup>2</sup> to m/s to derive the velocity signal.</p>
+
+<p>MEMS sensors are no different in this matter and are also acceleration based.
+   Their output signal contains a large dc-signal (the gravitation component)
+   which needs to be removed before the conversion to velocity.</p>
+
+<blockquote>
+  <p><strong>Expert Insights</strong><br />
+Filtering is a complex mathematical process, similar to the preamp
+stabilization time in piezo sensors. It is important to ensure that the
+high rejection ratio of a highpass filter does not introduce ripple or
+phase errors, as these can distort the time-domain signal and also cause
+significant drift when integrating from acceleration to velocity. Linear
+phase-filters, such as multi-stage digital FIR filters, are typically
+used to address these challenges.</p>
+</blockquote>
+
+<p><img src="/tutorials/assets/images/vibration-linear-phase-filter.jpg" alt="Removing the dc-offset with a linear-phase filter." width="95%" style="margin-left: 1em;" /></p>
+<figcaption>
+     Figure 12: To integrate acceleration data into a velocity signal, the
+     dc-offset must be removed to avoid drift in the integrated output. A
+     linear-phase higpass filter, such as a Biquad FIR filter, is essential to
+     preserve signal integrity during this process. In contrast, a
+     nonlinear-phase filter, like the Chebyshev IIR filter, introduces severe
+     phase distortion.
+   </figcaption>
+
+<p><strong>Data Streams</strong><br />
+   Once the dc-offset is removed, the data is converted into several useful
+   information streams in the edge server, including:</p>
+
+<ul>
+  <li><strong>Acceleration and velocity</strong></li>
+  <li><strong>RMS and Kurtosis aggregate values</strong></li>
+  <li><strong>Time and frequency domain views</strong></li>
+</ul>
+
+<p>These are some of the basic tools used by vibration experts to determine
+   the state of the machine, and in more advance cases, also the origin of a
+   fault, such as a loose mount or a bearing fault.<br />
+   Other tools, such as enveloping demodulation, further postprocess the signal,
+   primarily to represent the same data in a format or domain that is more
+   easily understood by the human eye.</p>
+
+<p><img src="/tutorials/assets/images/vibration_processing_flow.png" alt="Processing flow of vibration data in the edge server." width="95%" style="margin-left: 1em;" /></p>
+<figcaption>
+  Figure 13: Raw vibration data post-processing flows in the edge server. RMS
+  data is the least sensitive for fault detection. Frequency plots and heatmaps
+  are the preferred methods for experts. Machine learning-based anomaly
+  detection combines the simplicity of RMS thresholds with the sensitivity
+  of manual time/frequency domain analysis.
+</figcaption>
+
+<p>However, this blog post focuses on the automated detection of anomalies and
+   faults using machine learning techniques. It’s important to understand that
+   the specific formats in which vibration data is represented are less critical
+   for deep-learning models, as these tools will ‘learn’ the optimal latent
+   representation of the data during the training phase.</p>
+
+<p><strong>Time and Frequency Domain</strong><br />
+   So why would a vibration expert use both the time and frequency views?
+   Although they represent the same underlying information, each domain has its
+   advantages when it comes to detecting specific signal patterns.</p>
+
+<p>For instance, one-time or repetitive transient events in the signal (e.g. a
+   mechanical impulse) are easily identified in the time domain, where their
+   energy is concentrated in a short interval. However, in the frequency domain,
+   the same short event merely appear as a slight wideband bump above the noise
+   floor, making them difficult to detect.</p>
+
+<p><img src="/tutorials/assets/images/vibration-pulse-timedomain.png" alt="Impulse response from a bearing defect in time and frequency domains" width="90%" style="margin-left: 1em;" /></p>
+<figcaption>
+     Figure 14: Example of a short mechanical impulse. Impulse responses are
+     easily detectable in the time domain but spread across a broad frequency
+     range, particularly in variable-speed machines or for non-repetitive
+     events.
+   </figcaption>
+
+<p>Early-stage bearing faults (stage 1/2) are most effectively detected with
+   piezo sensors at ultrasonic frequencies, where the noise floor is lower and
+   thus more favorable to detect unusual patterns in the spectrum.</p>
+
+<p>However for repetitive impulses, energy concentrates around key fault
+   frequencies(*), such as BPFI and BPFO (stage 2/3). These which are well
+   within the capabilities of modern MEMS sensors. Nevertheless, capturing
+   sufficient impulses to rise above the noise floor is essential. Extended
+   measurements, however, may still pose challenges for wireless sensors due
+   to their data (transfer) and battery constraints.<br />
+   (*) More info here:
+   <a class="external" href="https://www.reliabilityconnect.com/bearing-problems-fault-frequency-and-artificial-intelligence-based-methods/" target="_blank">[reliabilityconnect.com]
+   </a>.</p>
+
+<blockquote>
+  <p>Sometimes you need a cost-effective solution for a real-world application
+outside the lab. MEMS sensors can offer the middle ground between the
+ultimate monitoring equipment and nothing. The amount of data that
+continuous monitoring offers often makes the choice for MEMS more suitable
+than periodic manual inspections.</p>
+</blockquote>
+
+<p><img src="/tutorials/assets/images/vibration-pulse-repetitive.png" alt="Repetitive bearing fault defect in time and frequency domains" width="90%" style="margin-left: 1em;" /></p>
+<figcaption>
+     Figure 15: Example of a repetitive impact fault. This one is easily
+     detected above the noise in the frequency domain as the energy from
+     multiple impacts concentrates around the repetition frequency.
+   </figcaption>
+
+<p>The above consideration is important for understanding why we use the
+   Short-Time Fourier Transform (STFT) when feeding data into the machine
+   learning algorithm. The STFT allows us to represent the sensor signal in
+   both the time- and frequency-domain simultaneously. By doing so, we capture
+   all relevant information (for the sake of simplicity, we exclude phase
+   information here) and ensure that the signal power of various fault patterns,
+   whether time-based or frequency-based, remains concentrated and is more
+   easily detected.</p>
+
+<p><img src="/tutorials/assets/images/vibration-pulse-stft.jpg" alt="STFT heatmap representation of a repetitive impact fault" width="90%" style="margin-left: 1em;" /></p>
+<figcaption>
+     Figure 16: The STFT provides simultaneous time and frequency resolution.
+     This enables machine learning algorithms to detect faults that manifest in
+     either domain. The trade-off between time and frequency resolution is a
+     fundamental limitation of the STFT
+     <a class="external" href="https://sigproc.mit.edu/_static/fall20/lectures/lec09a_slides.pdf" target="_blank">[mit.edu]
+     </a>.
+   </figcaption>
+
+<p>While is very possible for a machine learning algorithm to perform domain
+   transforms internally, this approach would require a significant portion of
+   the model structure (specifically, the convolutional layers) to handle these
+   transforms. This would complicate the training phase as it would also take
+   considerable training time to tune the ML model parameters to ‘invent’ these
+   transforms.</p>
+
+<p><img src="/tutorials/assets/images/vibration-autoencoder-latent.png" alt="Repetitive bearing fault defect in time and frequency domains" width="95%" style="margin-left: 0em;" /></p>
+<figcaption>
+     Figure 17: STFT data is stacked into a third dimension, then split into
+     training, validation, and test sets. Each set is further divided into
+     mini-batches to train the autoencoder model. When an unseen vibration
+     pattern occurs, the latent space fails to represent it accurately, leading
+     to a loss value (i.e. anomaly) proportional to the deviation from the
+     machine's normal operating point.
+     Image based on
+     <a class="external" href="https://en.wikipedia.org/wiki/Autoencoder" target="_blank">[wikipedia.org]
+     </a>.
+   </figcaption>
+
+<p>By using the STFT as a fixed preprocessing step, we effectively offload this
+   task and provide the ML algorithm with a rich feature input that combines
+   the strengths of both domains. In this sense, the STFT acts as a pre-trained,
+   fixed component of the machine learning model itself, simplifying the
+   detection process and reducing the training time for each sensor node.</p>
+
+<hr />
+<h4 id="challenges-with-manual-analysis-and-traditional-methods">Challenges with Manual Analysis and Traditional Methods</h4>
+
+<p>Linking specific fault patterns to their root cause typically requires expert
+   knowledge. Diagnosing issues like bearing faults or other machine-specific
+   anomalies demands experience and regular inspections.</p>
+
+<p>However, these manual methods depend on understanding of the machine’s
+   internal dynamics and require the measurements to be done in a constant
+   operating point (i.e. speed, load, …) to accurately track fault progression
+   over time.</p>
+
+<div style="padding: 0 2em 0.5em 1em">
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/67Et4vbKhOM?si=kcDpT6cfHer5wFOe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+   </iframe>
+   </div>
+<figcaption>
+     Figure 18: Traditional vibration analysis using conventional methods
+     requires expert knowledge and is typically not performed on non-critical
+     assets due to cost restrictions.
+     <br /><i>Credits: Mobius Institute
+     <a class="external" href="https://www.mobiusinstitute.com/learn" target="_blank">[mobiusinstitute.com]
+     </a></i>.
+   </figcaption>
+
+<p>Relying solely on vibration specialists is costly, and the extended intervals
+   between inspections can result in missed random faults. Oftentimes, the plant
+   operator just wants to be alerted in time about an upcoming problem,
+   then follows the fault progress over the next days more closely and will
+   replace the faulty component without the need for a detailed report about
+   the fault.</p>
+
+<p>For online monitoring, the sheer volume of data –hundreds of plots
+   generated daily– makes manual analysis impractical. Automated analysis
+   tools are essential here.</p>
+
+<p><img src="/tutorials/assets/images/vibration-thresholds.png" alt="Repetitive bearing fault defect in time and frequency domains" width="95%" style="margin-left: 0em;" /></p>
+<figcaption>
+     Figure 19: Automated alarm systems often mirror the approach of a
+     vibration expert in software, requiring order tracking and manual
+     threshold tuning. False alarms may lead operators to ignore alerts
+     altogether, including the valid warnings.
+     <br /><i>Image: AMC VIBRO
+     <a class="external" href="https://amcvibro.com/publications/10-alarm-thresholds/" target="_blank">[amcvibro.com]
+     </a></i>.
+   </figcaption>
+
+<p>Traditional automated methods, such as frequency binning and manually
+   setting thresholds for each bin, have widely proven their value but come
+   with inherent limitations.</p>
+
+<ul>
+  <li>
+    <p><strong>Dependency on Expertise:</strong> Setting accurate thresholds requires good
+understanding of the machine’s internals: what operating conditions to
+expect (speed, load, etc.) and their associated fault frequencies.</p>
+  </li>
+  <li>
+    <p><strong>Operating point variability:</strong> Threshold-based frequency band or
+enveloping alarms are most effective when a machine operates under stable
+speeds and loads. In environments with varying conditions, thresholds often
+need to be relaxed to avoid false positives, which significantly reduces
+the sensitivity of the monitoring system.</p>
+  </li>
+</ul>
+
+<hr />
+<h4 id="enter-the-power-of-machine-learning">Enter the Power of Machine Learning</h4>
+
+<p>Machine learning (ML) techniques offer a more flexible solution to track
+   the health of a machine. The models used in ML can represent the machine’s
+   time and frequency vibration data using latent (internal) variables, which
+   provide an abstract view of the machine’s internal state.</p>
+
+<blockquote>
+  <p><strong>Latent Variables:</strong><br />
+ In an autoencoder, for example, the ML model is trained to compress the
+ vibration data (the STFT representation in our case) into a compact set
+ of latent variables, essentially creating what some marketing materials
+ might call a “digital twin.”</p>
+</blockquote>
+
+<p><img src="/tutorials/assets/images/vibration-vae.png" alt="autoencoder banner" width="90%" style="margin-left: 1em;" /></p>
+
+<p>This discussion will focus on unsupervised learning and <strong>autoencoders</strong> in
+   particular, as they can be applied to a broad range of topics, without the
+   need for costly manual training.</p>
+<blockquote>
+  <p>An autoencoder is a type of neural network that learns to compress input
+data into a lower-dimensional representation (the encoder) and then
+reconstructs it back to the original form (the decoder), capturing only
+the essential features in the process.</p>
+</blockquote>
+
+<div style="max-width: 20em;">
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/JoR5HCs0n0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+   </iframe>
+   </div>
+<figcaption>
+     Figure 20: Introduction to Autoencoders.
+     <a class="external" href="https://www.youtube.com/sentdex" target="_blank">[youtube.com/Sentdex]
+     </a>
+   </figcaption>
+
+<p>After the training phase, these <strong>latent variables capture the subtle
+   interactions</strong> between speed, load, temperature, and the time and frequency
+   domain components of the input signal. Think of this as a more sophisticated
+   version of the relationship between machine load and temperature, but in
+   multiple dimensions, with more variables and with greater complexity.</p>
+
+<blockquote>
+  <p>“Oftentimes, the neural network will discover complex features which are
+very useful for predicting the output but may be difficult for a human
+to understand or interpret.”<br />
+<small>Andrew Ng. CS229 Lecture Notes: Deep Learning, Chapter II. Stanford
+University, June 2023.
+<br /> Retrieved from
+ <a class="external" href="https://cs229.stanford.edu/main_notes.pdf" target="_blank">[stanford.edu]
+ </a>
+</small></p>
+</blockquote>
+
+<p>While the latent variables themselves won’t give us direct insight in the
+   machine’s health status, they do provide the foundation to <strong>estimate how
+   far the the machine’s current behaviour deviates from its normal operating
+   point</strong>. The normal state is defined by a cluster of complex patterns
+   captured from the thousands of measurements during the training phase.</p>
+
+<p><img src="/tutorials/assets/images/vibration-t-sne.svg" alt="t-SNE visualization of the latent space of machine operating point" width="100%" style="margin-left: 0em;" /></p>
+<figcaption>
+     Figure 21: t-SNE visualization of the L-dimensional latent space reveals
+     clusters corresponding to different machine operating points. t-SNE is a
+     nonlinear transformation that reduces high-dimensional data to 2D or 3D
+     for visualization. It keeps similar data points close together in the
+     lower-dimensional space that the human brain can interpret.
+     <br /><i>More info:
+     <a class="external" href="https://www.youtube.com/watch?v=wvsE8jm1GzE" target="_blank">[youtube.com/GoogleDevelopers]
+     </a></i>
+   </figcaption>
+
+<p>For example, if a harmonic component appears (or disappears for that matter)
+   in the STFT that wasn’t present during the training (e.g. a bearing fault),
+   or if a specific unexpected combination of harmonics occurs, the latent
+   variables won’t be optimized to accurately represent this newfound state.
+   As a result, <strong>the decoded output of the autoencoder will start to diverge
+   from the input</strong>.</p>
+
+<p><img src="/tutorials/assets/images/vibraton-encode-decode-loss.svg" alt="t-SNE visualization of the latent space of machine operating point" width="100%" style="margin-left: 0em;" /></p>
+<figcaption>
+     Figure 22: Autoencoder-based anomaly detection using STFT spectrograms.
+     The input is compressed into a latent space and decoded again; anomalies
+     introduce reconstruction errors, leading to divergence and increased values
+     in the loss history plot.
+   </figcaption>
+
+<p>This discrepancy between the input STFT and the model’s output STFT is
+   measured by a loss function, for example the LogCosh (log of the cosh of
+   the prediction error), which <strong>transforms the <em>Δ(out-in)</em> into a
+   single numerical value: the loss value</strong> or so-called “anomaly level”.<br />
+   The loss value indicates how good the model can represent the current
+   measurement and thus indirectly how far the machine is operating from its
+   pre-trained cluster of behavioural states.</p>
+
+<p>The next part will return to our real-world example of the vibratory screen.
+   We will examine the raw data to better understand the signal itself, feed it
+   into the autoencoder and relate the loss value to the events that we can see
+   in the raw data. By the end, we’ll have a clearer understanding of what
+   machine learning can offer beyond the “black magic box” that it may appear
+   to many people.</p>
+
+<hr />
+
+<p><a href="/tutorials/blog/anomaly-detection-vibration-part3">Part 3: Real-world Vibratory Screen Data</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tutorials/categories/#blog" class="page__taxonomy-item p-category" rel="tag">blog</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2024-08-18T00:00:00-05:00">August 18, 2024</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/blog/anomaly-detection-vibration-part1/" class="pagination--pager" title="Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 1/3 Introduction
+">Previous</a>
+    
+    
+      <a href="/tutorials/blog/anomaly-detection-vibration-part3/" class="pagination--pager" title="Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 3/3 Bearing Damage Detection
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+
+    
+      <aside class="sidebar__right sticky">
+        
+  <div class="sidebar sidebar-company">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="/tutorials/">
+        <img src="/tutorials/assets/images/iqunet_logo_bgwhite.svg" alt="" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="/tutorials/" itemprop="url"></a>
+    </h3>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://iqunet.com" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-house" aria-hidden="true"></i><span class="label">iQunet.com</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/company/iqunet/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCOPGTm7iW8Xh6ZJP8UBq_nQ" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://iqunet.github.io/tutorials" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="description_2">
+      iQunet offers ready-to-use products for your digitalization projects, ensuring a quick rollout of your monitoring solutions.  We also support custom engineering requests to meet your specific needs.
+    </div>
+  </div>
+
+
+      </aside>
+      
+
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 <a href="">Tutorials</a></div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/tutorials/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('img:not(.nolightbox)').forEach(function(img, index) {
+            var link = document.createElement('a');
+            link.href = img.src;
+            link.setAttribute('data-lightbox', 'gallery');
+            
+            img.parentNode.insertBefore(link, img);
+            link.appendChild(img);
+
+            // workaround to disable magnificPopup
+            $.magnificPopup.proto.open = Function.prototype
+        });
+
+        lightbox.option({
+            'fadeDuration': 0,       // No transition effect
+            'resizeDuration': 0,     // No transition effect
+            'imageFadeDuration': 0,  // No transition effect
+            'wrapAround': true       // Enable navigation between images
+        });
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  </body>
+</html>
