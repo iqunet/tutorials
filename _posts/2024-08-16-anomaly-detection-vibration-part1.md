@@ -84,11 +84,11 @@ practical.
   Accumulation of dust on the receiver module after several weeks of operation.
 </figcaption>
 
-In this blogpost, we will explore how ruggedized wireless vibration sensors
-and machine learning in the data postprocessing chain provide us with consistent
-regular health updates, enabling early detection of issues. We shall cover the
-technical setup, the data processing, and the machine learning which automate
-the anomaly detection in noisy environments.
+In this blogpost, we will show that ruggedized **wireless vibration sensors**
+and machine learning in the data postprocessing chain provide us with 
+**consistent health updates** at a regular interval, enabling early detection
+of issues. We shall cover the technical setup, the data processing, and the
+machine learning which automate the anomaly detection in noisy environments.
 
 > *Noisy, in this case, refers to the sensor signal, which is polluted with
 > unwanted vibrations from the production process itself, in addition to the
@@ -96,18 +96,18 @@ the anomaly detection in noisy environments.
 
 ---
 
-### Monitoring Shaker Conveyors
+### Monitoring Vibration Screens
 
-Monitoring vibrating equipment in waste management plants presents unique
-challenges. These plants are large, and network infrastructure is often
-lacking. Installing cabling across such large sites is not only expensive but
-also prone to failures. This is especially true for machines that experience
-significant vibrations.
+Monitoring vibrating conveyor equipment in waste management plants presents
+unique challenges. These plants are large, and network infrastructure or good
+cellular coverage is often lacking. Installing **cabling across large sites** is
+not only **expensive** but also prone to failures. This is especially true for
+machines that experience significant vibrations.
 
-One example is a vibratory screen, which spread the household waste material
-before it undergoes optical sorting. In the optical sorter, spectral cameras
-detect different materials, and pressurized air is then used to separate
-individual pieces of waste into different output flows.
+One example such an is a **vibratory screen**, which pre-sorts the household
+waste material on size before it undergoes optical sorting. In the optical
+sorter, spectral cameras detect different materials, and pressurized air is
+then used to further separate individual pieces into different output flows.
 
 See "*SPALECK: Recycling Waste Screens*"
 <a class="external"
@@ -126,19 +126,18 @@ See "*SPALECK: Recycling Waste Screens*"
   [image credit: SPALECK].
 </figcaption>
 
-These vibratory screens, which ensure the even distribution of material, pose
-several challenges:
+These vibratory screens, driven by a synchronous motor that powers an eccentric
+axle with counterweight, pose several challenges:
 
-- **Large Displacements:** Vibratory screens experience translational
-displacements of up to 10 cm, making not only themselves prone to considerable
-stresses but also make wired sensors susceptible to both connector wear and
-cable fatigue in the long term.
+- **Large Displacements:** Translational displacements of up to 10 cm make not
+only the shaker itself prone to considerable stresses, but also any wired
+sensor setup will be susceptible to both **connector wear and cable fatigue**
+in the long term.
   
 - **Regular Maintenance:** Parts of these machine are frequently disassembled
 for maintenance. It is preferred that any sensors should be as non-intrusive as
-possible during such manipulations while also maintaining consistent location
-and orientation. This stability improves the accuracy of the machine learning
-algorithms, as discussed later in this post.
+possible during such manipulations. This ensures a **consistent sensor location
+and orientation** and improves the accuracy of the machine learning algorithms.
 
 Given the challenges of monitoring shaker machines, the customer here opted
 for wireless sensors to avoid the above issues.
