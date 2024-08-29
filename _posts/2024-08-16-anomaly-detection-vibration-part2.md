@@ -362,6 +362,10 @@ more complex signal transformations, discussed below:
    This discussion will focus on unsupervised learning and **autoencoders** in
    particular, as they can be applied to a broad range of topics, without the
    need for costly manual training.
+   > An autoencoder is a type of neural network that learns to compress input
+   > data into a lower-dimensional representation (the encoder) and then
+   > reconstructs it back to the original form (the decoder), capturing only
+   > the essential features in the process.
 
    <div style="max-width: 20em;">
    <iframe
@@ -383,8 +387,8 @@ more complex signal transformations, discussed below:
      </a>
    </figcaption>
 
-   After the training phase, these latent variables capture the subtle
-   interactions between speed, load, temperature, and the time and frequency
+   After the training phase, these **latent variables capture the subtle
+   interactions** between speed, load, temperature, and the time and frequency
    domain components of the input signal. Think of this as a more sophisticated
    version of the relationship between machine load and temperature, but in
    multiple dimensions, with more variables and with greater complexity.
@@ -401,10 +405,10 @@ more complex signal transformations, discussed below:
    > </small>
 
    While the latent variables themselves won't give us direct insight in the
-   machine's health status, they do provide the foundation for estimating how
+   machine's health status, they do provide the foundation to **estimate how
    far the the machine's current behaviour deviates from its normal operating
-   point. The normal state is defined by a cluster of complex patterns captured
-   from the thousands of measurements during the training phase.
+   point**. The normal state is defined by a cluster of complex patterns
+   captured from the thousands of measurements during the training phase.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-t-sne.svg"
@@ -417,7 +421,7 @@ more complex signal transformations, discussed below:
      clusters corresponding to different machine operating points. t-SNE is a
      nonlinear transformation that reduces high-dimensional data to 2D or 3D
      for visualization. It keeps similar data points close together in the
-     lower-dimensional space.
+     lower-dimensional space that the human brain can interpret.
      <br /><i>More info:
      <a class="external" href="https://www.youtube.com/watch?v=wvsE8jm1GzE"
        target="_blank">[youtube.com/GoogleDevelopers]
@@ -428,8 +432,8 @@ more complex signal transformations, discussed below:
    in the STFT that wasn't present during the training (e.g. a bearing fault),
    or if a specific unexpected combination of harmonics occurs, the latent
    variables won't be optimized to accurately represent this newfound state.
-   As a result, the output of the autoencoder will start to diverge from the
-   input.
+   As a result, **the decoded output of the autoencoder will start to diverge
+   from the input**.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibraton-encode-decode-loss.svg"
@@ -444,19 +448,20 @@ more complex signal transformations, discussed below:
      in the loss history plot.
    </figcaption>
 
-   This discrepancy between the input and the model's output is measured by a
-   loss function, for example the LogCosh (log of the cosh of the prediction
-   error), which transforms it into a single numerical value: the loss value
-   or so-called "anomaly level" that indicates how good the model can represent
-   the current measurement and thus indirectly how far the machine is operating
-   from its pre-trained cluster of behavioural states.
+   This discrepancy between the input STFT and the model's output STFT is
+   measured by a loss function, for example the LogCosh (log of the cosh of
+   the prediction error), which **transforms the *&Delta;(out-in)* into a
+   single numerical value: the loss value** or so-called "anomaly level".  
+   The loss value indicates how good the model can represent the current
+   measurement and thus indirectly how far the machine is operating from its
+   pre-trained cluster of behavioural states.
 
-   In the next part, we will return to our real-world example of the
-   vibratory screen. We'll start by examining the raw data to better understand
-   the signal itself, then convert that data to its STFT representation and
-   feed it into the autoencoder. By the end, we'll have a clearer understanding
-   of what machine learning can offer beyond the "black magic box" that it
-   may appear to many people in the field of vibration analysis.
+   The next part will return to our real-world example of the vibratory screen.
+   We will examine the raw data to better understand the signal itself, feed it
+   into the autoencoder and relate the loss value to the events that we can see
+   in the raw data. By the end, we'll have a clearer understanding of what
+   machine learning can offer beyond the "black magic box" that it may appear
+   to many people.
 
 ---
 
