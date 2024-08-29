@@ -1,5 +1,5 @@
 ---
-title: "Anomaly Detection Using MEMS Vibration Sensors and Machine Learning - Part 2/3"
+title: "Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 2/3 Deep Learning"
 date: 2024-08-18
 categories: blog
 toc: true

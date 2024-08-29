@@ -1,5 +1,5 @@
 ---
-title: "Anomaly Detection Using MEMS Vibration Sensors and Machine Learning - Part 3/3"
+title: "Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 3/3 Bearing Damage Detection"
 date: 2024-08-18
 categories: blog
 toc: true
@@ -10,29 +10,29 @@ published: true
 <img
   src="{{ site.baseurl }}/assets/images/recycling_plant.jpg"
   alt="Recycling Plant Artists Impression"
-  width="300px"
+  width="200px"
 />
 
 {: .description_3}
 This is the third part in a three-part series.  
-[Part 1: Sensors in a Waste Processing Plant]({{ site.baseurl }}/2024/08/16/anomaly-detection-vibration-part1.html)  
-[Part 2: Anomaly Detection with Autoencoders]({{ site.baseurl }}/2024/08/16/anomaly-detection-vibration-part2.html)  
+[Part 1: Sensors in a Waste Processing Plant]({{ site.baseurl }}/blog/anomaly-detection-vibration-part1)  
+[Part 2: Anomaly Detection with Autoencoders]({{ site.baseurl }}/blog/anomaly-detection-vibration-part2)  
 
 ### Real-world Vibratory Screen Data
 
    Figure 23 shows the autoencoder loss of a vibratory screen, based on 4,400
    measurements (3x8192 samples/meas) collected from a triax MEMS sensor between
-   February and August 2024. 
-
-   > The monitoring period spans a period of 7 months of measurements and
-   > telemetry data with an estimated 70% of remaining battery capacity.
+   February and August 2024 on a vibratory screen as depicted in Figure 5
+   (see Part 1).  
+   The monitored period spans a period of 7 months of measurements and
+   telemetry data with an estimated 70% of remaining battery capacity.
 
    The historical data reveals the progression of a bearing fault over time:
 
-   - Training set from February to March (600 measurements)
+   - Training data from February to March (600 measurements)
    - Signs of **initial damage** become detectable around March 24 (T-70d)
-   - Further **deterioration** from May 22 onwards (T-11d)
-   - **Critical damage** (stage 4 bearing fault) on June 2 (T)
+   - Further **deterioration** (stage-3) from May 22 onwards (T-11d)
+   - **Critical damage** (stage-4 bearing fault) on June 2 (T)
    - The bearing was **replaced** on June 17 (T+15d)
 
    <img
@@ -84,12 +84,12 @@ This is the third part in a three-part series.
 
 #### Spectral Heatmap
 
-   To review the ML results, we introduce the spectral heatmap. In this plot,
-   the horizontal x-axis represents measurement date, and the vertical slices
-   (y-axis) represents the frequency spectrum of 1 single measurement (z-axis).
-   Similar to the STFT, the energy in the spectrum is represented by a color
-   map, with dark blue indicating the lowest magnitude and yellow the highest
-   peaks.
+   To review and understand the ML results, we introduce the spectral heatmap.
+   In this plot, the horizontal x-axis represents measurement date, and the
+   vertical slices (y-axis) represents the frequency spectrum of 1 single
+   measurement (z-axis). Similar to the STFT, the energy in the spectrum is
+   represented by a color map, with dark blue indicating the lowest magnitude
+   and yellow the highest peaks.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-screen3131-heatmap.svg"
@@ -116,15 +116,15 @@ This is the third part in a three-part series.
    **Lower part of the spectrum**  
    Figure 24 also shows that most of the process noise is concentrated around
    the fundamental drive frequency and its harmonics. For example, bin 500
-   (97Hz) shows the process noise modulated onto the 2nd harmonic (synchronous
+   (97Hz) shows the process noise modulated onto the 2nd harmonic (asynchronous
    motor at mains frequency of 50Hz with 3% slip).
 
    In the lower part of the spectrum, the harmonics originate partially from
-   the inevitable slight imbalance of the very rigid structure of the screen
-   itself and partially due to the nonlinear friction of the processed waste
-   on the screen's separator structures. Apart from the static load on the
-   bearing, the high forces due to the rigid bearing and the dynamic imbalance
-   are the main cause of a reduced service life of the eccentric shaft bearing.
+   the inevitable slight imbalance combined with the very rigid structure of
+   the screen itself and partially due to the nonlinear behaviour of the
+   screen's separator structures. Apart from the static load on the bearing,
+   the high forces due to the rigid bearing and the dynamic imbalance are the
+   main cause of a reduced service life of the eccentric shaft bearing.
 
    For an in-depth analysis, see
    <a href="https://www.researchgate.net/publication/373367839" target="_blank">
@@ -142,18 +142,18 @@ This is the third part in a three-part series.
 #### Mitigation of False Positives
 
    While the spectral heatmap provides detailed insights into the operational
-   behavior of the vibratory screen, visually inspecting heatmaps is impractical
-   for daily machine monitoring.
+   behavior of the vibratory screen, visually inspecting a heatmap for each
+   sensor is impractical on a daily basis for more than a few sensor nodes.
    
-   The key advantage of the STFT + autoencoder approach is its ability to
-   project complex sensor signals onto a single numeric "anomaly score" through
-   nonlinear transformation.
+   The key advantage of the "STFT + autoencoder + loss function" approach is
+   its ability to project complex sensor signals onto a single numeric "anomaly
+   score" via a nonlinear mapping.
 
-   The anomaly score allows the implementation of a simple, temperature-like
-   threshold based on historical anomaly levels. This eliminates the need to
-   manually set alarm levels for each individual frequency subrange. This is
-   especially true for equipment that comes with little a-priori information,
-   such as small ubiquitous equipment like pumps, conveyor belts, or fans.
+   The anomaly score then allows us to use a simple, temperature-like threshold
+   based on historical anomaly values. This eliminates the need to manually set
+   alarm levels for each individual frequency subrange. This is especially true
+   for equipment that comes with little a-priori information, such as small
+   ubiquitous equipment like pumps, conveyor belts, or fans.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-canvas-iqunet.jpg"
@@ -173,7 +173,7 @@ This is the third part in a three-part series.
    A lower quantile with a larger window reduces the likelihood of false alarms
    but slows response time. Conversely, a higher quantile increases sensitivity
    at the expense of more false positives. Using multiple quantiles with a
-   single threshold allows for alarms with varying severity levels.
+   single threshold provides alarms with varying severity levels.
 
    <img
      src="{{ site.baseurl }}/assets/images/vibration-anomaly-quantiles.png"
@@ -187,21 +187,22 @@ This is the third part in a three-part series.
      OPC-UA (/MQTT) for export to any factory SCADA (/IoT) platform.
    </figcaption>
    
-   When an alarm is triggered, the anomaly score continues to provide insights
-   into the stability of the anomaly. It brings an estimate of how rapidly the
-   machine is deviating from its operational baseline. It provides useful data
-   in how fast an intervention must be planned.
+   When the alarm is triggered, the anomaly score continues to provide insights
+   into the stability of the anomaly: we can now see of how rapidly the machine
+   is deviating from its operational baseline. It provides useful data for how
+   fast an intervention must be planned.
 
    ---
 
 ### Conclusion
 
    Wireless vibration sensors combined with machine learning provide a powerful
-   solution for the day-to-day anomaly detection in industrial screens. By
+   solution for day-to-day anomaly detection in industrial screens. By
    continuously monitoring machine behavior and processing data through
    deep-learning ML models, emerging random faults can be detected before they
-   become catastrophic, by leveraging the strength of big data to balance the
-   reduced sensitivity/bandwidth compared to piezo sensor technology.
+   become catastrophic. Leveraging the strength of big data tips the scale in
+   favor of MEMS technology, even with some reduced sensitivity/bandwidth
+   compared to piezo sensors.
 
    This predictive approach minimizes unplanned downtime, and allows to align
    repairs with the scheduled maintenance. The ability to automatically

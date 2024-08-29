@@ -1,5 +1,5 @@
 ---
-title: "Anomaly Detection Using MEMS Vibration Sensors and Machine Learning - Part 1/3"
+title: "Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 1/3 Introduction"
 date: 2024-08-18
 categories: blog
 toc: true
@@ -28,7 +28,7 @@ We cover the technical setup and data postprocessing using autoencoders
 (part 2), which are the key elements for reliable and fully automated fault
 detection.
 
-Finally, based on real-world data collected during an 8-month long data
+Finally, based on real-world data collected during an 7-month long data
 collection example from a household waste processing plant in the Benelux, the
 reader will understand both the strengths and weaknesses of the system (part 3).
 
