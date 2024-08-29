@@ -226,7 +226,7 @@ more complex signal transformations, discussed below:
      </a>.
    </figcaption>
 
-   While is very possible for a machine learning algorithm to perform domain
+   While it is very possible for a machine learning algorithm to perform domain
    transforms internally, this approach would require a significant portion of
    the model structure (specifically, the convolutional layers) to handle these
    transforms. This would complicate the training phase as it would also take
