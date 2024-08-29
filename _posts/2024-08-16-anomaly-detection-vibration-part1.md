@@ -13,18 +13,24 @@ published: true
   width="500px"
 />
 
+### Scope and TL;DR
+This post explores how **wireless vibration sensors** and machine learning
+techniques are used for **anomaly detection** in industrial shaker screens.
+By monitoring vibration data and using deep-learning models, various types of
+mechanical faults can be detected at an early stage.
+
 {: .description_3}
 This is the first part in a three-part series.  
 [Part 2: Anomaly Detection with Autoencoders]({{ site.baseurl }}/blog/anomaly-detection-vibration-part2)  
 [Part 3: Real-world Vibratory Screen Data]({{ site.baseurl }}/blog/anomaly-detection-vibration-part3)
 
-### Scope and TL;DR
-This blog post explores how wireless vibration sensors and machine learning
-techniques are used for anomaly detection in industrial shaker machines. By
-monitoring vibration data and using deep-learning models, various types of
-mechanical faults can be detected at an early stage. We cover the technical
-setup and data postprocessing using autoencoders, which are the key elements
-for reliable and fully automated fault detection.
+We cover the technical setup and data postprocessing using autoencoders
+(part 2), which are the key elements for reliable and fully automated fault
+detection.
+
+Finally, based on real-world data collected during an 8-month long data
+collection example from a household waste processing plant in the Benelux, the
+reader will understand both the strengths and weaknesses of the system (part 3).
 
 <img
   src="{{ site.baseurl }}/assets/images/vibration-to-anomaly.jpg"
@@ -33,11 +39,9 @@ for reliable and fully automated fault detection.
   style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);"
 />
 
-Based on real-world data from a household waste processing plant in the Benelux,
-this post examines both the strengths and weaknesses of the system. It is
-targeted at both the vibration expert and the casual reader interested in
-gaining better insight in the practical applications of machine learning,
-beyond the hype that has surrounded it in recent years.
+This read is targeted at both the vibration expert and the casual reader
+interested in gaining better insight in the practical applications of machine
+learning, beyond the hype that has surrounded it in recent years.
 
 ### Introduction
 Waste management plants rely on long serial processing lines. Failures in any
@@ -46,11 +50,11 @@ makes some level of monitoring targeted towards machine health and predictive
 maintainance crucial to avoid unplanned downtimes and the cost that inevitably
 comes with it.
 
-See "*How does the post-separation process work?*"
+See "*How does the post-separation process work?*" by
 <a class="external"
   href="https://www.avr.nl/en/optimal-process/nascheidingsinstallatie-nsi"
   target="_blank">AVR.nl
-</a>.
+</a> for additional photos.
 
 <img
   src="{{ site.baseurl }}/assets/images/vibration-avr-separation.svg"
@@ -63,11 +67,12 @@ See "*How does the post-separation process work?*"
   (click to enlarge) [credits: AVR].
 </figcaption>
 
-While digital PLCs are in the control of the pipeline and can already detect
-the most acute faults in realtime, machine manufacturers treat predictive
-monitoring mostly as an afterthought, leaving it to the customers to handle
-unexpected random failures. However, in unhealthy environments filled with dust,
-humidity, and noise, daily manual inspections are not practical.
+While **digital PLCs** are in the control of the pipeline and can already
+detect the most **acute faults** in realtime, machine manufacturers treat
+predictive monitoring mostly as an afterthought, leaving it to the maintanance
+staff to handle unexpected random failures. However, in unhealthy environments
+filled with dust, humidity, and noise, routine manual inspections are not
+practical.
 
 <img
   src="{{ site.baseurl }}/assets/images/vibration-dust.jpg"
@@ -99,7 +104,7 @@ lacking. Installing cabling across such large sites is not only expensive but
 also prone to failures. This is especially true for machines that experience
 significant vibrations.
 
-One example is vibratory feeders, which spread the household waste material
+One example is a vibratory screen, which spread the household waste material
 before it undergoes optical sorting. In the optical sorter, spectral cameras
 detect different materials, and pressurized air is then used to separate
 individual pieces of waste into different output flows.
@@ -111,20 +116,20 @@ See "*SPALECK: Recycling Waste Screens*"
 </a>.
 
 <img
-  src="{{ site.baseurl }}/assets/images/vibration-vibratory-feeder.jpg"
-  alt="Vibratory Feeder with Vibration Sensor Location"
+  src="{{ site.baseurl }}/assets/images/vibration-vibratory-screen.jpg"
+  alt="Vibratory Screen with Vibration Sensor Location"
   width="100%"
   style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);"
 />
 <figcaption>
-  Figure 5: Vibratory Feeder with the location of the Vibration Sensor
+  Figure 5: Vibratory Screen with the location of the Vibration Sensor
   [image credit: SPALECK].
 </figcaption>
 
-These vibratory feeders, which ensure the even distribution of material, pose
+These vibratory screens, which ensure the even distribution of material, pose
 several challenges:
 
-- **Large Displacements:** Vibratory feeders experience translational
+- **Large Displacements:** Vibratory screens experience translational
 displacements of up to 10 cm, making not only themselves prone to considerable
 stresses but also make wired sensors susceptible to both connector wear and
 cable fatigue in the long term.
@@ -161,7 +166,7 @@ attenuate and reflect high-frequency signals. This makes measurements above
 10 kHz, including ultrasonic frequencies, costly and of limited benefit.
   
 - **Unsuitability of RMS Sensors:** In simple RMS sensors, fault signals will
-be masked by process noise, making them ineffective for vibratory feeders
+be masked by process noise, making them ineffective for vibratory screens
 except for the most obvious late-stage catastrophic failures.
 
 ---

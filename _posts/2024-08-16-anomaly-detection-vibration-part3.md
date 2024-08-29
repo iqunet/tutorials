@@ -18,7 +18,7 @@ This is the third part in a three-part series.
 [Part 1: Sensors in a Waste Processing Plant]({{ site.baseurl }}/2024/08/16/anomaly-detection-vibration-part1.html)  
 [Part 2: Anomaly Detection with Autoencoders]({{ site.baseurl }}/2024/08/16/anomaly-detection-vibration-part2.html)  
 
-### Real-world Vibratory Feeder Data
+### Real-world Vibratory Screen Data
 
    Figure 23 shows the autoencoder loss of a vibratory screen, based on 4,400
    measurements (3x8192 samples/meas) collected from a triax MEMS sensor between

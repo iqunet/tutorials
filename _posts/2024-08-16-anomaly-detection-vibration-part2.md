@@ -439,7 +439,7 @@ more complex signal transformations.
    from its pre-trained cluster of behavioural states.
 
    In the next part, we will return to our real-world example of the
-   vibratory feeder. We'll start by examining the raw data to better understand
+   vibratory screen. We'll start by examining the raw data to better understand
    the signal itself, then convert that data to its STFT representation and
    feed it into the autoencoder. By the end, we'll have a clearer understanding
    of what machine learning can offer beyond the "black magic box" that it
