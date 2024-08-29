@@ -1323,6 +1323,8 @@ hr { border-top: 3px solid #80808063; }
 
 .description_2 { width: 95%; padding: 1em; font-size: 0.6em; font-style: italic; background: #929cd31f; border-radius: 16px; }
 
+.description_3 { max-width: 30em; padding: 1em; font-size: 0.7em !important; font-style: italic; background: #929cd31f; border-radius: 16px; }
+
 .notice { background-color: #e3e7ff9e; }
 .notice a { color: #6e7173; }
 

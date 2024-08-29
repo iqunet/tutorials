@@ -16,4 +16,22 @@ var store = [{
         "tags": [],
         "url": "/tutorials/blog/power-quality/",
         "teaser": null
+      },{
+        "title": "Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 1/3 Introduction",
+        "excerpt":"Scope and TL;DR This post explores how wireless vibration sensors and machine learning techniques are used for anomaly detection in industrial shaker screens. By monitoring vibration data and using deep-learning models, various types of mechanical faults can be detected at an early stage. This is the first part in a...","categories": ["blog"],
+        "tags": [],
+        "url": "/tutorials/blog/anomaly-detection-vibration-part1/",
+        "teaser": null
+      },{
+        "title": "Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 2/3 Deep Learning",
+        "excerpt":"This is the second part in a three-part series. Part 1: Sensors in a Waste Processing Plant Part 3: Real-world Vibratory Screen Data Sensor Data Processing and Machine Learning The MEMS-based wireless vibration sensors (IVIB161010-ACC3-016) gather detailed, day-to-day data containing info about the vibratory screen’s behavior (see part 1). Each...","categories": ["blog"],
+        "tags": [],
+        "url": "/tutorials/blog/anomaly-detection-vibration-part2/",
+        "teaser": null
+      },{
+        "title": "Anomaly Detection with MEMS Vibration Sensors and Machine Learning - Part 3/3 Bearing Damage Detection",
+        "excerpt":"This is the third part in a three-part series. Part 1: Sensors in a Waste Processing Plant Part 2: Anomaly Detection with Autoencoders Real-world Vibratory Screen Data Figure 23 shows the autoencoder loss of a vibratory screen, based on 4,400 measurements (3x8192 samples/meas) collected from a triax MEMS sensor between...","categories": ["blog"],
+        "tags": [],
+        "url": "/tutorials/blog/anomaly-detection-vibration-part3/",
+        "teaser": null
       }]
