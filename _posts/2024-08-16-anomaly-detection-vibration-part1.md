@@ -149,24 +149,24 @@ for wireless sensors to avoid the above issues.
 <figcaption>figure 6: Video Demonstrating Sensor Placement and the Challenging
   Conditions on a Shaker Screen in a Waste Processing Plant.</figcaption>
 
-Also, to ensure that routine maintenance tasks can be performed without
-disturbing the sensors, they were installed 40 cm away from the ideal location.
-This placement on the machine frame, rather than directly on the motor and
-drive train, drastically reduces the sensitivity to high-frequency bearing
-faults but ensures consistent data collection over a long period, even after
-part replacements. This highlights the gap between ideal lab conditions and
-a typical installation.
+To ensure that routine maintenance tasks can be performed without disturbing
+the sensors, they were installed 40 cm away from the ideal location.
 
-Other factors that need to be considered include:
+The sensors are located on the machine frame, instead of directly on the bearing
+housing of the eccentric axle, which  inevitably reduces the sensitivity to
+high-frequency bearing faults. This highlights the gap between ideal lab
+conditions and a typical installation.
+
+So factors that need to be considered include:
 
 - **Signal Propagation:** The sensor's non-ideal placement introduces multiple
 wave propagation boundaries (i.e. transitions between materials), which
-attenuate and reflect high-frequency signals. This makes measurements above
+attenuate and reflect high-frequency signals. This makes any measurements above
 10 kHz, including ultrasonic frequencies, costly and of limited benefit.
   
-- **Unsuitability of RMS Sensors:** In simple RMS sensors, fault signals will
-be masked by process noise, making them ineffective for vibratory screens
-except for the most obvious late-stage catastrophic failures.
+- **Unsuitability of RMS Sensors:** For simple RMS sensors, the fault signals
+will be masked by process noise. This makes them ineffective for vibratory
+screens except for the most obvious late-stage catastrophic failures (see part 3).
 
 ---
 
@@ -182,7 +182,7 @@ are an ideal choice.
   style="margin-left: 1em;"
 />
 <figcaption>
-  Figure 7: Microphotograph (2x2mm) of a MEMS Accelerometer (without ASIC processor).
+  Figure 7: Microphotograph (2x2mm) of a MEMS Accelerometer (without the ASIC processor).
   <br /> Hollocher et al., "A Very Low Cost, 3-axis, MEMS Accelerometer for
   Consumer Applications," 2009. 
   <a class="external"
@@ -191,20 +191,22 @@ are an ideal choice.
   </a>.
 </figcaption>
 
-Fully integrated MEMS (micro-electromechanical system) vibration sensors detect
-acceleration by measuring changes in capacitance (distance) between a fixed
-electrode and a suspended on-chip proof mass. The variations in capacitance are
-then digitized by the ASIC postprocessor embedded in the same
+Fully integrated **MEMS vibration sensors** (micro-electromechanical system)
+detect acceleration by measuring changes in capacitance (distance) between a
+fixed electrode and a suspended **on-chip proof mass**. The variations in
+capacitance are then digitized by the ASIC postprocessor embedded in the same
 <a class="external"
   href="https://en.wikipedia.org/wiki/System_in_a_package"
   target="_blank">SiP package
 </a>
 and converted into their corresponding acceleration values.
 
-- **Robustness:** MEMS sensors are highly durable and well-suited for long-term
-use in harsh environments. Piezo accelerometers on the other hand, have superior
-noise characteristics but are more prone to material failures of the ceramic
-sensing elements and need more careful handling to maintain their calibrated
+Characteristics of MEMS:
+
+- **Robustness:** Highly durable and well-suited for long-term use in harsh
+environments. Piezo accelerometers on the other hand, have superior noise
+characteristics but are more prone to material failures of the ceramic sensing
+elements and need more careful handling to maintain their calibrated
 sensitivity.
 
 - **Frequency Response:** MEMS sensors capture vibrations up to a few kHz(\*) in
@@ -228,6 +230,8 @@ fault sensitivity.
     target="_blank">here
   </a>.
 </figcaption>
+
+Advantages of wireless sensors:
 
 - **Wireless Range:** With a range of 20 to 50 meters, wireless sensors
 eliminate the need for fragile and expensive cabling. Downside is the need for
