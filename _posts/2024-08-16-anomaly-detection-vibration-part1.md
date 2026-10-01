@@ -5,6 +5,7 @@ categories: blog
 toc: true
 toc_sticky: true
 published: true
+canonical_url: "https://iqunet.com/tutorials/anomaly-introduction"
 ---
 
 <img
