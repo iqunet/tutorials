@@ -4,6 +4,7 @@ date: 2024-05-24 12:06:19 +0200
 categories: blog
 toc: true
 toc_sticky: true
+canonical_url: "https://iqunet.com/tutorials/modbus-mqtt"
 ---
 <span style="background-color: #ffff0054">
 **Note:** This tutorial uses the iQunet Industrial Edge Server
