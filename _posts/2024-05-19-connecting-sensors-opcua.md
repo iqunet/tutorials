@@ -4,6 +4,7 @@ date: 2024-05-19 22:10:15 +0200
 categories: blog
 toc: true
 toc_sticky: true
+canonical_url: "https://iqunet.com/tutorials/lorawan-opcua"
 ---
 ### Mission: LoRaWAN Temperature Data to Python Graph
 
