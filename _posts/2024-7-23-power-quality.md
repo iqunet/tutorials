@@ -4,6 +4,7 @@ date: 2024-07-12
 categories: blog
 toc: true
 toc_sticky: true
+canonical_url: "https://iqunet.com/tutorials/power-quality"
 ---
 
 <img src="{{ site.baseurl }}/assets/images/power-compressor.png" alt="Air Compressor Illustration" width="500"/>
